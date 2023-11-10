@@ -15,6 +15,9 @@ public class ConfirmacionDatosPoliza02 extends javax.swing.JFrame {
      */
     public ConfirmacionDatosPoliza02() {
         initComponents();
+        setSize(900, 600);
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
