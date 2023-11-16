@@ -4,6 +4,7 @@
  */
 package com.trabajofinal.gui;
 
+import com.trabajofinal.controllers.AltaPolizaHijoController;
 import java.awt.image.BufferedImage;
 
 /**
@@ -26,6 +27,9 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
     setSize(500, 350);
     setResizable(false);
     setLocationRelativeTo(null);
+    setVisible(true);
+    
+    AltaPolizaHijoController altaPolizaHijoController = new AltaPolizaHijoController(this);
 }
 
     /**
@@ -42,8 +46,8 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_alta_poliza_hijo_continuar = new javax.swing.JButton();
+        btn_alta_poliza_hijo_cancelar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -62,36 +66,33 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 50));
 
         jComboBox3.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 310, 30));
 
         jComboBox4.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 310, 30));
 
         jComboBox5.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 310, 30));
 
-        jButton2.setBackground(new java.awt.Color(52, 162, 224));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Continuar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_alta_poliza_hijo_continuar.setBackground(new java.awt.Color(52, 162, 224));
+        btn_alta_poliza_hijo_continuar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza_hijo_continuar.setText("Continuar");
+        btn_alta_poliza_hijo_continuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_alta_poliza_hijo_continuarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 100, 30));
+        jPanel1.add(btn_alta_poliza_hijo_continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 100, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 128, 146));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_alta_poliza_hijo_cancelar.setBackground(new java.awt.Color(255, 128, 146));
+        btn_alta_poliza_hijo_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza_hijo_cancelar.setText("Cancelar");
+        btn_alta_poliza_hijo_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_alta_poliza_hijo_cancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 100, 30));
+        jPanel1.add(btn_alta_poliza_hijo_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 100, 30));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Sexo");
@@ -110,13 +111,13 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_alta_poliza_hijo_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alta_poliza_hijo_cancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_alta_poliza_hijo_cancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_alta_poliza_hijo_continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alta_poliza_hijo_continuarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_alta_poliza_hijo_continuarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,8 +155,8 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
+    public javax.swing.JButton btn_alta_poliza_hijo_cancelar;
+    public javax.swing.JButton btn_alta_poliza_hijo_continuar;
     public javax.swing.JComboBox<String> jComboBox3;
     public javax.swing.JComboBox<String> jComboBox4;
     public javax.swing.JComboBox<String> jComboBox5;

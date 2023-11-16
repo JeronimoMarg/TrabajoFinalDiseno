@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.trabajofinal.gui;
 
+import com.trabajofinal.controllers.AltaPoliza01Controller;
 import java.awt.image.BufferedImage;
 
 /**
@@ -26,6 +24,9 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     setSize(900, 600);
     setResizable(false);
     setLocationRelativeTo(null);
+    setVisible(true);
+    
+    AltaPoliza01Controller altaPoliza01Controller = new AltaPoliza01Controller(this);
 }
 
 
@@ -72,11 +73,11 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        btn_alta_poliza_agregar_hijo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_alta_poliza01_continuar = new javax.swing.JButton();
+        btn_alta_poliza01_cancelar = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jCheckBox4 = new javax.swing.JCheckBox();
@@ -276,10 +277,10 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         });
         jPanel4.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 310, 30));
 
-        jButton1.setBackground(new java.awt.Color(52, 162, 224));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Agregar hijos");
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
+        btn_alta_poliza_agregar_hijo.setBackground(new java.awt.Color(52, 162, 224));
+        btn_alta_poliza_agregar_hijo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza_agregar_hijo.setText("Agregar hijos");
+        jPanel4.add(btn_alta_poliza_agregar_hijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,20 +307,20 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 310, 90));
 
-        jButton2.setBackground(new java.awt.Color(52, 162, 224));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Continuar");
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 100, 30));
+        btn_alta_poliza01_continuar.setBackground(new java.awt.Color(52, 162, 224));
+        btn_alta_poliza01_continuar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza01_continuar.setText("Continuar");
+        jPanel4.add(btn_alta_poliza01_continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 100, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 128, 146));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_alta_poliza01_cancelar.setBackground(new java.awt.Color(255, 128, 146));
+        btn_alta_poliza01_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza01_cancelar.setText("Cancelar");
+        btn_alta_poliza01_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_alta_poliza01_cancelarActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 100, 30));
+        jPanel4.add(btn_alta_poliza01_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 100, 30));
 
         jTextField6.setEditable(false);
         jTextField6.setBackground(new java.awt.Color(220, 220, 220));
@@ -391,9 +392,9 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_alta_poliza01_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alta_poliza01_cancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_alta_poliza01_cancelarActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         // TODO add your handling code here:
@@ -451,9 +452,9 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
+    public javax.swing.JButton btn_alta_poliza01_cancelar;
+    public javax.swing.JButton btn_alta_poliza01_continuar;
+    public javax.swing.JButton btn_alta_poliza_agregar_hijo;
     public javax.swing.JCheckBox jCheckBox2;
     public javax.swing.JCheckBox jCheckBox3;
     public javax.swing.JCheckBox jCheckBox4;

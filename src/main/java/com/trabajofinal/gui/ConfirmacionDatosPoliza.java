@@ -4,6 +4,8 @@
  */
 package com.trabajofinal.gui;
 
+import com.trabajofinal.controllers.ConfirmacionDatosPolizaController;
+
 /**
  *
  * @author franco
@@ -18,6 +20,9 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         setSize(900, 600);
         setResizable(false);
         setLocationRelativeTo(null);
+        setVisible(true);
+        
+        ConfirmacionDatosPolizaController confirmacionDatosPolizaController = new ConfirmacionDatosPolizaController(this);
     }
 
     /**
@@ -68,9 +73,9 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_confirma_datos_pol_mod = new javax.swing.JButton();
+        btn_confirma_datos_pol_cancelar = new javax.swing.JButton();
+        btn_confirma_datos_pol_fin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,52 +268,52 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 810, 400));
 
-        jButton2.setBackground(new java.awt.Color(52, 162, 224));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_confirma_datos_pol_mod.setBackground(new java.awt.Color(52, 162, 224));
+        btn_confirma_datos_pol_mod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_confirma_datos_pol_mod.setText("Modificar");
+        btn_confirma_datos_pol_mod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_confirma_datos_pol_modActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 100, 30));
+        jPanel3.add(btn_confirma_datos_pol_mod, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 100, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 128, 146));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_confirma_datos_pol_cancelar.setBackground(new java.awt.Color(255, 128, 146));
+        btn_confirma_datos_pol_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_confirma_datos_pol_cancelar.setText("Cancelar");
+        btn_confirma_datos_pol_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_confirma_datos_pol_cancelarActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 30));
+        jPanel3.add(btn_confirma_datos_pol_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 30));
 
-        jButton4.setBackground(new java.awt.Color(52, 162, 224));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Finalizar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_confirma_datos_pol_fin.setBackground(new java.awt.Color(52, 162, 224));
+        btn_confirma_datos_pol_fin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_confirma_datos_pol_fin.setText("Finalizar");
+        btn_confirma_datos_pol_fin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_confirma_datos_pol_finActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 100, 30));
+        jPanel3.add(btn_confirma_datos_pol_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 100, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 900, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_confirma_datos_pol_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirma_datos_pol_cancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_confirma_datos_pol_cancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_confirma_datos_pol_modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirma_datos_pol_modActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_confirma_datos_pol_modActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_confirma_datos_pol_finActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirma_datos_pol_finActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_confirma_datos_pol_finActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -350,10 +355,10 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_confirma_datos_pol_cancelar;
+    public javax.swing.JButton btn_confirma_datos_pol_fin;
+    public javax.swing.JButton btn_confirma_datos_pol_mod;
     private javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
