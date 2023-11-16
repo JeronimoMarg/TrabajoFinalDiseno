@@ -12,10 +12,15 @@ public class DatosClienteController implements ActionListener {
     private Object[] options = {"Sí", "No"};
 
     public DatosClienteController(DatosCliente datosCliente) {
+       
+        
         this.datosCliente = datosCliente;
         
         //Botones en escucha
         this.datosCliente.btn_datos_cliente_nueva_poliza.addActionListener(this);
+        
+         //Le agrego un valor a txt_datos_cliente_user_code, después hay que modificar esto
+        this.datosCliente.txt_datos_cliente_user_code.setText("<USER001>"); 
     }
 
     
