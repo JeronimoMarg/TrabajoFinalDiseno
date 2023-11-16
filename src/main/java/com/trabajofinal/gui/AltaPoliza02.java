@@ -4,6 +4,7 @@
  */
 package com.trabajofinal.gui;
 
+import com.trabajofinal.controllers.AltaPoliza02Controller;
 import java.awt.image.BufferedImage;
 
 /**
@@ -26,6 +27,9 @@ public class AltaPoliza02 extends javax.swing.JFrame {
     setSize(900, 600);
     setResizable(false);
     setLocationRelativeTo(null);
+    setVisible(true);
+    
+    AltaPoliza02Controller altaPoliza02Controller = new AltaPoliza02Controller(this);
 }
 
     /**
@@ -46,15 +50,14 @@ public class AltaPoliza02 extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_alta_poliza02_continuar = new javax.swing.JButton();
+        btn_alta_poliza02_cancelar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,11 +81,9 @@ public class AltaPoliza02 extends javax.swing.JFrame {
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         jComboBox3.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 310, 30));
 
         jComboBox4.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox4ActionPerformed(evt);
@@ -91,30 +92,25 @@ public class AltaPoliza02 extends javax.swing.JFrame {
         jPanel3.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 310, 30));
 
         jList1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jList1);
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 78, 746, 129));
 
-        jButton2.setBackground(new java.awt.Color(52, 162, 224));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Continuar");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 100, 30));
+        btn_alta_poliza02_continuar.setBackground(new java.awt.Color(52, 162, 224));
+        btn_alta_poliza02_continuar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza02_continuar.setText("Continuar");
+        jPanel3.add(btn_alta_poliza02_continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 100, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 128, 146));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_alta_poliza02_cancelar.setBackground(new java.awt.Color(255, 128, 146));
+        btn_alta_poliza02_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_alta_poliza02_cancelar.setText("Cancelar");
+        btn_alta_poliza02_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_alta_poliza02_cancelarActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, 100, 30));
+        jPanel3.add(btn_alta_poliza02_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, 100, 30));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Forma de pago");
@@ -137,9 +133,9 @@ public class AltaPoliza02 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_alta_poliza02_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alta_poliza02_cancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_alta_poliza02_cancelarActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
         // TODO add your handling code here:
@@ -181,8 +177,8 @@ public class AltaPoliza02 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
+    public javax.swing.JButton btn_alta_poliza02_cancelar;
+    public javax.swing.JButton btn_alta_poliza02_continuar;
     public javax.swing.JComboBox<String> jComboBox3;
     public javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
