@@ -30,20 +30,18 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>6.3.0.Final</version>
 		</dependency>
-
+		
+	<dependency>
+	    <groupId>jakarta.persistence</groupId>
+	    <artifactId>jakarta.persistence-api</artifactId>
+	    <version>3.1.0</version>
+	</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>javax.persistence-api</artifactId>
-			<version>2.2</version>
 		</dependency>
 
 

@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 
 import com.trabajofinal.utils.EntityManagerUtil;
 
@@ -48,7 +48,7 @@ public  abstract class AbstractDao<T> implements Dao<T> {
 		
 	}
 	
-	public void SetClazz(Class <T> clazz) {
+	public void setClazz(Class <T> clazz) {
 		this.clazz = clazz;
 	}
 	
