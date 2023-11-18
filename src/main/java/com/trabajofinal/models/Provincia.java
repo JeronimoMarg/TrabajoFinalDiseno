@@ -1,10 +1,26 @@
 package com.trabajofinal.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "provincia")
 public class Provincia {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_provincia")
     private int id;
-    private String nombre;
-    private Pais pais;
+
+   @Column(name = "nombre")
+   private String nombre;
+   
+   @Column(name = "id_pais")
+   private Pais pais;
 
     public int getId() {
         return id;

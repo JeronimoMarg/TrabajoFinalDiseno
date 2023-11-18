@@ -13,17 +13,25 @@ import com.trabajofinal.utils.EntityManagerUtil;
 
 public  abstract class AbstractDao<T> implements Dao<T> {
 
-	private EntityManager entityManager = EntityManagerUtil.getEntityManager();
+   private final EntityManager entityManager; // = EntityManagerUtil.getEntityManager();
 	
-	private Class<T> clazz;
-	
-	@Override
-	public Optional<T> get(long id) {
-		//Lo envolvemos en Optional.ofNullable para asegurarnos que funcione bien si no encuentra nada
-		return Optional.ofNullable(entityManager.find(clazz, id));
+   private Class<T> clazz;
+   
+   public AbstractDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
-
-	@Override
+	
+    public EntityManager getEntityManager() {
+       return entityManager;
+    }
+	
+   @Override
+	public T getById(int id) {
+		return entityManager.find(clazz, id);
+	}
+  
+	
+    @Override
 	public List<T> getAll() {
 		String qlString = "FROM " + clazz.getName();
 		Query query = entityManager.createQuery(qlString);
