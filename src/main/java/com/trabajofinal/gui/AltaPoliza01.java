@@ -111,7 +111,8 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Fe", "Buenos Aires", "Cordoba", "Entre Ríos" }));
         jComboBox1.setSelectedItem("Provincia");
         jComboBox1.setToolTipText("Provincia");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -122,14 +123,17 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 140, 30));
 
         jComboBox2.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Fe", "Rosario", "Rafaela", "Recreo", "Monte Vera" }));
         jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 140, 30));
 
         jComboBox3.setBackground(new java.awt.Color(220, 220, 220));
+        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 310, 30));
 
         jComboBox4.setBackground(new java.awt.Color(220, 220, 220));
+        jComboBox4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +143,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 310, 30));
 
         jComboBox5.setBackground(new java.awt.Color(220, 220, 220));
+        jComboBox5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +154,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(220, 220, 220));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(117, 126, 207));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +164,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 310, 30));
 
         jTextField2.setBackground(new java.awt.Color(220, 220, 220));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -166,9 +173,11 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 310, 30));
 
         jTextField3.setBackground(new java.awt.Color(220, 220, 220));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 310, 30));
 
         jTextField4.setBackground(new java.awt.Color(220, 220, 220));
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -324,6 +333,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         jTextField6.setEditable(false);
         jTextField6.setBackground(new java.awt.Color(220, 220, 220));
+        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(117, 126, 207));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,6 +362,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, -1, -1));
 
         jTextField5.setBackground(new java.awt.Color(220, 220, 220));
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel4.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 310, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N

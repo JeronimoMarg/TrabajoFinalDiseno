@@ -5,6 +5,7 @@
 package com.trabajofinal.gui;
 
 import com.trabajofinal.controllers.ConfirmacionDatosPolizaController;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -16,12 +17,18 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
      * Creates new form ConfirmacionDatosPoliza
      */
     public ConfirmacionDatosPoliza() {
+        super("Confirmación de póliza");
+
+        // Establece un ícono transparente para evitar que se muestre el ícono de Java
+        BufferedImage transparentImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        setIconImage(transparentImage);
+
         initComponents();
         setSize(900, 600);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-        
+
         ConfirmacionDatosPolizaController confirmacionDatosPolizaController = new ConfirmacionDatosPolizaController(this);
     }
 
@@ -72,7 +79,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_confirma_datos_pol_ver_det = new javax.swing.JButton();
+        btn_conf_dat_pol_ver_bon = new javax.swing.JButton();
         btn_confirma_datos_pol_mod = new javax.swing.JButton();
         btn_confirma_datos_pol_cancelar = new javax.swing.JButton();
         btn_confirma_datos_pol_fin = new javax.swing.JButton();
@@ -104,9 +112,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("jLabel3");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 140, -1));
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 140, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel4.setText("Vehiculo");
@@ -118,9 +125,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 204));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("jLabel3");
         jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 140, -1));
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 140, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Modelo");
@@ -136,9 +142,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("jLabel3");
         jLabel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 140, -1));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 140, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Marca");
@@ -146,9 +151,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel12.setBackground(new java.awt.Color(204, 204, 204));
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("jLabel3");
         jLabel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, -1));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Modelo");
@@ -156,9 +160,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel14.setBackground(new java.awt.Color(204, 204, 204));
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("jLabel3");
         jLabel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 140, -1));
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 140, 30));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Chasis");
@@ -166,9 +169,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel16.setBackground(new java.awt.Color(204, 204, 204));
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setText("jLabel3");
         jLabel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 140, -1));
+        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 140, 30));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Patente");
@@ -176,15 +178,13 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel18.setBackground(new java.awt.Color(204, 204, 204));
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("jLabel3");
         jLabel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 140, -1));
+        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 140, 30));
 
         jLabel19.setBackground(new java.awt.Color(204, 204, 204));
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setText("jLabel3");
         jLabel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 140, -1));
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 140, 30));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setText("Fecha de inicio");
@@ -196,9 +196,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel22.setBackground(new java.awt.Color(204, 204, 204));
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel22.setText("jLabel3");
         jLabel22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 140, -1));
+        jPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 140, 30));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Fecha de fin");
@@ -214,15 +213,13 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel26.setBackground(new java.awt.Color(204, 204, 204));
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("jLabel3");
         jLabel26.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 140, -1));
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 140, 30));
 
         jLabel27.setBackground(new java.awt.Color(204, 204, 204));
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel27.setText("jLabel3");
         jLabel27.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 140, -1));
+        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 140, 30));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Importe por descuento");
@@ -230,73 +227,72 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel29.setBackground(new java.awt.Color(204, 204, 204));
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel29.setText("jLabel3");
         jLabel29.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 140, -1));
+        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 140, 30));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel30.setText("Monto total a abonar");
-        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
+        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, -1, -1));
 
         jLabel31.setBackground(new java.awt.Color(204, 204, 204));
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel31.setText("jLabel3");
+        jLabel31.setText("Esto no está...");
         jLabel31.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, 140, -1));
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 140, 30));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Ultimo dia de pago");
-        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, -1, -1));
+        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
 
         jLabel33.setBackground(new java.awt.Color(204, 204, 204));
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel33.setText("jLabel3");
         jLabel33.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 140, -1));
+        jPanel4.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 140, 30));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel34.setText("Premio");
-        jPanel4.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, -1, -1));
+        jPanel4.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, -1, -1));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 30, 20));
+        btn_confirma_datos_pol_ver_det.setBackground(new java.awt.Color(52, 162, 224));
+        btn_confirma_datos_pol_ver_det.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_confirma_datos_pol_ver_det.setText("Ver detalle de cuotas");
+        jPanel4.add(btn_confirma_datos_pol_ver_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 180, 30));
+
+        btn_conf_dat_pol_ver_bon.setBackground(new java.awt.Color(242, 242, 242));
+        btn_conf_dat_pol_ver_bon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pequenio negro.png"))); // NOI18N
+        jPanel4.add(btn_conf_dat_pol_ver_bon, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, 40, -1));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 810, 400));
 
         btn_confirma_datos_pol_mod.setBackground(new java.awt.Color(52, 162, 224));
-        btn_confirma_datos_pol_mod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_confirma_datos_pol_mod.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_confirma_datos_pol_mod.setText("Modificar");
         btn_confirma_datos_pol_mod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_confirma_datos_pol_modActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_confirma_datos_pol_mod, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 100, 30));
+        jPanel3.add(btn_confirma_datos_pol_mod, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 100, 30));
 
         btn_confirma_datos_pol_cancelar.setBackground(new java.awt.Color(255, 128, 146));
-        btn_confirma_datos_pol_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_confirma_datos_pol_cancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_confirma_datos_pol_cancelar.setText("Cancelar");
         btn_confirma_datos_pol_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_confirma_datos_pol_cancelarActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_confirma_datos_pol_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 30));
+        jPanel3.add(btn_confirma_datos_pol_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 410, 100, 30));
 
         btn_confirma_datos_pol_fin.setBackground(new java.awt.Color(52, 162, 224));
-        btn_confirma_datos_pol_fin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_confirma_datos_pol_fin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_confirma_datos_pol_fin.setText("Finalizar");
         btn_confirma_datos_pol_fin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_confirma_datos_pol_finActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_confirma_datos_pol_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 100, 30));
+        jPanel3.add(btn_confirma_datos_pol_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 100, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 900, 500));
 
@@ -314,10 +310,6 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
     private void btn_confirma_datos_pol_finActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirma_datos_pol_finActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_confirma_datos_pol_finActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,10 +347,11 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_conf_dat_pol_ver_bon;
     public javax.swing.JButton btn_confirma_datos_pol_cancelar;
     public javax.swing.JButton btn_confirma_datos_pol_fin;
     public javax.swing.JButton btn_confirma_datos_pol_mod;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton btn_confirma_datos_pol_ver_det;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
