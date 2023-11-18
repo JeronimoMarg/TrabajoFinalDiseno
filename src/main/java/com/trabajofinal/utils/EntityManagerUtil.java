@@ -7,15 +7,26 @@ import jakarta.persistence.Persistence;
 
 public class EntityManagerUtil {
 	
-	public static EntityManager getEntityManager() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("tpdiseno");
-		EntityManager manager = factory.createEntityManager();
-		return manager;
+   private static EntityManagerFactory factory;
+
+	private EntityManagerUtil() {
 	}
-	
+
+   public static EntityManager getEntityManager() {
+      EntityManagerFactory factory = Persistence.createEntityManagerFactory("tpdiseno");
+      EntityManager manager = factory.createEntityManager();
+      return manager;
+   }
+   
+   public static void closeEntityManagerFactory() {
+		if (factory != null) {
+			factory.close();
+		}
+	}
+	/* 
 	public static void main(String[] args) {
 		EntityManager manager = EntityManagerUtil.getEntityManager();
 		System.out.println("EntityManager class ==> " + manager.getClass().getCanonicalName());
-	}
+	} */
 
 }

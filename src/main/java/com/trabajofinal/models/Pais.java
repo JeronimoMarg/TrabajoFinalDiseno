@@ -1,9 +1,31 @@
 package com.trabajofinal.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "pais")
 public class Pais {
 
+   @Id
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id_pais")
    private int id;
+
+   @Column(name = "nombre")
    private String nombre;
+
+   public Pais() {
+   }
+
+   public Pais(int id, String nombre) {
+      this.id = id;
+      this.nombre = nombre;
+   }
 
    public int getId() {
       return id;
@@ -21,10 +43,4 @@ public class Pais {
       this.nombre = nombre;
    }
 
-   // Le agrego el constructor para poder probar el método main de provincia,
-   // borrar luego
-   public Pais(int id, String nombre) {
-      this.id = id;
-      this.nombre = nombre;
-   }
 }

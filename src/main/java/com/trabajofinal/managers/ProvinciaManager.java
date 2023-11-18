@@ -8,10 +8,8 @@ import com.trabajofinal.mappers.ProvinciaMapper;
 import com.trabajofinal.models.Provincia;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
 
-//En estas clases, "Manager" pondremos la lógica del negocio, mientras que en Controller quedará la lógica para operar
-//con las vistas. 
+/*En estas clases, "Manager" pondremos la lógica del negocio, mientras que en Controller quedará la lógica para operar con las vistas. */
 public class ProvinciaManager {
    
    private ProvinciaDao provinciaDao;
