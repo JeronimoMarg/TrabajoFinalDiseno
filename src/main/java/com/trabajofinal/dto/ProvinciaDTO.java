@@ -23,6 +23,7 @@ public class ProvinciaDTO {
    }
    public Pais getPais() {
       return pais;
+      //coso
    }
    public void setPais(Pais pais) {
       this.pais = pais;
