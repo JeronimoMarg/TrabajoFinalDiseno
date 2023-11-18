@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Dao <T>{
-	Optional<T> get(long id);
-	
+
 	List<T> getAll();
+
+   T getById(int id);
 	
-	void save(T t);
+   void save(T t);
 	
 	void update(T t);
 	
