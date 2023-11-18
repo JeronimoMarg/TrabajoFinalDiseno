@@ -16,9 +16,9 @@ import jakarta.persistence.Persistence;
 public class App {
 
    public static void main(String[] args) {
-      // BusquedaCliente busquedaCliente = new BusquedaCliente();
-      // busquedaCliente.setVisible(true);
-
+ /*   BusquedaCliente busquedaCliente = new BusquedaCliente();
+      busquedaCliente.setVisible(true);
+*/
       EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
       ProvinciaManager pm = new ProvinciaManager(entityManager);
@@ -39,7 +39,7 @@ public class App {
          System.out.println("Error al cargar Provincias: " + e.getMessage());
       }
 
-      entityManager.close();
+      entityManager.close(); 
    }
 
 }

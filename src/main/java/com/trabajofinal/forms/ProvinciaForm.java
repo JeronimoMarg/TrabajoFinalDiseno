@@ -13,6 +13,7 @@ public class ProvinciaForm {
       // validarPais(pais);
 
       ProvinciaDTO result = new ProvinciaDTO();
+      result.setId(0);
       result.setNombre(nombre);
       result.setPais(pais);
       return result;
@@ -23,8 +24,10 @@ public class ProvinciaForm {
          throw new IllegalArgumentException("El nombre es invalido.");
       }
 
-      if (!nombre.matches("^[a-zA-Z0-9][a-zA-Z0-9\\s]*[a-zA-Z0-9]$|^[a-zA-Z0-9]$")) {
+      if (!nombre.matches("^[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\\s]*[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ]$")) {
+         System.out.println("El nombre contiene caracteres no permitidos: " + nombre);
          throw new IllegalArgumentException("El nombre contiene caracteres no permitidos.");
       }
+
    }
 }
