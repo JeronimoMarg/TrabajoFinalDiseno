@@ -4,31 +4,104 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "poliza")
 public class Poliza {
     
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_poliza")
     private int id;
+	
+	@Column(name = "nro_poliza")
     private String numero_poliza;
+	
+	@Column(name = "premio")
     private Double premio;
+	
+	@Column(name = "fecha_inicio_vigencia")
     private Date fecha_inicio_vigencia;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_pago")
     private TipoPago forma_pago;
+	
+	@Column(name = "descuentos")
     private Double descuentos;
+	
+	@Column(name = "total_a_pagar")
     private Double total_a_pagar;
+	
+	@Column(name = "cantidad_siniestros")
     private int cantidad_siniestros;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "estado")
     private TipoEstadoPoliza estado;
+	
+	@OneToOne
+	@JoinColumn(name = "id_poliza_propuesta")
     private Poliza poliza_propuesta;
+	
+    @OneToOne
+	@JoinColumn(name = "id_vehiculo")
     private Vehiculo vehiculo_asegurado;
+		
+    @OneToMany(mappedBy = "poliza")
     private HashSet<Hijo> hijos;
+		
+    @OneToMany(mappedBy = "poliza")
     private List<ModificacionPoliza> modificaciones;
-    private FactoresTipoCobertura cobertura_poliza;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_factores_cobertura")	
+    private FactoresTipoCobertura factores_cobertura_poliza;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_factor")	
     private FactoresCaracteristicas factores_generacion;
+		
+    @OneToMany(mappedBy = "poliza")
     private List<Cuota> cuotas;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_factores_vehiculo")	
     private FactoresVehiculo factores_vehiculo;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_factores_modelo")
     private FactoresModelo factores_modelo;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_localidad")
     private Localidad localidad;
+		
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_riesgo_loc")
     private FactorRiesgoLocalidad factor_riesgo_localidad;
-    
 
+    public Poliza() {
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }
@@ -108,10 +181,10 @@ public class Poliza {
         this.modificaciones = modificaciones;
     }
     public FactoresTipoCobertura getCobertura_poliza() {
-        return cobertura_poliza;
+        return factores_cobertura_poliza;
     }
     public void setCobertura_poliza(FactoresTipoCobertura cobertura_poliza) {
-        this.cobertura_poliza = cobertura_poliza;
+        this.factores_cobertura_poliza = cobertura_poliza;
     }
     public FactoresCaracteristicas getFactores_generacion() {
         return factores_generacion;

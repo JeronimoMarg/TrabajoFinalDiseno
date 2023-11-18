@@ -3,13 +3,29 @@ package com.trabajofinal.models;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+@Entity
 public class ModificacionPoliza {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_poliza")
     private int id;
     private LocalDate fecha_inicio_vigencia;
     private LocalDate fecha_fin_vigencia;
     private int cantidad_siniestros;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_poliza")	
     private Poliza poliza;
+    
     private HashSet<ModificacionHijo> modificaciones_hijo;
     private TipoCobertura covertura;
 

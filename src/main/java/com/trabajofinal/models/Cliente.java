@@ -1,9 +1,21 @@
 package com.trabajofinal.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Cliente {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_poliza")
     private int id;
     private String numero_cliente;
     private String numero_documento;
@@ -20,7 +32,10 @@ public class Cliente {
     private LocalDate fecha_nacimiento;
     private EstadoCivil estado_civil;
     private Boolean sexo;
-    private Domicilio domicilio;
+    //private Domicilio domicilio;
+    
+    @OneToMany(mappedBy = "cliente")		//factores NO conoce a LAS polizaS
+    private List<Poliza> polizas;
 
     public int getId() {
         return id;
@@ -118,12 +133,14 @@ public class Cliente {
     public void setSexo(Boolean sexo) {
         this.sexo = sexo;
     }
+    /*
     public Domicilio getDomicilio() {
         return domicilio;
     }
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
     }
+    */
     
 
 

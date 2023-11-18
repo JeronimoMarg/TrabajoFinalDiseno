@@ -2,14 +2,31 @@ package com.trabajofinal.models;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Cuota {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_poliza")
     private int id;
     private Double monto;
     private LocalDate fecha_vencimiento;
     private LocalDate desde;
     private LocalDate hasta;
     private Pago pago;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_poliza")				//cuota NO conoce a la poliza
+    private Poliza poliza;
 
     public int getId() {
         return id;

@@ -2,24 +2,31 @@ package com.trabajofinal.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.trabajofinal.dto.ProvinciaDTO;
 import com.trabajofinal.forms.ProvinciaForm;
 import com.trabajofinal.gui.BusquedaCliente;
 import com.trabajofinal.managers.ProvinciaManager;
-import com.trabajofinal.models.Pais;
 import com.trabajofinal.utils.EntityManagerUtil;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
+import PruebaMapeo.*;
 
 public class App {
 
    public static void main(String[] args) {
- /*   BusquedaCliente busquedaCliente = new BusquedaCliente();
-      busquedaCliente.setVisible(true);
-*/
-      EntityManager entityManager = EntityManagerUtil.getEntityManager();
+	   
+	 EntityManager em = EntityManagerUtil.getEntityManager();
+	 Estudiante e = new Estudiante();
+	 em.persist(e);
+	   
+	   
+	 //BusquedaCliente busquedaCliente = new BusquedaCliente();
+     //busquedaCliente.setVisible(true);
+
+
+     /*
+	   
+	  EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
       ProvinciaManager pm = new ProvinciaManager(entityManager);
       ProvinciaDTO sf = null;
@@ -39,7 +46,9 @@ public class App {
          System.out.println("Error al cargar Provincias: " + e.getMessage());
       }
 
-      entityManager.close(); 
+      entityManager.close();
+      
+      */
    }
 
 }

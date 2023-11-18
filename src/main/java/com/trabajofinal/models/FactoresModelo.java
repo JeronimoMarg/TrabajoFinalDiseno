@@ -1,15 +1,29 @@
 package com.trabajofinal.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+@Entity
 public class FactoresModelo {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_poliza")
     private int id;
     private LocalDate fecha_inicio_vigencia;
     private LocalDate fecha_fin_vigencia;
     private Double probabilidad_robo;
     private Modelo modelo;
     private Usuario modificador;
+    
+    @OneToMany(mappedBy = "factores_modelo")		//factores NO conoce a LAS polizaS
+    private List<Poliza> polizas;
 
     public int getId() {
         return id;

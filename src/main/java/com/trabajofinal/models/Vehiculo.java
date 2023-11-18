@@ -1,7 +1,16 @@
 package com.trabajofinal.models;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Vehiculo {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_vehiculo")
     private int id;
     private String motor;
     private String chasis;
@@ -11,7 +20,8 @@ public class Vehiculo {
     private Boolean con_alarma;
     private Boolean con_rastreo;
     private Boolean con_tuerca_antirrobo;
-    private TipoVehiculo tipo_vehiculo;
+    //private TipoVehiculo tipo_vehiculo;
+    
     public String getMotor() {
         return motor;
     }
@@ -60,12 +70,14 @@ public class Vehiculo {
     public void setCon_tuerca_antirrobo(Boolean con_tuerca_antirrobo) {
         this.con_tuerca_antirrobo = con_tuerca_antirrobo;
     }
+    /*
     public TipoVehiculo getTipo_vehiculo() {
         return tipo_vehiculo;
     }
     public void setTipo_vehiculo(TipoVehiculo tipo_vehiculo) {
         this.tipo_vehiculo = tipo_vehiculo;
     }
+    */
     public int getId() {
         return id;
     }
