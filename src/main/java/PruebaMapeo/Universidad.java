@@ -2,8 +2,7 @@ package PruebaMapeo;
 
 import java.util.List;
 
-import com.trabajofinal.models.Poliza;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,13 +15,12 @@ public class Universidad {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_universidad")
 	private int id;
 	
 	private String nombre;
 	
-	@OneToMany(mappedBy = "universidad")
-    private List<Estudiante> estudiantes;
+	
 	
 	public Universidad() {
 		
