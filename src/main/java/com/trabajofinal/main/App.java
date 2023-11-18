@@ -1,12 +1,12 @@
 package com.trabajofinal.main;
 
-import com.trabajofinal.gui.*;
+import com.trabajofinal.gui.BusquedaCliente;
 
 public class App {
 
 	public static void main(String[] args) {
-            DatosCliente datosCliente = new DatosCliente();
-            datosCliente.setVisible(true);
+            BusquedaCliente busquedaCliente = new BusquedaCliente();
+            busquedaCliente.setVisible(true);
                      
 	}
 

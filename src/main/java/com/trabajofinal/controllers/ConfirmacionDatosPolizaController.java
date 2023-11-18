@@ -1,6 +1,8 @@
 package com.trabajofinal.controllers;
 
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
+import com.trabajofinal.gui.DetalleBonificaciones;
+import com.trabajofinal.gui.DetalleCuotas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -18,11 +20,13 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         this.confirmacionDatosPoliza.btn_confirma_datos_pol_mod.addActionListener(this);
         this.confirmacionDatosPoliza.btn_confirma_datos_pol_fin.addActionListener(this);
         this.confirmacionDatosPoliza.btn_confirma_datos_pol_cancelar.addActionListener(this);
+        this.confirmacionDatosPoliza.btn_confirma_datos_pol_ver_det.addActionListener(this);
+        this.confirmacionDatosPoliza.btn_conf_dat_pol_ver_bon.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()== confirmacionDatosPoliza.btn_confirma_datos_pol_mod) {
+        if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_mod) {
             //Logica de modificacion
             this.confirmacionDatosPoliza.dispose();
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
@@ -35,6 +39,11 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
             if (confirmacion == 0) {
                 this.confirmacionDatosPoliza.dispose();
             }
+        } else if (e.getSource() == confirmacionDatosPoliza.btn_conf_dat_pol_ver_bon) {
+            DetalleBonificaciones detalleBonificaciones = new DetalleBonificaciones();
+        } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_ver_det) {
+            //Verificar consistencia de los datos primero.
+            DetalleCuotas detalleCuotas  = new DetalleCuotas();
         }
     }
     
