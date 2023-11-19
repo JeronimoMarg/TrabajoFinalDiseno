@@ -47,14 +47,14 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txt_busqueda_cliente_apellido = new javax.swing.JTextField();
+        txt_busqueda_cliente_nombre = new javax.swing.JTextField();
+        txt_busqueda_cliente_nro_doc = new javax.swing.JTextField();
+        txt_busqueda_cliente_nro_cte = new javax.swing.JTextField();
+        cmb_busqueda_cliente_tipo = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_busq_cliente_buscar = new javax.swing.JButton();
+        btn_busq_cliente_limpiar = new javax.swing.JButton();
         btn_busq_cliente_cancelar = new javax.swing.JButton();
         btn_busq_cliente_select = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -94,33 +94,39 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jLabel6.setText("Numero de cliente");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 200, -1));
 
-        jTextField1.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 200, 30));
+        txt_busqueda_cliente_apellido.setBackground(new java.awt.Color(220, 220, 220));
+        txt_busqueda_cliente_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(txt_busqueda_cliente_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 200, 30));
 
-        jTextField2.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
+        txt_busqueda_cliente_nombre.setBackground(new java.awt.Color(220, 220, 220));
+        txt_busqueda_cliente_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(txt_busqueda_cliente_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
 
-        jTextField4.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 200, 30));
+        txt_busqueda_cliente_nro_doc.setBackground(new java.awt.Color(220, 220, 220));
+        txt_busqueda_cliente_nro_doc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(txt_busqueda_cliente_nro_doc, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 200, 30));
 
-        jTextField5.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 209, 30));
+        txt_busqueda_cliente_nro_cte.setBackground(new java.awt.Color(220, 220, 220));
+        txt_busqueda_cliente_nro_cte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(txt_busqueda_cliente_nro_cte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 209, 30));
 
-        jComboBox1.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+        cmb_busqueda_cliente_tipo.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_busqueda_cliente_tipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cmb_busqueda_cliente_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "CDI", "CI", "DU MERCOSUR", "PASAPORTE", "OTRO" }));
+        jPanel1.add(cmb_busqueda_cliente_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
 
-        jButton1.setBackground(new java.awt.Color(220, 220, 220));
-        jButton1.setText("Buscar");
-        jButton1.setAlignmentX(0.5F);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_busq_cliente_buscar.setBackground(new java.awt.Color(220, 220, 220));
+        btn_busq_cliente_buscar.setText("Buscar");
+        btn_busq_cliente_buscar.setAlignmentX(0.5F);
+        btn_busq_cliente_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_busq_cliente_buscarActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(220, 220, 220));
-        jButton2.setText("Limpiar");
-        jButton2.setAlignmentX(0.5F);
+        btn_busq_cliente_limpiar.setBackground(new java.awt.Color(220, 220, 220));
+        btn_busq_cliente_limpiar.setText("Limpiar");
+        btn_busq_cliente_limpiar.setAlignmentX(0.5F);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,17 +135,17 @@ public class BusquedaCliente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                    .addComponent(btn_busq_cliente_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_busq_cliente_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(btn_busq_cliente_buscar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btn_busq_cliente_limpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -243,9 +249,9 @@ public class BusquedaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_busq_cliente_selectActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_busq_cliente_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busq_cliente_buscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_busq_cliente_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,11 +289,11 @@ public class BusquedaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_busq_cliente_buscar;
     public javax.swing.JButton btn_busq_cliente_cancelar;
+    public javax.swing.JButton btn_busq_cliente_limpiar;
     public javax.swing.JButton btn_busq_cliente_select;
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> cmb_busqueda_cliente_tipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -301,9 +307,9 @@ public class BusquedaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable2;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField txt_busqueda_cliente_apellido;
+    public javax.swing.JTextField txt_busqueda_cliente_nombre;
+    public javax.swing.JTextField txt_busqueda_cliente_nro_cte;
+    public javax.swing.JTextField txt_busqueda_cliente_nro_doc;
     // End of variables declaration//GEN-END:variables
 }
