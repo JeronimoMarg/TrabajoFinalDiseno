@@ -1,7 +1,7 @@
 package com.trabajofinal.controllers;
 
 import com.trabajofinal.gui.BusquedaCliente;
-import com.trabajofinal.gui.DatosCliente02;
+import com.trabajofinal.gui.DatosCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -40,7 +40,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             //Lógica de verificación previa
             this.busquedaCliente.dispose();
-            DatosCliente02 datosCliente02 = new DatosCliente02();
+            DatosCliente datosCliente02 = new DatosCliente();
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
         //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar la búsqueda?", "Confirmar cancelación",

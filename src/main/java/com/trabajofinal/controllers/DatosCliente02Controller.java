@@ -1,18 +1,18 @@
 package com.trabajofinal.controllers;
 
 import com.trabajofinal.gui.AltaPoliza01;
-import com.trabajofinal.gui.DatosCliente02;
+import com.trabajofinal.gui.DatosCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class DatosCliente02Controller implements ActionListener {
     
-    private DatosCliente02 datosCliente02;
+    private DatosCliente datosCliente02;
     
     private Object[] options = {"Sí", "No"};
 
-    public DatosCliente02Controller(DatosCliente02 datosCliente02) {
+    public DatosCliente02Controller(DatosCliente datosCliente02) {
         this.datosCliente02 = datosCliente02;
         
         //Botones a la escucha
