@@ -9,14 +9,14 @@ import com.trabajofinal.managers.ProvinciaManager;
 import com.trabajofinal.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
-import PruebaMapeo.*;
+import com.trabajofinal.models.*;
 
 public class App {
 
    public static void main(String[] args) {
 	   
 	 EntityManager em = EntityManagerUtil.getEntityManager();
-	 Estudiante e = new Estudiante();
+	 Poliza e = new Poliza();
 	 em.persist(e);
 	   
 	   

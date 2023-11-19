@@ -5,37 +5,75 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_cliente")
     private int id;
+	
+	@Column(name="nro_cliente")
     private String numero_cliente;
+
+	@Column(name="nro_documento")
     private String numero_documento;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipo_documento")
     private TipoDocumento tipo_documento;
+	
+	@Column(name="nombre")
     private String nombre;
+	
+	@Column(name="apellido")
     private String apellido;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="condicion")
     private TipoCondicion condicion;
+	
+	@Column(name="activo")
     private Boolean activo;
+	
+	@Column(name="anio_registro")
     private LocalDate anio_registro;
+	
+	@Column(name="profesion")
     private String profesion;
+	
+	@Column(name="numero_cuil")
     private String numero_cuil;
+	
+	@Column(name="email")
     private String email;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="condicion_iva")
     private TipoCondicionIVA condicion_iva;
+	
+	@Column(name="fecha_nacimiento")
     private LocalDate fecha_nacimiento;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="estado_civil")
     private EstadoCivil estado_civil;
+	
+	@Column(name="sexo")
     private Boolean sexo;
-    //private Domicilio domicilio;
-    
-    @OneToMany(mappedBy = "cliente")		//factores NO conoce a LAS polizaS
-    private List<Poliza> polizas;
+	
+	@OneToOne
+	@JoinColumn(name = "id_domicilio")
+    private Domicilio domicilio;
 
     public int getId() {
         return id;

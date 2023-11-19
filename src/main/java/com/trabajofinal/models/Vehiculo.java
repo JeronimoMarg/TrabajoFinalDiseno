@@ -1,9 +1,12 @@
 package com.trabajofinal.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Vehiculo {
@@ -12,15 +15,34 @@ public class Vehiculo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_vehiculo")
     private int id;
+	
+	@Column(name = "motor")
     private String motor;
+	
+	@Column(name = "chasis")
     private String chasis;
+	
+	@Column(name = "patente")
     private String patente;
+	
+	@Column(name = "kilometros_anio")
     private int kilometros_anio;
+	
+	@Column(name = "en_garage")
     private Boolean en_garage;
+	
+	@Column(name = "con_alarma")
     private Boolean con_alarma;
+	
+	@Column(name = "con_rastreo")
     private Boolean con_rastreo;
+	
+	@Column(name = "con_tuerca_antirrobo")
     private Boolean con_tuerca_antirrobo;
-    //private TipoVehiculo tipo_vehiculo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo_vehiculo")
+    private TipoVehiculo tipo_vehiculo;
     
     public String getMotor() {
         return motor;

@@ -12,8 +12,10 @@ public class Marca {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_vehiculo")
+	@Column(name = "id_marca")
     private int id;
+	
+	@Column(name = "nombre")
     private String nombre;
 
     public int getId() {

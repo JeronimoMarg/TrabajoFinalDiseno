@@ -1,26 +1,35 @@
 package com.trabajofinal.models;
 
+import java.util.HashSet;
 import java.util.List;
 
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class Localidad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_localidad")
     private int id;
+	
+	@Column(name = "nombre")
     private String nombre;
-    private FactorRiesgoLocalidad riesgo_localidad;
+	
+	@OneToMany
+    @JoinColumn(name = "id_factores_riesgo_localidad")
+    private HashSet<FactorRiesgoLocalidad> riesgo_localidad;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_provincia")	
     private Provincia provincia;
-    
-    @OneToMany(mappedBy = "localidad")		//factores NO conoce a LAS polizaS
-    private List<Poliza> polizas;
 
     public int getId() {
         return id;
@@ -34,17 +43,18 @@ public class Localidad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public FactorRiesgoLocalidad getRiesgo_localidad() {
-        return riesgo_localidad;
-    }
-    public void setRiesgo_localidad(FactorRiesgoLocalidad riesgo_localidad) {
-        this.riesgo_localidad = riesgo_localidad;
-    }
     public Provincia getProvincia() {
         return provincia;
     }
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
+	public HashSet<FactorRiesgoLocalidad> getRiesgo_localidad() {
+		return riesgo_localidad;
+	}
+	public void setRiesgo_localidad(HashSet<FactorRiesgoLocalidad> riesgo_localidad) {
+		this.riesgo_localidad = riesgo_localidad;
+	}
+    
 
 }

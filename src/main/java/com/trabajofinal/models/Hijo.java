@@ -10,20 +10,25 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 @Entity
 public class Hijo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_hijo")
     private int id;
+	
+	@Column(name = "fecha_nacimiento")
     private LocalDate fecha_nacimiento;
+	
+	@Column(name = "sexo")
     private Boolean sexo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "estado_civil")
     private EstadoCivil estado_civil;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_poliza")			//chequear si es que esta bien que el hijo conozca la poliza
-    private Poliza poliza;
 
     public int getId() {
         return id;

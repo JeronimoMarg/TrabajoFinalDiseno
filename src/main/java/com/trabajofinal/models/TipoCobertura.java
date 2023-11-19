@@ -11,8 +11,10 @@ public class TipoCobertura {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_vehiculo")
+	@Column(name = "id_tipocobertura")
     private int id;
+	
+	@Column(name = "nombre")
     private String nombre;
 
     public int getId() {

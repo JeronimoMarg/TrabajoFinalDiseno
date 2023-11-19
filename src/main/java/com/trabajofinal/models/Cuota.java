@@ -10,23 +10,33 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cuota {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_cuota")
     private int id;
+	
+	@Column(name = "monto")
     private Double monto;
+	
+	@Column(name = "fecha_vencimiento")
     private LocalDate fecha_vencimiento;
+	
+	@Column(name = "desde")
     private LocalDate desde;
+	
+	@Column(name = "hasta")
     private LocalDate hasta;
-    private Pago pago;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_poliza")				//cuota NO conoce a la poliza
-    private Poliza poliza;
+	
+	@OneToOne
+	@JoinColumn(name = "id_pago")
+    private Pago pago;						//CHEQUEAR SI QUEDO BIEN EL MAPEO (TABLA INTERMEDIA)
+											//CUOTA NO TENDRIA QUE TENER UN ID_PAGO EN SU TABLA
 
     public int getId() {
         return id;

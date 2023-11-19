@@ -6,9 +6,12 @@ import java.util.List;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class FactoresVehiculo {
 
@@ -16,13 +19,19 @@ public class FactoresVehiculo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_poliza")
 	private int id;
+	
+	@Column(name = "fecha_inicio_vigencia")
     private LocalDate fecha_inicio_vigencia;
+	
+	@Column(name = "fecha_fin_vigencia")
     private LocalDate fecha_fin_vigencia;
+	
+	@Column(name = "suma_asegurada")
     private Double suma_asegurada;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo_vehiculo")
     private TipoVehiculo vehiculo;
-    
-    @OneToMany(mappedBy = "factores_vehiculo")		//factores NO conoce a LAS polizaS
-    private List<Poliza> polizas;
 
     public LocalDate getFecha_inicio_vigencia() {
         return fecha_inicio_vigencia;
