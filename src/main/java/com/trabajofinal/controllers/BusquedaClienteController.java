@@ -40,7 +40,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             //Lógica de verificación previa
             this.busquedaCliente.dispose();
-            DatosCliente datosCliente02 = new DatosCliente();
+            
+            DatosCliente datosCliente = new DatosCliente();
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
         //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar la búsqueda?", "Confirmar cancelación",

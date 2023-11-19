@@ -12,30 +12,34 @@ public class DatosClienteController implements ActionListener {
     
     private Object[] options = {"Sí", "No"};
 
-    public DatosClienteController(DatosCliente datosCliente02) {
+    public DatosClienteController(DatosCliente datosCliente) {
+        
         this.datosCliente = datosCliente;
         
         //Botones a la escucha
-        this.datosCliente.btn_det_cliente01_ver_pol.addActionListener(this);
-        this.datosCliente.btn_det_cliente01_nueva_pol.addActionListener(this);
-        this.datosCliente.btn_det_cliente01_cancelar.addActionListener(this);
-        this.datosCliente.btn_det_cliente01_baja.addActionListener(this);
+        this.datosCliente.btn_det_cliente_ver_pol.addActionListener(this);
+        this.datosCliente.btn_det_cliente_nueva_pol.addActionListener(this);
+        this.datosCliente.btn_det_cliente_cancelar.addActionListener(this);
+        this.datosCliente.btn_det_cliente_baja.addActionListener(this);
+        
     }
     
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == datosCliente.btn_det_cliente01_ver_pol) {
+        if (e.getSource() == datosCliente.btn_det_cliente_ver_pol) {
             //Logica para ver póliza
-        } else if (e.getSource() == datosCliente.btn_det_cliente01_nueva_pol) {
+            JOptionPane.showMessageDialog(null, "Aun no implementado");
+        } else if (e.getSource() == datosCliente.btn_det_cliente_nueva_pol) {
             //Validaciones? 
             this.datosCliente.dispose();
             AltaPoliza01 altaPoliza01 = new AltaPoliza01();
             
-        } if (e.getSource() == datosCliente.btn_det_cliente01_baja) {
+        } if (e.getSource() == datosCliente.btn_det_cliente_baja) {
             //Lógica para dar de baja una póliza
-        }if (e.getSource() == datosCliente.btn_det_cliente01_cancelar) {
+                        JOptionPane.showMessageDialog(null, "Aun no implementado");
+        }if (e.getSource() == datosCliente.btn_det_cliente_cancelar) {
              //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar los cambios?", "Confirmar cancelación",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
