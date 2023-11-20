@@ -1,5 +1,6 @@
 package com.trabajofinal.main;
 
+import com.trabajofinal.gui.BusquedaCliente;
 import java.util.ArrayList;
 import java.util.List;
 import com.trabajofinal.dto.ProvinciaDTO;
@@ -14,6 +15,15 @@ import com.trabajofinal.models.*;
 public class App {
 
    public static void main(String[] args) {
+<<<<<<< HEAD
+   
+    EntityManager em = EntityManagerUtil.getEntityManager();
+	 Poliza e = new Poliza();
+	 em.persist(e);     
+   
+    BusquedaCliente busquedaCliente = new BusquedaCliente();
+    busquedaCliente.setVisible(true);
+=======
 	   
 	 EntityManager em = EntityManagerUtil.getEntityManager();
 	 Poliza e = new Poliza();
@@ -22,6 +32,7 @@ public class App {
 	   
 	 //BusquedaCliente busquedaCliente = new BusquedaCliente();
      //busquedaCliente.setVisible(true);
+>>>>>>> upstream/main
 
 
      /*
