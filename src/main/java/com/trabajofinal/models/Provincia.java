@@ -24,7 +24,7 @@ public class Provincia {
    private String nombre;
 
    @ManyToOne(fetch = FetchType.LAZY)
-   @JoinColumn(name = "id_pais", foreignKey = @ForeignKey(name = "ID_PAIS_FK"))
+   @JoinColumn(name = "id_pais")
    private Pais pais;
 
    public Provincia() {

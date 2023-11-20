@@ -2,6 +2,8 @@ package com.trabajofinal.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,10 +14,17 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_vehiculo")
+	@Column(name = "id_usuario")
     private int id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "rol")
     private TipoRol rol;
+	
+	@Column(name = "nombre")
     private String nombre;
+	
+	@Column(name = "contrasena")
     private String contrasena;
 
     public int getId() {

@@ -6,25 +6,37 @@ import java.util.List;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class FactoresTipoCobertura {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_factores_tipocobertura")
     private int id;
+	
+	@Column(name = "fecha_inicio_vigencia")
     private LocalDate fecha_inicio_vigencia;
+	
+	@Column(name = "fecha_fin_vigencia")
     private LocalDate fecha_fin_vigencia;
+	
+	@Column(name = "porcentaje")
     private Double porcentaje;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cobertura")	
     private TipoCobertura tipo_cobertura;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario")
     private Usuario modificador;
-    
-    @OneToMany(mappedBy = "factores_cobertura_poliza")		//factores NO conoce a LAS polizaS
-    private List<Poliza> poliza;
 
     public int getId() {
         return id;

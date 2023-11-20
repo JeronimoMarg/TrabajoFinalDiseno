@@ -6,33 +6,71 @@ import java.util.List;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class FactoresCaracteristicas {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_factores_caracteristicas")
     private int id;
+	
+	@Column(name = "porcentaje_garage")
     private Double porcentaje_garage;
+	
+	@Column(name = "porcentaje_alarma")
     private Double porcentaje_alarma;
+	
+	@Column(name = "porcentaje_tuercas")
     private Double porcentaje_tuercas;
+	
+	@Column(name = "porcentaje_kilometros")
     private Double porcentaje_kilometros;
-    private List<Double> porcentaje_siniestros;
+	
+	@Column(name = "porcentaje_siniestros_0")
+    private Double porcentaje_siniestros_0;
+	
+	@Column(name = "porcentaje_siniestros_1")
+    private Double porcentaje_siniestros_1;
+	
+	@Column(name = "porcentaje_siniestros_2")
+    private Double porcentaje_siniestros_2;
+	
+	@Column(name = "porcentaje_siniestros_mas2")
+    private Double porcentaje_siniestros_mas2;
+	
+	@Column(name = "porcentaje_hijo")
     private Double porcentaje_hijo;
+	
+	@Column(name = "derechos_emision")
     private Double derechos_emision;
+	
+	@Column(name = "descuento_unidad_adicional")
     private Double descuento_unidad_adicional;
+	
+	@Column(name = "factor_premio")
     private Double factor_premio;
+	
+	@Column(name = "factor_descuento")
     private Double factor_descuento;
+	
+	@Column(name = "fecha_inicio_vigencia")
     private LocalDate fecha_inicio_vigencia;
+	
+	@Column(name = "fecha_fin_vigencia")
     private LocalDate fecha_fin_vigencia;
+	
+	@Column(name = "clientes_a_mostrar")
     private int clientes_a_mostrar;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario")
     private Usuario modificador;
-    
-    @OneToMany(mappedBy = "factores_generacion")		//factores NO conoce a LAS polizaS
-    private List<Poliza> polizas;
 
     public int getId() {
         return id;
@@ -63,12 +101,6 @@ public class FactoresCaracteristicas {
     }
     public void setPorcentaje_kilometros(Double porcentaje_kilometros) {
         this.porcentaje_kilometros = porcentaje_kilometros;
-    }
-    public List<Double> getPorcentaje_siniestros() {
-        return porcentaje_siniestros;
-    }
-    public void setPorcentaje_siniestros(List<Double> porcentaje_siniestros) {
-        this.porcentaje_siniestros = porcentaje_siniestros;
     }
     public Double getPorcentaje_hijo() {
         return porcentaje_hijo;
@@ -124,5 +156,30 @@ public class FactoresCaracteristicas {
     public void setModificador(Usuario modificador) {
         this.modificador = modificador;
     }
+	public Double getPorcentaje_siniestros_0() {
+		return porcentaje_siniestros_0;
+	}
+	public void setPorcentaje_siniestros_0(Double porcentaje_siniestros_0) {
+		this.porcentaje_siniestros_0 = porcentaje_siniestros_0;
+	}
+	public Double getPorcentaje_siniestros_1() {
+		return porcentaje_siniestros_1;
+	}
+	public void setPorcentaje_siniestros_1(Double porcentaje_siniestros_1) {
+		this.porcentaje_siniestros_1 = porcentaje_siniestros_1;
+	}
+	public Double getPorcentaje_siniestros_2() {
+		return porcentaje_siniestros_2;
+	}
+	public void setPorcentaje_siniestros_2(Double porcentaje_siniestros_2) {
+		this.porcentaje_siniestros_2 = porcentaje_siniestros_2;
+	}
+	public Double getPorcentaje_siniestros_mas2() {
+		return porcentaje_siniestros_mas2;
+	}
+	public void setPorcentaje_siniestros_mas2(Double porcentaje_siniestros_mas2) {
+		this.porcentaje_siniestros_mas2 = porcentaje_siniestros_mas2;
+	}
+    
 
 }

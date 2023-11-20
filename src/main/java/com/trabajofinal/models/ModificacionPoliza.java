@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 @Entity
@@ -16,18 +17,33 @@ public class ModificacionPoliza {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_modificacion_poliza")
     private int id;
+	
+	@Column(name = "fecha_inicio_vigencia")
     private LocalDate fecha_inicio_vigencia;
+	
+	@Column(name = "fecha_fin_vigencia")
     private LocalDate fecha_fin_vigencia;
+	
+	@Column(name = "cantidad_siniestros")
     private int cantidad_siniestros;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_poliza")	
     private Poliza poliza;
     
+    @OneToMany
+    @JoinColumn(name = "id_hijo")
     private HashSet<ModificacionHijo> modificaciones_hijo;
-    private TipoCobertura covertura;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cobertura")	
+    private TipoCobertura cobertura;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vehiculo")
+    private Vehiculo vehiculo;
 
     public int getId() {
         return id;
@@ -66,10 +82,10 @@ public class ModificacionPoliza {
         this.modificaciones_hijo = modificaciones_hijo;
     }
     public TipoCobertura getCovertura() {
-        return covertura;
+        return cobertura;
     }
     public void setCovertura(TipoCobertura covertura) {
-        this.covertura = covertura;
+        this.cobertura = covertura;
     }
 
 }

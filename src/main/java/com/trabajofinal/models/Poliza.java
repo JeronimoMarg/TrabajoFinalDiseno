@@ -62,10 +62,12 @@ public class Poliza {
 	@JoinColumn(name = "id_vehiculo")
     private Vehiculo vehiculo_asegurado;
 		
-    @OneToMany(mappedBy = "poliza")
+    @OneToMany
+    @JoinColumn(name = "id_poliza")
     private HashSet<Hijo> hijos;
 		
-    @OneToMany(mappedBy = "poliza")
+    @OneToMany
+    @JoinColumn(name = "id_poliza")
     private List<ModificacionPoliza> modificaciones;
 		
     @ManyToOne(fetch = FetchType.LAZY)
@@ -73,10 +75,11 @@ public class Poliza {
     private FactoresTipoCobertura factores_cobertura_poliza;
 		
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_factor")	
-    private FactoresCaracteristicas factores_generacion;
+    @JoinColumn(name = "id_factor")
+    private FactoresCaracteristicas factores_caracteristicas;
 		
-    @OneToMany(mappedBy = "poliza")
+    @OneToMany
+    @JoinColumn(name = "id_poliza")
     private List<Cuota> cuotas;
 		
     @ManyToOne(fetch = FetchType.LAZY)
@@ -187,10 +190,10 @@ public class Poliza {
         this.factores_cobertura_poliza = cobertura_poliza;
     }
     public FactoresCaracteristicas getFactores_generacion() {
-        return factores_generacion;
+        return factores_caracteristicas;
     }
     public void setFactores_generacion(FactoresCaracteristicas factores_generacion) {
-        this.factores_generacion = factores_generacion;
+        this.factores_caracteristicas = factores_generacion;
     }
     public List<Cuota> getCuotas() {
         return cuotas;
