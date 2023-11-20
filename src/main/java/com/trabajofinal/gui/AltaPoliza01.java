@@ -44,15 +44,15 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        cmb_alta_pol01_prov = new javax.swing.JComboBox<>();
+        cmb_alta_pol01_local = new javax.swing.JComboBox<>();
+        cmb_alta_pol01_marca = new javax.swing.JComboBox<>();
+        cmb_alta_pol01_modelo = new javax.swing.JComboBox<>();
+        cmb_alta_pol01_anio = new javax.swing.JComboBox<>();
+        txt_alta_pol01_valor = new javax.swing.JTextField();
+        txt_alta_pol01_motor = new javax.swing.JTextField();
+        txt_alta_pol01_chasis = new javax.swing.JTextField();
+        txt_alta_pol01_patente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -71,18 +71,18 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        chk_alta_pol01_alarma = new javax.swing.JCheckBox();
+        chk_alta_pol01_tuerca = new javax.swing.JCheckBox();
         btn_alta_poliza_agregar_hijo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btn_alta_poliza01_continuar = new javax.swing.JButton();
         btn_alta_poliza01_cancelar = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
+        txt_alta_pol01_nro_stros = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        chk_alta_pol01_rastreo = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_alta_pol01_km = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -110,80 +110,73 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Fe", "Buenos Aires", "Cordoba", "Entre Ríos" }));
-        jComboBox1.setSelectedItem("Provincia");
-        jComboBox1.setToolTipText("Provincia");
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmb_alta_pol01_prov.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol01_prov.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cmb_alta_pol01_prov.setSelectedItem("Provincia");
+        cmb_alta_pol01_prov.setToolTipText("Provincia");
+        cmb_alta_pol01_prov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmb_alta_pol01_provActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 140, 30));
+        jPanel3.add(cmb_alta_pol01_prov, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 140, 30));
 
-        jComboBox2.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Fe", "Rosario", "Rafaela", "Recreo", "Monte Vera" }));
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 140, 30));
+        cmb_alta_pol01_local.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol01_local.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel3.add(cmb_alta_pol01_local, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 140, 30));
 
-        jComboBox3.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 310, 30));
+        cmb_alta_pol01_marca.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol01_marca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel3.add(cmb_alta_pol01_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 310, 30));
 
-        jComboBox4.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        cmb_alta_pol01_modelo.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol01_modelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cmb_alta_pol01_modelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                cmb_alta_pol01_modeloActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 310, 30));
+        jPanel3.add(cmb_alta_pol01_modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 310, 30));
 
-        jComboBox5.setBackground(new java.awt.Color(220, 220, 220));
-        jComboBox5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        cmb_alta_pol01_anio.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol01_anio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cmb_alta_pol01_anio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                cmb_alta_pol01_anioActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 310, 30));
+        jPanel3.add(cmb_alta_pol01_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 310, 30));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(117, 126, 207));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_alta_pol01_valor.setBackground(new java.awt.Color(220, 220, 220));
+        txt_alta_pol01_valor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_valor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_alta_pol01_valorActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 310, 30));
+        jPanel3.add(txt_alta_pol01_valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 310, 30));
 
-        jTextField2.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_alta_pol01_motor.setBackground(new java.awt.Color(220, 220, 220));
+        txt_alta_pol01_motor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_motor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_alta_pol01_motorActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 310, 30));
+        jPanel3.add(txt_alta_pol01_motor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 310, 30));
 
-        jTextField3.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 310, 30));
+        txt_alta_pol01_chasis.setBackground(new java.awt.Color(220, 220, 220));
+        txt_alta_pol01_chasis.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel3.add(txt_alta_pol01_chasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 310, 30));
 
-        jTextField4.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txt_alta_pol01_patente.setBackground(new java.awt.Color(220, 220, 220));
+        txt_alta_pol01_patente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_patente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txt_alta_pol01_patenteActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 310, 30));
+        jPanel3.add(txt_alta_pol01_patente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 310, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
@@ -266,25 +259,25 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox2.setText("¿Alarma?");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        chk_alta_pol01_alarma.setBackground(new java.awt.Color(255, 255, 255));
+        chk_alta_pol01_alarma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chk_alta_pol01_alarma.setText("¿Alarma?");
+        chk_alta_pol01_alarma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                chk_alta_pol01_alarmaActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 310, 30));
+        jPanel4.add(chk_alta_pol01_alarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 310, 30));
 
-        jCheckBox3.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox3.setText("¿Tuerca antirrobo en las cuatro ruedas?");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        chk_alta_pol01_tuerca.setBackground(new java.awt.Color(255, 255, 255));
+        chk_alta_pol01_tuerca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chk_alta_pol01_tuerca.setText("¿Tuerca antirrobo en las cuatro ruedas?");
+        chk_alta_pol01_tuerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                chk_alta_pol01_tuercaActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 310, 30));
+        jPanel4.add(chk_alta_pol01_tuerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 310, 30));
 
         btn_alta_poliza_agregar_hijo.setBackground(new java.awt.Color(52, 162, 224));
         btn_alta_poliza_agregar_hijo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -331,39 +324,37 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         });
         jPanel4.add(btn_alta_poliza01_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 100, 30));
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(117, 126, 207));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txt_alta_pol01_nro_stros.setBackground(new java.awt.Color(220, 220, 220));
+        txt_alta_pol01_nro_stros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_nro_stros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txt_alta_pol01_nro_strosActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 310, 30));
+        jPanel4.add(txt_alta_pol01_nro_stros, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 310, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("El vehículo posee:");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 140, -1));
 
-        jCheckBox4.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCheckBox4.setText("¿Dispositivo de rastreo satelital?");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        chk_alta_pol01_rastreo.setBackground(new java.awt.Color(255, 255, 255));
+        chk_alta_pol01_rastreo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chk_alta_pol01_rastreo.setText("¿Dispositivo de rastreo satelital?");
+        chk_alta_pol01_rastreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                chk_alta_pol01_rastreoActionPerformed(evt);
             }
         });
-        jPanel4.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 310, 30));
+        jPanel4.add(chk_alta_pol01_rastreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 310, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 51, 51));
         jLabel4.setText("*");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, -1, -1));
 
-        jTextField5.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel4.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 310, 30));
+        txt_alta_pol01_km.setBackground(new java.awt.Color(220, 220, 220));
+        txt_alta_pol01_km.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel4.add(txt_alta_pol01_km, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 310, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Numero de siniestros en el último año");
@@ -383,49 +374,49 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmb_alta_pol01_provActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_alta_pol01_provActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmb_alta_pol01_provActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_alta_pol01_valorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alta_pol01_valorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_alta_pol01_valorActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txt_alta_pol01_nro_strosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alta_pol01_nro_strosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txt_alta_pol01_nro_strosActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void chk_alta_pol01_tuercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_tuercaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_chk_alta_pol01_tuercaActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void chk_alta_pol01_alarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_alarmaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_chk_alta_pol01_alarmaActionPerformed
 
     private void btn_alta_poliza01_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alta_poliza01_cancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_alta_poliza01_cancelarActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void chk_alta_pol01_rastreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_rastreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_chk_alta_pol01_rastreoActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+    private void cmb_alta_pol01_modeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_alta_pol01_modeloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }//GEN-LAST:event_cmb_alta_pol01_modeloActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void cmb_alta_pol01_anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_alta_pol01_anioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_cmb_alta_pol01_anioActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_alta_pol01_motorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alta_pol01_motorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_alta_pol01_motorActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txt_alta_pol01_patenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alta_pol01_patenteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txt_alta_pol01_patenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,14 +457,14 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     public javax.swing.JButton btn_alta_poliza01_cancelar;
     public javax.swing.JButton btn_alta_poliza01_continuar;
     public javax.swing.JButton btn_alta_poliza_agregar_hijo;
-    public javax.swing.JCheckBox jCheckBox2;
-    public javax.swing.JCheckBox jCheckBox3;
-    public javax.swing.JCheckBox jCheckBox4;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JComboBox<String> jComboBox2;
-    public javax.swing.JComboBox<String> jComboBox3;
-    public javax.swing.JComboBox<String> jComboBox4;
-    public javax.swing.JComboBox<String> jComboBox5;
+    public javax.swing.JCheckBox chk_alta_pol01_alarma;
+    public javax.swing.JCheckBox chk_alta_pol01_rastreo;
+    public javax.swing.JCheckBox chk_alta_pol01_tuerca;
+    public javax.swing.JComboBox<Object> cmb_alta_pol01_anio;
+    public javax.swing.JComboBox<Object> cmb_alta_pol01_local;
+    public javax.swing.JComboBox<Object> cmb_alta_pol01_marca;
+    public javax.swing.JComboBox<Object> cmb_alta_pol01_modelo;
+    public javax.swing.JComboBox<Object> cmb_alta_pol01_prov;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -504,11 +495,11 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
-    public javax.swing.JTextField jTextField6;
+    public javax.swing.JTextField txt_alta_pol01_chasis;
+    public javax.swing.JTextField txt_alta_pol01_km;
+    public javax.swing.JTextField txt_alta_pol01_motor;
+    public javax.swing.JTextField txt_alta_pol01_nro_stros;
+    public javax.swing.JTextField txt_alta_pol01_patente;
+    public javax.swing.JTextField txt_alta_pol01_valor;
     // End of variables declaration//GEN-END:variables
 }
