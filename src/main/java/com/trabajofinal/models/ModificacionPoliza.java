@@ -40,6 +40,10 @@ public class ModificacionPoliza {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cobertura")	
     private TipoCobertura cobertura;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vehiculo")
+    private Vehiculo vehiculo;
 
     public int getId() {
         return id;

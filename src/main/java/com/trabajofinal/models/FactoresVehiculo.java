@@ -17,7 +17,7 @@ public class FactoresVehiculo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_poliza")
+	@Column(name = "id_factores_vehiculo")
 	private int id;
 	
 	@Column(name = "fecha_inicio_vigencia")
@@ -32,6 +32,10 @@ public class FactoresVehiculo {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_vehiculo")
     private TipoVehiculo vehiculo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario")
+    private Usuario modificador;
 
     public LocalDate getFecha_inicio_vigencia() {
         return fecha_inicio_vigencia;
