@@ -6,7 +6,6 @@ import java.util.List;
 import com.trabajofinal.dto.ProvinciaDTO;
 import com.trabajofinal.forms.ProvinciaForm;
 import com.trabajofinal.gui.BusquedaCliente;
-import com.trabajofinal.managers.ProvinciaManager;
 import com.trabajofinal.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
