@@ -1,22 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.trabajofinal.gui;
 
 import com.trabajofinal.controllers.AltaPoliza02Controller;
+import com.trabajofinal.dto.ClienteDTO;
+import com.trabajofinal.dto.VehiculoDTO;
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author PC
- */
 public class AltaPoliza02 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AltaPoliza02
-     */
-    public AltaPoliza02() {
+    private ClienteDTO cliente;
+    private VehiculoDTO vehiculo;
+    
+    public AltaPoliza02() {}
+    
+    public AltaPoliza02(ClienteDTO cliente, VehiculoDTO vehiculo) {
     super("Alta de Póliza");
 
     // Establece un ícono transparente para evitar que se muestre el ícono de Java
@@ -29,7 +25,7 @@ public class AltaPoliza02 extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     setVisible(true);
     
-    AltaPoliza02Controller altaPoliza02Controller = new AltaPoliza02Controller(this);
+    AltaPoliza02Controller altaPoliza02Controller = new AltaPoliza02Controller(this, cliente, vehiculo);
 }
 
     /**
