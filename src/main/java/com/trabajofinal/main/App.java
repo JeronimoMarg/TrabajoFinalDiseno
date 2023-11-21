@@ -15,7 +15,6 @@ import com.trabajofinal.models.*;
 public class App {
 
    public static void main(String[] args) {
-<<<<<<< HEAD
    
     EntityManager em = EntityManagerUtil.getEntityManager();
 	 Poliza e = new Poliza();
@@ -23,16 +22,6 @@ public class App {
    
     BusquedaCliente busquedaCliente = new BusquedaCliente();
     busquedaCliente.setVisible(true);
-=======
-	   
-	 EntityManager em = EntityManagerUtil.getEntityManager();
-	 Poliza e = new Poliza();
-	 em.persist(e);
-	   
-	   
-	 //BusquedaCliente busquedaCliente = new BusquedaCliente();
-     //busquedaCliente.setVisible(true);
->>>>>>> upstream/main
 
 
      /*
