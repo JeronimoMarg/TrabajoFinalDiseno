@@ -8,7 +8,7 @@ public class GestorVehiculos {
 		
 	}
 	
-	private static GestorVehiculos getInstance() {
+	public static GestorVehiculos getInstance() {
 		if(instance == null) {
 			instance = new GestorVehiculos();
 		}

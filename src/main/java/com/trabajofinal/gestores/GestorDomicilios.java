@@ -8,7 +8,7 @@ public class GestorDomicilios {
 		
 	}
 	
-	private static GestorDomicilios getInstance() {
+	public static GestorDomicilios getInstance() {
 		if(instance == null) {
 			instance = new GestorDomicilios();
 		}

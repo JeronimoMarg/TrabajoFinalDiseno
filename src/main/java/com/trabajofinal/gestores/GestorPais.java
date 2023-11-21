@@ -8,7 +8,7 @@ public class GestorPais {
 		
 	}
 	
-	private static GestorPais getInstance() {
+	public static GestorPais getInstance() {
 		if(instance == null) {
 			instance = new GestorPais();
 		}

@@ -8,7 +8,7 @@ public class GestorPagos {
 		
 	}
 	
-	private static GestorPagos getInstance() {
+	public static GestorPagos getInstance() {
 		if(instance == null) {
 			instance = new GestorPagos();
 		}

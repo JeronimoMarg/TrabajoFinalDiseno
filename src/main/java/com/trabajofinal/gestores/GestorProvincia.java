@@ -8,7 +8,7 @@ public class GestorProvincia {
 		
 	}
 	
-	private static GestorProvincia getInstance() {
+	public static GestorProvincia getInstance() {
 		if(instance == null) {
 			instance = new GestorProvincia();
 		}

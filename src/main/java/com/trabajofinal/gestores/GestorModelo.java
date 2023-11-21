@@ -8,7 +8,7 @@ private static GestorModelo instance;
 		
 	}
 	
-	private static GestorModelo getInstance() {
+	public static GestorModelo getInstance() {
 		if(instance == null) {
 			instance = new GestorModelo();
 		}

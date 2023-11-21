@@ -8,7 +8,7 @@ public class GestorSistemaSiniestros {
 		
 	}
 	
-	private static GestorSistemaSiniestros getInstance() {
+	public static GestorSistemaSiniestros getInstance() {
 		if(instance == null) {
 			instance = new GestorSistemaSiniestros();
 		}

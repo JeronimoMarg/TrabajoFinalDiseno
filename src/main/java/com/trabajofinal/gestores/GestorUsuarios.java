@@ -8,7 +8,7 @@ public class GestorUsuarios {
 		
 	}
 	
-	private static GestorUsuarios getInstance() {
+	public static GestorUsuarios getInstance() {
 		if(instance == null) {
 			instance = new GestorUsuarios();
 		}

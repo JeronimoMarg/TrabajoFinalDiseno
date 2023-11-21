@@ -8,7 +8,7 @@ public class GestorSalidas {
 		
 	}
 	
-	private static GestorSalidas getInstance() {
+	public static GestorSalidas getInstance() {
 		if(instance == null) {
 			instance = new GestorSalidas();
 		}

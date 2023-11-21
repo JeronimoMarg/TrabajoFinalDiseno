@@ -8,7 +8,7 @@ public class GestorLocalidad {
 		
 	}
 	
-	private static GestorLocalidad getInstance() {
+	public static GestorLocalidad getInstance() {
 		if(instance == null) {
 			instance = new GestorLocalidad();
 		}
