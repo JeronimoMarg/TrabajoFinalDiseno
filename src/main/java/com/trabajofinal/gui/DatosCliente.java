@@ -54,7 +54,7 @@ public class DatosCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlab_nombre_apellido = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_det_cliente_cancelar = new javax.swing.JButton();
@@ -97,9 +97,9 @@ public class DatosCliente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setText("<Nombre y Apellido>");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+        jlab_nombre_apellido.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jlab_nombre_apellido.setText("<Nombre y Apellido>");
+        jPanel1.add(jlab_nombre_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/El-asegurado.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 90, 60));
@@ -338,7 +338,6 @@ public class DatosCliente extends javax.swing.JFrame {
     public javax.swing.JButton btn_det_cliente_cancelar;
     public javax.swing.JButton btn_det_cliente_nueva_pol;
     public javax.swing.JButton btn_det_cliente_ver_pol;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -359,6 +358,7 @@ public class DatosCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    public javax.swing.JLabel jlab_nombre_apellido;
     public javax.swing.JTextField txt_datos_cliente_calle;
     public javax.swing.JTextField txt_datos_cliente_cod_postal;
     public javax.swing.JTextField txt_datos_cliente_dom_nro;
