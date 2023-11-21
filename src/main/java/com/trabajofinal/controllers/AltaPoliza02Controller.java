@@ -1,5 +1,7 @@
 package com.trabajofinal.controllers;
 
+import com.trabajofinal.dto.ClienteDTO;
+import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import java.awt.event.ActionEvent;
@@ -12,9 +14,10 @@ public class AltaPoliza02Controller implements ActionListener {
     
     private Object[] options = {"Sí", "No"};
 
-    public AltaPoliza02Controller(AltaPoliza02 altaPoliza02) {
+    public AltaPoliza02Controller(AltaPoliza02 altaPoliza02, ClienteDTO cliente, VehiculoDTO vehiculo) {
         this.altaPoliza02 = altaPoliza02;
         
+        System.out.println(cliente + " --- " + vehiculo);
         //Pongo a escuchar los botones de la interfaz
         this.altaPoliza02.btn_alta_poliza02_continuar.addActionListener(this);
         this.altaPoliza02.btn_alta_poliza02_cancelar.addActionListener(this);

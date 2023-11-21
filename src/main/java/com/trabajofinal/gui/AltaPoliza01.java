@@ -2,6 +2,7 @@
 package com.trabajofinal.gui;
 
 import com.trabajofinal.controllers.AltaPoliza01Controller;
+import com.trabajofinal.dto.ClienteDTO;
 import java.awt.image.BufferedImage;
 
 /**
@@ -10,10 +11,10 @@ import java.awt.image.BufferedImage;
  */
 public class AltaPoliza01 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AltaPoliza01
-     */
-    public AltaPoliza01() {
+    ClienteDTO cliente;
+    public AltaPoliza01(){}
+    
+    public AltaPoliza01(ClienteDTO cliente) {
     super("Alta de Póliza");
 
     // Establece un ícono transparente para evitar que se muestre el ícono de Java
@@ -26,7 +27,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     setVisible(true);
     
-    AltaPoliza01Controller altaPoliza01Controller = new AltaPoliza01Controller(this);
+    AltaPoliza01Controller altaPoliza01Controller = new AltaPoliza01Controller(this, cliente);
 }
 
 
@@ -72,7 +73,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         chk_alta_pol01_alarma = new javax.swing.JCheckBox();
-        chk_alta_pol01_tuerca = new javax.swing.JCheckBox();
+        chk_alta_pol01_cochera = new javax.swing.JCheckBox();
         btn_alta_poliza_agregar_hijo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -86,6 +87,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        chk_alta_pol01_tuerca = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -267,17 +269,17 @@ public class AltaPoliza01 extends javax.swing.JFrame {
                 chk_alta_pol01_alarmaActionPerformed(evt);
             }
         });
-        jPanel4.add(chk_alta_pol01_alarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 310, 30));
+        jPanel4.add(chk_alta_pol01_alarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 310, 30));
 
-        chk_alta_pol01_tuerca.setBackground(new java.awt.Color(255, 255, 255));
-        chk_alta_pol01_tuerca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        chk_alta_pol01_tuerca.setText("¿Tuerca antirrobo en las cuatro ruedas?");
-        chk_alta_pol01_tuerca.addActionListener(new java.awt.event.ActionListener() {
+        chk_alta_pol01_cochera.setBackground(new java.awt.Color(255, 255, 255));
+        chk_alta_pol01_cochera.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chk_alta_pol01_cochera.setText("¿Cochera?");
+        chk_alta_pol01_cochera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chk_alta_pol01_tuercaActionPerformed(evt);
+                chk_alta_pol01_cocheraActionPerformed(evt);
             }
         });
-        jPanel4.add(chk_alta_pol01_tuerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 310, 30));
+        jPanel4.add(chk_alta_pol01_cochera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 310, 30));
 
         btn_alta_poliza_agregar_hijo.setBackground(new java.awt.Color(52, 162, 224));
         btn_alta_poliza_agregar_hijo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -335,7 +337,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("El vehículo posee:");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 140, -1));
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 140, -1));
 
         chk_alta_pol01_rastreo.setBackground(new java.awt.Color(255, 255, 255));
         chk_alta_pol01_rastreo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -345,7 +347,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
                 chk_alta_pol01_rastreoActionPerformed(evt);
             }
         });
-        jPanel4.add(chk_alta_pol01_rastreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 310, 30));
+        jPanel4.add(chk_alta_pol01_rastreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 51, 51));
@@ -369,6 +371,16 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jLabel11.setText("*");
         jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
 
+        chk_alta_pol01_tuerca.setBackground(new java.awt.Color(255, 255, 255));
+        chk_alta_pol01_tuerca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chk_alta_pol01_tuerca.setText("¿Tuerca antirrobo en las cuatro ruedas?");
+        chk_alta_pol01_tuerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chk_alta_pol01_tuercaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(chk_alta_pol01_tuerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 310, 30));
+
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 450, 530));
 
         pack();
@@ -386,9 +398,9 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_alta_pol01_nro_strosActionPerformed
 
-    private void chk_alta_pol01_tuercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_tuercaActionPerformed
+    private void chk_alta_pol01_cocheraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_cocheraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chk_alta_pol01_tuercaActionPerformed
+    }//GEN-LAST:event_chk_alta_pol01_cocheraActionPerformed
 
     private void chk_alta_pol01_alarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_alarmaActionPerformed
         // TODO add your handling code here:
@@ -417,6 +429,10 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     private void txt_alta_pol01_patenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alta_pol01_patenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_alta_pol01_patenteActionPerformed
+
+    private void chk_alta_pol01_tuercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_alta_pol01_tuercaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_alta_pol01_tuercaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,6 +474,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     public javax.swing.JButton btn_alta_poliza01_continuar;
     public javax.swing.JButton btn_alta_poliza_agregar_hijo;
     public javax.swing.JCheckBox chk_alta_pol01_alarma;
+    public javax.swing.JCheckBox chk_alta_pol01_cochera;
     public javax.swing.JCheckBox chk_alta_pol01_rastreo;
     public javax.swing.JCheckBox chk_alta_pol01_tuerca;
     public javax.swing.JComboBox<Object> cmb_alta_pol01_anio;
