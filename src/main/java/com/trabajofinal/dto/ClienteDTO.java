@@ -27,6 +27,7 @@ public class ClienteDTO {
    private EstadoCivil estado_civil;
    private Boolean sexo;
    private Domicilio domicilio;
+   private int cantidadSiniestros;
 
    @Override
    public String toString() {
@@ -173,8 +174,16 @@ public class ClienteDTO {
    public void setAnio_registro(int anio_registro) {
       this.anio_registro = anio_registro;
    }
+   
+   public int getCantidadSiniestros() {
+	return cantidadSiniestros;
+   }
 
-   @Override
+   public void setCantidadSiniestros(int cantidadSiniestros) {
+	   this.cantidadSiniestros = cantidadSiniestros;
+   }
+
+@Override
    public int hashCode() {
       final int prime = 31;
       int result = 1;

@@ -30,7 +30,13 @@ public class Hijo {
 	@Column(name = "estado_civil")
     private EstadoCivil estado_civil;
 
-    public int getId() {
+    public Hijo(LocalDate fecha_nacimiento2, Boolean sexo2, EstadoCivil estado_civil2) {
+		fecha_nacimiento = fecha_nacimiento2;
+		sexo = sexo2;
+		estado_civil = estado_civil2;
+	}
+    
+	public int getId() {
         return id;
     }
     public void setId(int id) {

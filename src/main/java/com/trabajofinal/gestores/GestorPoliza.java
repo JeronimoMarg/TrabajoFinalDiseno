@@ -1,5 +1,6 @@
 package com.trabajofinal.gestores;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.trabajofinal.dto.ClienteDTO;
@@ -23,24 +24,30 @@ public class GestorPoliza {
 		return instance;
 	}
 	
-	private void crearPoliza(PolizaDTO poliza, HashSet<HijoDTO> hijos, ClienteDTO cliente) {
+	private void crearPoliza(PolizaDTO poliza, ArrayList<HijoDTO> hijos, ClienteDTO cliente) {
 		
 		if(validarLogica()) {
 			
 			Poliza polizaNueva = new Poliza();
-			polizaNueva.setFechaInicioVigencia(PolizaDTO.getFechaInicio());
-			polizaNueva.setTipoPago(PolizaDTO.getTipoPago());
-			polizaNueva.setFactoresTipoCobertura(obtenerFactoresTipoCobertura());
-			polizaNueva.setFactoresCaracteristicas(obtenerFactoresCaracteristicas());
+			polizaNueva.setFecha_inicio_vigencia(poliza.getFechaInicioVigencia());
+			polizaNueva.setForma_pago(poliza.getTipoPago());
+			polizaNueva.setCobertura_poliza(obtenerFactoresTipoCobertura());
+			polizaNueva.setFactores_generacion(obtenerFactoresCaracteristicas());
 			polizaNueva.setDescuentos(calcularDescuentos());
 			polizaNueva.setDerechosEmision(calcularDerechosEmision());
 			polizaNueva.setPremio(calcularPremio());
-			polizaNueva.setCantidad_siniestros(PolizaDTO.setCantidadSiniestros());
+			polizaNueva.setCantidad_siniestros(cliente.getCantidadSiniestros());
 			polizaNueva.setEstado(TipoEstadoPoliza.GENERADA);
-			polizaNueva.setCliente(ClienteDTO.getId());
+			polizaNueva.setCliente(obtenerCliente(cliente));
 			setearHijos(hijos, polizaNueva);
-			setearCuotas(PolizaDTO.getFormaPago(), polizaNueva);
-			
+			setearCuotas(poliza, polizaNueva);
+			polizaNueva.setLocalidad(obtenerLocalidad(poliza));
+			polizaNueva.setFactor_riesgo_localidad(obtenerFactorRiesgoLocalidad(polizaNueva.getLocalidad()));
+			polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(poliza));
+			polizaNueva.setFactores_modelo(obtenerFactoresModelo(poliza));
+			polizaNueva.setVehiculo_asegurado(obtenerVehiculo(poliza));
+			actualizarEstadoCliente(cliente, poliza);
+			guardar(polizaNueva);
 			
 		}
 		
@@ -86,23 +93,95 @@ public class GestorPoliza {
 		return null;
 	}
 	
-	private Cliente obtenerCliente(int id) {
+	private void setearHijos(ArrayList<HijoDTO> hijos, Poliza polizaNueva) {
+		
+		for(int i=0; i<hijos.size(); i++) {
+			HijoDTO actual = hijos.get(i);
+			Hijo nuevo = new Hijo(actual.getFecha_nacimiento(), actual.getSexo(), actual.getEstado_civil());
+			polizaNueva.getHijos().add(nuevo);
+		}
+		
+	}
+	
+	private void setearCuotas(PolizaDTO poliza, Poliza polizaNueva) {
+		
+		int iteraciones = 0;
+		if (poliza.getTipoPago() == TipoPago.MENSUAL) {
+			iteraciones = 6;
+		}else {
+			iteraciones = 1;
+		}
+		
+		for(int i=0; i<iteraciones; i++) {
+			Cuota nueva = new Cuota(polizaNueva.getPremio(), poliza.getTipoPago());
+			polizaNueva.getCuotas().add(nueva);
+		}
+		
+	}
+	
+	private Localidad obtenerLocalidad(PolizaDTO poliza) {
+		
+		GestorLocalidad gestor = GestorLocalidad.getInstance();
+		Localidad localidad = gestor.obtenerLocalidad(poliza.getLocalidad());
+		return localidad;
+		
+	}
+	
+	private FactorRiesgoLocalidad obtenerFactorRiesgoLocalidad(Localidad localidad) {
+		
+		GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
+		FactorRiesgoLocalidad factoresLocalidad = gestor.obtenerFactoresLocalidad(localidad);
+		return factoresLocalidad;
+		
+	}
+	
+	private FactoresVehiculo obtenerFactoresVehiculo(PolizaDTO poliza) {
+		
+		GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
+		FactoresVehiculo factoresVehiculo = gestor.obtenerFactoresVehiculo(poliza);
+		return factoresVehiculo;
+		
+	}
+	
+	private FactoresModelo obtenerFactoresModelo(PolizaDTO poliza) {
+		
+		GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
+		FactoresModelo factoresModelo = gestor.obtenerFactoresModelo(poliza);
+		return factoresModelo;
+		
+	}
+	
+	private Vehiculo obtenerVehiculo(PolizaDTO poliza) {
+		
+		GestorVehiculos gestor = GestorVehiculos.getInstance();
+		Vehiculo vehiculo = gestor.crearVehiculo(poliza);
+		return vehiculo;
+		
+	}
+	
+	private Cliente obtenerCliente(ClienteDTO cliente_dto) {
 		
 		GestorClientes gestor = GestorClientes.getInstance();
-		Cliente cliente = gestor.obtenerCliente(id);
+		Cliente cliente = gestor.obtenerCliente(cliente_dto);
 		return cliente;
 		
 	}
 	
-	private void setearHijos(HashSet<HijoDTO> hijos, Poliza polizaNueva) {
+	private void actualizarEstadoCliente(ClienteDTO cliente_dto, PolizaDTO poliza) {
 		
-		//para cada hijo en la lista, crearlo, setearlo a poliza (add).
+		Cliente cliente = obtenerCliente(cliente_dto);
+		//obtener del PolizaDAO una lista de polizas. O directamente el count;
+		int cantidadPolizasCliente = 0; 	//aca iria seteado con el count;
+		
+		GestorClientes gestor = GestorClientes.getInstance();
+		gestor.actualizarEstado(cliente, cantidadPolizasCliente, cliente_dto.getCantidadSiniestros());
 		
 	}
 	
-	private void setearCuotas(int formaDePago, Poliza polizaNueva) {
+	private void guardar(Poliza poliza) {
 		
-		//dependiendo del int, crear 1 o 6 cuotas y setearlo a poliza (add).
+		//mandar mensaje a poliza dao para que guarde
+		//acordarse de sobrescribir el metodo en polizadao para que tambien guarde el vehiculo, hijos, cuotas, y la poliza
 		
 	}
 

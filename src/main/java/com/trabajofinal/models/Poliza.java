@@ -47,6 +47,9 @@ public class Poliza {
 	@Column(name = "total_a_pagar")
     private Double total_a_pagar;
 	
+	@Column(name = "derechos_emision")
+	private Double derechos_emision;
+	
 	@Column(name = "cantidad_siniestros")
     private int cantidad_siniestros;
 	
@@ -231,4 +234,8 @@ public class Poliza {
     public void setFecha_inicio_vigencia(Date fecha_inicio_vigencia) {
         this.fecha_inicio_vigencia = fecha_inicio_vigencia;
     }
+
+	public void setDerechosEmision(Double derechos_emision) {
+		this.derechos_emision = derechos_emision;
+	}
 }
