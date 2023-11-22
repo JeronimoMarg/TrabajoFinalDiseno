@@ -11,19 +11,7 @@ public class DatosCliente extends javax.swing.JFrame {
    private ClienteDTO cliente;
 
    public DatosCliente() {
-      /*super("Datos de Cliente");
-      // Establece un ícono transparente para evitar que se muestre el ícono de Java
-      BufferedImage transparentImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-      setIconImage(transparentImage);
-
-      initComponents();
-      setSize(900, 600);
-      setResizable(false);
-      setLocationRelativeTo(null);
-      setVisible(true);
-
-      DatosClienteController datosClienteController = new DatosClienteController(this, cliente); */
-   }
+  }
 
    public DatosCliente(ClienteDTO cliente) {
       super("Datos de Cliente");
@@ -132,6 +120,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_tipo.setEditable(false);
         txt_datos_cliente_tipo.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_tipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_tipo.setFocusable(false);
         txt_datos_cliente_tipo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_tipo.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 80, 30));
@@ -163,6 +152,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_pais.setEditable(false);
         txt_datos_cliente_pais.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_pais.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_pais.setFocusable(false);
         txt_datos_cliente_pais.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_pais.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 200, 30));
@@ -174,6 +164,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_cod_postal.setEditable(false);
         txt_datos_cliente_cod_postal.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_cod_postal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_cod_postal.setFocusable(false);
         txt_datos_cliente_cod_postal.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_cod_postal.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_cod_postal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 200, 30));
@@ -185,6 +176,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_local.setEditable(false);
         txt_datos_cliente_local.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_local.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_local.setFocusable(false);
         txt_datos_cliente_local.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_local.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_local, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 200, 30));
@@ -204,6 +196,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_dpto.setEditable(false);
         txt_datos_cliente_dpto.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_dpto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_dpto.setFocusable(false);
         txt_datos_cliente_dpto.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_dpto.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_dpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 180, 30));
@@ -216,6 +209,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_dom_nro.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_dom_nro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_datos_cliente_dom_nro.setBorder(null);
+        txt_datos_cliente_dom_nro.setFocusable(false);
         txt_datos_cliente_dom_nro.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_dom_nro.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_dom_nro, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 110, 30));
@@ -227,6 +221,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_piso.setEditable(false);
         txt_datos_cliente_piso.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_piso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_piso.setFocusable(false);
         txt_datos_cliente_piso.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_piso.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_piso, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 90, 30));
@@ -234,6 +229,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_calle.setEditable(false);
         txt_datos_cliente_calle.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_calle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_calle.setFocusable(false);
         txt_datos_cliente_calle.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_calle.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 420, 30));
@@ -249,6 +245,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_nro_cte.setEditable(false);
         txt_datos_cliente_nro_cte.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_nro_cte.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_nro_cte.setFocusable(false);
         txt_datos_cliente_nro_cte.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_nro_cte.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_nro_cte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 300, 30));
@@ -276,6 +273,7 @@ public class DatosCliente extends javax.swing.JFrame {
         txt_datos_cliente_provincia.setEditable(false);
         txt_datos_cliente_provincia.setBackground(new java.awt.Color(220, 220, 220));
         txt_datos_cliente_provincia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_datos_cliente_provincia.setFocusable(false);
         txt_datos_cliente_provincia.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_datos_cliente_provincia.setSelectionColor(new java.awt.Color(0, 0, 0));
         jPanel5.add(txt_datos_cliente_provincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 200, 30));

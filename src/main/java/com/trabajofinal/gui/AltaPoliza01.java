@@ -76,7 +76,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         chk_alta_pol01_cochera = new javax.swing.JCheckBox();
         btn_alta_poliza_agregar_hijo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_alta_pol01_hijos = new javax.swing.JTable();
         btn_alta_poliza01_continuar = new javax.swing.JButton();
         btn_alta_poliza01_cancelar = new javax.swing.JButton();
         txt_alta_pol01_nro_stros = new javax.swing.JTextField();
@@ -149,6 +149,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         });
         jPanel3.add(cmb_alta_pol01_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 310, 30));
 
+        txt_alta_pol01_valor.setEditable(false);
         txt_alta_pol01_valor.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_valor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_alta_pol01_valor.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +287,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         btn_alta_poliza_agregar_hijo.setText("Agregar hijos");
         jPanel4.add(btn_alta_poliza_agregar_hijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_alta_pol01_hijos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -302,11 +303,11 @@ public class AltaPoliza01 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(table_alta_pol01_hijos);
+        if (table_alta_pol01_hijos.getColumnModel().getColumnCount() > 0) {
+            table_alta_pol01_hijos.getColumnModel().getColumn(0).setResizable(false);
+            table_alta_pol01_hijos.getColumnModel().getColumn(1).setResizable(false);
+            table_alta_pol01_hijos.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 310, 90));
@@ -326,6 +327,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         });
         jPanel4.add(btn_alta_poliza01_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, 100, 30));
 
+        txt_alta_pol01_nro_stros.setEditable(false);
         txt_alta_pol01_nro_stros.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_nro_stros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_alta_pol01_nro_stros.addActionListener(new java.awt.event.ActionListener() {
@@ -511,7 +513,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable table_alta_pol01_hijos;
     public javax.swing.JTextField txt_alta_pol01_chasis;
     public javax.swing.JTextField txt_alta_pol01_km;
     public javax.swing.JTextField txt_alta_pol01_motor;

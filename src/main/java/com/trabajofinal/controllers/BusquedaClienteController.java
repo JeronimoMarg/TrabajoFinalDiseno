@@ -126,35 +126,20 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         cliente.setCondicion(TipoCondicion.NORMAL);
         cliente.setCondicion_iva(TipoCondicionIVA.CONSUMIDOR_FINAL);
         cliente.setNumero_cuil("20248766787");
-        Domicilio domicilio = new Domicilio();
-        Pais pais = new Pais();
-        Localidad localidad = new Localidad();
-        Provincia provincia = new Provincia();
-        provincia.setNombre("Santa Fe");
-        pais.setNombre("Argentina");
-        domicilio.setNombre_calle("Luciano Torrent");
-        domicilio.setNumero_calle(1534);
-        domicilio.setPiso(1);
-        domicilio.setDepartamento("--");
-        domicilio.setCodigo_postal("3000");
-        domicilio.setId(1);
-        domicilio.setEs_departamento(true);
-        localidad.setNombre("Santa Fe");
-        localidad.setRiesgo_localidad(null);
-        provincia.setNombre("Santa Fe");
-        provincia.setId(1);
-        localidad.setProvincia(provincia);
-        localidad.setId(1);
-        domicilio.setLocalidad(localidad);
-        pais.setNombre("Argentina");
-        pais.setId(1);
-        provincia.setPais(pais);
-        cliente.setDomicilio(domicilio);
         cliente.setEmail("dr.danelone@gmail.com");
         cliente.setEstado_civil(EstadoCivil.SOLTERO);
         cliente.setProfesion("Abogado");
         cliente.setSexo(true);
         cliente.setFecha_nacimiento(LocalDate.of(1975, 11, 19));
+        cliente.setCalle("Luciano Torrent");
+        cliente.setCod_postal("3000");
+        cliente.setDepartamento("--");
+        cliente.setLocalidad("Santa Fe");
+        cliente.setPais("Argentina");
+        cliente.setProvincia("Santa Fe");
+        cliente.setPiso("P.A.");
+        cliente.setNro(1534);
+
         return cliente;
     }
 
