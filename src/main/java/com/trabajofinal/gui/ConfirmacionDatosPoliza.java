@@ -236,13 +236,12 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
         jLabel31.setBackground(new java.awt.Color(204, 204, 204));
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel31.setText("Esto no está...");
         jLabel31.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, 140, 30));
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 140, 30));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Ultimo dia de pago");
-        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
+        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, -1, -1));
 
         txt_confirma_pol_premio.setBackground(new java.awt.Color(204, 204, 204));
         txt_confirma_pol_premio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -256,7 +255,7 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         btn_confirma_datos_pol_ver_det.setBackground(new java.awt.Color(52, 162, 224));
         btn_confirma_datos_pol_ver_det.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_confirma_datos_pol_ver_det.setText("Ver detalle de cuotas");
-        jPanel4.add(btn_confirma_datos_pol_ver_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 180, 30));
+        jPanel4.add(btn_confirma_datos_pol_ver_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 180, 30));
 
         btn_conf_dat_pol_ver_bon.setBackground(new java.awt.Color(242, 242, 242));
         btn_conf_dat_pol_ver_bon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pequenio negro.png"))); // NOI18N

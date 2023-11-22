@@ -79,10 +79,6 @@ public void keyTyped(KeyEvent e) {
         validarCampoRegex(e, "^[0-9]*\\.?[0-9]*$");
     } else if (e.getSource() == altaPoliza01.txt_alta_pol01_motor) {
         validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
-    } else if (e.getSource() == altaPoliza01.txt_alta_pol01_valor) {
-        validarCampoRegex(e, "^-?\\d*\\.?\\d*$");
-    } else if (e.getSource() == altaPoliza01.txt_alta_pol01_nro_stros) {
-        validarCampoNumero(e);
     }
 }
 
@@ -124,58 +120,27 @@ private void validarCampoNumero(KeyEvent e) {
         return !(altaPoliza01.txt_alta_pol01_chasis.getText().equals("")
                 || altaPoliza01.txt_alta_pol01_km.equals("")
                 || altaPoliza01.txt_alta_pol01_motor.equals("")
-                || altaPoliza01.txt_alta_pol01_nro_stros.equals("")
-                || altaPoliza01.txt_alta_pol01_patente.equals("")
-                || altaPoliza01.txt_alta_pol01_valor.equals(""));
+                || altaPoliza01.txt_alta_pol01_patente.equals(""));
     }
 
     private VehiculoDTO crearVehiculo() {
         VehiculoDTO vehiculo = new VehiculoDTO();
-        TipoVehiculo tipo = new TipoVehiculo();
-        Modelo modelo = new Modelo();
-        FactoresModelo factoresModelo = new FactoresModelo();
-        FactoresVehiculo factoresVehiculo = new FactoresVehiculo();
-        Marca marca = new Marca();
-
-        //Setear valores a factoresModelo
-        factoresModelo.setFecha_fin_vigencia(LocalDate.MIN);
-        factoresModelo.setFecha_inicio_vigencia(LocalDate.EPOCH);
-        //factores.setSuma_asegurada(Double.MAX_VALUE);
-        factoresModelo.setProbabilidad_robo(12.56);
-
-        //Setear valores a factoresVehiculo
-        factoresVehiculo.setFecha_fin_vigencia(LocalDate.MIN);
-        factoresVehiculo.setFecha_inicio_vigencia(LocalDate.EPOCH);
-        factoresVehiculo.setSuma_asegurada(Double.parseDouble(altaPoliza01.txt_alta_pol01_valor.getText().trim()));
-
-        //Setear valores a marca
-        marca.setNombre("Toyota");
-
-        //Setear valores a modelo
-        modelo.setNombre("Ethios");
-        modelo.setFactor_actual(factoresModelo);
-        modelo.setMarca(marca);
-
-        //Setear valores a tipo de vehículo
-        tipo.setAnio(2020);
-        tipo.setPeso(850.0);
-        tipo.setPotencia(183.00);
-        tipo.setVelocidad(177.7);
-        tipo.setModelo_vehiculo(modelo);
-        tipo.setFactores_actuales(factoresVehiculo);
-        factoresModelo.setModelo(modelo);
-
-        vehiculo.setChasis(altaPoliza01.txt_alta_pol01_chasis.getText().toString().trim());
+        vehiculo.setChasis(altaPoliza01.txt_alta_pol01_chasis.getText().toString().trim()); 
         vehiculo.setMotor(altaPoliza01.txt_alta_pol01_motor.getText().toString().trim());
-        vehiculo.setKilometros_anio(Integer.parseInt(altaPoliza01.txt_alta_pol01_km.getText().trim()));
+        vehiculo.setKilometros_anio(altaPoliza01.txt_alta_pol01_km.getText().toString().trim());
         vehiculo.setPatente(altaPoliza01.txt_alta_pol01_patente.getText().toString().trim());
-        vehiculo.setTipo_vehiculo(tipo);
         vehiculo.setCon_alarma(altaPoliza01.chk_alta_pol01_alarma.isSelected());
         vehiculo.setCon_tuerca_antirrobo(altaPoliza01.chk_alta_pol01_tuerca.isSelected());
         vehiculo.setCon_rastreo(altaPoliza01.chk_alta_pol01_rastreo.isSelected());
         vehiculo.setEn_garage(altaPoliza01.chk_alta_pol01_cochera.isSelected());
 
+        
+        vehiculo.setAnio("2020");
+        vehiculo.setPeso("750");
+        vehiculo.setPotencia("183");
+        vehiculo.setMarca("Toyota");
+        vehiculo.setModelo("Ethios");
+
         return vehiculo;
     }
-
 }

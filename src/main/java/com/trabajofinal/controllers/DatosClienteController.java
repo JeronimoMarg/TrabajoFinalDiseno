@@ -58,14 +58,14 @@ public class DatosClienteController implements ActionListener {
    private void actualizarInterface() {
       String nombre = cliente.getApellido().toString().trim() + ", " + cliente.getNombre().toString().trim();
       datosCliente.jlab_nombre_apellido.setText(nombre);
-      datosCliente.txt_datos_cliente_calle.setText(cliente.getDomicilio().getNombre_calle().toString().trim());
-      datosCliente.txt_datos_cliente_cod_postal.setText(cliente.getDomicilio().getCodigo_postal().toString().trim());
-      datosCliente.txt_datos_cliente_dom_nro.setText(Integer.toString(cliente.getDomicilio().getNumero_calle()).trim());
-      datosCliente.txt_datos_cliente_dpto.setText(cliente.getDomicilio().getDepartamento().toString().trim());
-      datosCliente.txt_datos_cliente_local.setText(cliente.getDomicilio().getLocalidad().getNombre().toString().trim());
-      datosCliente.txt_datos_cliente_provincia.setText("Santa Fe (ojo)");
-      datosCliente.txt_datos_cliente_pais.setText("Argentina (ojo)");
-      datosCliente.txt_datos_cliente_piso.setText(Integer.toString(cliente.getDomicilio().getPiso()).trim());
+      datosCliente.txt_datos_cliente_calle.setText(cliente.getCalle().toString().trim());
+      datosCliente.txt_datos_cliente_cod_postal.setText(cliente.getCod_postal().toString().trim());
+      datosCliente.txt_datos_cliente_dom_nro.setText(Integer.toString(cliente.getNro()).trim());
+      datosCliente.txt_datos_cliente_dpto.setText(cliente.getDepartamento().toString().trim());
+      datosCliente.txt_datos_cliente_local.setText(cliente.getLocalidad().toString().trim());
+      datosCliente.txt_datos_cliente_provincia.setText(cliente.getProvincia().toString().trim());
+      datosCliente.txt_datos_cliente_pais.setText(cliente.getPais().toString().trim());
+      datosCliente.txt_datos_cliente_piso.setText(cliente.getPiso().toString().trim());
       datosCliente.txt_datos_cliente_tipo.setText(cliente.getTipo_documento().toString().trim());
       datosCliente.txt_datos_cliente_nro_cte.setText(cliente.getNumero_cliente().toString().trim());
       datosCliente.txt_datos_cliente_nro_doc.setText(cliente.getNumero_documento().toString().trim());
