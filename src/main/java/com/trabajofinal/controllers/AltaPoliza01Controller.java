@@ -10,6 +10,7 @@ import com.trabajofinal.models.FactoresVehiculo;
 import com.trabajofinal.models.Marca;
 import com.trabajofinal.models.Modelo;
 import com.trabajofinal.models.TipoVehiculo;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class AltaPoliza01Controller implements ActionListener, KeyListener {
 
@@ -70,73 +72,43 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        if (e.getSource() == altaPoliza01.txt_alta_pol01_chasis) {
-            // Obtener el texto actual del JTextField
-            String regex = "[a-zA-Z0-9]+";
-            String input = altaPoliza01.txt_alta_pol01_chasis.getText().trim();
-            // Verificar si el texto ingresado coincide con la expresión regular
-            boolean isValid = Pattern.matches(regex, input);
-            // Cambiar el color del JTextField dependiendo de si es válido o no
-            if (isValid) {
-                altaPoliza01.txt_alta_pol01_chasis.setForeground(java.awt.Color.BLACK);
-            } else {
-                altaPoliza01.txt_alta_pol01_chasis.setForeground(java.awt.Color.RED);
-            }
-        } else if (e.getSource() == altaPoliza01.txt_alta_pol01_patente) {
-            // Obtener el texto actual del JTextField
-            String regex = "[a-zA-Z0-9]+";
-            String input = altaPoliza01.txt_alta_pol01_patente.getText().trim();
-            boolean isValid = Pattern.matches(regex, input);
-            if (isValid) {
-                altaPoliza01.txt_alta_pol01_patente.setForeground(java.awt.Color.BLACK);
-            } else {
-                altaPoliza01.txt_alta_pol01_patente.setForeground(java.awt.Color.RED);
-            }
-        } else if (e.getSource() == altaPoliza01.txt_alta_pol01_km) {
-            // Este método se llama cada vez que el usuario ingresa una tecla en el JTextField
-            String regex = "^[0-9]*\\.?[0-9]*$";
-
-            // Obtener la tecla ingresada por el usuario
-            char c = e.getKeyChar();
-            // Verificar si la tecla ingresada coincide con la expresión regular
-            if (!Character.toString(c).matches(regex)) {
-                // Si la tecla no coincide, se consume el evento, evitando que se agregue al JTextField
-                e.consume();
-            }
-        } else if (e.getSource() == altaPoliza01.txt_alta_pol01_motor) {
-            // Este método se llama cada vez que el usuario ingresa una tecla en el JTextField
-            String regex = "[a-zA-Z0-9]+";
-            String input = altaPoliza01.txt_alta_pol01_motor.getText().trim();
-            boolean isValid = Pattern.matches(regex, input);
-            if (isValid) {
-                altaPoliza01.txt_alta_pol01_motor.setForeground(java.awt.Color.BLACK);
-
-            } else {
-                altaPoliza01.txt_alta_pol01_motor.setForeground(java.awt.Color.RED);
-            }
-        } else if (e.getSource() == altaPoliza01.txt_alta_pol01_valor) {
-            // Este método se llama cada vez que el usuario ingresa una tecla en el JTextField
-            String regex = "^-?\\d*\\.?\\d*$";
-            // Obtener la tecla ingresada por el usuario
-            char c = e.getKeyChar();
-            // Verificar si la tecla ingresada coincide con la expresión regular
-            if (!Character.toString(c).matches(regex)) {
-                // Si la tecla no coincide, se consume el evento, evitando que se agregue al JTextField
-                e.consume();
-            }
-        } else if (e.getSource() == altaPoliza01.txt_alta_pol01_nro_stros) {
-            // Este método se llama cada vez que el usuario ingresa una tecla en el JTextField
-            String regex = "\\d";
-            // Obtener la tecla ingresada por el usuario
-            char c = e.getKeyChar();
-            // Verificar si la tecla ingresada coincide con la expresión regular
-            if (!Character.toString(c).matches(regex)) {
-                // Si la tecla no coincide, se consume el evento, evitando que se agregue al JTextField
-                e.consume();
-            }
-        }
+public void keyTyped(KeyEvent e) {
+    if (e.getSource() == altaPoliza01.txt_alta_pol01_chasis || e.getSource() == altaPoliza01.txt_alta_pol01_patente) {
+        validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
+    } else if (e.getSource() == altaPoliza01.txt_alta_pol01_km) {
+        validarCampoRegex(e, "^[0-9]*\\.?[0-9]*$");
+    } else if (e.getSource() == altaPoliza01.txt_alta_pol01_motor) {
+        validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
+    } else if (e.getSource() == altaPoliza01.txt_alta_pol01_valor) {
+        validarCampoRegex(e, "^-?\\d*\\.?\\d*$");
+    } else if (e.getSource() == altaPoliza01.txt_alta_pol01_nro_stros) {
+        validarCampoNumero(e);
     }
+}
+
+private void validarCampoAlfanumerico(JTextField textField, String regex) {
+    String input = textField.getText().trim();
+    boolean isValid = Pattern.matches(regex, input);
+    if (isValid) {
+        textField.setForeground(Color.BLACK);
+    } else {
+        textField.setForeground(Color.RED);
+    }
+}
+
+private void validarCampoRegex(KeyEvent e, String regex) {
+    char c = e.getKeyChar();
+    if (!Character.toString(c).matches(regex)) {
+        e.consume();
+    }
+}
+
+private void validarCampoNumero(KeyEvent e) {
+    char c = e.getKeyChar();
+    if (!Character.isDigit(c)) {
+        e.consume();
+    }
+}
 
     @Override
     public void keyPressed(KeyEvent e) {
