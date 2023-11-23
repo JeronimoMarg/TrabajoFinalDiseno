@@ -8,6 +8,8 @@ import com.trabajofinal.gui.AltaPolizaHijo;
 import com.trabajofinal.models.AnyoVehiculo;
 import com.trabajofinal.models.DynamicCombobox;
 import com.trabajofinal.models.DynamicCombobox2;
+import com.trabajofinal.models.EstadoCivil;
+import com.trabajofinal.models.Hijo;
 import com.trabajofinal.models.Localidad;
 import com.trabajofinal.models.Marca;
 import com.trabajofinal.models.Modelo;
@@ -19,6 +21,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,12 +33,14 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
-public class AltaPoliza01Controller implements ActionListener, KeyListener {
+public class AltaPoliza01Controller implements ActionListener, KeyListener, MouseListener {
 
     private AltaPoliza01 altaPoliza01;
     private ClienteDTO cliente;
     private Object[] options = {"Sí", "No"};
+    DefaultTableModel tabla = new DefaultTableModel();
 
     // Variables que vamos a usar ahora para probar la lógica
     private Provincia prov1;
@@ -59,6 +67,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
     private AnyoVehiculo anyo4;
     private AnyoVehiculo anyo5;
     private AnyoVehiculo anyo6;
+    private Hijo hijo1 = new Hijo();
+    private Hijo hijo2 = new Hijo();
 
     private List<Provincia> provincias = new ArrayList<>();
     private List<Localidad> localidades = new ArrayList<>();
@@ -66,6 +76,9 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
     private Set<Modelo> modelos = new HashSet<>();
     private List<TipoVehiculo> tipoVehiculos = new ArrayList<>();
     private List<AnyoVehiculo> anyoVehiculos = new ArrayList<>();
+    private List<Hijo> hijos = new ArrayList<>();
+
+    
 
     public AltaPoliza01Controller() {
     }
@@ -78,6 +91,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         crear();
         inicializarCmbProvincias();
         inicializarCmbMarcas();
+        listarHijos();
 
         // Pongo a la escucha los botones de la interface
         this.altaPoliza01.btn_alta_poliza_agregar_hijo.addActionListener(this);
@@ -88,6 +102,9 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         this.altaPoliza01.cmb_alta_pol01_modelo.addActionListener(this);
         this.altaPoliza01.cmb_alta_pol01_anio.addActionListener(this);
 
+        //Tabla de hijos en escucha
+        this.altaPoliza01.table_alta_pol01_hijos.addMouseListener(this);
+        
         // Campos de texto para validar
         this.altaPoliza01.txt_alta_pol01_chasis.addKeyListener(this);
         this.altaPoliza01.txt_alta_pol01_km.addKeyListener(this);
@@ -95,7 +112,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         this.altaPoliza01.txt_alta_pol01_nro_stros.addKeyListener(this);
         this.altaPoliza01.txt_alta_pol01_patente.addKeyListener(this);
         this.altaPoliza01.txt_alta_pol01_valor.addKeyListener(this);
-
+        
     }
 
     @Override
@@ -330,6 +347,15 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         marcas.add(marca3);
         provincias.add(prov1);
         provincias.add(prov2);
+        hijo1.setEstado_civil(EstadoCivil.SOLTERO);
+        hijo1.setFecha_nacimiento(LocalDate.now().minusYears(5));
+        hijo1.setSexo(Boolean.TRUE);
+        hijo2.setEstado_civil(EstadoCivil.CASADO);
+        hijo2.setFecha_nacimiento(LocalDate.now().minusYears(15));
+        hijo2.setSexo(Boolean.FALSE);
+        hijos.add(hijo1);
+        hijos.add(hijo2);
+        
 
     }
 
@@ -379,4 +405,55 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         }
     }
 
+public void listarHijos() {
+    tabla = (DefaultTableModel) altaPoliza01.table_alta_pol01_hijos.getModel();
+    Object[] row = new Object[3];
+    
+    for (int i = 0; i < hijos.size(); i++) {
+        // Fecha de Nacimiento
+         LocalDate fechaNacimiento = hijos.get(i).getFecha_nacimiento();
+        String fechaFormateada = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(fechaNacimiento);
+        row[0] = fechaFormateada;
+        boolean sexo = hijos.get(i).getSexo();
+        String sexoTexto = sexo ? "MASCULINO" : "FEMENINO";
+        row[1] = sexoTexto;
+        row[2] = hijos.get(i).getEstado_civil();
+        tabla.addRow(row);
+    }
+    altaPoliza01.table_alta_pol01_hijos.setModel(tabla);
+}
+
+    
+     //Limpiar la tabla
+    public void limpiarTabla() {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i = i - 1;
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == altaPoliza01.table_alta_pol01_hijos) {
+            //EL UNO AL FINAL SE LO AGREGUÉ PARA LA MUESTRA. SACARLO CUANDO ESTÉ IMPLEMENTADO 
+            int row = altaPoliza01.table_alta_pol01_hijos.rowAtPoint(e.getPoint()) + 1;
+            JOptionPane.showMessageDialog(null, "Ha seleccionado la fila: " + row);
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 }
