@@ -5,7 +5,9 @@ import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.AltaPoliza01;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.AltaPolizaHijo;
+import com.trabajofinal.models.AnyoVehiculo;
 import com.trabajofinal.models.DynamicCombobox;
+import com.trabajofinal.models.DynamicCombobox2;
 import com.trabajofinal.models.Localidad;
 import com.trabajofinal.models.Marca;
 import com.trabajofinal.models.Modelo;
@@ -18,7 +20,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
@@ -47,14 +51,21 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
     private TipoVehiculo tipo2;
     private TipoVehiculo tipo3;
     private TipoVehiculo tipo4;
-        
+    private TipoVehiculo tipo5;
+    private TipoVehiculo tipo6;
+    private AnyoVehiculo anyo1;
+    private AnyoVehiculo anyo2;
+    private AnyoVehiculo anyo3;
+    private AnyoVehiculo anyo4;
+    private AnyoVehiculo anyo5;
+    private AnyoVehiculo anyo6;
 
     private List<Provincia> provincias = new ArrayList<>();
     private List<Localidad> localidades = new ArrayList<>();
-    private List<Marca> marcas = new ArrayList<>();
-    private List<Modelo> modelos = new ArrayList<>();
+    private Set<Marca> marcas = new HashSet<>();
+    private Set<Modelo> modelos = new HashSet<>();
     private List<TipoVehiculo> tipoVehiculos = new ArrayList<>();
-    
+    private List<AnyoVehiculo> anyoVehiculos = new ArrayList<>();
 
     public AltaPoliza01Controller() {
     }
@@ -63,11 +74,10 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         this.altaPoliza01 = altaPoliza01;
         this.cliente = cliente;
 
-        // Inicializo los comboBox independinetes
+        // Inicializo los comboBox independientes
         crear();
         inicializarCmbProvincias();
         inicializarCmbMarcas();
-        iniciarlizarCmbModelos();
 
         // Pongo a la escucha los botones de la interface
         this.altaPoliza01.btn_alta_poliza_agregar_hijo.addActionListener(this);
@@ -75,6 +85,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         this.altaPoliza01.btn_alta_poliza01_cancelar.addActionListener(this);
         this.altaPoliza01.cmb_alta_pol01_prov.addActionListener(this);
         this.altaPoliza01.cmb_alta_pol01_marca.addActionListener(this);
+        this.altaPoliza01.cmb_alta_pol01_modelo.addActionListener(this);
+        this.altaPoliza01.cmb_alta_pol01_anio.addActionListener(this);
 
         // Campos de texto para validar
         this.altaPoliza01.txt_alta_pol01_chasis.addKeyListener(this);
@@ -119,6 +131,16 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
             }
         } else if (e.getSource() == altaPoliza01.cmb_alta_pol01_modelo) {
             //Filtrar los años de los módelos en la tabla
+            DynamicCombobox selectedModelo = (DynamicCombobox) altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem();
+            if (selectedModelo != null) {
+                cargarAnyoVehiculos(selectedModelo.getId());
+            }
+        } else if (e.getSource() == altaPoliza01.cmb_alta_pol01_anio) {
+            DynamicCombobox2 selectedAnyo = (DynamicCombobox2) altaPoliza01.cmb_alta_pol01_anio.getSelectedItem();
+            altaPoliza01.txt_alta_pol01_valor.setText("");
+            if (selectedAnyo != null) {
+                altaPoliza01.txt_alta_pol01_valor.setText(selectedAnyo.getValor().toString());
+            }
         }
     }
 
@@ -164,44 +186,29 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         return !(altaPoliza01.txt_alta_pol01_chasis.getText().equals("")
                 || altaPoliza01.txt_alta_pol01_km.equals("")
                 || altaPoliza01.txt_alta_pol01_motor.equals("")
-                || altaPoliza01.txt_alta_pol01_patente.equals(""));
+                || altaPoliza01.txt_alta_pol01_patente.equals("")
+                || altaPoliza01.cmb_alta_pol01_prov.getSelectedItem() == null
+                || altaPoliza01.cmb_alta_pol01_local.getSelectedItem() == null
+                || altaPoliza01.cmb_alta_pol01_marca.getSelectedItem() == null
+                || altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem() == null
+                || altaPoliza01.cmb_alta_pol01_anio.getSelectedItem() == null);
     }
 
     // Métodos mock que usamos hasta que tengamos la persistencia implementada
     private void inicializarCmbProvincias() {
-        provincias.add(prov1);
-        provincias.add(prov2);
-
         // Iterar sobre la lista de provincias y agregar nombres al JComboBox
         for (Provincia provincia : provincias) {
             DynamicCombobox comboBoxItem = new DynamicCombobox(provincia.getId(), provincia.getNombre());
             altaPoliza01.cmb_alta_pol01_prov.addItem(comboBoxItem);
-            //System.out.println(comboBoxItem.getId() + " --- " +  comboBoxItem.getNombre() + " --- " + comboBoxItem.getClass());
         }
     }
 
     private void inicializarCmbMarcas() {
-        marcas.add(marca1);
-        marcas.add(marca2);
-        marcas.add(marca3);
-
+        altaPoliza01.cmb_alta_pol01_marca.removeAllItems();
         for (Marca marca : marcas) {
             DynamicCombobox comboBoxItem = new DynamicCombobox(marca.getId(), marca.getNombre());
             altaPoliza01.cmb_alta_pol01_marca.addItem(comboBoxItem);
         }
-    }
-
-    private void iniciarlizarCmbModelos() {
-        modelos.add(modelo1);
-        modelos.add(modelo2);
-        modelos.add(modelo3);
-        modelos.add(modelo4);
-
-        for (Modelo model : modelos) {
-            DynamicCombobox comboBoxItem = new DynamicCombobox(model.getId(), model.getNombre());
-            altaPoliza01.cmb_alta_pol01_modelo.addItem(comboBoxItem);
-        }
-
     }
 
     private VehiculoDTO crearVehiculo() {
@@ -258,14 +265,15 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         modelo.setMarca(marca);
         return modelo;
     }
-    
-    private TipoVehiculo nuevoTipo (double peso,double potencia, double velocidad, int anio) {
+
+    private TipoVehiculo nuevoTipo(double peso, double potencia, double velocidad, int anio, Modelo modelo) {
         TipoVehiculo vehiculo = new TipoVehiculo();
         vehiculo.setAnio(anio);
         vehiculo.setPeso(peso);
         vehiculo.setPotencia(potencia);
         vehiculo.setVelocidad(velocidad);
-                
+        vehiculo.setModelo_vehiculo(modelo);
+
         return vehiculo;
     }
 
@@ -281,16 +289,57 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         marca1 = nuevaMarca(1, "Toyota");
         marca2 = nuevaMarca(2, "Ford");
         marca3 = nuevaMarca(3, "Renault");
+        anyo1 = nuevoAnyo(2020, 250000.0);
+        anyo2 = nuevoAnyo(2021, 275000.0);
+        anyo3 = nuevoAnyo(2022, 350000.0);
+        anyo4 = nuevoAnyo(2023, 399000.0);
+        anyo5 = nuevoAnyo(2019, 259999.0);
+        anyo6 = nuevoAnyo(2023, 3999999.0);
         modelo1 = nuevoModelo(1, "Ethios", marca1);
         modelo2 = nuevoModelo(2, "EcoSport", marca2);
         modelo3 = nuevoModelo(3, "Oroch", marca3);
         modelo4 = nuevoModelo(4, "Hilux", marca1);
-        tipo1 = nuevoTipo(1000, 168, 179, 2020);
-        tipo2 = nuevoTipo(800.00, 122, 155, 2021);
-        tipo3 = nuevoTipo(1255, 180, 175.5, 2015);
-        tipo4 = nuevoTipo(956, 150, 190, 2022);
+        tipo1 = nuevoTipo(1000, 168, 179, 2020, modelo1);
+        tipo5 = nuevoTipo(1000, 168, 179, 2021, modelo1);
+        tipo6 = nuevoTipo(1000, 168, 179, 2022, modelo1);
+        tipo2 = nuevoTipo(800.00, 122, 155, 2021, modelo2);
+        tipo3 = nuevoTipo(1255, 180, 175.5, 2023, modelo3);
+        tipo4 = nuevoTipo(956, 150, 190, 2022, modelo4);
+        tipoVehiculos.add(tipo1);
+        tipoVehiculos.add(tipo2);
+        tipoVehiculos.add(tipo3);
+        tipoVehiculos.add(tipo4);
+        tipoVehiculos.add(tipo5);
+        tipoVehiculos.add(tipo6);
+        anyoVehiculos.add(anyo1);
+        anyoVehiculos.add(anyo2);
+        anyoVehiculos.add(anyo3);
+        anyoVehiculos.add(anyo4);
+        anyoVehiculos.add(anyo5);
+        anyoVehiculos.add(anyo6);
+        modelos.add(modelo1);
+        modelos.add(modelo2);
+        modelos.add(modelo3);
+        modelos.add(modelo4);
+        modelos.add(modelo1);
+        modelos.add(modelo2);
+        modelos.add(modelo3);
+        modelos.add(modelo4);
+        marcas.add(marca1);
+        marcas.add(marca2);
+        marcas.add(marca3);
+        provincias.add(prov1);
+        provincias.add(prov2);
+
     }
-    
+
+    private AnyoVehiculo nuevoAnyo(int a, Double v) {
+        AnyoVehiculo anyo = new AnyoVehiculo();
+        anyo.setAnio(a);
+        anyo.setValorMercado(v);
+
+        return anyo;
+    }
 
     private void cargarLocalidades(int id_prov) {
         altaPoliza01.cmb_alta_pol01_local.removeAllItems();
@@ -302,12 +351,19 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         }
     }
 
-    private void cargarMarcas(int id) {
-        altaPoliza01.cmb_alta_pol01_modelo.removeAllItems();
-        for (Marca marca : marcas) {
-            if (marca.getId() == id) {
-                DynamicCombobox comboBoxItem = new DynamicCombobox(marca.getId(), marca.getNombre());
-                altaPoliza01.cmb_alta_pol01_modelo.addItem(comboBoxItem.getNombre());
+    private void cargarAnyoVehiculos(int id) {
+        //en base al campo anyo en TipoVehiculo, filtro en anyoVehiculo y los despliego en el ComboBox
+        //el id del modelo es el que voy a usar para filtrar tipoVehiculo, y luego, mostrar los años
+        //y actualizar el valor a asegurar
+        altaPoliza01.cmb_alta_pol01_anio.removeAllItems();
+        for (TipoVehiculo tipoV : tipoVehiculos) {
+            if (tipoV.getModelo_vehiculo().getId() == id) {
+                for (AnyoVehiculo anyos : anyoVehiculos) {
+                    if (anyos.getAnio() == tipoV.getAnio()) {
+                        DynamicCombobox2 comboBoxItem = new DynamicCombobox2(anyos.getValorMercado(), anyos.getAnio());
+                        altaPoliza01.cmb_alta_pol01_anio.addItem(comboBoxItem);
+                    }
+                }
             }
         }
     }
@@ -317,13 +373,10 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener {
         for (Modelo modelo : modelos) {
             if (modelo.getMarca().getId() == id) {
                 DynamicCombobox comboBoxItem = new DynamicCombobox(modelo.getId(), modelo.getNombre());
-                altaPoliza01.cmb_alta_pol01_modelo.addItem(comboBoxItem.getNombre());
+                altaPoliza01.cmb_alta_pol01_modelo.addItem(comboBoxItem);
+
             }
         }
     }
-    
-    private void cargarTipoVehiculo(int id) {
-        altaPoliza01.cmb_alta_pol01_anio.removeAllItems();
-        
-    }
+
 }

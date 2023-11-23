@@ -43,14 +43,19 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        cmb_alta_pol_hijo_dia = new javax.swing.JComboBox<>();
+        cmb_alta_pol_hijo_sexo = new javax.swing.JComboBox<>();
+        cmb_alta_pol_hijo_estado = new javax.swing.JComboBox<>();
         btn_alta_poliza_hijo_continuar = new javax.swing.JButton();
         btn_alta_poliza_hijo_cancelar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        cmb_alta_pol_hijo_mes = new javax.swing.JComboBox<>();
+        cmb_alta_pol_hijo_anio = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,14 +70,19 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 50));
 
-        jComboBox3.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 310, 30));
+        cmb_alta_pol_hijo_dia.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol_hijo_dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_alta_pol_hijo_diaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmb_alta_pol_hijo_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 80, 30));
 
-        jComboBox4.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 310, 30));
+        cmb_alta_pol_hijo_sexo.setBackground(new java.awt.Color(220, 220, 220));
+        jPanel1.add(cmb_alta_pol_hijo_sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 310, 30));
 
-        jComboBox5.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 310, 30));
+        cmb_alta_pol_hijo_estado.setBackground(new java.awt.Color(220, 220, 220));
+        jPanel1.add(cmb_alta_pol_hijo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 310, 30));
 
         btn_alta_poliza_hijo_continuar.setBackground(new java.awt.Color(52, 162, 224));
         btn_alta_poliza_hijo_continuar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -82,7 +92,7 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
                 btn_alta_poliza_hijo_continuarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_alta_poliza_hijo_continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 100, 30));
+        jPanel1.add(btn_alta_poliza_hijo_continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 100, 30));
 
         btn_alta_poliza_hijo_cancelar.setBackground(new java.awt.Color(255, 128, 146));
         btn_alta_poliza_hijo_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -92,19 +102,47 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
                 btn_alta_poliza_hijo_cancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_alta_poliza_hijo_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 100, 30));
+        jPanel1.add(btn_alta_poliza_hijo_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 100, 30));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Sexo");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel17.setText("Fecha de nacimiento");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jLabel17.setText("Día:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel18.setText("Estado civil");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel19.setText("Fecha de nacimiento");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel20.setText("Mes:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+
+        cmb_alta_pol_hijo_mes.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol_hijo_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_alta_pol_hijo_mesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmb_alta_pol_hijo_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 80, 30));
+
+        cmb_alta_pol_hijo_anio.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_alta_pol_hijo_anio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_alta_pol_hijo_anioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmb_alta_pol_hijo_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 80, 30));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel21.setText("Año:");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
 
@@ -118,6 +156,18 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
     private void btn_alta_poliza_hijo_continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alta_poliza_hijo_continuarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_alta_poliza_hijo_continuarActionPerformed
+
+    private void cmb_alta_pol_hijo_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_alta_pol_hijo_diaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_alta_pol_hijo_diaActionPerformed
+
+    private void cmb_alta_pol_hijo_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_alta_pol_hijo_mesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_alta_pol_hijo_mesActionPerformed
+
+    private void cmb_alta_pol_hijo_anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_alta_pol_hijo_anioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_alta_pol_hijo_anioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,13 +207,18 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_alta_poliza_hijo_cancelar;
     public javax.swing.JButton btn_alta_poliza_hijo_continuar;
-    public javax.swing.JComboBox<String> jComboBox3;
-    public javax.swing.JComboBox<String> jComboBox4;
-    public javax.swing.JComboBox<String> jComboBox5;
+    public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_anio;
+    public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_dia;
+    public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_estado;
+    public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_mes;
+    public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_sexo;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
