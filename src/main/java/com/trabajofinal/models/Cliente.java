@@ -3,6 +3,7 @@ package com.trabajofinal.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -47,7 +48,7 @@ public class Cliente {
 
    // HAY QUE MODIFICAR!!! ACÁ VA UN INTEGER, NO UNA LocalDate!
    @Column(name = "anio_registro")
-   private LocalDate anio_registro;
+   private int anio_registro;
 
    @Column(name = "profesion")
    private String profesion;
@@ -70,13 +71,41 @@ public class Cliente {
    private EstadoCivil estado_civil;
 
    @Column(name = "sexo")
-   private Boolean sexo;
+   private char sexo;
 
-   @OneToOne
+   @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "id_domicilio")
    private Domicilio domicilio;
 
-   public int getId() {
+   public Cliente() {
+	   
+   }
+   
+   public Cliente(String numero_cliente, String numero_documento, TipoDocumento tipo_documento, String nombre,
+		String apellido, TipoCondicion condicion, Boolean activo, int anio_registro, String profesion,
+		String numero_cuil, String email, TipoCondicionIVA condicion_iva, LocalDate fecha_nacimiento,
+		EstadoCivil estado_civil, char sexo, Domicilio domicilio) {
+	super();
+	//this.id = id;
+	this.numero_cliente = numero_cliente;
+	this.numero_documento = numero_documento;
+	this.tipo_documento = tipo_documento;
+	this.nombre = nombre;
+	this.apellido = apellido;
+	this.condicion = condicion;
+	this.activo = activo;
+	this.anio_registro = anio_registro;
+	this.profesion = profesion;
+	this.numero_cuil = numero_cuil;
+	this.email = email;
+	this.condicion_iva = condicion_iva;
+	this.fecha_nacimiento = fecha_nacimiento;
+	this.estado_civil = estado_civil;
+	this.sexo = sexo;
+	this.domicilio = domicilio;
+}
+
+public int getId() {
       return id;
    }
 
@@ -140,11 +169,11 @@ public class Cliente {
       this.activo = activo;
    }
 
-   public LocalDate getAnio_registro() {
+   public int getAnio_registro() {
       return anio_registro;
    }
 
-   public void setAnio_registro(LocalDate anio_registro) {
+   public void setAnio_registro(int anio_registro) {
       this.anio_registro = anio_registro;
    }
 
@@ -196,13 +225,24 @@ public class Cliente {
       this.estado_civil = estado_civil;
    }
 
-   public Boolean getSexo() {
+   public char getSexo() {
       return sexo;
    }
 
-   public void setSexo(Boolean sexo) {
+   public void setSexo(char sexo) {
       this.sexo = sexo;
    }
+
+   @Override
+	public String toString() {
+	   return "Cliente [id=" + id + ", numero_cliente=" + numero_cliente + ", numero_documento=" + numero_documento
+			+ ", tipo_documento=" + tipo_documento + ", nombre=" + nombre + ", apellido=" + apellido + ", condicion="
+			+ condicion + ", activo=" + activo + ", anio_registro=" + anio_registro + ", profesion=" + profesion
+			+ ", numero_cuil=" + numero_cuil + ", email=" + email + ", condicion_iva=" + condicion_iva
+			+ ", fecha_nacimiento=" + fecha_nacimiento + ", estado_civil=" + estado_civil + ", sexo=" + sexo
+			+ ", domicilio=" + domicilio + "]";
+   }
+  
    /*
     * public Domicilio getDomicilio() {
     * return domicilio;
@@ -211,5 +251,7 @@ public class Cliente {
     * this.domicilio = domicilio;
     * }
     */
+   
+   
 
 }

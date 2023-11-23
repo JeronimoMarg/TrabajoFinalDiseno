@@ -1,4 +1,4 @@
-package com.trabajofinal.models;
+package dinamicComboBox;
 
 public class DynamicCombobox {
      private int id;

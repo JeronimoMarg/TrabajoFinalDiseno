@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -68,11 +69,46 @@ public class FactoresCaracteristicas {
 	@Column(name = "clientes_a_mostrar")
     private int clientes_a_mostrar;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 
-    public int getId() {
+	public FactoresCaracteristicas() {
+		
+	}
+	
+	
+	
+    public FactoresCaracteristicas(Double porcentaje_garage, Double porcentaje_alarma,
+			Double porcentaje_tuercas, Double porcentaje_kilometros, Double porcentaje_siniestros_0,
+			Double porcentaje_siniestros_1, Double porcentaje_siniestros_2, Double porcentaje_siniestros_mas2,
+			Double porcentaje_hijo, Double derechos_emision, Double descuento_unidad_adicional, Double factor_premio,
+			Double factor_descuento, LocalDate fecha_inicio_vigencia, LocalDate fecha_fin_vigencia,
+			int clientes_a_mostrar, Usuario modificador) {
+		super();
+		//this.id = id;
+		this.porcentaje_garage = porcentaje_garage;
+		this.porcentaje_alarma = porcentaje_alarma;
+		this.porcentaje_tuercas = porcentaje_tuercas;
+		this.porcentaje_kilometros = porcentaje_kilometros;
+		this.porcentaje_siniestros_0 = porcentaje_siniestros_0;
+		this.porcentaje_siniestros_1 = porcentaje_siniestros_1;
+		this.porcentaje_siniestros_2 = porcentaje_siniestros_2;
+		this.porcentaje_siniestros_mas2 = porcentaje_siniestros_mas2;
+		this.porcentaje_hijo = porcentaje_hijo;
+		this.derechos_emision = derechos_emision;
+		this.descuento_unidad_adicional = descuento_unidad_adicional;
+		this.factor_premio = factor_premio;
+		this.factor_descuento = factor_descuento;
+		this.fecha_inicio_vigencia = fecha_inicio_vigencia;
+		this.fecha_fin_vigencia = fecha_fin_vigencia;
+		this.clientes_a_mostrar = clientes_a_mostrar;
+		this.modificador = modificador;
+	}
+
+
+
+	public int getId() {
         return id;
     }
     public void setId(int id) {
@@ -180,6 +216,21 @@ public class FactoresCaracteristicas {
 	public void setPorcentaje_siniestros_mas2(Double porcentaje_siniestros_mas2) {
 		this.porcentaje_siniestros_mas2 = porcentaje_siniestros_mas2;
 	}
+
+	@Override
+	public String toString() {
+		return "FactoresCaracteristicas [id=" + id + ", porcentaje_garage=" + porcentaje_garage + ", porcentaje_alarma="
+				+ porcentaje_alarma + ", porcentaje_tuercas=" + porcentaje_tuercas + ", porcentaje_kilometros="
+				+ porcentaje_kilometros + ", porcentaje_siniestros_0=" + porcentaje_siniestros_0
+				+ ", porcentaje_siniestros_1=" + porcentaje_siniestros_1 + ", porcentaje_siniestros_2="
+				+ porcentaje_siniestros_2 + ", porcentaje_siniestros_mas2=" + porcentaje_siniestros_mas2
+				+ ", porcentaje_hijo=" + porcentaje_hijo + ", derechos_emision=" + derechos_emision
+				+ ", descuento_unidad_adicional=" + descuento_unidad_adicional + ", factor_premio=" + factor_premio
+				+ ", factor_descuento=" + factor_descuento + ", fecha_inicio_vigencia=" + fecha_inicio_vigencia
+				+ ", fecha_fin_vigencia=" + fecha_fin_vigencia + ", clientes_a_mostrar=" + clientes_a_mostrar
+				+ ", modificador=" + modificador + "]";
+	}
+	
     
 
 }

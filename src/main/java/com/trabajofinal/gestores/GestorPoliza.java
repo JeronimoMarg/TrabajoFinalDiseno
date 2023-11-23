@@ -6,7 +6,10 @@ import java.util.HashSet;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.dto.PolizaDTO;
+import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.models.*;
+import com.trabajofinal.utils.EntityManagerUtil;
+import com.trabajofinal.dao.PolizaDao;
 
 public class GestorPoliza {
 	
@@ -24,7 +27,7 @@ public class GestorPoliza {
 		return instance;
 	}
 	
-	private void crearPoliza(PolizaDTO poliza, ArrayList<HijoDTO> hijos, ClienteDTO cliente) {
+	private void crearPoliza(PolizaDTO poliza, ArrayList<HijoDTO> hijos, ClienteDTO cliente, VehiculoDTO vehiculo) {
 		
 		if(validarLogica()) {
 			
@@ -180,8 +183,9 @@ public class GestorPoliza {
 	
 	private void guardar(Poliza poliza) {
 		
-		//mandar mensaje a poliza dao para que guarde
-		//acordarse de sobrescribir el metodo en polizadao para que tambien guarde el vehiculo, hijos, cuotas, y la poliza
+		PolizaDao polizaDao = new PolizaDao();
+		polizaDao.save(poliza);
+		System.out.println("Polizas: " + polizaDao.getAll());
 		
 	}
 

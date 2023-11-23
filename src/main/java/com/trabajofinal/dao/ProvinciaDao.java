@@ -13,8 +13,7 @@ import jakarta.persistence.TypedQuery;
 
 public class ProvinciaDao extends AbstractDao<Provincia> {
 
-   public ProvinciaDao(EntityManager em) {
-      super(em);
+   public ProvinciaDao() {
       setClazz(Provincia.class);
    }
       
