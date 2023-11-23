@@ -1,5 +1,6 @@
 package com.trabajofinal.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,11 +37,30 @@ public class Domicilio {
    @Column(name = "departamento")
    private String departamento;
 
-   @ManyToOne(fetch = FetchType.LAZY)
+   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    @JoinColumn(name = "id_localidad")
    private Localidad localidad;
 
-   public int getId() {
+   public Domicilio() {
+	   
+   }
+   
+   public Domicilio(String codigo_postal, int numero_calle, String nombre_calle, Boolean es_departamento, int piso,
+		String departamento, Localidad localidad) {
+	super();
+	//this.id = id;
+	this.codigo_postal = codigo_postal;
+	this.numero_calle = numero_calle;
+	this.nombre_calle = nombre_calle;
+	this.es_departamento = es_departamento;
+	this.piso = piso;
+	this.departamento = departamento;
+	this.localidad = localidad;
+}
+
+
+
+public int getId() {
       return id;
    }
 
