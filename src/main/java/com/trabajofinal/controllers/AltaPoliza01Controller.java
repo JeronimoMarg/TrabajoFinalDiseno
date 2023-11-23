@@ -5,10 +5,10 @@ import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.AltaPoliza01;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.AltaPolizaHijo;
-import com.trabajofinal.models.AnyoVehiculo;
 import dinamicComboBox.DynamicCombobox;
 import dinamicComboBox.DynamicCombobox2;
 import com.trabajofinal.models.EstadoCivil;
+import com.trabajofinal.models.FactoresVehiculo;
 import com.trabajofinal.models.Hijo;
 import com.trabajofinal.models.Localidad;
 import com.trabajofinal.models.Marca;
@@ -61,12 +61,12 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     private TipoVehiculo tipo4;
     private TipoVehiculo tipo5;
     private TipoVehiculo tipo6;
-    private AnyoVehiculo anyo1;
-    private AnyoVehiculo anyo2;
-    private AnyoVehiculo anyo3;
-    private AnyoVehiculo anyo4;
-    private AnyoVehiculo anyo5;
-    private AnyoVehiculo anyo6;
+    private FactoresVehiculo fact1 = new FactoresVehiculo();
+    private FactoresVehiculo fact2= new FactoresVehiculo();
+    private FactoresVehiculo fact3= new FactoresVehiculo();
+    private FactoresVehiculo fact4= new FactoresVehiculo();
+    private FactoresVehiculo fact5= new FactoresVehiculo();
+    private FactoresVehiculo fact6= new FactoresVehiculo();
     private Hijo hijo1 = new Hijo();
     private Hijo hijo2 = new Hijo();
 
@@ -75,10 +75,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     private Set<Marca> marcas = new HashSet<>();
     private Set<Modelo> modelos = new HashSet<>();
     private List<TipoVehiculo> tipoVehiculos = new ArrayList<>();
-    private List<AnyoVehiculo> anyoVehiculos = new ArrayList<>();
+    private List<FactoresVehiculo> factoresVehiculos = new ArrayList<>();
     private List<Hijo> hijos = new ArrayList<>();
-
-    
 
     public AltaPoliza01Controller() {
     }
@@ -104,7 +102,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
 
         //Tabla de hijos en escucha
         this.altaPoliza01.table_alta_pol01_hijos.addMouseListener(this);
-        
+
         // Campos de texto para validar
         this.altaPoliza01.txt_alta_pol01_chasis.addKeyListener(this);
         this.altaPoliza01.txt_alta_pol01_km.addKeyListener(this);
@@ -112,7 +110,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         this.altaPoliza01.txt_alta_pol01_nro_stros.addKeyListener(this);
         this.altaPoliza01.txt_alta_pol01_patente.addKeyListener(this);
         this.altaPoliza01.txt_alta_pol01_valor.addKeyListener(this);
-        
+
     }
 
     @Override
@@ -218,6 +216,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
             DynamicCombobox comboBoxItem = new DynamicCombobox(provincia.getId(), provincia.getNombre());
             altaPoliza01.cmb_alta_pol01_prov.addItem(comboBoxItem);
         }
+        altaPoliza01.cmb_alta_pol01_prov.setSelectedIndex(0);
     }
 
     private void inicializarCmbMarcas() {
@@ -238,12 +237,13 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         vehiculo.setCon_tuerca_antirrobo(altaPoliza01.chk_alta_pol01_tuerca.isSelected());
         vehiculo.setCon_rastreo(altaPoliza01.chk_alta_pol01_rastreo.isSelected());
         vehiculo.setEn_garage(altaPoliza01.chk_alta_pol01_cochera.isSelected());
+        vehiculo.setAnio(altaPoliza01.cmb_alta_pol01_anio.getSelectedItem().toString());
+        vehiculo.setMarca(altaPoliza01.cmb_alta_pol01_marca.getSelectedItem().toString());
+        vehiculo.setModelo(altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem().toString());
 
-        vehiculo.setAnio("2020");
+        //Estos dos datos tengo que traerlos de FactoresModelo
         vehiculo.setPeso("750");
         vehiculo.setPotencia("183");
-        vehiculo.setMarca("Toyota");
-        vehiculo.setModelo("Ethios");
 
         return vehiculo;
     }
@@ -283,13 +283,14 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         return modelo;
     }
 
-    private TipoVehiculo nuevoTipo(double peso, double potencia, double velocidad, int anio, Modelo modelo) {
+    private TipoVehiculo nuevoTipo(double peso, double potencia, double velocidad, int anio, Modelo modelo, FactoresVehiculo fac) {
         TipoVehiculo vehiculo = new TipoVehiculo();
         vehiculo.setAnio(anio);
         vehiculo.setPeso(peso);
         vehiculo.setPotencia(potencia);
         vehiculo.setVelocidad(velocidad);
         vehiculo.setModelo_vehiculo(modelo);
+        vehiculo.setFactores_actuales(fac);
 
         return vehiculo;
     }
@@ -306,34 +307,36 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         marca1 = nuevaMarca(1, "Toyota");
         marca2 = nuevaMarca(2, "Ford");
         marca3 = nuevaMarca(3, "Renault");
-        anyo1 = nuevoAnyo(2020, 250000.0);
-        anyo2 = nuevoAnyo(2021, 275000.0);
-        anyo3 = nuevoAnyo(2022, 350000.0);
-        anyo4 = nuevoAnyo(2023, 399000.0);
-        anyo5 = nuevoAnyo(2019, 259999.0);
-        anyo6 = nuevoAnyo(2023, 3999999.0);
+        fact1.setSuma_asegurada(2950000.0);
+        fact1.setVehiculo(tipo1);
+        fact2.setSuma_asegurada(2500000.0);
+        fact2.setVehiculo(tipo2);
+        fact3.setSuma_asegurada(2750000.0);
+        fact3.setVehiculo(tipo3);
+        fact4.setSuma_asegurada(2990000.0);
+        fact4.setVehiculo(tipo4);
+        fact5.setSuma_asegurada(2599900.0);
+        fact5.setVehiculo(tipo5);
+        fact6.setSuma_asegurada(3900000.0);
+        fact6.setVehiculo(tipo6);
         modelo1 = nuevoModelo(1, "Ethios", marca1);
         modelo2 = nuevoModelo(2, "EcoSport", marca2);
         modelo3 = nuevoModelo(3, "Oroch", marca3);
         modelo4 = nuevoModelo(4, "Hilux", marca1);
-        tipo1 = nuevoTipo(1000, 168, 179, 2020, modelo1);
-        tipo5 = nuevoTipo(1000, 168, 179, 2021, modelo1);
-        tipo6 = nuevoTipo(1000, 168, 179, 2022, modelo1);
-        tipo2 = nuevoTipo(800.00, 122, 155, 2021, modelo2);
-        tipo3 = nuevoTipo(1255, 180, 175.5, 2023, modelo3);
-        tipo4 = nuevoTipo(956, 150, 190, 2022, modelo4);
+        tipo1 = nuevoTipo(1000, 168, 179, 2020, modelo1, fact1);
+        tipo5 = nuevoTipo(1000, 168, 179, 2021, modelo1, fact2);
+        tipo6 = nuevoTipo(1000, 168, 179, 2022, modelo1, fact3);
+        tipo2 = nuevoTipo(800.00, 122, 155, 2021, modelo2, fact4);
+        tipo3 = nuevoTipo(1255, 180, 175.5, 2023, modelo3, fact5);
+        tipo4 = nuevoTipo(956, 150, 190, 2022, modelo4, fact6);
+        
         tipoVehiculos.add(tipo1);
         tipoVehiculos.add(tipo2);
         tipoVehiculos.add(tipo3);
         tipoVehiculos.add(tipo4);
         tipoVehiculos.add(tipo5);
         tipoVehiculos.add(tipo6);
-        anyoVehiculos.add(anyo1);
-        anyoVehiculos.add(anyo2);
-        anyoVehiculos.add(anyo3);
-        anyoVehiculos.add(anyo4);
-        anyoVehiculos.add(anyo5);
-        anyoVehiculos.add(anyo6);
+        
         modelos.add(modelo1);
         modelos.add(modelo2);
         modelos.add(modelo3);
@@ -355,16 +358,6 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         hijo2.setSexo(Boolean.FALSE);
         hijos.add(hijo1);
         hijos.add(hijo2);
-        
-
-    }
-
-    private AnyoVehiculo nuevoAnyo(int a, Double v) {
-        AnyoVehiculo anyo = new AnyoVehiculo();
-        anyo.setAnio(a);
-        anyo.setValorMercado(v);
-
-        return anyo;
     }
 
     private void cargarLocalidades(int id_prov) {
@@ -378,18 +371,11 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     }
 
     private void cargarAnyoVehiculos(int id) {
-        //en base al campo anyo en TipoVehiculo, filtro en anyoVehiculo y los despliego en el ComboBox
-        //el id del modelo es el que voy a usar para filtrar tipoVehiculo, y luego, mostrar los años
-        //y actualizar el valor a asegurar
         altaPoliza01.cmb_alta_pol01_anio.removeAllItems();
         for (TipoVehiculo tipoV : tipoVehiculos) {
             if (tipoV.getModelo_vehiculo().getId() == id) {
-                for (AnyoVehiculo anyos : anyoVehiculos) {
-                    if (anyos.getAnio() == tipoV.getAnio()) {
-                        DynamicCombobox2 comboBoxItem = new DynamicCombobox2(anyos.getValorMercado(), anyos.getAnio());
-                        altaPoliza01.cmb_alta_pol01_anio.addItem(comboBoxItem);
-                    }
-                }
+                DynamicCombobox2 comboBoxItem = new DynamicCombobox2(tipoV.getFactores_actuales().getSuma_asegurada(), tipoV.getAnio());
+                altaPoliza01.cmb_alta_pol01_anio.addItem(comboBoxItem);
             }
         }
     }
@@ -405,26 +391,25 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         }
     }
 
-public void listarHijos() {
-    tabla = (DefaultTableModel) altaPoliza01.table_alta_pol01_hijos.getModel();
-    Object[] row = new Object[3];
-    
-    for (int i = 0; i < hijos.size(); i++) {
-        // Fecha de Nacimiento
-         LocalDate fechaNacimiento = hijos.get(i).getFecha_nacimiento();
-        String fechaFormateada = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(fechaNacimiento);
-        row[0] = fechaFormateada;
-        boolean sexo = hijos.get(i).getSexo();
-        String sexoTexto = sexo ? "MASCULINO" : "FEMENINO";
-        row[1] = sexoTexto;
-        row[2] = hijos.get(i).getEstado_civil();
-        tabla.addRow(row);
-    }
-    altaPoliza01.table_alta_pol01_hijos.setModel(tabla);
-}
+    public void listarHijos() {
+        tabla = (DefaultTableModel) altaPoliza01.table_alta_pol01_hijos.getModel();
+        Object[] row = new Object[3];
 
-    
-     //Limpiar la tabla
+        for (int i = 0; i < hijos.size(); i++) {
+            // Fecha de Nacimiento
+            LocalDate fechaNacimiento = hijos.get(i).getFecha_nacimiento();
+            String fechaFormateada = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(fechaNacimiento);
+            row[0] = fechaFormateada;
+            boolean sexo = hijos.get(i).getSexo();
+            String sexoTexto = sexo ? "MASCULINO" : "FEMENINO";
+            row[1] = sexoTexto;
+            row[2] = hijos.get(i).getEstado_civil();
+            tabla.addRow(row);
+        }
+        altaPoliza01.table_alta_pol01_hijos.setModel(tabla);
+    }
+
+    //Limpiar la tabla
     public void limpiarTabla() {
         for (int i = 0; i < tabla.getRowCount(); i++) {
             tabla.removeRow(i);
