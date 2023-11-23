@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.trabajofinal.dao.ClienteDao;
+import com.trabajofinal.dao.FactoresCaracteristicasDao;
 import com.trabajofinal.dto.ProvinciaDTO;
 import com.trabajofinal.forms.ProvinciaForm;
 import com.trabajofinal.gui.BusquedaCliente;
@@ -27,6 +28,8 @@ public class App {
      //guardarCliente(crearCliente());	//anda perfecto
 	 //mostrarClientes();				//anda perfecto
 	 //mostrarPorId(3);					//anda perfecto. gestionar que es lo que pasa cuando no encuentra cliente
+	 
+	 //guardarFactoresCaracteristicas(crearFactoresCaracteristicas());
 	   
    }
    
@@ -63,6 +66,46 @@ public class App {
 	   try {
 	    	  ClienteDao dao = new ClienteDao();
 	    	  dao.save(cliente);
+	    	  
+	      }catch(Exception e) {
+	    	  System.out.println(e.getMessage());
+	    	  e.printStackTrace();
+	      }
+	   
+   }
+   
+   private static FactoresCaracteristicas crearFactoresCaracteristicas() {
+	   
+	   FactoresCaracteristicas ejemplo1 = new FactoresCaracteristicas(
+			   0.02,
+			   0.01,
+			   0.01,
+			   0.3,
+			   0.1,
+			   0.2,
+			   0.3,
+			   0.4,
+			   0.05,
+			   0.08,
+			   10.00,
+			   10000.00,
+			   500.00,
+			   LocalDate.of(2023, 12, 31),
+			   null,
+			   2,
+			   new Usuario()
+			   );
+	   
+	   System.out.print(ejemplo1.toString());
+	   return ejemplo1;
+	   
+   }
+   
+   private static void guardarFactoresCaracteristicas(FactoresCaracteristicas factores) {
+	   
+	   try {
+	    	  FactoresCaracteristicasDao dao = new FactoresCaracteristicasDao();
+	    	  dao.save(factores);
 	    	  
 	      }catch(Exception e) {
 	    	  System.out.println(e.getMessage());

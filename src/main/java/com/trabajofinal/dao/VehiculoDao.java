@@ -9,11 +9,9 @@ import jakarta.persistence.EntityManager;
 public class VehiculoDao extends AbstractDao<Vehiculo>{
 
 	
-	/*
-	public VehiculoDao(EntityManager entityManager) {
-		super(entityManager);
+	public VehiculoDao() {
+		//super(entityManager);
 		setClazz(Vehiculo.class);
 	}
-	*/
 
 }

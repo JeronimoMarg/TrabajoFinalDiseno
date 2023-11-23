@@ -13,12 +13,9 @@ import jakarta.persistence.TypedQuery;
 
 public class ProvinciaDao extends AbstractDao<Provincia> {
 
-	/*
-   public ProvinciaDao(EntityManager em) {
-      super(em);
+   public ProvinciaDao() {
       setClazz(Provincia.class);
    }
-   */
       
    public Provincia getByName(String name) {
       String qlString = "SELECT s FROM provincia p WHERE p.nombre = :name";
