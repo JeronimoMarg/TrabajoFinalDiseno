@@ -53,7 +53,7 @@ public class App {
 			   LocalDate.of(2001, 6, 9),
 			   EstadoCivil.SOLTERO,
 			   'm',
-			   new Domicilio()
+			   new Domicilio("3000", 300, "Dorrego", false, 0, "", new Localidad())
 			   );
 	   
 	   System.out.print(ejemplo1.toString());
