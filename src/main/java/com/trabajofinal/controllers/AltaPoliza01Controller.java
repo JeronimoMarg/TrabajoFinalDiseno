@@ -41,6 +41,9 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     private ClienteDTO cliente;
     private Object[] options = {"Sí", "No"};
     DefaultTableModel tabla = new DefaultTableModel();
+    private String peso;
+    private String potencia;
+    
 
     // Variables que vamos a usar ahora para probar la lógica
     private Provincia prov1;
@@ -79,6 +82,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     private List<Hijo> hijos = new ArrayList<>();
 
     public AltaPoliza01Controller() {
+        
     }
 
     public AltaPoliza01Controller(AltaPoliza01 altaPoliza01, ClienteDTO cliente) {
@@ -154,7 +158,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
             DynamicCombobox2 selectedAnyo = (DynamicCombobox2) altaPoliza01.cmb_alta_pol01_anio.getSelectedItem();
             altaPoliza01.txt_alta_pol01_valor.setText("");
             if (selectedAnyo != null) {
-                altaPoliza01.txt_alta_pol01_valor.setText(selectedAnyo.getValor().toString());
+                String anyo = selectedAnyo.getValor().toString();
+                altaPoliza01.txt_alta_pol01_valor.setText(anyo);
             }
         }
     }
@@ -240,13 +245,26 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         vehiculo.setAnio(altaPoliza01.cmb_alta_pol01_anio.getSelectedItem().toString());
         vehiculo.setMarca(altaPoliza01.cmb_alta_pol01_marca.getSelectedItem().toString());
         vehiculo.setModelo(altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem().toString());
-
-        //Estos dos datos tengo que traerlos de FactoresModelo
-        vehiculo.setPeso("750");
-        vehiculo.setPotencia("183");
+        vehiculo.setPeso(peso);
+        vehiculo.setPotencia(potencia);
 
         return vehiculo;
     }
+    
+    private void cargarAnyoVehiculos(int id) {
+        altaPoliza01.cmb_alta_pol01_anio.removeAllItems();
+        for (TipoVehiculo tipoV : tipoVehiculos) {
+            if (tipoV.getModelo_vehiculo().getId() == id) {
+                DynamicCombobox2 comboBoxItem = new DynamicCombobox2(tipoV.getFactores_actuales().getSuma_asegurada(), tipoV.getAnio());
+                altaPoliza01.cmb_alta_pol01_anio.addItem(comboBoxItem);
+                //Acá asigno los valores de peso y potencia, en base a los valores que correspondan al modelo.
+                peso = tipoV.getPeso().toString();
+                potencia = tipoV.getPotencia().toString();
+
+            }
+        }
+    }
+
 
     private Provincia nuevaProvincia(int id, String nombre) {
         Pais pais = new Pais();
@@ -295,6 +313,77 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         return vehiculo;
     }
 
+    private void cargarLocalidades(int id_prov) {
+        altaPoliza01.cmb_alta_pol01_local.removeAllItems();
+        for (Localidad loc : localidades) {
+            if (loc.getProvincia().getId() == id_prov) {
+                DynamicCombobox comboBoxItem = new DynamicCombobox(loc.getId(), loc.getNombre());
+                altaPoliza01.cmb_alta_pol01_local.addItem(comboBoxItem);
+            }
+        }
+    }
+    
+    private void cargarModelos(int id) {
+        altaPoliza01.cmb_alta_pol01_modelo.removeAllItems();
+        for (Modelo modelo : modelos) {
+            if (modelo.getMarca().getId() == id) {
+                DynamicCombobox comboBoxItem = new DynamicCombobox(modelo.getId(), modelo.getNombre());
+                altaPoliza01.cmb_alta_pol01_modelo.addItem(comboBoxItem);
+
+            }
+        }
+    }
+        
+    public void listarHijos() {
+        tabla = (DefaultTableModel) altaPoliza01.table_alta_pol01_hijos.getModel();
+        Object[] row = new Object[3];
+
+        for (int i = 0; i < hijos.size(); i++) {
+            // Fecha de Nacimiento
+            LocalDate fechaNacimiento = hijos.get(i).getFecha_nacimiento();
+            String fechaFormateada = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(fechaNacimiento);
+            row[0] = fechaFormateada;
+            boolean sexo = hijos.get(i).getSexo();
+            String sexoTexto = sexo ? "MASCULINO" : "FEMENINO";
+            row[1] = sexoTexto;
+            row[2] = hijos.get(i).getEstado_civil();
+            tabla.addRow(row);
+        }
+        altaPoliza01.table_alta_pol01_hijos.setModel(tabla);
+    }
+
+    //Limpiar la tabla
+    public void limpiarTabla() {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i = i - 1;
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == altaPoliza01.table_alta_pol01_hijos) {
+            int row = altaPoliza01.table_alta_pol01_hijos.rowAtPoint(e.getPoint());
+            JOptionPane.showMessageDialog(null, "Ha seleccionado la fila: " + row);
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+    
     private void crear() {
         prov1 = nuevaProvincia(1, "Santa Fe");
         prov2 = nuevaProvincia(2, "Entre Ríos");
@@ -358,87 +447,5 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         hijo2.setSexo(Boolean.FALSE);
         hijos.add(hijo1);
         hijos.add(hijo2);
-    }
-
-    private void cargarLocalidades(int id_prov) {
-        altaPoliza01.cmb_alta_pol01_local.removeAllItems();
-        for (Localidad loc : localidades) {
-            if (loc.getProvincia().getId() == id_prov) {
-                DynamicCombobox comboBoxItem = new DynamicCombobox(loc.getId(), loc.getNombre());
-                altaPoliza01.cmb_alta_pol01_local.addItem(comboBoxItem);
-            }
-        }
-    }
-
-    private void cargarAnyoVehiculos(int id) {
-        altaPoliza01.cmb_alta_pol01_anio.removeAllItems();
-        for (TipoVehiculo tipoV : tipoVehiculos) {
-            if (tipoV.getModelo_vehiculo().getId() == id) {
-                DynamicCombobox2 comboBoxItem = new DynamicCombobox2(tipoV.getFactores_actuales().getSuma_asegurada(), tipoV.getAnio());
-                altaPoliza01.cmb_alta_pol01_anio.addItem(comboBoxItem);
-            }
-        }
-    }
-
-    private void cargarModelos(int id) {
-        altaPoliza01.cmb_alta_pol01_modelo.removeAllItems();
-        for (Modelo modelo : modelos) {
-            if (modelo.getMarca().getId() == id) {
-                DynamicCombobox comboBoxItem = new DynamicCombobox(modelo.getId(), modelo.getNombre());
-                altaPoliza01.cmb_alta_pol01_modelo.addItem(comboBoxItem);
-
-            }
-        }
-    }
-
-    public void listarHijos() {
-        tabla = (DefaultTableModel) altaPoliza01.table_alta_pol01_hijos.getModel();
-        Object[] row = new Object[3];
-
-        for (int i = 0; i < hijos.size(); i++) {
-            // Fecha de Nacimiento
-            LocalDate fechaNacimiento = hijos.get(i).getFecha_nacimiento();
-            String fechaFormateada = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(fechaNacimiento);
-            row[0] = fechaFormateada;
-            boolean sexo = hijos.get(i).getSexo();
-            String sexoTexto = sexo ? "MASCULINO" : "FEMENINO";
-            row[1] = sexoTexto;
-            row[2] = hijos.get(i).getEstado_civil();
-            tabla.addRow(row);
-        }
-        altaPoliza01.table_alta_pol01_hijos.setModel(tabla);
-    }
-
-    //Limpiar la tabla
-    public void limpiarTabla() {
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i = i - 1;
-        }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == altaPoliza01.table_alta_pol01_hijos) {
-            //EL UNO AL FINAL SE LO AGREGUÉ PARA LA MUESTRA. SACARLO CUANDO ESTÉ IMPLEMENTADO 
-            int row = altaPoliza01.table_alta_pol01_hijos.rowAtPoint(e.getPoint()) + 1;
-            JOptionPane.showMessageDialog(null, "Ha seleccionado la fila: " + row);
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 }
