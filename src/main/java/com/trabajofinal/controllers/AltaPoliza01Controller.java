@@ -124,8 +124,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         } else if (e.getSource() == altaPoliza01.btn_alta_poliza01_continuar) {
             // Paso 1: verificar todos los datos ya cargados.
             if (validar()) {
-                VehiculoDTO vehiculo = crearVehiculo();
-                AltaPoliza02 altaPoliza02 = new AltaPoliza02(cliente, vehiculo);
+                VehiculoDTO vehiculoDTO = crearVehiculo();
+                AltaPoliza02 altaPoliza02 = new AltaPoliza02(cliente, vehiculoDTO);
             } else {
                 JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
             }
@@ -220,8 +220,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         for (Provincia provincia : provincias) {
             DynamicCombobox comboBoxItem = new DynamicCombobox(provincia.getId(), provincia.getNombre());
             altaPoliza01.cmb_alta_pol01_prov.addItem(comboBoxItem);
-        }
-        altaPoliza01.cmb_alta_pol01_prov.setSelectedIndex(0);
+        }        
     }
 
     private void inicializarCmbMarcas() {
