@@ -17,6 +17,11 @@ public class TipoCobertura {
 	@Column(name = "nombre")
     private String nombre;
 
+    public TipoCobertura(){}
+
+    public TipoCobertura(String nombre) {
+        this.nombre = nombre;
+    }
     public int getId() {
         return id;
     }

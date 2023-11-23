@@ -34,6 +34,13 @@ public class FactorRiesgoLocalidad {
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 
+    public FactorRiesgoLocalidad(LocalDate fecha_inicio_vigencia, LocalDate fecha_fin_vigencia, Double riesgo,
+            Usuario modificador) {
+        this.fecha_inicio_vigencia = fecha_inicio_vigencia;
+        this.fecha_fin_vigencia = fecha_fin_vigencia;
+        this.riesgo = riesgo;
+        this.modificador = modificador;
+    }
     public int getId() {
         return id;
     }

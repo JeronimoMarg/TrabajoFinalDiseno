@@ -1,5 +1,6 @@
 package com.trabajofinal.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,7 +22,7 @@ public class Modelo {
 	@Column(name = "nombre")
     private String nombre;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "factor_actual")
     private FactoresModelo factor_actual;
 	
@@ -29,6 +30,16 @@ public class Modelo {
     @JoinColumn(name = "id_marca")
     private Marca marca;
 
+    public Modelo(){
+
+    }
+
+    public Modelo(String nombre, FactoresModelo factor_actual, Marca marca) {
+        super();
+        this.nombre = nombre;
+        this.factor_actual = factor_actual;
+        this.marca = marca;
+    }
     public int getId() {
         return id;
     }

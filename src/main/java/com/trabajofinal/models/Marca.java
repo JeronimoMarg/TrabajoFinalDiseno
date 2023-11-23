@@ -18,6 +18,13 @@ public class Marca {
 	@Column(name = "nombre")
     private String nombre;
 
+    public Marca(){
+
+    }
+
+    public Marca(String nombre) {
+        this.nombre = nombre;
+    }
     public int getId() {
         return id;
     }

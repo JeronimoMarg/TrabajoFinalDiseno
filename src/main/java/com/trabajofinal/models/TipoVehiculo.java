@@ -1,5 +1,6 @@
 package com.trabajofinal.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,10 +36,23 @@ public class TipoVehiculo {
     @JoinColumn(name = "id_modelo")
     private Modelo modelo_vehiculo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_factores_vehiculo")
     private FactoresVehiculo factores_actuales;
 
+    public TipoVehiculo(){
+
+    }
+
+    public TipoVehiculo(Double potencia, Double velocidad, Double peso, int anio, Modelo modelo_vehiculo,
+            FactoresVehiculo factores_actuales) {
+        this.potencia = potencia;
+        this.velocidad = velocidad;
+        this.peso = peso;
+        this.anio = anio;
+        this.modelo_vehiculo = modelo_vehiculo;
+        this.factores_actuales = factores_actuales;
+    }
     public FactoresVehiculo getFactores_actuales() {
         return factores_actuales;
     }

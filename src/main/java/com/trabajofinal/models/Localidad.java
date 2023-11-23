@@ -31,6 +31,13 @@ public class Localidad {
     @JoinColumn(name = "id_provincia")	
     private Provincia provincia;
 
+    public Localidad(){}
+
+    public Localidad(String nombre, HashSet<FactorRiesgoLocalidad> riesgo_localidad, Provincia provincia) {
+        this.nombre = nombre;
+        this.riesgo_localidad = riesgo_localidad;
+        this.provincia = provincia;
+    }
     public int getId() {
         return id;
     }
