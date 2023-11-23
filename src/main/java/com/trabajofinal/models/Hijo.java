@@ -30,6 +30,10 @@ public class Hijo {
 	@Column(name = "estado_civil")
     private EstadoCivil estado_civil;
 
+	public Hijo() {
+		
+	}
+	
     public Hijo(LocalDate fecha_nacimiento2, Boolean sexo2, EstadoCivil estado_civil2) {
 		fecha_nacimiento = fecha_nacimiento2;
 		sexo = sexo2;

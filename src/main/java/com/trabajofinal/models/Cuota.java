@@ -38,6 +38,9 @@ public class Cuota {
     private Pago pago;						//CHEQUEAR SI QUEDO BIEN EL MAPEO (TABLA INTERMEDIA)
 											//CUOTA NO TENDRIA QUE TENER UN ID_PAGO EN SU TABLA
 
+	public Cuota() {
+	}
+	
     public Cuota(Double premio, TipoPago tipoPago) {
 		
 	}

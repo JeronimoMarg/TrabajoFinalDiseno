@@ -13,19 +13,23 @@ import com.trabajofinal.utils.EntityManagerUtil;
 
 public  abstract class AbstractDao<T> implements Dao<T> {
 
-   private final EntityManager entityManager; // = EntityManagerUtil.getEntityManager();
+   private EntityManager entityManager = EntityManagerUtil.getEntityManager();
 	
+   //private final EntityManager entityManager;
+   
    private Class<T> clazz;
    
+   /*
    public AbstractDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
+	*/
 	
     public EntityManager getEntityManager() {
        return entityManager;
     }
 	
-   @Override
+    @Override
 	public T getById(int id) {
 		return entityManager.find(clazz, id);
 	}
