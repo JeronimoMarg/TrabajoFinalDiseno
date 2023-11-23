@@ -32,12 +32,12 @@ public class App {
 	// tipos de cobertura
 
 
-	cargarProvincias();
-	cargarAutos();
-	cargarCoberturas();
+	//cargarProvincias();
+	//cargarAutos();
+	//cargarCoberturas();
 
-      //BusquedaCliente busquedaCliente = new BusquedaCliente();
-      //busquedaCliente.setVisible(true);
+      BusquedaCliente busquedaCliente = new BusquedaCliente();
+      busquedaCliente.setVisible(true);
 
      //guardarCliente(crearCliente());	//anda perfecto
 	 //mostrarClientes();				//anda perfecto
