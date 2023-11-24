@@ -56,6 +56,7 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
         cmb_alta_pol_hijo_mes = new javax.swing.JComboBox<>();
         cmb_alta_pol_hijo_anio = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -143,6 +144,7 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Año:");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
 
@@ -212,6 +214,7 @@ public class AltaPolizaHijo extends javax.swing.JFrame {
     public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_estado;
     public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_mes;
     public javax.swing.JComboBox<Object> cmb_alta_pol_hijo_sexo;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
