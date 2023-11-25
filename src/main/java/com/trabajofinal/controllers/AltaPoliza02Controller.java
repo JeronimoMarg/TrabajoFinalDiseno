@@ -8,16 +8,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-public class AltaPoliza02Controller implements ActionListener, MouseListener {
+public class AltaPoliza02Controller implements ActionListener, MouseListener, PropertyChangeListener {
 
     private AltaPoliza02 altaPoliza02;
     DefaultListModel<String> lista = new DefaultListModel<>();
-     private int selectedAnyo;
+    private int selectedAnyo;
     private int selectedMes;
     private int selectedDia;
 
@@ -25,20 +29,16 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener {
 
     public AltaPoliza02Controller(AltaPoliza02 altaPoliza02, ClienteDTO cliente, VehiculoDTO vehiculo) {
         this.altaPoliza02 = altaPoliza02;
-        cargarDatos();
         listarTipos();
 
         //Pongo a escuchar los botones de la interfaz
         this.altaPoliza02.btn_alta_poliza02_continuar.addActionListener(this);
         this.altaPoliza02.btn_alta_poliza02_cancelar.addActionListener(this);
-        
-        //Campos de selección de datos
-        this.altaPoliza02.cmb_alta_pol02_anio.addActionListener(this);
-        this.altaPoliza02.cmb_alta_pol02_mes.addActionListener(this);
-        this.altaPoliza02.cmb_alta_pol02_dia.addActionListener(this);
 
         //Lista en escucha
         this.altaPoliza02.list_alta_pol02.addMouseListener(this);
+        
+        this.altaPoliza02.jdate_alta_pol02_vigencia.addPropertyChangeListener(this);
     }
 
     @Override
@@ -54,22 +54,6 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             if (confirmacion == 0) {
                 this.altaPoliza02.dispose();
-            }
-        } if (e.getSource() == altaPoliza02.cmb_alta_pol02_mes) {
-            selectedMes = (int) altaPoliza02.cmb_alta_pol02_mes.getSelectedItem();
-            selectedAnyo = (int) altaPoliza02.cmb_alta_pol02_anio.getSelectedItem();
-            int dias;
-            if (selectedMes == 2) {
-                dias = (selectedAnyo % 4) == 0 ? 29 : 28;
-            } else if (selectedMes == 1 || selectedMes == 3 || selectedMes == 5 || selectedMes == 7
-                    || selectedMes == 8 || selectedMes == 10 || selectedMes == 12) {
-                dias = 31;
-            } else {
-                dias = 30;
-            }
-            altaPoliza02.cmb_alta_pol02_dia.removeAllItems();
-            for (int i = 1; i <= dias; i++) {
-                altaPoliza02.cmb_alta_pol02_dia.addItem(i);
             }
         }
     }
@@ -95,24 +79,6 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener {
             }
         }
     }
-    
-     private void cargarDatos() {
-        //Inicializar los cmb de fechas
-        LocalDate fechaActual = LocalDate.now();
-        // Extraer el año de la fecha actual
-        int anio = fechaActual.getYear();
-        int mes = fechaActual.getMonthValue();
-        int dia = fechaActual.getDayOfMonth();
-        
-        for (int i = anio; i <= anio+10; i++) {
-            altaPoliza02.cmb_alta_pol02_anio.addItem(i);
-        }
-        //El año actual debe ser el que se ve como primer opción.
-        altaPoliza02.cmb_alta_pol02_anio.setSelectedItem(anio);
-        for (int i = 1; i <= 12; i++) {            
-            altaPoliza02.cmb_alta_pol02_mes.addItem(i);
-        }
-    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -128,6 +94,27 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("date".equals(evt.getPropertyName())) {
+            Date selectedDate = (Date) evt.getNewValue();
+            if (selectedDate != null) {
+                LocalDate localDate = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate currentDate = LocalDate.now();
+
+                if (localDate.isBefore(currentDate) || localDate.isEqual(currentDate)) {
+                    JOptionPane.showMessageDialog(null, "Seleccione una fecha futura.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int dia = localDate.getDayOfMonth();
+                    int mes = localDate.getMonthValue();
+                    int año = localDate.getYear();
+
+                    System.out.println("Día: " + dia + ", Mes: " + mes + ", Año: " + año);
+                }
+            }
+        }
     }
 
 }
