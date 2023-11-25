@@ -13,17 +13,15 @@ import com.trabajofinal.utils.EntityManagerUtil;
 
 public  abstract class AbstractDao<T> implements Dao<T> {
 
-   private EntityManager entityManager = EntityManagerUtil.getEntityManager();
+   private EntityManager entityManager;
 	
    //private final EntityManager entityManager;
    
    private Class<T> clazz;
    
-   /*
-   public AbstractDao(EntityManager entityManager) {
-		this.entityManager = entityManager;
+   	public AbstractDao() {
+		this.entityManager = EntityManagerUtil.getEntityManager();
 	}
-	*/
 	
     public EntityManager getEntityManager() {
        return entityManager;

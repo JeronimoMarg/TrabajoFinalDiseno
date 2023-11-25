@@ -25,6 +25,7 @@ public class ProvinciaDao extends AbstractDao<Provincia> {
          return query.getSingleResult();
       } catch (NoResultException e) {
          return null;
+         // HACER ALGO CON EL ERROR
       }
    }
     
@@ -34,7 +35,17 @@ public class ProvinciaDao extends AbstractDao<Provincia> {
         query.setParameter(1, "%"+name+"%");
         return query.getResultList();
     }
-
+   public List<Provincia> getProvinciasPais(int id_pais) {
+      String qlString = "SELECT p FROM provincia p WHERE p.id_pais = :id_pais";
+      TypedQuery<Provincia> query = getEntityManager().createQuery(qlString, Provincia.class);
+      query.setParameter("id_pais", id_pais);
+      try {
+         return query.getResultList();
+      } catch (NoResultException e) {
+         return null;
+         // HACER ALGO CON EL ERROR
+      }
+   }
    
    
 }

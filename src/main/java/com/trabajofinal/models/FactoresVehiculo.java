@@ -37,6 +37,16 @@ public class FactoresVehiculo {
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 
+    public FactoresVehiculo(){}
+
+    public FactoresVehiculo(LocalDate fecha_inicio_vigencia, LocalDate fecha_fin_vigencia, Double suma_asegurada,
+            TipoVehiculo vehiculo, Usuario modificador) {
+        this.fecha_inicio_vigencia = fecha_inicio_vigencia;
+        this.fecha_fin_vigencia = fecha_fin_vigencia;
+        this.suma_asegurada = suma_asegurada;
+        this.vehiculo = vehiculo;
+        this.modificador = modificador;
+    }
     public LocalDate getFecha_inicio_vigencia() {
         return fecha_inicio_vigencia;
     }

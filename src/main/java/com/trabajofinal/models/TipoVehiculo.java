@@ -20,7 +20,14 @@ public class TipoVehiculo {
 	@Column(name = "id_tipo_vehiculo")
 	private int id;
 	
-	@Column(name = "potencia")
+	public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    @Column(name = "potencia")
 	private Double potencia;
 	
 	@Column(name = "velocidad")
@@ -83,7 +90,7 @@ public class TipoVehiculo {
     public void setPeso(Double peso) {
         this.peso = peso;
     }
-    public int getAnio() {
+    public Integer getAnio() {
         return anio;
     }
     public void setAnio(int anio) {
