@@ -20,8 +20,9 @@ public class LocalidadDao extends AbstractDao<Localidad> {
       try {
          return query.getResultList();
       } catch (NoResultException e) {
+         System.out.println(e.getMessage());
+         e.printStackTrace();
          return null;
-         // HACER ALGO CON EL ERROR
       }
    }
 }

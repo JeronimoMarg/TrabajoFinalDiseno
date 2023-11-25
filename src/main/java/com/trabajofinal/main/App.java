@@ -27,6 +27,7 @@ public class App {
 
    public static void main(String[] args) {
 
+      // Ejecutar primero para armar la base de datos
       // guardarCliente(crearCliente());
       // cargarAutos();
       // cargarCoberturas();
@@ -34,6 +35,8 @@ public class App {
 
       BusquedaCliente busquedaCliente = new BusquedaCliente();
       busquedaCliente.setVisible(true);
+      // ProvinciaDao dao = new ProvinciaDao();
+      // System.out.println(dao.getProvinciasPais(0));
    }
 
    private static void cargarProvincias() {

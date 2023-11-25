@@ -9,9 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 
+@Table(name = "domicilio")
 public class Domicilio {
 
    @Id
@@ -42,25 +44,23 @@ public class Domicilio {
    private Localidad localidad;
 
    public Domicilio() {
-	   
+
    }
-   
+
    public Domicilio(String codigo_postal, int numero_calle, String nombre_calle, Boolean es_departamento, int piso,
-		String departamento, Localidad localidad) {
-	super();
-	//this.id = id;
-	this.codigo_postal = codigo_postal;
-	this.numero_calle = numero_calle;
-	this.nombre_calle = nombre_calle;
-	this.es_departamento = es_departamento;
-	this.piso = piso;
-	this.departamento = departamento;
-	this.localidad = localidad;
-}
+         String departamento, Localidad localidad) {
+      super();
+      // this.id = id;
+      this.codigo_postal = codigo_postal;
+      this.numero_calle = numero_calle;
+      this.nombre_calle = nombre_calle;
+      this.es_departamento = es_departamento;
+      this.piso = piso;
+      this.departamento = departamento;
+      this.localidad = localidad;
+   }
 
-
-
-public int getId() {
+   public int getId() {
       return id;
    }
 
