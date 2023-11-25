@@ -4,12 +4,15 @@ import com.trabajofinal.gui.AltaPolizaHijo;
 import com.trabajofinal.models.EstadoCivil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class AltaPolizaHijoController implements ActionListener {
+public class AltaPolizaHijoController implements ActionListener, PropertyChangeListener {
 
     private AltaPolizaHijo altaPolizaHijo;
     private int selectedAnyo;
@@ -27,11 +30,9 @@ public class AltaPolizaHijoController implements ActionListener {
         //Pongo a escuchar los botones de la interfaz
         this.altaPolizaHijo.btn_alta_poliza_hijo_cancelar.addActionListener(this);
         this.altaPolizaHijo.btn_alta_poliza_hijo_continuar.addActionListener(this);
-        this.altaPolizaHijo.cmb_alta_pol_hijo_anio.addActionListener(this);
-        this.altaPolizaHijo.cmb_alta_pol_hijo_dia.addActionListener(this);
         this.altaPolizaHijo.cmb_alta_pol_hijo_estado.addActionListener(this);
-        this.altaPolizaHijo.cmb_alta_pol_hijo_mes.addActionListener(this);
         this.altaPolizaHijo.cmb_alta_pol_hijo_sexo.addActionListener(this);
+        this.altaPolizaHijo.jdate_alta_hijo.addPropertyChangeListener(this);
 
     }
 
@@ -43,10 +44,10 @@ public class AltaPolizaHijoController implements ActionListener {
             //Cargar los datos de hijos para agregarlos al cliente!!!
             if (validar()) {
                 this.altaPolizaHijo.dispose();
-            }  else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
             }
-            
+
         } else if (e.getSource() == altaPolizaHijo.btn_alta_poliza_hijo_cancelar) {
             //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar los cambios?", "Confirmar cancelacíon",
@@ -54,41 +55,10 @@ public class AltaPolizaHijoController implements ActionListener {
             if (confirmacion == 0) {
                 this.altaPolizaHijo.dispose();
             }
-        }
-        if (e.getSource() == altaPolizaHijo.cmb_alta_pol_hijo_mes) {
-            selectedMes = (int) altaPolizaHijo.cmb_alta_pol_hijo_mes.getSelectedItem();
-            selectedAnyo = (int) altaPolizaHijo.cmb_alta_pol_hijo_anio.getSelectedItem();
-            int dias;
-            if (selectedMes == 2) {
-                dias = (selectedAnyo % 4) == 0 ? 29 : 28;
-            } else if (selectedMes == 1 || selectedMes == 3 || selectedMes == 5 || selectedMes == 7
-                    || selectedMes == 8 || selectedMes == 10 || selectedMes == 12) {
-                dias = 31;
-            } else {
-                dias = 30;
-            }
-            altaPolizaHijo.cmb_alta_pol_hijo_dia.removeAllItems();
-            for (int i = 1; i <= dias; i++) {
-                altaPolizaHijo.cmb_alta_pol_hijo_dia.addItem(i);
-            }
-        }
-
+        }        
     }
 
     private void cargarDatos() {
-        //Inicializar los cmb de fechas
-        LocalDate fechaActual = LocalDate.now();
-        // Extraer el año de la fecha actual
-        int anio = fechaActual.getYear();
-
-        for (int i = 1900; i <= anio; i++) {
-            altaPolizaHijo.cmb_alta_pol_hijo_anio.addItem(i);
-        }
-        altaPolizaHijo.cmb_alta_pol_hijo_anio.setSelectedItem(anio);
-        for (int i = 1; i <= 12; i++) {
-            altaPolizaHijo.cmb_alta_pol_hijo_mes.addItem(i);
-        }
-
         //Inicialiar cmb estado civil y sexo
         altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(EstadoCivil.SOLTERO);
         altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(EstadoCivil.CASADO);
@@ -97,12 +67,30 @@ public class AltaPolizaHijoController implements ActionListener {
         altaPolizaHijo.cmb_alta_pol_hijo_sexo.addItem("MASCULINO");
         altaPolizaHijo.cmb_alta_pol_hijo_sexo.addItem("FEMENINO");
     }
-    
+
     private boolean validar() {
         return !(altaPolizaHijo.cmb_alta_pol_hijo_estado.getSelectedItem() == null
-                || altaPolizaHijo.cmb_alta_pol_hijo_sexo.getSelectedItem() == null
-                || altaPolizaHijo.cmb_alta_pol_hijo_dia.getSelectedItem() == null
-                || altaPolizaHijo.cmb_alta_pol_hijo_mes.getSelectedItem() == null
-                || altaPolizaHijo.cmb_alta_pol_hijo_anio.getSelectedItem() == null);
+                || altaPolizaHijo.cmb_alta_pol_hijo_sexo.getSelectedItem() == null);
+    }
+    
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("date".equals(evt.getPropertyName())) {
+            Date selectedDate = (Date) evt.getNewValue();
+            if (selectedDate != null) {
+                LocalDate localDate = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate currentDate = LocalDate.now();
+
+                if (localDate.isAfter(currentDate)) {
+                    JOptionPane.showMessageDialog(null, "La fecha no puede ser superior a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int dia = localDate.getDayOfMonth();
+                    int mes = localDate.getMonthValue();
+                    int año = localDate.getYear();
+
+                    System.out.println("Día: " + dia + ", Mes: " + mes + ", Año: " + año);
+                }
+            }
+        }
     }
 }
