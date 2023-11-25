@@ -41,7 +41,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
     private String regex = "^[a-zA-Z\\u00C0-\\u017FñÑ]+(\\s[a-zA-Z\\u00C0-\\u017FñÑ]+)*$";
     private String regex1 = "\\d";
     private boolean isValid = false;
-    private Object[] options = {"Sí", "No"};
+    private Object[] options = { "Sí", "No" };
 
     public BusquedaClienteController(BusquedaCliente busquedaCliente) {
         this.busquedaCliente = busquedaCliente;
@@ -55,23 +55,23 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         this.busquedaCliente.txt_busqueda_cliente_apellido.addKeyListener(this);
         this.busquedaCliente.txt_busqueda_cliente_nombre.addKeyListener(this);
         this.busquedaCliente.txt_busqueda_cliente_nro_doc.addKeyListener(this);
-        
+
         inicializar_cmbx();
 
     }
-    
+
     private void inicializar_cmbx() {
-    	
-    	TipoDocumento[] valores = TipoDocumento.values();
-    	for (TipoDocumento valor : valores) {
-    		busquedaCliente.cmb_busqueda_cliente_tipo1.addItem(valor.toString());
+
+        TipoDocumento[] valores = TipoDocumento.values();
+        for (TipoDocumento valor : valores) {
+            busquedaCliente.cmb_busqueda_cliente_tipo1.addItem(valor.toString());
         }
-    	
-    	TipoCondicionIVA[] valores2 = TipoCondicionIVA.values();
-    	for (TipoCondicionIVA valor : valores2) {
-    		busquedaCliente.cmb_busqueda_cliente_cond.addItem(valor.toString());
+
+        TipoCondicionIVA[] valores2 = TipoCondicionIVA.values();
+        for (TipoCondicionIVA valor : valores2) {
+            busquedaCliente.cmb_busqueda_cliente_cond.addItem(valor.toString());
         }
-    	
+
     }
 
     @Override
@@ -79,8 +79,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             // Lógica de verificación previa
             this.busquedaCliente.dispose();
-            //ClienteDTO cliente = aDTO(buscarCliente());
-            //DatosCliente datosCliente = new DatosCliente(cliente);
+            // ClienteDTO cliente = aDTO(buscarCliente());
+            // DatosCliente datosCliente = new DatosCliente(cliente);
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar la búsqueda?",
@@ -90,10 +90,9 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
                 this.busquedaCliente.dispose();
             }
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_buscar) {
-        	
-        	buscarCliente();
-        	
-        	
+
+            System.out.print(buscarCliente());
+
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_limpiar) {
             cleanFields();
         }
@@ -103,7 +102,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
     public void keyTyped(KeyEvent e) {
         JTextField textField = (JTextField) e.getSource();
 
-        if (textField == busquedaCliente.txt_busqueda_cliente_apellido || textField == busquedaCliente.txt_busqueda_cliente_nombre) {
+        if (textField == busquedaCliente.txt_busqueda_cliente_apellido
+                || textField == busquedaCliente.txt_busqueda_cliente_nombre) {
             validarCampoTexto(textField, regex);
         } else if (textField == busquedaCliente.txt_busqueda_cliente_nro_doc) {
             char c = e.getKeyChar();
@@ -115,7 +115,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-    
+
     }
 
     @Override
@@ -142,97 +142,68 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         busquedaCliente.txt_busqueda_cliente_nro_cte.setText("");
         busquedaCliente.cmb_busqueda_cliente_cond.setSelectedIndex(0);
     }
-    
-    private void buscarClientePorNumero(String numero_cliente) {
- 	   
-    	ClienteDao dao = new ClienteDao();
-    	List<Cliente> clientes = dao.getClientesPorNumero(numero_cliente);
-    	System.out.println(clientes);
- 	   
+
+    private List<Cliente> buscarCliente() {
+
+        ClienteDao cliente_dao = new ClienteDao();
+        String nombre = busquedaCliente.txt_busqueda_cliente_nombre.getText().toString().trim();
+        if (nombre != null && !nombre.isEmpty()) {
+            cliente_dao.getClientesPorNombre(nombre);
+        }
+        String apellido = busquedaCliente.txt_busqueda_cliente_apellido.getText().toString().trim();
+        if (apellido != null && !apellido.isEmpty()) {
+            cliente_dao.getClientesPorApellido(apellido);
+        }
+        String numero_doc = busquedaCliente.txt_busqueda_cliente_nro_doc.getText().toString().trim();
+        TipoDocumento tipo_doc = TipoDocumento
+                .valueOf(busquedaCliente.cmb_busqueda_cliente_tipo1.getSelectedItem().toString());
+        if (numero_doc != null && !numero_doc.isEmpty() && tipo_doc != null) {
+            cliente_dao.getClientesPorDocumento(numero_doc, tipo_doc);
+        }
+        String numero_cliente = busquedaCliente.txt_busqueda_cliente_nro_cte.getText().toString().trim();
+        if (numero_cliente != null && !numero_cliente.isEmpty()) {
+            cliente_dao.getClientesPorNumero(numero_cliente);
+        }
+        TipoCondicionIVA iva = TipoCondicionIVA
+                .valueOf(busquedaCliente.cmb_busqueda_cliente_cond.getSelectedItem().toString());
+        if (iva != null) {
+            cliente_dao.getClientesPorTipoIVA(iva);
+        }
+
+        return cliente_dao.ejecutarQuery();
+
     }
-    
-    private void buscarClientePorDocumento(String documento, TipoDocumento tipo) {
-    	
-    	ClienteDao dao = new ClienteDao();
-    	List<Cliente> clientes = dao.getClientesPorDocumento(documento, tipo);
-    	System.out.println(clientes);
-    	
-    }
-    
-    private void buscarClientePorTipoIVA(TipoCondicionIVA tipo) {
-    	
-    	ClienteDao dao = new ClienteDao();
-    	List<Cliente> clientes = dao.getClientesPorTipoIVA(tipo);
-    	System.out.println(clientes);
-    	
-    }
-    
-    private void buscarClientePorNombre(String nombre) {
-    	
-    	ClienteDao dao = new ClienteDao();
-    	List<Cliente> clientes = dao.getClientesPorNombre(nombre);
-    	System.out.println(clientes);
-    	
-    }
-    
-    private void buscarClientePorApellido(String apellido) {
-    	
-    	ClienteDao dao = new ClienteDao();
-    	List<Cliente> clientes = dao.getClientesPorApellido(apellido);
-    	System.out.println(clientes);
-    	
-    }
-    
-    private void buscarCliente() {
-    	
-    	//busqueda por Numero de cliente:
-    	buscarClientePorNumero(busquedaCliente.txt_busqueda_cliente_nro_cte.getText().toString().trim());
-    	
-    	//busqueda por numero de documento:
-    	buscarClientePorDocumento(busquedaCliente.txt_busqueda_cliente_nro_doc.getText().toString().trim(), TipoDocumento.valueOf(busquedaCliente.cmb_busqueda_cliente_tipo1.getSelectedItem().toString()));
-    	
-    	//busqueda por tipo de condicion iva:
-    	buscarClientePorTipoIVA(TipoCondicionIVA.valueOf(busquedaCliente.cmb_busqueda_cliente_cond.getSelectedItem().toString()));
-    	
-    	//busqueda por nombre:
-    	buscarClientePorNombre(busquedaCliente.txt_busqueda_cliente_nombre.getText().toString().trim());
-    	
-    	//busqueda por nombre:
-    	buscarClientePorApellido(busquedaCliente.txt_busqueda_cliente_apellido.getText().toString().trim());
-    
-    }
-    
+
     private ClienteDTO aDTO(Cliente cliente) {
-    	
-    	ClienteDTO dto = new ClienteDTO();
-    	
-    	/*
-    	dto.setId(cliente.getId());
-    	dto.setNumero_cliente(cliente.getNumero_cliente());
-    	dto.setNumero_documento(cliente.getNumero_documento());
-    	dto.setTipo_documento(cliente.getTipo_documento());
-    	dto.setNombre(cliente.getNombre());
-    	dto.setApellido(cliente.getApellido());
-    	dto.setCondicion(cliente.getCondicion());
-    	dto.setActivo(cliente.getActivo());
-    	dto.setAnio_registro(cliente.getAnio_registro());
-    	dto.setProfesion(cliente.getProfesion());
-    	dto.setNumero_cuil(cliente.getNumero_cuil());
-    	dto.setEmail(cliente.getEmail());
-    	dto.setCondicion_iva(cliente.getCondicion_iva());
-    	dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
-    	dto.setEstado_civil(cliente.getEstado_civil());
-    	dto.setSexo(cliente.getSexo());
-    	dto.setCalle(cliente.getDomicilio().getNombre_calle());
-    	dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
-    	dto.setNro(cliente.getDomicilio().getNumero_calle());
-    	dto.setPiso(cliente.getDomicilio().getPiso());
-    	dto.setDepartamento(cliente.getDomicilio().getDepartamento());
-    	*/
 
+        ClienteDTO dto = new ClienteDTO();
 
-    	return dto;
-    	
+        /*
+         * dto.setId(cliente.getId());
+         * dto.setNumero_cliente(cliente.getNumero_cliente());
+         * dto.setNumero_documento(cliente.getNumero_documento());
+         * dto.setTipo_documento(cliente.getTipo_documento());
+         * dto.setNombre(cliente.getNombre());
+         * dto.setApellido(cliente.getApellido());
+         * dto.setCondicion(cliente.getCondicion());
+         * dto.setActivo(cliente.getActivo());
+         * dto.setAnio_registro(cliente.getAnio_registro());
+         * dto.setProfesion(cliente.getProfesion());
+         * dto.setNumero_cuil(cliente.getNumero_cuil());
+         * dto.setEmail(cliente.getEmail());
+         * dto.setCondicion_iva(cliente.getCondicion_iva());
+         * dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
+         * dto.setEstado_civil(cliente.getEstado_civil());
+         * dto.setSexo(cliente.getSexo());
+         * dto.setCalle(cliente.getDomicilio().getNombre_calle());
+         * dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
+         * dto.setNro(cliente.getDomicilio().getNumero_calle());
+         * dto.setPiso(cliente.getDomicilio().getPiso());
+         * dto.setDepartamento(cliente.getDomicilio().getDepartamento());
+         */
+
+        return dto;
+
     }
 
 }

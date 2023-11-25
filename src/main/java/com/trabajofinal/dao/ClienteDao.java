@@ -1,5 +1,6 @@
 package com.trabajofinal.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.trabajofinal.models.Cliente;
@@ -10,78 +11,56 @@ import com.trabajofinal.models.TipoDocumento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
-public class ClienteDao extends AbstractDao<Cliente>{
+public class ClienteDao extends AbstractDao<Cliente> {
+
+	private List<Predicate> predicados;
+	private CriteriaBuilder constructor_criterios;
+	private Root<Cliente> root;
+	private CriteriaQuery<Cliente> query;
 
 	public ClienteDao() {
-	      setClazz(Cliente.class);
-	    }
-	
-	
-	public List<Cliente> getClientesPorNumero(String numero) {
-	      String qlString = "SELECT c FROM Cliente c WHERE c.numero_cliente = :numero";
-	      TypedQuery<Cliente> query = getEntityManager().createQuery(qlString, Cliente.class);
-	      query.setParameter("numero", numero);
-	      try {
-	         return query.getResultList();
-	      } catch (NoResultException e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	         return null;
-	      }
-	   }
-	
-	public List<Cliente> getClientesPorDocumento(String numero, TipoDocumento tipo) {
-	      String qlString = "SELECT c FROM Cliente c WHERE c.numero_documento = :numero AND c.tipo_documento = :tipo";
-	      TypedQuery<Cliente> query = getEntityManager().createQuery(qlString, Cliente.class);
-	      query.setParameter("numero", numero);
-	      query.setParameter("tipo", tipo);
-	      try {
-	         return query.getResultList();
-	      } catch (NoResultException e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	         return null;
-	      }
-	   }
-	
-	public List<Cliente> getClientesPorTipoIVA(TipoCondicionIVA tipo) {
-	      String qlString = "SELECT c FROM Cliente c WHERE c.condicion_iva = :tipo";
-	      TypedQuery<Cliente> query = getEntityManager().createQuery(qlString, Cliente.class);
-	      query.setParameter("tipo", tipo);
-	      try {
-	         return query.getResultList();
-	      } catch (NoResultException e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	         return null;
-	      }
-	   }
-	
-	public List<Cliente> getClientesPorNombre(String nombre) {
-	      String qlString = "SELECT c FROM Cliente c WHERE c.nombre = :nombre";
-	      TypedQuery<Cliente> query = getEntityManager().createQuery(qlString, Cliente.class);
-	      query.setParameter("nombre", nombre);
-	      try {
-	         return query.getResultList();
-	      } catch (NoResultException e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	         return null;
-	      }
-	   }
-	
-	public List<Cliente> getClientesPorApellido(String apellido) {
-	      String qlString = "SELECT c FROM Cliente c WHERE c.apellido = :apellido";
-	      TypedQuery<Cliente> query = getEntityManager().createQuery(qlString, Cliente.class);
-	      query.setParameter("apellido", apellido);
-	      try {
-	         return query.getResultList();
-	      } catch (NoResultException e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	         return null;
-	      }
-	   }
-	
+		setClazz(Cliente.class);
+		predicados = new ArrayList();
+		constructor_criterios = getEntityManager().getCriteriaBuilder();
+		query = constructor_criterios.createQuery(Cliente.class);
+		root = query.from(Cliente.class);
+	}
+
+	public void getClientesPorNumero(String numero) {
+		predicados.add(constructor_criterios.equal(root.get("numero_cliente"), numero));
+	}
+
+	public void getClientesPorDocumento(String numero, TipoDocumento tipo) {
+		predicados.add(constructor_criterios.equal(root.get("numero_documento"), numero));
+		predicados.add(constructor_criterios.equal(root.get("tipo_documento"), tipo));
+	}
+
+	public void getClientesPorTipoIVA(TipoCondicionIVA tipo) {
+		predicados.add(constructor_criterios.equal(root.get("condicion_iva"), tipo));
+	}
+
+	public void getClientesPorNombre(String nombre) {
+		predicados.add(constructor_criterios.equal(root.get("nombre"), nombre));
+	}
+
+	public void getClientesPorApellido(String apellido) {
+		predicados.add(constructor_criterios.equal(root.get("apellido"), apellido));
+	}
+
+	public List<Cliente> ejecutarQuery() {
+		List<Cliente> resultado = new ArrayList();
+		if (predicados.size() > 0) {
+			query.select(root).where(predicados.toArray(new Predicate[0]));
+			resultado = getEntityManager().createQuery(query).getResultList();
+			predicados.clear();
+			query = null;
+		}
+		return resultado;
+	}
+
 }

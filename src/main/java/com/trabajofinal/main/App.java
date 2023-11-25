@@ -28,18 +28,17 @@ public class App {
 
    public static void main(String[] args) {
 
-	  /*
-      //Ejecutar primero para armar la base de datos
-      cargarClientes();
-      cargarAutos();
-      cargarCoberturas();
-      cargarProvincias();
-      cargarUsuario();
-      */
+      // Ejecutar primero para armar la base de datos
+      /*
+       * cargarClientes();
+       * cargarAutos();
+       * cargarCoberturas();
+       * cargarProvincias();
+       * cargarUsuario();
+       */
 
       BusquedaCliente busquedaCliente = new BusquedaCliente();
       busquedaCliente.setVisible(true);
-      
 
    }
 
@@ -135,103 +134,103 @@ public class App {
          e.printStackTrace();
       }
    }
-   
+
    private static void cargarUsuario() {
-	   
-	   Usuario ejemplo1 = new Usuario(TipoRol.COBRADOR, "Santiago", "root");
-	   try {
-	         UsuarioDao dao = new UsuarioDao();
-	         dao.save(ejemplo1);
 
-	      } catch (Exception e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	      }
-	   
+      Usuario ejemplo1 = new Usuario(TipoRol.COBRADOR, "Santiago", "root");
+      try {
+         UsuarioDao dao = new UsuarioDao();
+         dao.save(ejemplo1);
+
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         e.printStackTrace();
+      }
+
    }
-   
-   private static void cargarClientes() {
-	   
-	   Cliente ejemplo1 = new Cliente(
-	            "00-43426530",
-	            "43426530",
-	            TipoDocumento.DNI,
-	            "Jeronimo",
-	            "Margitic",
-	            TipoCondicion.NORMAL,
-	            true,
-	            2020,
-	            "estudiante",
-	            "11-43426530-3",
-	            "jero.margitic@gmail.com",
-	            TipoCondicionIVA.RESPONSABLE_INSCRIPTO,
-	            LocalDate.of(2023, 12, 31),
-	            EstadoCivil.SOLTERO,
-	            'm',
-	            new Domicilio("3000", 300, "Dorrego", false, 0, "", new Localidad()));
-	   Cliente ejemplo2 = new Cliente(
-	            "00-43685258",
-	            "43685258",
-	            TipoDocumento.DNI,
-	            "Mateo",
-	            "Weber",
-	            TipoCondicion.NORMAL,
-	            true,
-	            2020,
-	            "ingeniero",
-	            "11-43685258-3",
-	            "mateo.weber@gmail.com",
-	            TipoCondicionIVA.MONOTRIBUTISTA,
-	            LocalDate.of(2023, 12, 31),
-	            EstadoCivil.CASADO,
-	            'm',
-	            new Domicilio("4000", 200, "San martin", true, 4, "c", new Localidad()));
-	   Cliente ejemplo3 = new Cliente(
-	            "00-24876678",
-	            "24876678",
-	            TipoDocumento.DNI,
-	            "Diego",
-	            "Danelone",
-	            TipoCondicion.NORMAL,
-	            true,
-	            2020,
-	            "abogado",
-	            "20-24876678-7",
-	            "diego.danelone@gmail.com",
-	            TipoCondicionIVA.EXENTO,
-	            LocalDate.of(2023, 12, 31),
-	            EstadoCivil.DIVORCIADO,
-	            'm',
-	            new Domicilio("3000", 2134, "Luciano Torrent", false, 0, "", new Localidad()));
-	   Cliente ejemplo4 = new Cliente(
-	            "00-41654296",
-	            "41654296",
-	            TipoDocumento.DNI,
-	            "Franco",
-	            "Cosolito",
-	            TipoCondicion.PLATA,
-	            true,
-	            2020,
-	            "presidente",
-	            "17-41654296-6",
-	            "franco.cosolito@gmail.com",
-	            TipoCondicionIVA.CONSUMIDOR_FINAL,
-	            LocalDate.of(2023, 12, 31),
-	            EstadoCivil.SOLTERO,
-	            'm',
-	            new Domicilio("3000", 1423, "San Luis", false, 0, "", new Localidad()));
-	   try {
-	         ClienteDao dao = new ClienteDao();
-	         dao.save(ejemplo1);
-	         dao.save(ejemplo2);
-	         dao.save(ejemplo3);
-	         dao.save(ejemplo4);
 
-	      } catch (Exception e) {
-	         System.out.println(e.getMessage());
-	         e.printStackTrace();
-	      }
-	   
+   private static void cargarClientes() {
+
+      Cliente ejemplo1 = new Cliente(
+            "00-43426530",
+            "43426530",
+            TipoDocumento.DNI,
+            "Jeronimo",
+            "Margitic",
+            TipoCondicion.NORMAL,
+            true,
+            2020,
+            "estudiante",
+            "11-43426530-3",
+            "jero.margitic@gmail.com",
+            TipoCondicionIVA.RESPONSABLE_INSCRIPTO,
+            LocalDate.of(2023, 12, 31),
+            EstadoCivil.SOLTERO,
+            'm',
+            new Domicilio("3000", 300, "Dorrego", false, 0, "", new Localidad()));
+      Cliente ejemplo2 = new Cliente(
+            "00-43685258",
+            "43685258",
+            TipoDocumento.DNI,
+            "Mateo",
+            "Weber",
+            TipoCondicion.NORMAL,
+            true,
+            2020,
+            "ingeniero",
+            "11-43685258-3",
+            "mateo.weber@gmail.com",
+            TipoCondicionIVA.MONOTRIBUTISTA,
+            LocalDate.of(2023, 12, 31),
+            EstadoCivil.CASADO,
+            'm',
+            new Domicilio("4000", 200, "San martin", true, 4, "c", new Localidad()));
+      Cliente ejemplo3 = new Cliente(
+            "00-24876678",
+            "24876678",
+            TipoDocumento.DNI,
+            "Diego",
+            "Danelone",
+            TipoCondicion.NORMAL,
+            true,
+            2020,
+            "abogado",
+            "20-24876678-7",
+            "diego.danelone@gmail.com",
+            TipoCondicionIVA.EXENTO,
+            LocalDate.of(2023, 12, 31),
+            EstadoCivil.DIVORCIADO,
+            'm',
+            new Domicilio("3000", 2134, "Luciano Torrent", false, 0, "", new Localidad()));
+      Cliente ejemplo4 = new Cliente(
+            "00-41654296",
+            "41654296",
+            TipoDocumento.DNI,
+            "Franco",
+            "Cosolito",
+            TipoCondicion.PLATA,
+            true,
+            2020,
+            "presidente",
+            "17-41654296-6",
+            "franco.cosolito@gmail.com",
+            TipoCondicionIVA.CONSUMIDOR_FINAL,
+            LocalDate.of(2023, 12, 31),
+            EstadoCivil.SOLTERO,
+            'm',
+            new Domicilio("3000", 1423, "San Luis", false, 0, "", new Localidad()));
+      try {
+         ClienteDao dao = new ClienteDao();
+         dao.save(ejemplo1);
+         dao.save(ejemplo2);
+         dao.save(ejemplo3);
+         dao.save(ejemplo4);
+
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         e.printStackTrace();
+      }
+
    }
 
    private static FactoresCaracteristicas crearFactoresCaracteristicas() {
