@@ -14,8 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente {
 
    @Id
@@ -78,34 +80,34 @@ public class Cliente {
    private Domicilio domicilio;
 
    public Cliente() {
-	   
-   }
-   
-   public Cliente(String numero_cliente, String numero_documento, TipoDocumento tipo_documento, String nombre,
-		String apellido, TipoCondicion condicion, Boolean activo, int anio_registro, String profesion,
-		String numero_cuil, String email, TipoCondicionIVA condicion_iva, LocalDate fecha_nacimiento,
-		EstadoCivil estado_civil, char sexo, Domicilio domicilio) {
-	super();
-	//this.id = id;
-	this.numero_cliente = numero_cliente;
-	this.numero_documento = numero_documento;
-	this.tipo_documento = tipo_documento;
-	this.nombre = nombre;
-	this.apellido = apellido;
-	this.condicion = condicion;
-	this.activo = activo;
-	this.anio_registro = anio_registro;
-	this.profesion = profesion;
-	this.numero_cuil = numero_cuil;
-	this.email = email;
-	this.condicion_iva = condicion_iva;
-	this.fecha_nacimiento = fecha_nacimiento;
-	this.estado_civil = estado_civil;
-	this.sexo = sexo;
-	this.domicilio = domicilio;
-}
 
-public int getId() {
+   }
+
+   public Cliente(String numero_cliente, String numero_documento, TipoDocumento tipo_documento, String nombre,
+         String apellido, TipoCondicion condicion, Boolean activo, int anio_registro, String profesion,
+         String numero_cuil, String email, TipoCondicionIVA condicion_iva, LocalDate fecha_nacimiento,
+         EstadoCivil estado_civil, char sexo, Domicilio domicilio) {
+      super();
+      // this.id = id;
+      this.numero_cliente = numero_cliente;
+      this.numero_documento = numero_documento;
+      this.tipo_documento = tipo_documento;
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.condicion = condicion;
+      this.activo = activo;
+      this.anio_registro = anio_registro;
+      this.profesion = profesion;
+      this.numero_cuil = numero_cuil;
+      this.email = email;
+      this.condicion_iva = condicion_iva;
+      this.fecha_nacimiento = fecha_nacimiento;
+      this.estado_civil = estado_civil;
+      this.sexo = sexo;
+      this.domicilio = domicilio;
+   }
+
+   public int getId() {
       return id;
    }
 
@@ -234,15 +236,15 @@ public int getId() {
    }
 
    @Override
-	public String toString() {
-	   return "Cliente [id=" + id + ", numero_cliente=" + numero_cliente + ", numero_documento=" + numero_documento
-			+ ", tipo_documento=" + tipo_documento + ", nombre=" + nombre + ", apellido=" + apellido + ", condicion="
-			+ condicion + ", activo=" + activo + ", anio_registro=" + anio_registro + ", profesion=" + profesion
-			+ ", numero_cuil=" + numero_cuil + ", email=" + email + ", condicion_iva=" + condicion_iva
-			+ ", fecha_nacimiento=" + fecha_nacimiento + ", estado_civil=" + estado_civil + ", sexo=" + sexo
-			+ ", domicilio=" + domicilio + "]";
+   public String toString() {
+      return "Cliente [id=" + id + ", numero_cliente=" + numero_cliente + ", numero_documento=" + numero_documento
+            + ", tipo_documento=" + tipo_documento + ", nombre=" + nombre + ", apellido=" + apellido + ", condicion="
+            + condicion + ", activo=" + activo + ", anio_registro=" + anio_registro + ", profesion=" + profesion
+            + ", numero_cuil=" + numero_cuil + ", email=" + email + ", condicion_iva=" + condicion_iva
+            + ", fecha_nacimiento=" + fecha_nacimiento + ", estado_civil=" + estado_civil + ", sexo=" + sexo
+            + ", domicilio=" + domicilio + "]";
    }
-  
+
    /*
     * public Domicilio getDomicilio() {
     * return domicilio;
@@ -251,7 +253,5 @@ public int getId() {
     * this.domicilio = domicilio;
     * }
     */
-   
-   
 
 }

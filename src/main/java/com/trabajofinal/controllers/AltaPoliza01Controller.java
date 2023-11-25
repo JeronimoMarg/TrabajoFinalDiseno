@@ -11,6 +11,7 @@ import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.AltaPoliza01;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.AltaPolizaHijo;
+import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.utils.DynamicCombobox;
 import com.trabajofinal.utils.DynamicCombobox2;
 import com.trabajofinal.models.EstadoCivil;
@@ -39,13 +40,14 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 public class AltaPoliza01Controller implements ActionListener, KeyListener, MouseListener {
 
     private AltaPoliza01 altaPoliza01;
     private ClienteDTO cliente;
-    private Object[] options = { "Sí", "No" };
+    private Object[] options = {"Sí", "No"};
     DefaultTableModel tabla = new DefaultTableModel();
     private String peso;
     private String potencia;
@@ -94,11 +96,43 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         this.altaPoliza01 = altaPoliza01;
         this.cliente = cliente;
 
-        // Inicializo los comboBox independientes
-        crear();
-        inicializarCmbProvincias();
-        inicializarCmbMarcas();
-        listarHijos();
+        ProgressWindow progreso = new ProgressWindow();
+        // Hilo para la carga de datos
+        Thread hiloDatos = new Thread() {
+            @Override
+            public void run() {
+                // Aquí se ejecutan las operaciones de carga de datos
+                crear();
+                inicializarCmbProvincias();
+                inicializarCmbMarcas();
+                listarHijos();
+
+                // Al finalizar, se cierra la barra de progreso
+                progreso.dispose();
+            }
+        };
+
+// Hilo para la barra de progreso
+        Thread hiloProgreso = new Thread() {
+            @Override
+            public void run() {
+                int progresoActual = 1;
+                while (true) {
+                    progreso.jpb_progress.setValue(progresoActual);
+                    progresoActual = (progresoActual % 100) + 1; // Reinicia el contador al llegar a 100
+
+                    try {
+                        Thread.sleep(50); // Simula un retardo de tiempo durante la actualización del progreso
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+// Iniciar ambos hilos
+        hiloDatos.start();
+        hiloProgreso.start();
 
         // Pongo a la escucha los botones de la interface
         this.altaPoliza01.btn_alta_poliza_agregar_hijo.addActionListener(this);

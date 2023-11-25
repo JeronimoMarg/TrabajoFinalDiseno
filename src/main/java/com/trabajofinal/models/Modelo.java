@@ -10,27 +10,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "modelo")
 public class Modelo {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_modelo")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_modelo")
     private int id;
-	
-	@Column(name = "nombre")
+
+    @Column(name = "nombre")
     private String nombre;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "factor_actual")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "factor_actual")
     private FactoresModelo factor_actual;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_marca")
     private Marca marca;
 
-    public Modelo(){
+    public Modelo() {
 
     }
 
@@ -40,30 +42,37 @@ public class Modelo {
         this.factor_actual = factor_actual;
         this.marca = marca;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public FactoresModelo getFactor_actual() {
         return factor_actual;
     }
+
     public void setFactor_actual(FactoresModelo factor_actual) {
         this.factor_actual = factor_actual;
     }
+
     public Marca getMarca() {
         return marca;
     }
+
     public void setMarca(Marca marca) {
         this.marca = marca;
     }
-
 
 }
