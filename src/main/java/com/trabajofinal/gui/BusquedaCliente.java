@@ -51,7 +51,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         txt_busqueda_cliente_nombre = new javax.swing.JTextField();
         txt_busqueda_cliente_nro_doc = new javax.swing.JTextField();
         txt_busqueda_cliente_nro_cte = new javax.swing.JTextField();
-        cmb_busqueda_cliente_tipo = new javax.swing.JComboBox<>();
+        cmb_busqueda_cliente_cond = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btn_busq_cliente_buscar = new javax.swing.JButton();
         btn_busq_cliente_limpiar = new javax.swing.JButton();
@@ -62,6 +62,8 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cmb_busqueda_cliente_tipo1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,10 +112,9 @@ public class BusquedaCliente extends javax.swing.JFrame {
         txt_busqueda_cliente_nro_cte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel1.add(txt_busqueda_cliente_nro_cte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 209, 30));
 
-        cmb_busqueda_cliente_tipo.setBackground(new java.awt.Color(220, 220, 220));
-        cmb_busqueda_cliente_tipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cmb_busqueda_cliente_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "CDI", "CI", "DU MERCOSUR", "PASAPORTE", "OTRO" }));
-        jPanel1.add(cmb_busqueda_cliente_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+        cmb_busqueda_cliente_cond.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_busqueda_cliente_cond.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(cmb_busqueda_cliente_cond, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 200, 30));
 
         btn_busq_cliente_buscar.setBackground(new java.awt.Color(220, 220, 220));
         btn_busq_cliente_buscar.setText("Buscar");
@@ -227,6 +228,14 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/El-asegurado.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 20, 90, 70));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Condicion IVA");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 200, -1));
+
+        cmb_busqueda_cliente_tipo1.setBackground(new java.awt.Color(220, 220, 220));
+        cmb_busqueda_cliente_tipo1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(cmb_busqueda_cliente_tipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,13 +302,15 @@ public class BusquedaCliente extends javax.swing.JFrame {
     public javax.swing.JButton btn_busq_cliente_cancelar;
     public javax.swing.JButton btn_busq_cliente_limpiar;
     public javax.swing.JButton btn_busq_cliente_select;
-    public javax.swing.JComboBox<String> cmb_busqueda_cliente_tipo;
+    public javax.swing.JComboBox<String> cmb_busqueda_cliente_cond;
+    public javax.swing.JComboBox<String> cmb_busqueda_cliente_tipo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

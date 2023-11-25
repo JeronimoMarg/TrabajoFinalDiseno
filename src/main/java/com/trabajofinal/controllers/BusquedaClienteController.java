@@ -1,8 +1,10 @@
 package com.trabajofinal.controllers;
 
+import com.trabajofinal.dao.ClienteDao;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.gui.BusquedaCliente;
 import com.trabajofinal.gui.DatosCliente;
+import com.trabajofinal.models.Cliente;
 import com.trabajofinal.models.Domicilio;
 import com.trabajofinal.models.EstadoCivil;
 import com.trabajofinal.models.Localidad;
@@ -11,6 +13,14 @@ import com.trabajofinal.models.Provincia;
 import com.trabajofinal.models.TipoCondicion;
 import com.trabajofinal.models.TipoCondicionIVA;
 import com.trabajofinal.models.TipoDocumento;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
 import java.awt.Color;
 
 import java.awt.event.ActionEvent;
@@ -18,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -44,7 +55,23 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         this.busquedaCliente.txt_busqueda_cliente_apellido.addKeyListener(this);
         this.busquedaCliente.txt_busqueda_cliente_nombre.addKeyListener(this);
         this.busquedaCliente.txt_busqueda_cliente_nro_doc.addKeyListener(this);
+        
+        inicializar_cmbx();
 
+    }
+    
+    private void inicializar_cmbx() {
+    	
+    	TipoDocumento[] valores = TipoDocumento.values();
+    	for (TipoDocumento valor : valores) {
+    		busquedaCliente.cmb_busqueda_cliente_tipo1.addItem(valor.toString());
+        }
+    	
+    	TipoCondicionIVA[] valores2 = TipoCondicionIVA.values();
+    	for (TipoCondicionIVA valor : valores2) {
+    		busquedaCliente.cmb_busqueda_cliente_cond.addItem(valor.toString());
+        }
+    	
     }
 
     @Override
@@ -52,9 +79,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             // Lógica de verificación previa
             this.busquedaCliente.dispose();
-            ClienteDTO cliente = crearCliente();
-            cliente = crearCliente();
-            DatosCliente datosCliente = new DatosCliente(cliente);
+            //ClienteDTO cliente = aDTO(buscarCliente());
+            //DatosCliente datosCliente = new DatosCliente(cliente);
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar la búsqueda?",
@@ -64,7 +90,10 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
                 this.busquedaCliente.dispose();
             }
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_buscar) {
-            JOptionPane.showMessageDialog(null, "Lo sentimos, implementación aun no realizada");
+        	
+        	buscarCliente();
+        	
+        	
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_limpiar) {
             cleanFields();
         }
@@ -111,36 +140,99 @@ public class BusquedaClienteController implements ActionListener, KeyListener {
         busquedaCliente.txt_busqueda_cliente_nro_cte.setText("");
         busquedaCliente.txt_busqueda_cliente_nro_doc.setText("");
         busquedaCliente.txt_busqueda_cliente_nro_cte.setText("");
-        busquedaCliente.cmb_busqueda_cliente_tipo.setSelectedIndex(0);
+        busquedaCliente.cmb_busqueda_cliente_cond.setSelectedIndex(0);
     }
+    
+    private void buscarClientePorNumero(String numero_cliente) {
+ 	   
+    	ClienteDao dao = new ClienteDao();
+    	List<Cliente> clientes = dao.getClientesPorNumero(numero_cliente);
+    	System.out.println(clientes);
+ 	   
+    }
+    
+    private void buscarClientePorDocumento(String documento, TipoDocumento tipo) {
+    	
+    	ClienteDao dao = new ClienteDao();
+    	List<Cliente> clientes = dao.getClientesPorDocumento(documento, tipo);
+    	System.out.println(clientes);
+    	
+    }
+    
+    private void buscarClientePorTipoIVA(TipoCondicionIVA tipo) {
+    	
+    	ClienteDao dao = new ClienteDao();
+    	List<Cliente> clientes = dao.getClientesPorTipoIVA(tipo);
+    	System.out.println(clientes);
+    	
+    }
+    
+    private void buscarClientePorNombre(String nombre) {
+    	
+    	ClienteDao dao = new ClienteDao();
+    	List<Cliente> clientes = dao.getClientesPorNombre(nombre);
+    	System.out.println(clientes);
+    	
+    }
+    
+    private void buscarClientePorApellido(String apellido) {
+    	
+    	ClienteDao dao = new ClienteDao();
+    	List<Cliente> clientes = dao.getClientesPorApellido(apellido);
+    	System.out.println(clientes);
+    	
+    }
+    
+    private void buscarCliente() {
+    	
+    	//busqueda por Numero de cliente:
+    	buscarClientePorNumero(busquedaCliente.txt_busqueda_cliente_nro_cte.getText().toString().trim());
+    	
+    	//busqueda por numero de documento:
+    	buscarClientePorDocumento(busquedaCliente.txt_busqueda_cliente_nro_doc.getText().toString().trim(), TipoDocumento.valueOf(busquedaCliente.cmb_busqueda_cliente_tipo1.getSelectedItem().toString()));
+    	
+    	//busqueda por tipo de condicion iva:
+    	buscarClientePorTipoIVA(TipoCondicionIVA.valueOf(busquedaCliente.cmb_busqueda_cliente_cond.getSelectedItem().toString()));
+    	
+    	//busqueda por nombre:
+    	buscarClientePorNombre(busquedaCliente.txt_busqueda_cliente_nombre.getText().toString().trim());
+    	
+    	//busqueda por nombre:
+    	buscarClientePorApellido(busquedaCliente.txt_busqueda_cliente_apellido.getText().toString().trim());
+    
+    }
+    
+    private ClienteDTO aDTO(Cliente cliente) {
+    	
+    	ClienteDTO dto = new ClienteDTO();
+    	
+    	/*
+    	dto.setId(cliente.getId());
+    	dto.setNumero_cliente(cliente.getNumero_cliente());
+    	dto.setNumero_documento(cliente.getNumero_documento());
+    	dto.setTipo_documento(cliente.getTipo_documento());
+    	dto.setNombre(cliente.getNombre());
+    	dto.setApellido(cliente.getApellido());
+    	dto.setCondicion(cliente.getCondicion());
+    	dto.setActivo(cliente.getActivo());
+    	dto.setAnio_registro(cliente.getAnio_registro());
+    	dto.setProfesion(cliente.getProfesion());
+    	dto.setNumero_cuil(cliente.getNumero_cuil());
+    	dto.setEmail(cliente.getEmail());
+    	dto.setCondicion_iva(cliente.getCondicion_iva());
+    	dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
+    	dto.setEstado_civil(cliente.getEstado_civil());
+    	dto.setSexo(cliente.getSexo());
+    	dto.setCalle(cliente.getDomicilio().getNombre_calle());
+    	dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
+    	dto.setNro(cliente.getDomicilio().getNumero_calle());
+    	dto.setPiso(cliente.getDomicilio().getPiso());
+    	dto.setDepartamento(cliente.getDomicilio().getDepartamento());
+    	*/
 
-    private ClienteDTO crearCliente() {
-        ClienteDTO cliente = new ClienteDTO();
-        cliente.setApellido("Danelone Cocco");
-        cliente.setNombre("Diego Fernando");
-        cliente.setNumero_documento("24876678");
-        cliente.setNumero_cliente("C24876678");
-        cliente.setTipo_documento(TipoDocumento.DNI);
-        cliente.setActivo(true);
-        cliente.setAnio_registro(2021);
-        cliente.setCondicion(TipoCondicion.NORMAL);
-        cliente.setCondicion_iva(TipoCondicionIVA.CONSUMIDOR_FINAL);
-        cliente.setNumero_cuil("20248766787");
-        cliente.setEmail("dr.danelone@gmail.com");
-        cliente.setEstado_civil(EstadoCivil.SOLTERO);
-        cliente.setProfesion("Abogado");
-        cliente.setSexo(true);
-        cliente.setFecha_nacimiento(LocalDate.of(1975, 11, 19));
-        cliente.setCalle("Luciano Torrent");
-        cliente.setCod_postal("3000");
-        cliente.setDepartamento("--");
-        cliente.setLocalidad("Santa Fe");
-        cliente.setPais("Argentina");
-        cliente.setProvincia("Santa Fe");
-        cliente.setPiso("P.A.");
-        cliente.setNro(1534);
 
-        return cliente;
+    	return dto;
+    	
     }
 
 }
