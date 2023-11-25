@@ -48,15 +48,8 @@ public class AltaPoliza02 extends javax.swing.JFrame {
         btn_alta_poliza02_continuar = new javax.swing.JButton();
         btn_alta_poliza02_cancelar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        cmb_alta_pol02_anio = new javax.swing.JComboBox<>();
-        cmb_alta_pol02_dia = new javax.swing.JComboBox<>();
-        cmb_alta_pol02_mes = new javax.swing.JComboBox<>();
+        jdate_alta_pol02_vigencia = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -118,41 +111,12 @@ public class AltaPoliza02 extends javax.swing.JFrame {
         jLabel16.setText("Forma de pago");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("/");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 10, 30));
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel18.setText("Fecha de inicio de vigencia");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel19.setText("Día:");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 40, 20));
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel20.setText("Mes:");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 40, 20));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel21.setText("Año:");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 40, 20));
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel22.setText("/");
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 10, 30));
-
-        cmb_alta_pol02_anio.setBackground(new java.awt.Color(220, 220, 220));
-        cmb_alta_pol02_anio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel3.add(cmb_alta_pol02_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 70, 30));
-
-        cmb_alta_pol02_dia.setBackground(new java.awt.Color(220, 220, 220));
-        cmb_alta_pol02_dia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel3.add(cmb_alta_pol02_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 70, 30));
-
-        cmb_alta_pol02_mes.setBackground(new java.awt.Color(220, 220, 220));
-        cmb_alta_pol02_mes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel3.add(cmb_alta_pol02_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 70, 30));
+        jdate_alta_pol02_vigencia.setBackground(new java.awt.Color(220, 220, 220));
+        jPanel3.add(jdate_alta_pol02_vigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 310, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 906, 530));
 
@@ -213,25 +177,18 @@ public class AltaPoliza02 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_alta_poliza02_cancelar;
     public javax.swing.JButton btn_alta_poliza02_continuar;
-    public javax.swing.JComboBox<Object> cmb_alta_pol02_anio;
-    public javax.swing.JComboBox<Object> cmb_alta_pol02_dia;
     public javax.swing.JComboBox<Object> cmb_alta_pol02_forma_pago;
-    public javax.swing.JComboBox<Object> cmb_alta_pol02_mes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    public com.toedter.calendar.JDateChooser jdate_alta_pol02_vigencia;
     public javax.swing.JList<String> list_alta_pol02;
     // End of variables declaration//GEN-END:variables
 }
