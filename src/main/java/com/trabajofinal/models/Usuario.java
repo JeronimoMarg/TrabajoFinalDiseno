@@ -27,8 +27,19 @@ public class Usuario {
 
     @Column(name = "contrasena")
     private String contrasena;
+    
+    public Usuario() {
+    	
+    }
 
-    public int getId() {
+    public Usuario(TipoRol rol, String nombre, String contrasena) {
+		super();
+		this.rol = rol;
+		this.nombre = nombre;
+		this.contrasena = contrasena;
+	}
+
+	public int getId() {
         return id;
     }
 

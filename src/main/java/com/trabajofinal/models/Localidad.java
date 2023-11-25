@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,9 +34,9 @@ public class Localidad {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_factores_riesgo_localidad")
-    private Set<FactorRiesgoLocalidad> riesgo_localidad;
+    private FactorRiesgoLocalidad factorActual;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_provincia")
@@ -43,9 +45,9 @@ public class Localidad {
     public Localidad() {
     }
 
-    public Localidad(String nombre, HashSet<FactorRiesgoLocalidad> riesgo_localidad, Provincia provincia) {
+    public Localidad(String nombre, FactorRiesgoLocalidad riesgo_localidad, Provincia provincia) {
         this.nombre = nombre;
-        this.riesgo_localidad = riesgo_localidad;
+        this.factorActual = riesgo_localidad;
         this.provincia = provincia;
     }
 
@@ -73,12 +75,12 @@ public class Localidad {
         this.provincia = provincia;
     }
 
-    public Set<FactorRiesgoLocalidad> getRiesgo_localidad() {
-        return riesgo_localidad;
+    public FactorRiesgoLocalidad getRiesgo_localidad() {
+        return factorActual;
     }
 
-    public void setRiesgo_localidad(HashSet<FactorRiesgoLocalidad> riesgo_localidad) {
-        this.riesgo_localidad = riesgo_localidad;
+    public void setRiesgo_localidad(FactorRiesgoLocalidad riesgo_localidad) {
+        this.factorActual = riesgo_localidad;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.trabajofinal.models;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,10 +36,9 @@ public class Cuota {
     @Column(name = "hasta")
     private LocalDate hasta;
 
-    @OneToOne
-    @JoinColumn(name = "id_pago")
-    private Pago pago; // CHEQUEAR SI QUEDO BIEN EL MAPEO (TABLA INTERMEDIA)
-                       // CUOTA NO TENDRIA QUE TENER UN ID_PAGO EN SU TABLA
+    @OneToMany
+    @JoinColumn(name = "id_cuota_pago")
+    private HashSet<CuotaPago> cuotaPago;
 
     public Cuota() {
     }
@@ -87,12 +87,12 @@ public class Cuota {
         this.hasta = hasta;
     }
 
-    public Pago getPago() {
-        return pago;
+    public HashSet<CuotaPago> getPago() {
+        return cuotaPago;
     }
 
-    public void setPago(Pago pago) {
-        this.pago = pago;
+    public void setPago(HashSet<CuotaPago> pago) {
+        this.cuotaPago = pago;
     }
 
 }

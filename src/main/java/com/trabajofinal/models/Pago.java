@@ -30,12 +30,6 @@ public class Pago {
     @Column(name = "premio")
     private Double premio;
 
-    @Column(name = "recargo_mora")
-    private Double recargo_mora;
-
-    @Column(name = "bonificacion_pago_adelantado")
-    private Double bonificacion_pago_adelantado;
-
     @Column(name = "fecha_pago")
     private LocalDate fecha_pago;
 
@@ -81,22 +75,6 @@ public class Pago {
 
     public void setPremio(Double premio) {
         this.premio = premio;
-    }
-
-    public Double getRecargo_mora() {
-        return recargo_mora;
-    }
-
-    public void setRecargo_mora(Double recargo_mora) {
-        this.recargo_mora = recargo_mora;
-    }
-
-    public Double getBonificacion_pago_adelantado() {
-        return bonificacion_pago_adelantado;
-    }
-
-    public void setBonificacion_pago_adelantado(Double bonificacion_pago_adelantado) {
-        this.bonificacion_pago_adelantado = bonificacion_pago_adelantado;
     }
 
     public LocalDate getFecha_pago() {
