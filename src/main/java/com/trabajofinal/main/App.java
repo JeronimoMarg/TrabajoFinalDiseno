@@ -7,17 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import com.trabajofinal.dao.ClienteDao;
-import com.trabajofinal.dao.FactoresCaracteristicasDao;
-import com.trabajofinal.dao.FactoresVehiculoDao;
-import com.trabajofinal.dao.LocalidadDao;
-import com.trabajofinal.dao.MarcaDao;
-import com.trabajofinal.dao.ModeloDao;
-import com.trabajofinal.dao.PaisDao;
-import com.trabajofinal.dao.ProvinciaDao;
-import com.trabajofinal.dao.TipoCoberturaDao;
-import com.trabajofinal.dao.TipoVehiculoDao;
-import com.trabajofinal.dao.UsuarioDao;
+import com.trabajofinal.dao.*;
 import com.trabajofinal.gui.BusquedaCliente;
 import com.trabajofinal.utils.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
@@ -27,15 +17,8 @@ import com.trabajofinal.models.*;
 public class App {
 
    public static void main(String[] args) {
-
-      // Ejecutar primero para armar la base de datos
-      /*
-       * cargarClientes();
-       * cargarAutos();
-       * cargarCoberturas();
-       * cargarProvincias();
-       * cargarUsuario();
-       */
+	   
+	   inicializarDatos();
 
       BusquedaCliente busquedaCliente = new BusquedaCliente();
       busquedaCliente.setVisible(true);
@@ -233,7 +216,7 @@ public class App {
 
    }
 
-   private static FactoresCaracteristicas crearFactoresCaracteristicas() {
+   private static void cargarFactoresCaracteristicas() {
 
       FactoresCaracteristicas ejemplo1 = new FactoresCaracteristicas(
             0.02,
@@ -251,35 +234,35 @@ public class App {
             500.00,
             LocalDate.of(2023, 12, 31),
             null,
-            2,
+            3,
             new Usuario());
 
-      System.out.print(ejemplo1.toString());
-      return ejemplo1;
+      try {
+          FactoresCaracteristicasDao dao = new FactoresCaracteristicasDao();
+          dao.save(ejemplo1);
+
+       } catch (Exception e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
+       }
 
    }
 
-   private static FactorRiesgoLocalidad crearFactorRiesgoLocalidad() {
+   private static void cargarFactorRiesgoLocalidad() {
       FactorRiesgoLocalidad factor_riesgo = new FactorRiesgoLocalidad(
             LocalDate.of(2023, 12, 31),
             LocalDate.of(2024, 01, 31),
             0.5,
             new Usuario(),
             new Localidad());
-      return factor_riesgo;
-   }
-
-   private static void guardarFactoresCaracteristicas(FactoresCaracteristicas factores) {
-
       try {
-         FactoresCaracteristicasDao dao = new FactoresCaracteristicasDao();
-         dao.save(factores);
+          FactorRiesgoLocalidadDao dao = new FactorRiesgoLocalidadDao();
+          dao.save(factor_riesgo);
 
-      } catch (Exception e) {
-         System.out.println(e.getMessage());
-         e.printStackTrace();
-      }
-
+       } catch (Exception e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
+       }
    }
 
    private static void mostrarClientes() {
@@ -296,6 +279,28 @@ public class App {
       Cliente cliente = dao.getById(id);
       System.out.println(cliente);
 
+   }
+   
+   private static void inicializarDatos() {
+	   
+	   
+	   //este codigo lo que hace es verificar si hay entidades cargadas en la BD.
+	   //si la cuenta de entidades (de cliente por ahora) es cero, carga todos los datos.
+	   
+	   
+	   EntityManager entityManager = EntityManagerUtil.getEntityManager();
+	   long entityCount = (long) entityManager.createQuery("SELECT COUNT(c) FROM Cliente c").getSingleResult();
+	   
+	   if(entityCount == 0) {
+		   cargarClientes();
+	       cargarAutos();
+	       cargarCoberturas();
+	       cargarProvincias();
+	       cargarUsuario();
+	       cargarFactoresCaracteristicas();
+	       cargarFactorRiesgoLocalidad();
+	   }
+	   
    }
 
 }

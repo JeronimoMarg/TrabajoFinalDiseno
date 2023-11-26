@@ -234,8 +234,16 @@ public class Cliente {
    public void setSexo(char sexo) {
       this.sexo = sexo;
    }
+   
+   public Domicilio getDomicilio() {
+	return domicilio;
+   }
 
-   @Override
+   public void setDomicilio(Domicilio domicilio) {
+	this.domicilio = domicilio;
+   }
+
+@Override
    public String toString() {
       return "Cliente [id=" + id + ", numero_cliente=" + numero_cliente + ", numero_documento=" + numero_documento
             + ", tipo_documento=" + tipo_documento + ", nombre=" + nombre + ", apellido=" + apellido + ", condicion="
@@ -245,13 +253,5 @@ public class Cliente {
             + ", domicilio=" + domicilio + "]";
    }
 
-   /*
-    * public Domicilio getDomicilio() {
-    * return domicilio;
-    * }
-    * public void setDomicilio(Domicilio domicilio) {
-    * this.domicilio = domicilio;
-    * }
-    */
 
 }

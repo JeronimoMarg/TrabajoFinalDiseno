@@ -31,6 +31,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -88,8 +89,11 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             // Lógica de verificación previa
             this.busquedaCliente.dispose();
-            // ClienteDTO cliente = aDTO(buscarCliente());
-            // DatosCliente datosCliente = new DatosCliente(cliente);
+            
+            //ACA HABRIA Q SELECCIONAR UNO DE LOS CLIENTESDTO
+            //DIRECTAMENTE PASARLO A LA OTRA INTERFAZ.
+            
+            
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar la búsqueda?",
@@ -107,7 +111,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
                 @Override
                 public void run() {
                     // Aquí se ejecutan las operaciones de carga de datos
-                    ListAllClients(buscarCliente());
+                    ListAllClients(listaADTO(buscarCliente()));
 
                     // Al finalizar, se cierra la barra de progreso
                     progreso.dispose();
@@ -217,8 +221,9 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
 
     }
 
-    private void ListAllClients(List<Cliente> lista) {
+    private void ListAllClients(List<ClienteDTO> lista) {
         tabla = (DefaultTableModel) busquedaCliente.table_busqueda_cliente.getModel();
+        
         Object[] row = new Object[8];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getNumero_cliente();
@@ -238,31 +243,42 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
 
         ClienteDTO dto = new ClienteDTO();
 
-        /*
-       * dto.setId(cliente.getId());
-       * dto.setNumero_cliente(cliente.getNumero_cliente());
-       * dto.setNumero_documento(cliente.getNumero_documento());
-       * dto.setTipo_documento(cliente.getTipo_documento());
-       * dto.setNombre(cliente.getNombre());
-       * dto.setApellido(cliente.getApellido());
-       * dto.setCondicion(cliente.getCondicion());
-       * dto.setActivo(cliente.getActivo());
-       * dto.setAnio_registro(cliente.getAnio_registro());
-       * dto.setProfesion(cliente.getProfesion());
-       * dto.setNumero_cuil(cliente.getNumero_cuil());
-       * dto.setEmail(cliente.getEmail());
-       * dto.setCondicion_iva(cliente.getCondicion_iva());
-       * dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
-       * dto.setEstado_civil(cliente.getEstado_civil());
-       * dto.setSexo(cliente.getSexo());
-       * dto.setCalle(cliente.getDomicilio().getNombre_calle());
-       * dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
-       * dto.setNro(cliente.getDomicilio().getNumero_calle());
-       * dto.setPiso(cliente.getDomicilio().getPiso());
-       * dto.setDepartamento(cliente.getDomicilio().getDepartamento());
-         */
+       dto.setId(cliente.getId());
+       dto.setNumero_cliente(cliente.getNumero_cliente());
+       dto.setNumero_documento(cliente.getNumero_documento());
+       dto.setTipo_documento(cliente.getTipo_documento());
+       dto.setNombre(cliente.getNombre());
+       dto.setApellido(cliente.getApellido());
+       dto.setCondicion(cliente.getCondicion());
+       dto.setActivo(cliente.getActivo());
+       dto.setAnio_registro(cliente.getAnio_registro());
+       dto.setProfesion(cliente.getProfesion());
+       dto.setNumero_cuil(cliente.getNumero_cuil());
+       dto.setEmail(cliente.getEmail());
+       dto.setCondicion_iva(cliente.getCondicion_iva());
+       dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
+       dto.setEstado_civil(cliente.getEstado_civil());
+       dto.setSexo(cliente.getSexo());
+       dto.setCalle(cliente.getDomicilio().getNombre_calle());
+       dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
+       dto.setNro(cliente.getDomicilio().getNumero_calle());
+       dto.setPiso(cliente.getDomicilio().getPiso());
+       dto.setDepartamento(cliente.getDomicilio().getDepartamento());
+       
         return dto;
 
+    }
+    
+    private List<ClienteDTO> listaADTO(List<Cliente> lista){
+    	
+        //ACA TENEMOS QUE PASAR LOS OBJETOS CLIENTE A DTO Y DESPUES MOSTRARLOS!!!
+        List<ClienteDTO> clientes = Collections.emptyList();
+        for (Cliente c: lista) {
+        	clientes.add(aDTO(c));
+        }
+        
+        return clientes;
+    	
     }
 
     //Método para limpiar la tabla

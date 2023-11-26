@@ -19,7 +19,7 @@ public class ClienteDTO {
     private String apellido;
     private TipoCondicion condicion;
     private Boolean activo;
-    private int anio_registro;
+    private Integer anio_registro;
     private String profesion;
     private String numero_cuil;
     private String email;
@@ -28,11 +28,11 @@ public class ClienteDTO {
     private LocalDate fecha_nacimiento;
     //private String estado_civil;
     private EstadoCivil estado_civil;
-    private Boolean sexo;
+    private char sexo;
     private String calle;
     private String cod_postal;
-    private int nro;
-    private String piso;
+    private Integer nro;
+    private Integer piso;
     private String departamento;
     //private Domicilio domicilio;
     private int cantidadSiniestros;
@@ -96,11 +96,11 @@ public class ClienteDTO {
         this.activo = activo;
     }
 
-    public int getAnio_registro() {
+    public Integer getAnio_registro() {
         return anio_registro;
     }
 
-    public void setAnio_registro(int anio_registro) {
+    public void setAnio_registro(Integer anio_registro) {
         this.anio_registro = anio_registro;
     }
 
@@ -136,12 +136,12 @@ public class ClienteDTO {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public Boolean getSexo() {
+    public char getSexo() {
         return sexo;
     }
 
-    public void setSexo(Boolean sexo) {
-        this.sexo = sexo;
+    public void setSexo(char c) {
+        this.sexo = c;
     }
 
     public String getCalle() {
@@ -160,19 +160,19 @@ public class ClienteDTO {
         this.cod_postal = cod_postal;
     }
 
-    public int getNro() {
+    public Integer getNro() {
         return nro;
     }
 
-    public void setNro(int nro) {
+    public void setNro(Integer nro) {
         this.nro = nro;
     }
 
-    public String getPiso() {
+    public Integer getPiso() {
         return piso;
     }
 
-    public void setPiso(String piso) {
+    public void setPiso(Integer piso) {
         this.piso = piso;
     }
 
