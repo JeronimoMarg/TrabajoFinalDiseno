@@ -60,7 +60,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_busqueda_cliente = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cmb_busqueda_cliente_tipo1 = new javax.swing.JComboBox<>();
@@ -184,30 +184,33 @@ public class BusquedaCliente extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_busqueda_cliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        table_busqueda_cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "N° Cliente", "Tipo Doc", "N° Documento", "Apellido", "Nombre"
+                "N° Cliente", "Tipo Doc", "N° Documento", "Apellido", "Nombre", "CUIL", "Cond. IVA", "E-Mail"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
-            jTable2.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(table_busqueda_cliente);
+        if (table_busqueda_cliente.getColumnModel().getColumnCount() > 0) {
+            table_busqueda_cliente.getColumnModel().getColumn(0).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(1).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(2).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(3).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(4).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(5).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(6).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(7).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -317,7 +320,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable2;
+    public javax.swing.JTable table_busqueda_cliente;
     public javax.swing.JTextField txt_busqueda_cliente_apellido;
     public javax.swing.JTextField txt_busqueda_cliente_nombre;
     public javax.swing.JTextField txt_busqueda_cliente_nro_cte;
