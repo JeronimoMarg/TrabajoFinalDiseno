@@ -64,6 +64,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cmb_busqueda_cliente_tipo1 = new javax.swing.JComboBox<>();
+        chk_busqueda_cliente = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,6 +240,10 @@ public class BusquedaCliente extends javax.swing.JFrame {
         cmb_busqueda_cliente_tipo1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel1.add(cmb_busqueda_cliente_tipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
 
+        chk_busqueda_cliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chk_busqueda_cliente.setText("Incluir en la búsqueda");
+        jPanel1.add(chk_busqueda_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -305,6 +310,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
     public javax.swing.JButton btn_busq_cliente_cancelar;
     public javax.swing.JButton btn_busq_cliente_limpiar;
     public javax.swing.JButton btn_busq_cliente_select;
+    public javax.swing.JCheckBox chk_busqueda_cliente;
     public javax.swing.JComboBox<String> cmb_busqueda_cliente_cond;
     public javax.swing.JComboBox<String> cmb_busqueda_cliente_tipo1;
     private javax.swing.JLabel jLabel1;
