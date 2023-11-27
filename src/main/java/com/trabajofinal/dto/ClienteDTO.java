@@ -19,7 +19,7 @@ public class ClienteDTO {
     private String apellido;
     private TipoCondicion condicion;
     private Boolean activo;
-    private Integer anio_registro;
+    private int anio_registro;
     private String profesion;
     private String numero_cuil;
     private String email;
@@ -31,8 +31,8 @@ public class ClienteDTO {
     private char sexo;
     private String calle;
     private String cod_postal;
-    private Integer nro;
-    private Integer piso;
+    private int nro;
+    private int piso;
     private String departamento;
     //private Domicilio domicilio;
     private int cantidadSiniestros;
@@ -96,11 +96,11 @@ public class ClienteDTO {
         this.activo = activo;
     }
 
-    public Integer getAnio_registro() {
+    public int getAnio_registro() {
         return anio_registro;
     }
 
-    public void setAnio_registro(Integer anio_registro) {
+    public void setAnio_registro(int anio_registro) {
         this.anio_registro = anio_registro;
     }
 
@@ -140,8 +140,8 @@ public class ClienteDTO {
         return sexo;
     }
 
-    public void setSexo(char c) {
-        this.sexo = c;
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
     }
 
     public String getCalle() {
@@ -160,19 +160,19 @@ public class ClienteDTO {
         this.cod_postal = cod_postal;
     }
 
-    public Integer getNro() {
+    public int getNro() {
         return nro;
     }
 
-    public void setNro(Integer nro) {
+    public void setNro(int nro) {
         this.nro = nro;
     }
 
-    public Integer getPiso() {
+    public int getPiso() {
         return piso;
     }
 
-    public void setPiso(Integer piso) {
+    public void setPiso(int piso) {
         this.piso = piso;
     }
 
@@ -356,6 +356,11 @@ public class ClienteDTO {
             return false;
         }
         return Objects.equals(this.sexo, other.sexo);
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteDTO{" + "provincia=" + provincia + ", pais=" + pais + ", localidad=" + localidad + '}';
     }
    
 }

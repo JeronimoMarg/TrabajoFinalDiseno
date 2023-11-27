@@ -72,7 +72,7 @@ public class FactoresCaracteristicas {
     @Column(name = "clientes_a_mostrar")
     private int clientes_a_mostrar;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 

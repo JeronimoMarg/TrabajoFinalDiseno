@@ -41,11 +41,11 @@ public class TipoVehiculo {
     @Column(name = "anio")
     private int anio;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_modelo")
     private Modelo modelo;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_factores_vehiculo")
     private FactoresVehiculo factores_actuales;
 

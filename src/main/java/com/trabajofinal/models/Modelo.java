@@ -28,7 +28,7 @@ public class Modelo {
     @JoinColumn(name = "factor_actual")
     private FactoresModelo factor_actual;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marca")
     private Marca marca;
 

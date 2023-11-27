@@ -33,11 +33,11 @@ public class FactorRiesgoLocalidad {
     @Column(name = "riesgo")
     private Double riesgo;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_localidad")
     private Localidad localidad;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 

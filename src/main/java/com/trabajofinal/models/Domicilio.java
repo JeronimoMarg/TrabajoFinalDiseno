@@ -39,7 +39,7 @@ public class Domicilio {
    @Column(name = "departamento")
    private String departamento;
 
-   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "id_localidad")
    private Localidad localidad;
 
@@ -123,4 +123,13 @@ public class Domicilio {
    public void setLocalidad(Localidad localidad) {
       this.localidad = localidad;
    }
+
+	@Override
+	public String toString() {
+		return "Domicilio [id=" + id + ", codigo_postal=" + codigo_postal + ", numero_calle=" + numero_calle
+				+ ", nombre_calle=" + nombre_calle + ", es_departamento=" + es_departamento + ", piso=" + piso
+				+ ", departamento=" + departamento + ", localidad=" + localidad + "]";
+	}
+	   
+   
 }

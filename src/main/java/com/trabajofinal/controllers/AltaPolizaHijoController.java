@@ -1,5 +1,6 @@
 package com.trabajofinal.controllers;
 
+import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.gui.AltaPolizaHijo;
 import com.trabajofinal.models.EstadoCivil;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -15,10 +17,9 @@ import javax.swing.JOptionPane;
 public class AltaPolizaHijoController implements ActionListener, PropertyChangeListener {
 
     private AltaPolizaHijo altaPolizaHijo;
-    private int selectedAnyo;
-    private int selectedMes;
-    private int selectedDia;
     private EstadoCivil estado_civil;
+    LocalDate localDate;
+    
 
     private Object[] options = {"Sí", "No"};
 
@@ -42,10 +43,11 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
             //Paso 1: chequear que los datos esten correctos con un Metodo
             //Paso 2: cerrar la ventana.
             //Cargar los datos de hijos para agregarlos al cliente!!!
-            if (validar()) {
+            if (localDate != null) {
+                AltaPoliza01Controller.setHijoDTO(setDatosHijo());
                 this.altaPolizaHijo.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha.");
             }
 
         } else if (e.getSource() == altaPolizaHijo.btn_alta_poliza_hijo_cancelar) {
@@ -78,19 +80,23 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
         if ("date".equals(evt.getPropertyName())) {
             Date selectedDate = (Date) evt.getNewValue();
             if (selectedDate != null) {
-                LocalDate localDate = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                localDate = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate currentDate = LocalDate.now();
 
                 if (localDate.isAfter(currentDate)) {
                     JOptionPane.showMessageDialog(null, "La fecha no puede ser superior a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    int dia = localDate.getDayOfMonth();
-                    int mes = localDate.getMonthValue();
-                    int año = localDate.getYear();
-
-                    System.out.println("Día: " + dia + ", Mes: " + mes + ", Año: " + año);
                 }
             }
         }
+    }
+    
+    private HijoDTO setDatosHijo() {
+        HijoDTO dto = new HijoDTO();
+        
+            dto.setEstado_civil(EstadoCivil.valueOf(altaPolizaHijo.cmb_alta_pol_hijo_estado.getSelectedItem().toString()));
+            dto.setSexo(altaPolizaHijo.cmb_alta_pol_hijo_sexo.getSelectedItem().equals("MASCULINO"));
+            dto.setFecha_nacimiento(localDate);
+        
+        return dto;
     }
 }

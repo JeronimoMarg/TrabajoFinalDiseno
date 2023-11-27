@@ -171,6 +171,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         btn_busq_cliente_select.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_busq_cliente_select.setText("Seleccionar");
         btn_busq_cliente_select.setAlignmentX(0.5F);
+        btn_busq_cliente_select.setEnabled(false);
         btn_busq_cliente_select.setMaximumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_select.setMinimumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_select.setPreferredSize(new java.awt.Dimension(82, 21));
@@ -191,17 +192,18 @@ public class BusquedaCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° Cliente", "Tipo Doc", "N° Documento", "Apellido", "Nombre", "CUIL", "Cond. IVA", "E-Mail"
+                "N° Cliente", "Tipo Doc", "N° Documento", "Apellido", "Nombre", "CUIL", "Cond. IVA", "E-Mail", "Id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        table_busqueda_cliente.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table_busqueda_cliente);
         if (table_busqueda_cliente.getColumnModel().getColumnCount() > 0) {
             table_busqueda_cliente.getColumnModel().getColumn(0).setResizable(false);
@@ -212,6 +214,9 @@ public class BusquedaCliente extends javax.swing.JFrame {
             table_busqueda_cliente.getColumnModel().getColumn(5).setResizable(false);
             table_busqueda_cliente.getColumnModel().getColumn(6).setResizable(false);
             table_busqueda_cliente.getColumnModel().getColumn(7).setResizable(false);
+            table_busqueda_cliente.getColumnModel().getColumn(8).setMinWidth(0);
+            table_busqueda_cliente.getColumnModel().getColumn(8).setPreferredWidth(0);
+            table_busqueda_cliente.getColumnModel().getColumn(8).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

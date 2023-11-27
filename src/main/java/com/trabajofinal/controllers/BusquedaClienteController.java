@@ -6,39 +6,23 @@ import com.trabajofinal.gui.BusquedaCliente;
 import com.trabajofinal.gui.DatosCliente;
 import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.models.Cliente;
-import com.trabajofinal.models.Domicilio;
-import com.trabajofinal.models.EstadoCivil;
-import com.trabajofinal.models.Localidad;
-import com.trabajofinal.models.Pais;
-import com.trabajofinal.models.Provincia;
-import com.trabajofinal.models.TipoCondicion;
 import com.trabajofinal.models.TipoCondicionIVA;
 import com.trabajofinal.models.TipoDocumento;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-
 import java.awt.Color;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.time.LocalDate;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import org.hibernate.boot.model.internal.XMLContext.Default;
 
 public class BusquedaClienteController implements ActionListener, KeyListener, MouseListener {
 
@@ -50,6 +34,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     private boolean isValid = false;
     private Object[] options = {"Sí", "No"};
     private DefaultTableModel tabla = new DefaultTableModel();
+    ClienteDTO clienteDTO = new ClienteDTO();
 
     public BusquedaClienteController(BusquedaCliente busquedaCliente) {
         this.busquedaCliente = busquedaCliente;
@@ -88,11 +73,10 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             // Lógica de verificación previa
+            //ClienteDTO clienteDTO = aDTO(cliente);
+        	
             this.busquedaCliente.dispose();
-            
-            //ACA HABRIA Q SELECCIONAR UNO DE LOS CLIENTESDTO
-            //DIRECTAMENTE PASARLO A LA OTRA INTERFAZ.
-            
+            DatosCliente datosCliente = new DatosCliente(clienteDTO);
             
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
@@ -110,14 +94,10 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
             Thread hiloDatos = new Thread() {
                 @Override
                 public void run() {
-                    // Aquí se ejecutan las operaciones de carga de datos
-                    ListAllClients(listaADTO(buscarCliente()));
-
-                    // Al finalizar, se cierra la barra de progreso
+                    listAllClients(searchClient());
                     progreso.dispose();
                 }
             };
-
             // Hilo para la barra de progreso
             Thread hiloProgreso = new Thread() {
                 @Override
@@ -126,7 +106,6 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
                     while (true) {
                         progreso.jpb_progress.setValue(progresoActual);
                         progresoActual = (progresoActual % 100) + 1; // Reinicia el contador al llegar a 100
-
                         try {
                             Thread.sleep(50); // Simula un retardo de tiempo durante la actualización del progreso
                         } catch (InterruptedException e) {
@@ -135,11 +114,9 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
                     }
                 }
             };
-
             // Iniciar ambos hilos
             hiloDatos.start();
-            hiloProgreso.start();
-
+            hiloProgreso.start(); 
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_limpiar) {
             cleanFields();
         }
@@ -190,7 +167,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         busquedaCliente.cmb_busqueda_cliente_cond.setSelectedIndex(0);
     }
 
-    private List<Cliente> buscarCliente() {
+    private List<Cliente> searchClient() {
 
         ClienteDao cliente_dao = new ClienteDao();
         String nombre = busquedaCliente.txt_busqueda_cliente_nombre.getText().toString().trim();
@@ -213,18 +190,23 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         }
         TipoCondicionIVA iva = TipoCondicionIVA
                 .valueOf(busquedaCliente.cmb_busqueda_cliente_cond.getSelectedItem().toString());
-        if (iva != null) {
+        if (iva != null && busquedaCliente.chk_busqueda_cliente.isSelected()) {
             cliente_dao.getClientesPorTipoIVA(iva);
         }
-
-        return cliente_dao.ejecutarQuery();
-
+       return cliente_dao.ejecutarQuery();
     }
 
-    private void ListAllClients(List<ClienteDTO> lista) {
-        tabla = (DefaultTableModel) busquedaCliente.table_busqueda_cliente.getModel();
+    private void listAllClients(List<Cliente> l) {
+    	
+    	
+        List<ClienteDTO> lista = new ArrayList<>();
+        for (Cliente c: l) {
+            lista.add(aDTO(c));
+        }
         
-        Object[] row = new Object[8];
+        
+        tabla = (DefaultTableModel) busquedaCliente.table_busqueda_cliente.getModel();
+        Object[] row = new Object[9];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getNumero_cliente();
             row[1] = lista.get(i).getTipo_documento();
@@ -234,6 +216,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
             row[5] = lista.get(i).getNumero_cuil();
             row[6] = lista.get(i).getCondicion_iva();
             row[7] = lista.get(i).getEmail();
+            row[8] = lista.get(i).getId();
+            // System.out.println(lista.get(i).getId());
 
             tabla.addRow(row);
         }
@@ -243,43 +227,55 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
 
         ClienteDTO dto = new ClienteDTO();
 
-       dto.setId(cliente.getId());
-       dto.setNumero_cliente(cliente.getNumero_cliente());
-       dto.setNumero_documento(cliente.getNumero_documento());
-       dto.setTipo_documento(cliente.getTipo_documento());
-       dto.setNombre(cliente.getNombre());
-       dto.setApellido(cliente.getApellido());
-       dto.setCondicion(cliente.getCondicion());
-       dto.setActivo(cliente.getActivo());
-       dto.setAnio_registro(cliente.getAnio_registro());
-       dto.setProfesion(cliente.getProfesion());
-       dto.setNumero_cuil(cliente.getNumero_cuil());
-       dto.setEmail(cliente.getEmail());
-       dto.setCondicion_iva(cliente.getCondicion_iva());
-       dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
-       dto.setEstado_civil(cliente.getEstado_civil());
-       dto.setSexo(cliente.getSexo());
-       dto.setCalle(cliente.getDomicilio().getNombre_calle());
-       dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
-       dto.setNro(cliente.getDomicilio().getNumero_calle());
-       dto.setPiso(cliente.getDomicilio().getPiso());
-       dto.setDepartamento(cliente.getDomicilio().getDepartamento());
-       
+        dto.setId(cliente.getId());
+        dto.setNumero_cliente(cliente.getNumero_cliente());
+        dto.setNumero_documento(cliente.getNumero_documento());
+        dto.setTipo_documento(cliente.getTipo_documento());
+        dto.setNombre(cliente.getNombre());
+        dto.setApellido(cliente.getApellido());
+        dto.setCondicion(cliente.getCondicion());
+        dto.setActivo(cliente.getActivo());
+        dto.setAnio_registro(cliente.getAnio_registro());
+        dto.setProfesion(cliente.getProfesion());
+        dto.setNumero_cuil(cliente.getNumero_cuil());
+        dto.setEmail(cliente.getEmail());
+        dto.setCondicion_iva(cliente.getCondicion_iva());
+        dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
+        dto.setEstado_civil(cliente.getEstado_civil());
+        dto.setSexo(cliente.getSexo());
+        dto.setCalle(cliente.getDomicilio().getNombre_calle());
+        dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
+        dto.setNro(cliente.getDomicilio().getNumero_calle());
+        dto.setPiso(cliente.getDomicilio().getPiso());
+        dto.setDepartamento(cliente.getDomicilio().getDepartamento());
+        dto.setLocalidad(cliente.getDomicilio().getLocalidad().getNombre());
+        
+        //Necesito un método para traer el nombre de la provincia y del pais
+        /*
+        String prov = cliente.getDomicilio().getLocalidad().getProvincia().getNombre();
+        String pais = cliente.getDomicilio().getLocalidad().getProvincia().getPais().getNombre();
+        dto.setProvincia(prov);
+        dto.setPais(pais);
+        */
+        
         return dto;
-
+        
+        
     }
     
+    
+    /*
+    *****CON ESTE METODO SE IBA A LA MIERDA TODO. AHORA FUNCA.
     private List<ClienteDTO> listaADTO(List<Cliente> lista){
-    	
-        //ACA TENEMOS QUE PASAR LOS OBJETOS CLIENTE A DTO Y DESPUES MOSTRARLOS!!!
+    	//ACA TENEMOS QUE PASAR LOS OBJETOS CLIENTE A DTO Y DESPUES MOSTRARLOS!!!
         List<ClienteDTO> clientes = Collections.emptyList();
         for (Cliente c: lista) {
-        	clientes.add(aDTO(c));
-        }
-        
+            clientes.add(aDTO(c));
+        }        
         return clientes;
     	
     }
+*/
 
     //Método para limpiar la tabla
     public void cleanTable() {
@@ -300,7 +296,12 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
             busquedaCliente.txt_busqueda_cliente_apellido.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 3).toString());
             busquedaCliente.txt_busqueda_cliente_nombre.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 4).toString());
             busquedaCliente.cmb_busqueda_cliente_cond.setSelectedItem(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 6).toString());
-
+            int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 8).toString());
+            ClienteDao cliente_dao = new ClienteDao();
+            Cliente cliente = new Cliente();
+            cliente = cliente_dao.getById(id);
+            clienteDTO = aDTO(cliente);
+            busquedaCliente.btn_busq_cliente_select.setEnabled(true);
         }
     }
 

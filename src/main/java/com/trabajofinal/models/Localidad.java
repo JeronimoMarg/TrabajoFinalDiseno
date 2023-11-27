@@ -21,11 +21,6 @@ import jakarta.persistence.ManyToOne;
 @Table(name = "localidad")
 public class Localidad {
 
-    @Override
-    public String toString() {
-        return "Localidad [id=" + id + ", nombre=" + nombre + "]";
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_localidad")
@@ -34,7 +29,7 @@ public class Localidad {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_factores_riesgo_localidad")
     private FactorRiesgoLocalidad factorActual;
 
@@ -82,5 +77,11 @@ public class Localidad {
     public void setRiesgo_localidad(FactorRiesgoLocalidad riesgo_localidad) {
         this.factorActual = riesgo_localidad;
     }
+    
+    @Override
+	public String toString() {
+		return "Localidad [id=" + id + ", nombre=" + nombre + ", factorActual=" + factorActual + ", provincia="
+				+ provincia + "]";
+	}
 
 }

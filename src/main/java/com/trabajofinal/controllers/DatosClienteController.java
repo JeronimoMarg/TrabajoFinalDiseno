@@ -65,7 +65,7 @@ public class DatosClienteController implements ActionListener {
       datosCliente.txt_datos_cliente_local.setText(cliente.getLocalidad().toString().trim());
       datosCliente.txt_datos_cliente_provincia.setText(cliente.getProvincia().toString().trim());
       datosCliente.txt_datos_cliente_pais.setText(cliente.getPais().toString().trim());
-      datosCliente.txt_datos_cliente_piso.setText(cliente.getPiso().toString().trim());
+      datosCliente.txt_datos_cliente_piso.setText(Integer.toString(cliente.getPiso()).trim());
       datosCliente.txt_datos_cliente_tipo.setText(cliente.getTipo_documento().toString().trim());
       datosCliente.txt_datos_cliente_nro_cte.setText(cliente.getNumero_cliente().toString().trim());
       datosCliente.txt_datos_cliente_nro_doc.setText(cliente.getNumero_documento().toString().trim());

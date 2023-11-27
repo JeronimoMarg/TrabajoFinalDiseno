@@ -33,11 +33,11 @@ public class FactoresVehiculo {
     @Column(name = "suma_asegurada")
     private Double suma_asegurada;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_vehiculo")
     private TipoVehiculo vehiculo;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 

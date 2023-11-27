@@ -293,6 +293,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         btn_alta_poliza_agregar_hijo.setText("Agregar hijos");
         jPanel4.add(btn_alta_poliza_agregar_hijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
 
+        table_alta_pol01_hijos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         table_alta_pol01_hijos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
