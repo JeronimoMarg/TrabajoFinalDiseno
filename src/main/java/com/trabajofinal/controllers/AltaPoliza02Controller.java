@@ -3,8 +3,11 @@ package com.trabajofinal.controllers;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.dto.HijoDTO;
+import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
+import com.trabajofinal.models.TipoCobertura;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,6 +18,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import com.trabajofinal.dao.TipoCoberturaDao;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -30,6 +34,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
     private ClienteDTO cliente;
     private VehiculoDTO vehiculo;
     private List<HijoDTO> hijoDTO;
+    private PolizaDTO poliza;
 
     private Object[] options = {"Sí", "No"};
 
@@ -38,6 +43,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
         this.cliente = cliente;
         this.vehiculo = vehiculo;
         this.hijoDTO = hijoDTO;
+        this.poliza = new PolizaDTO();
         
         listarTipos();
 
@@ -56,7 +62,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
         if (e.getSource() == altaPoliza02.btn_alta_poliza02_continuar) {
             //Paso 1: verificar todos los datos ya cargados.
             //Paso 2: pasamos a la siguiente ventana.
-            ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO);
+            ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO, poliza);
 
         } else if (e.getSource() == altaPoliza02.btn_alta_poliza02_cancelar) {
             //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
@@ -70,9 +76,14 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
 
     public void listarTipos() {
         lista.clear();
-        lista.addElement("Cobertura Basica");
-        lista.addElement("Cobertura Intermedia");
-        lista.addElement("Cobertura Golden");
+        
+        TipoCoberturaDao dao = new TipoCoberturaDao();
+        List<TipoCobertura> tiposCobertura = dao.getAll();
+        
+        for(TipoCobertura t: tiposCobertura) {
+        	lista.addElement(t.getNombre());
+        }
+        
         altaPoliza02.list_alta_pol02.setModel(lista);
     }
 
@@ -117,11 +128,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
                 if (localDate.isBefore(currentDate) || localDate.isEqual(currentDate)) {
                     JOptionPane.showMessageDialog(null, "Seleccione una fecha futura.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    int dia = localDate.getDayOfMonth();
-                    int mes = localDate.getMonthValue();
-                    int año = localDate.getYear();
-
-                    System.out.println("Día: " + dia + ", Mes: " + mes + ", Año: " + año);
+                	poliza.setFechaInicioVigencia(selectedDate);
                 }
             }
         }

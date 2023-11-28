@@ -1,7 +1,7 @@
 package com.trabajofinal.dto;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.trabajofinal.models.TipoCobertura;
 import com.trabajofinal.models.TipoPago;

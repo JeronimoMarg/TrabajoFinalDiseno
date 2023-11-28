@@ -2,12 +2,14 @@ package com.trabajofinal.controllers;
 
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.HijoDTO;
+import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -21,12 +23,16 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
 	private ClienteDTO cliente;
 	private VehiculoDTO vehiculo;
 	private List<HijoDTO> hijoDTO;
+	private PolizaDTO poliza;
 
-    public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza, ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
+    public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza, ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
         this.confirmacionDatosPoliza = confirmacionDatosPoliza;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
         this.hijoDTO = hijoDTO;
+        this.poliza = poliza;
+        
+        inicializarDatos();
         
         //Para probar la interface, luego se validará con el valor que trainga los datosDTO
         boolean pagoUnico = true;
@@ -73,7 +79,32 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         }
     }
     
+    public void inicializarDatos() {
+    	
+        
+        confirmacionDatosPoliza.txt_confirma_pol_apellido.setText(cliente.getApellido().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_nombre.setText(cliente.getNombre().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_dscto.setText("1000");				//valor hardcodeado de descuento (se calcula en otro caso de uso)
+        confirmacionDatosPoliza.txt_confirma_pol_fecha_ini.setText(poliza.getFechaInicioVigencia().toString().trim());
+        Calendar calendario = Calendar.getInstance();
+        calendario.setTime(poliza.getFechaInicioVigencia());
+        calendario.add(Calendar.MONTH, 6);
+        confirmacionDatosPoliza.txt_confirma_pol_fecha_fin.setText(calendario.getTime().toString().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_marca.setText(vehiculo.getMarca().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_modelo.setText(vehiculo.getModelo().trim());
+        //confirmacionDatosPoliza.txt_confirma_pol_monto.
+        confirmacionDatosPoliza.txt_confirma_pol_motor.setText(vehiculo.getMotor().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_chasis.setText(vehiculo.getChasis().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_patente.setText(vehiculo.getPatente().trim());
+        //confirmacionDatosPoliza.txt_confirma_pol_premio.
+        //confirmacionDatosPoliza.txt_confirma_pol_suma_aseg.
+        //confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.
+        
+    	
+    }
+    
     
     
     
 }
+

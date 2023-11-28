@@ -35,6 +35,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     private Object[] options = {"Sí", "No"};
     private DefaultTableModel tabla = new DefaultTableModel();
     private ClienteDTO clienteDTO = new ClienteDTO();
+    private int fila;
 
     public BusquedaClienteController(BusquedaCliente busquedaCliente) {
         this.busquedaCliente = busquedaCliente;
@@ -73,8 +74,11 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
             
-        	//Lógica de verificación previa
-            //ClienteDTO clienteDTO = aDTO(cliente);
+        	int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 8).toString());
+            ClienteDao cliente_dao = new ClienteDao();
+            Cliente cliente = new Cliente();
+            cliente = cliente_dao.getById(id);
+            clienteDTO = aDTO(cliente);
         	
             this.busquedaCliente.dispose();
             DatosCliente datosCliente = new DatosCliente(clienteDTO);
@@ -272,7 +276,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == busquedaCliente.table_busqueda_cliente) {
-            int fila = busquedaCliente.table_busqueda_cliente.rowAtPoint(e.getPoint());
+            fila = busquedaCliente.table_busqueda_cliente.rowAtPoint(e.getPoint());
             //La fila la proveé el método de arriba, pero la columna la sacamos de la posiición en la tabla
             busquedaCliente.txt_busqueda_cliente_nro_cte.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 0).toString());
             busquedaCliente.cmb_busqueda_cliente_tipo1.setSelectedItem(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 1).toString());
@@ -280,11 +284,13 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
             busquedaCliente.txt_busqueda_cliente_apellido.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 3).toString());
             busquedaCliente.txt_busqueda_cliente_nombre.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 4).toString());
             busquedaCliente.cmb_busqueda_cliente_cond.setSelectedItem(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 6).toString());
+            /*
             int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 8).toString());
             ClienteDao cliente_dao = new ClienteDao();
             Cliente cliente = new Cliente();
             cliente = cliente_dao.getById(id);
             clienteDTO = aDTO(cliente);
+            */
             busquedaCliente.btn_busq_cliente_select.setEnabled(true);
         }
     }

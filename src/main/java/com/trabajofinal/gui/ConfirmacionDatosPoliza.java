@@ -7,6 +7,7 @@ package com.trabajofinal.gui;
 import com.trabajofinal.controllers.ConfirmacionDatosPolizaController;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.HijoDTO;
+import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
 
 import java.awt.image.BufferedImage;
@@ -21,8 +22,9 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 	private ClienteDTO cliente;
 	private VehiculoDTO vehiculo;
 	private List<HijoDTO> hijoDTO;
+	private PolizaDTO poliza;
 	
-    public ConfirmacionDatosPoliza(ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
+    public ConfirmacionDatosPoliza(ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
     	super("Confirmación de póliza");
 
         // Establece un ícono transparente para evitar que se muestre el ícono de Java
@@ -35,7 +37,7 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        ConfirmacionDatosPolizaController confirmacionDatosPolizaController = new ConfirmacionDatosPolizaController(this, cliente, vehiculo, hijoDTO);
+        ConfirmacionDatosPolizaController confirmacionDatosPolizaController = new ConfirmacionDatosPolizaController(this, cliente, vehiculo, hijoDTO, poliza);
     }
 
     /**
@@ -382,19 +384,19 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     public javax.swing.JLabel lab_confirma_pol_ult_dia_pago;
-    private javax.swing.JLabel txt_confirma_pol_apellido;
-    private javax.swing.JLabel txt_confirma_pol_chasis;
-    private javax.swing.JLabel txt_confirma_pol_dscto;
-    private javax.swing.JLabel txt_confirma_pol_fecha_fin;
-    private javax.swing.JLabel txt_confirma_pol_fecha_ini;
-    private javax.swing.JLabel txt_confirma_pol_marca;
-    private javax.swing.JLabel txt_confirma_pol_modelo;
-    private javax.swing.JLabel txt_confirma_pol_monto;
-    private javax.swing.JLabel txt_confirma_pol_motor;
-    private javax.swing.JLabel txt_confirma_pol_nombre;
-    private javax.swing.JLabel txt_confirma_pol_patente;
-    private javax.swing.JLabel txt_confirma_pol_premio;
-    private javax.swing.JLabel txt_confirma_pol_suma_aseg;
-    public javax.swing.JLabel txt_confirma_pol_ult_dia_pago;
+    public javax.swing.JLabel txt_confirma_pol_apellido;
+    public javax.swing.JLabel txt_confirma_pol_chasis;
+    public javax.swing.JLabel txt_confirma_pol_dscto;
+    public javax.swing.JLabel txt_confirma_pol_fecha_fin;
+    public javax.swing.JLabel txt_confirma_pol_fecha_ini;
+    public javax.swing.JLabel txt_confirma_pol_marca;
+    public javax.swing.JLabel txt_confirma_pol_modelo;
+    public javax.swing.JLabel txt_confirma_pol_monto;
+    public javax.swing.JLabel txt_confirma_pol_motor;
+    public javax.swing.JLabel txt_confirma_pol_nombre;
+    public javax.swing.JLabel txt_confirma_pol_patente;
+    public javax.swing.JLabel txt_confirma_pol_premio;
+    public javax.swing.JLabel txt_confirma_pol_suma_aseg;
+   public javax.swing.JLabel txt_confirma_pol_ult_dia_pago;
     // End of variables declaration//GEN-END:variables
 }
