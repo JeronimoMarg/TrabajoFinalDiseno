@@ -42,4 +42,11 @@ public class Pais {
       this.nombre = nombre;
    }
 
+@Override
+public String toString() {
+	return "Pais [id=" + id + ", nombre=" + nombre + "]";
+}
+
+   
+   
 }

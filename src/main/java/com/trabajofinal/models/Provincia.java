@@ -60,4 +60,11 @@ public class Provincia {
       this.pais = pais;
    }
 
+@Override
+public String toString() {
+	return "Provincia [id=" + id + ", nombre=" + nombre + ", pais=" + pais + "]";
+}
+   
+   
+
 }

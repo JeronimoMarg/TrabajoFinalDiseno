@@ -40,6 +40,10 @@ public class FactorRiesgoLocalidad {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
+    
+    public FactorRiesgoLocalidad() {
+    	
+    }
 
     public FactorRiesgoLocalidad(LocalDate fecha_inicio_vigencia, LocalDate fecha_fin_vigencia, Double riesgo,
             Usuario modificador, Localidad localidad) {

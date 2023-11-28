@@ -2,6 +2,7 @@ package com.trabajofinal.controllers;
 
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.VehiculoDTO;
+import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,8 @@ import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -24,11 +27,18 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
     private int selectedAnyo;
     private int selectedMes;
     private int selectedDia;
+    private ClienteDTO cliente;
+    private VehiculoDTO vehiculo;
+    private List<HijoDTO> hijoDTO;
 
     private Object[] options = {"Sí", "No"};
 
-    public AltaPoliza02Controller(AltaPoliza02 altaPoliza02, ClienteDTO cliente, VehiculoDTO vehiculo) {
+    public AltaPoliza02Controller(AltaPoliza02 altaPoliza02, ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
         this.altaPoliza02 = altaPoliza02;
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        this.hijoDTO = hijoDTO;
+        
         listarTipos();
 
         //Pongo a escuchar los botones de la interfaz
@@ -46,7 +56,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
         if (e.getSource() == altaPoliza02.btn_alta_poliza02_continuar) {
             //Paso 1: verificar todos los datos ya cargados.
             //Paso 2: pasamos a la siguiente ventana.
-            ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza();
+            ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO);
 
         } else if (e.getSource() == altaPoliza02.btn_alta_poliza02_cancelar) {
             //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.

@@ -5,7 +5,12 @@
 package com.trabajofinal.gui;
 
 import com.trabajofinal.controllers.ConfirmacionDatosPolizaController;
+import com.trabajofinal.dto.ClienteDTO;
+import com.trabajofinal.dto.HijoDTO;
+import com.trabajofinal.dto.VehiculoDTO;
+
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 /**
  *
@@ -13,11 +18,12 @@ import java.awt.image.BufferedImage;
  */
 public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConfirmacionDatosPoliza
-     */
-    public ConfirmacionDatosPoliza() {
-        super("Confirmación de póliza");
+	private ClienteDTO cliente;
+	private VehiculoDTO vehiculo;
+	private List<HijoDTO> hijoDTO;
+	
+    public ConfirmacionDatosPoliza(ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
+    	super("Confirmación de póliza");
 
         // Establece un ícono transparente para evitar que se muestre el ícono de Java
         BufferedImage transparentImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
@@ -29,7 +35,7 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        ConfirmacionDatosPolizaController confirmacionDatosPolizaController = new ConfirmacionDatosPolizaController(this);
+        ConfirmacionDatosPolizaController confirmacionDatosPolizaController = new ConfirmacionDatosPolizaController(this, cliente, vehiculo, hijoDTO);
     }
 
     /**
@@ -340,7 +346,8 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConfirmacionDatosPoliza().setVisible(true);
+                //new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO).setVisible(true);
+            	//FIJARSE QUE HACE ESTO
             }
         });
     }

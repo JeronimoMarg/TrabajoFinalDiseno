@@ -34,7 +34,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     private boolean isValid = false;
     private Object[] options = {"Sí", "No"};
     private DefaultTableModel tabla = new DefaultTableModel();
-    ClienteDTO clienteDTO = new ClienteDTO();
+    private ClienteDTO clienteDTO = new ClienteDTO();
 
     public BusquedaClienteController(BusquedaCliente busquedaCliente) {
         this.busquedaCliente = busquedaCliente;
@@ -72,7 +72,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
-            // Lógica de verificación previa
+            
+        	//Lógica de verificación previa
             //ClienteDTO clienteDTO = aDTO(cliente);
         	
             this.busquedaCliente.dispose();
@@ -249,33 +250,16 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         dto.setPiso(cliente.getDomicilio().getPiso());
         dto.setDepartamento(cliente.getDomicilio().getDepartamento());
         dto.setLocalidad(cliente.getDomicilio().getLocalidad().getNombre());
-        
-        //Necesito un método para traer el nombre de la provincia y del pais
-        /*
+
         String prov = cliente.getDomicilio().getLocalidad().getProvincia().getNombre();
         String pais = cliente.getDomicilio().getLocalidad().getProvincia().getPais().getNombre();
         dto.setProvincia(prov);
         dto.setPais(pais);
-        */
         
         return dto;
         
         
     }
-    
-    
-    /*
-    *****CON ESTE METODO SE IBA A LA MIERDA TODO. AHORA FUNCA.
-    private List<ClienteDTO> listaADTO(List<Cliente> lista){
-    	//ACA TENEMOS QUE PASAR LOS OBJETOS CLIENTE A DTO Y DESPUES MOSTRARLOS!!!
-        List<ClienteDTO> clientes = Collections.emptyList();
-        for (Cliente c: lista) {
-            clientes.add(aDTO(c));
-        }        
-        return clientes;
-    	
-    }
-*/
 
     //Método para limpiar la tabla
     public void cleanTable() {

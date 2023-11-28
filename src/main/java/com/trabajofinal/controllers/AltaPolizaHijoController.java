@@ -3,6 +3,8 @@ package com.trabajofinal.controllers;
 import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.gui.AltaPolizaHijo;
 import com.trabajofinal.models.EstadoCivil;
+import com.trabajofinal.models.TipoDocumento;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,7 +46,7 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
             //Paso 2: cerrar la ventana.
             //Cargar los datos de hijos para agregarlos al cliente!!!
             if (localDate != null) {
-                AltaPoliza01Controller.setHijoDTO(setDatosHijo());
+                AltaPoliza01Controller.addHijoDTO(setDatosHijo());
                 this.altaPolizaHijo.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha.");
@@ -61,11 +63,12 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
     }
 
     private void cargarDatos() {
+    	
         //Inicialiar cmb estado civil y sexo
-        altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(EstadoCivil.SOLTERO);
-        altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(EstadoCivil.CASADO);
-        altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(EstadoCivil.DIVORCIADO);
-        altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(EstadoCivil.VIUDO);
+    	EstadoCivil[] valores = EstadoCivil.values();
+        for (EstadoCivil valor : valores) {
+        	altaPolizaHijo.cmb_alta_pol_hijo_estado.addItem(valor.toString());
+        }
         altaPolizaHijo.cmb_alta_pol_hijo_sexo.addItem("MASCULINO");
         altaPolizaHijo.cmb_alta_pol_hijo_sexo.addItem("FEMENINO");
     }

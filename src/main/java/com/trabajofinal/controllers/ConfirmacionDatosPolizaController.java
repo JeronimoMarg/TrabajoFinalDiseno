@@ -1,10 +1,15 @@
 package com.trabajofinal.controllers;
 
+import com.trabajofinal.dto.ClienteDTO;
+import com.trabajofinal.dto.HijoDTO;
+import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class ConfirmacionDatosPolizaController implements ActionListener {
@@ -12,9 +17,16 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
     private ConfirmacionDatosPoliza confirmacionDatosPoliza;
     
     private Object[] options = {"Sí", "No"};
+    
+	private ClienteDTO cliente;
+	private VehiculoDTO vehiculo;
+	private List<HijoDTO> hijoDTO;
 
-    public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza) {
+    public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza, ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
         this.confirmacionDatosPoliza = confirmacionDatosPoliza;
+        this.cliente = cliente;
+        this.vehiculo = vehiculo;
+        this.hijoDTO = hijoDTO;
         
         //Para probar la interface, luego se validará con el valor que trainga los datosDTO
         boolean pagoUnico = true;

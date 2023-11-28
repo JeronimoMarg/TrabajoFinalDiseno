@@ -7,7 +7,7 @@ public class HijoDTO {
    private int id;
 
    private LocalDate fecha_nacimiento;
-   private Boolean sexo;
+   private Boolean sexo;	//1 es masculino
    private EstadoCivil estado_civil;
 
    public int getId() {

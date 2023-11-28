@@ -23,7 +23,7 @@ public class Hijo {
     private LocalDate fecha_nacimiento;
 
     @Column(name = "sexo")
-    private Boolean sexo;
+    private Boolean sexo;		//1 es masculino
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_civil")
