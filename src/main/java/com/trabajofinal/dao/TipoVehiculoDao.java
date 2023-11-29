@@ -25,5 +25,20 @@ public class TipoVehiculoDao extends AbstractDao<TipoVehiculo> {
 			return null;
 		}
 	}
+	
+	public TipoVehiculo getTipoVehiculoPorNombre(String modelo) {
+		String qlString = "SELECT t FROM TipoVehiculo t"
+				+ "JOIN f.modelo m "
+				+ "WHERE m.nombre = :modelo ";
+		TypedQuery<TipoVehiculo> query = getEntityManager().createQuery(qlString, TipoVehiculo.class);
+		query.setParameter("modelo", modelo);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

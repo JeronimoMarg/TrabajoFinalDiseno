@@ -273,7 +273,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         VehiculoDTO vehiculo = new VehiculoDTO();
         vehiculo.setChasis(altaPoliza01.txt_alta_pol01_chasis.getText().toString().trim());
         vehiculo.setMotor(altaPoliza01.txt_alta_pol01_motor.getText().toString().trim());
-        vehiculo.setKilometros_anio(altaPoliza01.txt_alta_pol01_km.getText().toString().trim());
+        vehiculo.setKilometros_anio(Integer.parseInt(altaPoliza01.txt_alta_pol01_km.getText().toString().trim()));
         vehiculo.setPatente(altaPoliza01.txt_alta_pol01_patente.getText().toString().trim());
         vehiculo.setCon_alarma(altaPoliza01.chk_alta_pol01_alarma.isSelected());
         vehiculo.setCon_tuerca_antirrobo(altaPoliza01.chk_alta_pol01_tuerca.isSelected());

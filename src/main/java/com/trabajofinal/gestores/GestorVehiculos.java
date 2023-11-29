@@ -2,7 +2,9 @@ package com.trabajofinal.gestores;
 
 import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
+import com.trabajofinal.models.TipoVehiculo;
 import com.trabajofinal.models.Vehiculo;
+import com.trabajofinal.dao.TipoVehiculoDao;
 
 public class GestorVehiculos {
 	
@@ -31,8 +33,15 @@ public class GestorVehiculos {
 		v.setKilometros_anio(vehiculo.getKilometros_anio());
 		v.setMotor(vehiculo.getMotor());
 		v.setPatente(vehiculo.getPatente());
+		v.setTipo_vehiculo(obtenerTipoVehiculo(vehiculo));
 		
 		return v;
+	}
+	
+	private TipoVehiculo obtenerTipoVehiculo(VehiculoDTO vehiculo) {
+		
+		TipoVehiculoDao dao = new TipoVehiculoDao();
+		return dao.getTipoVehiculoPorNombre(vehiculo.getModelo());
 	}
 
 }

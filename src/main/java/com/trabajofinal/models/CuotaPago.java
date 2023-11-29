@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+
+/*
 
 @Entity
 public class CuotaPago {
@@ -17,7 +20,7 @@ public class CuotaPago {
 	 @Column(name = "id_cuota_pago")
 	 private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "id_pago")
 	private Pago pago;
 	
@@ -63,3 +66,4 @@ public class CuotaPago {
 	
 
 }
+*/

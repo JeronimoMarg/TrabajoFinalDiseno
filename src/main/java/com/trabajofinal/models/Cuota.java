@@ -36,10 +36,6 @@ public class Cuota {
     @Column(name = "hasta")
     private LocalDate hasta;
 
-    @OneToMany
-    @JoinColumn(name = "id_cuota_pago")
-    private HashSet<CuotaPago> cuotaPago;
-
     public Cuota() {
     }
 
@@ -86,13 +82,10 @@ public class Cuota {
     public void setHasta(LocalDate hasta) {
         this.hasta = hasta;
     }
-
-    public HashSet<CuotaPago> getPago() {
-        return cuotaPago;
-    }
-
-    public void setPago(HashSet<CuotaPago> pago) {
-        this.cuotaPago = pago;
+    
+    public Pago getPago() {
+    	
+    	return null;
     }
 
 }

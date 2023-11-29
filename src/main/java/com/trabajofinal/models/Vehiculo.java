@@ -127,4 +127,14 @@ public class Vehiculo {
         this.id = id;
     }
 
+	public TipoVehiculo getTipo_vehiculo() {
+		return tipo_vehiculo;
+	}
+
+	public void setTipo_vehiculo(TipoVehiculo tipo_vehiculo) {
+		this.tipo_vehiculo = tipo_vehiculo;
+	}
+    
+    
+
 }

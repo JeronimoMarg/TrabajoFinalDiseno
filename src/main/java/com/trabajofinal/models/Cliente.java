@@ -47,6 +47,9 @@ public class Cliente {
 
    @Column(name = "activo")
    private Boolean activo;
+   
+   @Column(name = "fecha_activacion")
+   private LocalDate fecha_activacion;
 
    // HAY QUE MODIFICAR!!! ACÁ VA UN INTEGER, NO UNA LocalDate!
    @Column(name = "anio_registro")
@@ -86,7 +89,7 @@ public class Cliente {
    public Cliente(String numero_cliente, String numero_documento, TipoDocumento tipo_documento, String nombre,
          String apellido, TipoCondicion condicion, Boolean activo, int anio_registro, String profesion,
          String numero_cuil, String email, TipoCondicionIVA condicion_iva, LocalDate fecha_nacimiento,
-         EstadoCivil estado_civil, char sexo, Domicilio domicilio) {
+         EstadoCivil estado_civil, char sexo, Domicilio domicilio, LocalDate fecha_activacion) {
       super();
       // this.id = id;
       this.numero_cliente = numero_cliente;
@@ -105,6 +108,7 @@ public class Cliente {
       this.estado_civil = estado_civil;
       this.sexo = sexo;
       this.domicilio = domicilio;
+      this.fecha_activacion = fecha_activacion;
    }
 
    public int getId() {
@@ -242,8 +246,16 @@ public class Cliente {
    public void setSexo(char sexo) {
       this.sexo = sexo;
    }
+   
+   public LocalDate getFecha_activacion() {
+	return fecha_activacion;
+   }
 
-   @Override
+   public void setFecha_activacion(LocalDate fecha_activacion) {
+	this.fecha_activacion = fecha_activacion;
+   }
+
+@Override
    public String toString() {
       return "Cliente [id=" + id + ", numero_cliente=" + numero_cliente + ", numero_documento=" + numero_documento
             + ", tipo_documento=" + tipo_documento + ", nombre=" + nombre + ", apellido=" + apellido + ", condicion="

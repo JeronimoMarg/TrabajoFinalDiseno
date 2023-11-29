@@ -56,7 +56,8 @@ public class App {
                 LocalDate.of(2023, 12, 31),
                 EstadoCivil.SOLTERO,
                 'm',
-                new Domicilio("3000", 300, "Dorrego", false, 0, "", l1));
+                new Domicilio("3000", 300, "Dorrego", false, 0, "", l1),
+                LocalDate.of(2020, 6, 1));
         Cliente cliente2 = new Cliente(
                 "00-43685258",
                 "43685258",
@@ -73,7 +74,8 @@ public class App {
                 LocalDate.of(2023, 12, 31),
                 EstadoCivil.CASADO,
                 'm',
-                new Domicilio("4000", 200, "San martin", true, 4, "c", l1));
+                new Domicilio("4000", 200, "San martin", true, 4, "c", l1),
+                LocalDate.of(2021, 8, 1));
         Cliente cliente3 = new Cliente(
                 "00-24876678",
                 "24876678",
@@ -90,7 +92,8 @@ public class App {
                 LocalDate.of(2023, 12, 31),
                 EstadoCivil.DIVORCIADO,
                 'm',
-                new Domicilio("3000", 2134, "Luciano Torrent", false, 0, "", l1));
+                new Domicilio("3000", 2134, "Luciano Torrent", false, 0, "", l1),
+                LocalDate.of(2019, 12, 30));
         Cliente cliente4 = new Cliente(
                 "00-41654296",
                 "41654296",
@@ -107,7 +110,8 @@ public class App {
                 LocalDate.of(2023, 12, 31),
                 EstadoCivil.SOLTERO,
                 'm',
-                new Domicilio("3000", 1423, "San Luis", false, 0, "", l1));
+                new Domicilio("3000", 1423, "San Luis", false, 0, "", l1),
+                LocalDate.of(2022,4, 12));
         
         SiniestrosConductor s1 = new SiniestrosConductor(cliente1, 0);
         SiniestrosConductor s2 = new SiniestrosConductor(cliente2, 1);

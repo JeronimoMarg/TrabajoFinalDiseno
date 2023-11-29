@@ -1,5 +1,6 @@
 package com.trabajofinal.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -237,5 +238,16 @@ public class Poliza {
 
 	public void setDerechosEmision(Double derechos_emision) {
 		this.derechos_emision = derechos_emision;
+	}
+
+	public boolean hayCuotaImpaga() {
+		
+		boolean retorno = false;
+		for(Cuota c: cuotas) {
+			if( c.getPago() == null && c.getFecha_vencimiento().isAfter(LocalDate.now())) {
+				retorno = true;
+			}
+		}
+		return retorno;
 	}
 }

@@ -1,5 +1,7 @@
 package com.trabajofinal.gestores;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +14,7 @@ import com.trabajofinal.models.*;
 import com.trabajofinal.utils.EntityManagerUtil;
 import com.trabajofinal.dao.PolizaDao;
 import com.trabajofinal.dao.ClienteDao;
+import com.trabajofinal.models.TipoEstadoPoliza;
 
 public class GestorPoliza {
 	
@@ -50,8 +53,8 @@ public class GestorPoliza {
 			polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(vehiculo));
 			polizaNueva.setFactores_modelo(obtenerFactoresModelo(vehiculo));
 			polizaNueva.setVehiculo_asegurado(obtenerVehiculo(vehiculo));
+			actualizarEstadoCliente(cliente, poliza, polizaNueva.getCliente());
 			
-			actualizarEstadoCliente(cliente, poliza);
 			setearCuotas(poliza, polizaNueva);
 			guardar(polizaNueva);
 			
@@ -170,30 +173,56 @@ public class GestorPoliza {
 		
 	}
 	
-	private void actualizarEstadoCliente(ClienteDTO cliente_dto, PolizaDTO poliza) {
-		
-		/*
-		 * Si la póliza es la primera que se le asocia al cliente, pasa a ser
-			considerado un cliente “Normal”.
-			
-			Si el cliente poseía otras pólizas asociadas pero ninguna de ellas se
-			encuentra vigente el cliente debe considerarse “Normal”.
-			
-			Si el cliente posee siniestros en el último año o posee alguna cuota
-			impaga o no ha sido un cliente “activo” ininterrumpido al menos por
-			los dos últimos años debe ser considerado un cliente “Normal”.
-			
-			Si el cliente no posee siniestros en el último año y no posee cuotas
-			impagas, como así también el mismo hace al menos 2 años que es
-			cliente “activo” ininterrumpido de la compañía, el mismo es
-			considerado un cliente “Plata”
-			
-		 */
+	private void actualizarEstadoCliente(ClienteDTO cliente_dto, PolizaDTO poliza, Cliente cliente) {
 		
 		ClienteDao daocliente = new ClienteDao();
 		
+		List<Poliza> polizasAsociadas = GestorPoliza.getInstance().obtenerCantidadPolizas(cliente_dto.getId());
 		
+		if(polizasAsociadas.size() == 0) {
+			cliente.setCondicion(TipoCondicion.NORMAL);
+		}else if(polizasAsociadas.size()!=0 && sonNoVigentes(polizasAsociadas)) {
+			cliente.setCondicion(TipoCondicion.NORMAL);
+		}else {
+			int cantidad_siniestros = GestorClientes.getInstance().obtenerSiniestros(cliente_dto.getId());
+			Period period = Period.between(cliente.getFecha_activacion(), LocalDate.now());
+			if(cantidad_siniestros != 0 && tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
+				cliente.setCondicion(TipoCondicion.NORMAL);
+			}else if(cantidad_siniestros != 0 && !tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
+				cliente.setCondicion(TipoCondicion.PLATA);
+			}
+		}
+			
+	}
+	
+	public List<Poliza> obtenerCantidadPolizas(int id_cliente) {
 		
+		PolizaDao dao = new PolizaDao();
+		return dao.getAsociadasCliente(id_cliente);
+		
+	}
+	
+	public boolean sonNoVigentes(List<Poliza> polizas) {
+		
+		boolean retorno = true;
+		for(Poliza p: polizas) {
+			if(p.getEstado() != TipoEstadoPoliza.INACTIVA) {
+				retorno = false;
+			}
+		}
+		return retorno;
+		
+	}
+	
+	public boolean tieneCuotasImpagas(List<Poliza> polizas) {
+		
+		boolean retorno = false;
+		for(Poliza p: polizas) {
+			if(p.hayCuotaImpaga()) {
+				retorno = true;
+			}
+		}
+		return retorno;
 		
 	}
 	
