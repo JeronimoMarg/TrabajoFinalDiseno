@@ -80,7 +80,6 @@ public class AltaPoliza02 extends javax.swing.JFrame {
 
         cmb_alta_pol02_forma_pago.setBackground(new java.awt.Color(220, 220, 220));
         cmb_alta_pol02_forma_pago.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmb_alta_pol02_forma_pago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PAGO UNICO", "MENSUAL" }));
         cmb_alta_pol02_forma_pago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_alta_pol02_forma_pagoActionPerformed(evt);

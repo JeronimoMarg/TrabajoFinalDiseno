@@ -22,6 +22,9 @@ public class PolizaDTO {
 	private Date fechaInicioVigencia;
 	private TipoPago tipoPago;
 	private TipoCobertura tipoCobertura;
+	private Integer descuentos;
+	private Integer derechos_emision;
+	private Integer premio;
 	
 	
 	public String getLocalidad() {
@@ -108,6 +111,25 @@ public class PolizaDTO {
 	public void setTipoCobertura(TipoCobertura tipoCobertura) {
 		this.tipoCobertura = tipoCobertura;
 	}
+	public Integer getDescuentos() {
+		return descuentos;
+	}
+	public void setDescuentos(Integer descuentos) {
+		this.descuentos = descuentos;
+	}
+	public Integer getDerechos_emision() {
+		return derechos_emision;
+	}
+	public void setDerechos_emision(Integer derechos_emision) {
+		this.derechos_emision = derechos_emision;
+	}
+	public Integer getPremio() {
+		return premio;
+	}
+	public void setPremio(Integer premio) {
+		this.premio = premio;
+	}
+	
 	
 
 }

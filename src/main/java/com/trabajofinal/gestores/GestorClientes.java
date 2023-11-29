@@ -1,5 +1,6 @@
 package com.trabajofinal.gestores;
 
+import com.trabajofinal.dao.ClienteDao;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.models.Cliente;
 
@@ -18,9 +19,9 @@ public class GestorClientes {
 		return instance;
 	}
 
-	public Cliente obtenerCliente(ClienteDTO cliente_dto) {
-		//pasado el id como parametro, busca en base de datos el cliente y lo retorna en forma de objeto
-		return null;
+	public Cliente obtenerCliente(int id) {
+		ClienteDao dao = new ClienteDao();
+		return dao.getById(id);
 	}
 
 	public void actualizarEstado(Cliente cliente, int cantidadPolizasCliente, int cantidadSiniestros) {

@@ -1,12 +1,17 @@
 package com.trabajofinal.gestores;
 
 import com.trabajofinal.dto.PolizaDTO;
+import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.models.FactorRiesgoLocalidad;
 import com.trabajofinal.models.FactoresCaracteristicas;
 import com.trabajofinal.models.FactoresModelo;
 import com.trabajofinal.models.FactoresTipoCobertura;
 import com.trabajofinal.models.FactoresVehiculo;
 import com.trabajofinal.models.Localidad;
+import com.trabajofinal.models.TipoCobertura;
+import com.trabajofinal.dao.FactoresTipoCoberturaDao;
+import com.trabajofinal.dao.FactoresCaracteristicasDao;
+import com.trabajofinal.dao.FactorRiesgoLocalidadDao;
 
 public class GestorFactoresCaracteristicas {
 	
@@ -23,28 +28,30 @@ public class GestorFactoresCaracteristicas {
 		return instance;
 	}
 
-	public FactoresTipoCobertura obtenerFactoresTipoCobertura() {
-		//retorna el factorTipoCobertura actual
-		return null;
+	public FactoresTipoCobertura obtenerFactoresTipoCobertura(TipoCobertura tipo) {
+		
+		FactoresTipoCoberturaDao dao = new FactoresTipoCoberturaDao();
+		return dao.getUltimoFactor(tipo);
 	}
 
 	public FactoresCaracteristicas obtenerFactoresCaracteristicas() {
-		//retorna el factorCaracteristicas actual
-		return null;
+		FactoresCaracteristicasDao dao = new FactoresCaracteristicasDao();
+		return dao.getUltimoFactor();
 	}
 
-	public FactorRiesgoLocalidad obtenerFactoresLocalidad(Localidad localidad) {
-		//retorna el factorRiesgoLocalidad para una localidad especificada
-		return null;
+	public FactorRiesgoLocalidad obtenerFactoresLocalidad(String localidad) {
+		
+		FactorRiesgoLocalidadDao dao = new FactorRiesgoLocalidadDao();
+		return dao.getUltimoFactorLocalidad(localidad);
 	}
 
-	public FactoresVehiculo obtenerFactoresVehiculo(PolizaDTO poliza) {
+	public FactoresVehiculo obtenerFactoresVehiculo(VehiculoDTO vehiculo) {
 		//retorna el factorVehiculo para un vehiculo en particular.
 		//el dto tiene marca, modelo, anio
 		return null;
 	}
 
-	public FactoresModelo obtenerFactoresModelo(PolizaDTO poliza) {
+	public FactoresModelo obtenerFactoresModelo(VehiculoDTO vehiculo) {
 		//retorna el factorModelo para un modelo en particular
 		//el dto tiene modelo
 		return null;

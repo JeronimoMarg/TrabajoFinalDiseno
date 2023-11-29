@@ -1,6 +1,7 @@
 package com.trabajofinal.gestores;
 
 import com.trabajofinal.models.Localidad;
+import com.trabajofinal.dao.LocalidadDao;
 
 public class GestorLocalidad {
 	
@@ -17,9 +18,10 @@ public class GestorLocalidad {
 		return instance;
 	}
 
-	public Localidad obtenerLocalidad(Object localidad) {
-		//metodo que busca en por ID la localidad y devuelve el objeto correspondien
-		return null;
+	public Localidad obtenerLocalidad(String localidad) {
+		
+		LocalidadDao dao = new LocalidadDao();
+		return dao.getLocalidad(localidad);
 	}
 
 }

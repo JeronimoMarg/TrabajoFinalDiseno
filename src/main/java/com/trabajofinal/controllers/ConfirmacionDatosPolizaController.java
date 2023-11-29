@@ -7,6 +7,7 @@ import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
+import com.trabajofinal.gestores.GestorPoliza;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -33,6 +34,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         this.poliza = poliza;
         
         inicializarDatos();
+        GestorPoliza.getInstance().calcularPremioDerechosDescuentos(poliza);
         
         //Para probar la interface, luego se validará con el valor que trainga los datosDTO
         boolean pagoUnico = true;
@@ -64,6 +66,9 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
             //Logica de finalizar
             this.confirmacionDatosPoliza.dispose();
+            GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
+            //mostrar un mensaje de exito
+            
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_cancelar) {
             //Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
             int confirmacion = JOptionPane.showOptionDialog(null, "¿Seguro de cancelar los cambios?", "Confirmar cancelación",
@@ -79,12 +84,11 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         }
     }
     
-    public void inicializarDatos() {
-    	
+    public void inicializarDatos() {    	
         
         confirmacionDatosPoliza.txt_confirma_pol_apellido.setText(cliente.getApellido().trim());
         confirmacionDatosPoliza.txt_confirma_pol_nombre.setText(cliente.getNombre().trim());
-        confirmacionDatosPoliza.txt_confirma_pol_dscto.setText("1000");				//valor hardcodeado de descuento (se calcula en otro caso de uso)
+        confirmacionDatosPoliza.txt_confirma_pol_dscto.setText(poliza.getDescuentos().toString().trim());
         confirmacionDatosPoliza.txt_confirma_pol_fecha_ini.setText(poliza.getFechaInicioVigencia().toString().trim());
         Calendar calendario = Calendar.getInstance();
         calendario.setTime(poliza.getFechaInicioVigencia());
@@ -92,14 +96,13 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         confirmacionDatosPoliza.txt_confirma_pol_fecha_fin.setText(calendario.getTime().toString().trim());
         confirmacionDatosPoliza.txt_confirma_pol_marca.setText(vehiculo.getMarca().trim());
         confirmacionDatosPoliza.txt_confirma_pol_modelo.setText(vehiculo.getModelo().trim());
-        //confirmacionDatosPoliza.txt_confirma_pol_monto.
         confirmacionDatosPoliza.txt_confirma_pol_motor.setText(vehiculo.getMotor().trim());
         confirmacionDatosPoliza.txt_confirma_pol_chasis.setText(vehiculo.getChasis().trim());
         confirmacionDatosPoliza.txt_confirma_pol_patente.setText(vehiculo.getPatente().trim());
-        //confirmacionDatosPoliza.txt_confirma_pol_premio.
-        //confirmacionDatosPoliza.txt_confirma_pol_suma_aseg.
+        confirmacionDatosPoliza.txt_confirma_pol_premio.setText(poliza.getPremio().toString().trim());
+        confirmacionDatosPoliza.txt_confirma_pol_suma_aseg.setText(vehiculo.getValor_estimado());
         //confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.
-        
+        //confirmacionDatosPoliza.txt_confirma_pol_monto
     	
     }
     

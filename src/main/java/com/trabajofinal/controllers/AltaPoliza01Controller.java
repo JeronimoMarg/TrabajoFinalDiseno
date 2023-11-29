@@ -284,6 +284,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         vehiculo.setModelo(altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem().toString());
         vehiculo.setPeso(peso);
         vehiculo.setPotencia(potencia);
+        vehiculo.setValor_estimado(altaPoliza01.txt_alta_pol01_valor.getText());
 
         return vehiculo;
     }
@@ -402,6 +403,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
         fact5.setVehiculo(tipo5);
         fact6.setSuma_asegurada(3900000.0);
         fact6.setVehiculo(tipo6);
+        //por que hace esto????
 
         ProvinciaDao provincia_dao = new ProvinciaDao();
         MarcaDao marca_dao = new MarcaDao();

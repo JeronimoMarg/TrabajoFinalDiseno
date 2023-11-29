@@ -18,6 +18,7 @@ public class VehiculoDTO {
    private String velocidad;
    private String marca;
    private String modelo;
+   private String valor_estimado;
 
     public int getId() {
         return id;
@@ -139,7 +140,15 @@ public class VehiculoDTO {
         this.modelo = modelo;
     }
 
-    @Override
+    public String getValor_estimado() {
+		return valor_estimado;
+	}
+
+	public void setValor_estimado(String valor_estimado) {
+		this.valor_estimado = valor_estimado;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + this.id;

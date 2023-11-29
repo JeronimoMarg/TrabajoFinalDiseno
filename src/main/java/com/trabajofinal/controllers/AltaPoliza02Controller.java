@@ -7,6 +7,8 @@ import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.models.TipoCobertura;
+import com.trabajofinal.models.TipoDocumento;
+import com.trabajofinal.models.TipoPago;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +48,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
         this.poliza = new PolizaDTO();
         
         listarTipos();
+        listarTiposPago();
 
         //Pongo a escuchar los botones de la interfaz
         this.altaPoliza02.btn_alta_poliza02_continuar.addActionListener(this);
@@ -85,6 +88,17 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
         }
         
         altaPoliza02.list_alta_pol02.setModel(lista);
+    }
+    
+    public void listarTiposPago() {
+    	
+    	
+    	TipoPago[] valores = TipoPago.values();
+        for (TipoPago valor : valores) {
+        	altaPoliza02.cmb_alta_pol02_forma_pago.addItem(valor.toString());
+        }
+    	
+    	
     }
 
     @Override

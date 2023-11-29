@@ -25,4 +25,17 @@ public class LocalidadDao extends AbstractDao<Localidad> {
          return null;
       }
    }
+   
+   public Localidad getLocalidad(String localidad) {
+	      String qlString = "SELECT l FROM Localidad l WHERE l.nombre = :localidad";
+	      TypedQuery<Localidad> query = getEntityManager().createQuery(qlString, Localidad.class);
+	      query.setParameter("localidad", localidad);
+	      try {
+	         return query.getSingleResult();
+	      } catch (NoResultException e) {
+	         System.out.println(e.getMessage());
+	         e.printStackTrace();
+	         return null;
+	      }
+	   }
 }
