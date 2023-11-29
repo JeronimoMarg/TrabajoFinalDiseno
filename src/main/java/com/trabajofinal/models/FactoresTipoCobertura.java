@@ -40,6 +40,18 @@ public class FactoresTipoCobertura {
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 
+    public FactoresTipoCobertura() {
+    }
+
+    public FactoresTipoCobertura(LocalDate fecha_inicio_vigencia, LocalDate fecha_fin_vigencia,
+            Double porcentaje, TipoCobertura tipo_cobertura, Usuario modificador) {
+        this.fecha_inicio_vigencia = fecha_inicio_vigencia;
+        this.fecha_fin_vigencia = fecha_fin_vigencia;
+        this.porcentaje = porcentaje;
+        this.tipo_cobertura = tipo_cobertura;
+        this.modificador = modificador;
+    }
+
     public int getId() {
         return id;
     }

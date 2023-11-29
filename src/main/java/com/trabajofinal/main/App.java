@@ -134,7 +134,13 @@ public class App {
         TipoCobertura todo_total = new TipoCobertura("Todo Total");
         TipoCobertura terceros_comp = new TipoCobertura("Terceros Completos");
         TipoCobertura todo_riesgo_fran = new TipoCobertura("Todo Riesgo Franquicia");
-        
+
+        FactoresTipoCobertura fact_resp_civil = new FactoresTipoCobertura(LocalDate.of(2023, 11, 01), null, 0.2, resp_civil, usuario1);
+        FactoresTipoCobertura fact_resp_civil_robo = new FactoresTipoCobertura(LocalDate.of(2023, 12, 02), null, 0.2, resp_civil_robo, usuario1);
+        FactoresTipoCobertura fact_todo_total = new FactoresTipoCobertura(LocalDate.of(2023, 11, 01), null, 0.2, todo_total, usuario1);
+        FactoresTipoCobertura fact_terceros_comp = new FactoresTipoCobertura(LocalDate.of(2023, 12, 02), null, 0.2, terceros_comp, usuario1);
+        FactoresTipoCobertura fact_todo_riesgo_fran = new FactoresTipoCobertura(LocalDate.of(2023, 11, 01), null, 0.2, todo_riesgo_fran, usuario1);
+
         FactoresCaracteristicas factores1 = new FactoresCaracteristicas(
                 0.02,
                 0.01,
@@ -234,6 +240,13 @@ public class App {
             dao_cobertura.save(terceros_comp);
             dao_cobertura.save(todo_riesgo_fran);
             
+            FactoresTipoCoberturaDao dao_factores_t_c = new FactoresTipoCoberturaDao();
+            dao_factores_t_c.save(fact_resp_civil);
+            dao_factores_t_c.save(fact_resp_civil_robo);
+            dao_factores_t_c.save(fact_todo_total);
+            dao_factores_t_c.save(fact_terceros_comp);
+            dao_factores_t_c.save(fact_todo_riesgo_fran);
+
             FactoresCaracteristicasDao dao_factores_c = new FactoresCaracteristicasDao();
             dao_factores_c.save(factores1);
             
