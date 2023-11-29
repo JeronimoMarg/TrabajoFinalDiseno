@@ -7,7 +7,7 @@ public class VehiculoDTO {
    private String motor;
    private String chasis;
    private String patente;
-   private String kilometros_anio;
+   private int kilometros_anio;
    private Boolean en_garage;
    private Boolean con_alarma;
    private Boolean con_rastreo;
@@ -52,11 +52,11 @@ public class VehiculoDTO {
         this.patente = patente;
     }
 
-    public String getKilometros_anio() {
+    public int getKilometros_anio() {
         return kilometros_anio;
     }
 
-    public void setKilometros_anio(String kilometros_anio) {
+    public void setKilometros_anio(int kilometros_anio) {
         this.kilometros_anio = kilometros_anio;
     }
 

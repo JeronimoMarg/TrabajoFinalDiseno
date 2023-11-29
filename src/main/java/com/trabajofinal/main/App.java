@@ -46,7 +46,7 @@ public class App {
                 TipoDocumento.DNI,
                 "Jeronimo",
                 "Margitic",
-                TipoCondicion.NORMAL,
+                null,
                 true,
                 2020,
                 "estudiante",
@@ -63,7 +63,7 @@ public class App {
                 TipoDocumento.DNI,
                 "Mateo",
                 "Weber",
-                TipoCondicion.NORMAL,
+                null,
                 true,
                 2020,
                 "ingeniero",
@@ -80,7 +80,7 @@ public class App {
                 TipoDocumento.DNI,
                 "Diego",
                 "Danelone",
-                TipoCondicion.NORMAL,
+                null,
                 true,
                 2020,
                 "abogado",
@@ -97,7 +97,7 @@ public class App {
                 TipoDocumento.DNI,
                 "Franco",
                 "Cosolito",
-                TipoCondicion.PLATA,
+                null,
                 true,
                 2020,
                 "presidente",
@@ -109,6 +109,11 @@ public class App {
                 'm',
                 new Domicilio("3000", 1423, "San Luis", false, 0, "", l1));
         
+        SiniestrosConductor s1 = new SiniestrosConductor(cliente1, 0);
+        SiniestrosConductor s2 = new SiniestrosConductor(cliente2, 1);
+        SiniestrosConductor s3 = new SiniestrosConductor(cliente3, 2);
+        SiniestrosConductor s4 = new SiniestrosConductor(cliente4, 5);
+
         Marca marca1 = new Marca("Ford");
         Marca marca2 = new Marca("Fiat");
         
@@ -206,6 +211,12 @@ public class App {
             dao_cliente.save(cliente2);
             dao_cliente.save(cliente3);
             dao_cliente.save(cliente4);
+            
+            SiniestrosConductorDao dao_siniestros = new SiniestrosConductorDao();
+            dao_siniestros.save(s1);
+            dao_siniestros.save(s2);
+            dao_siniestros.save(s3);
+            dao_siniestros.save(s4);
             
             MarcaDao dao_marca = new MarcaDao();
             ModeloDao dao_modelo = new ModeloDao();

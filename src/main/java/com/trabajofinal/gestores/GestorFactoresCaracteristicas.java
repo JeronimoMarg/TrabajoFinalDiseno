@@ -12,6 +12,8 @@ import com.trabajofinal.models.TipoCobertura;
 import com.trabajofinal.dao.FactoresTipoCoberturaDao;
 import com.trabajofinal.dao.FactoresCaracteristicasDao;
 import com.trabajofinal.dao.FactorRiesgoLocalidadDao;
+import com.trabajofinal.dao.FactoresVehiculoDao;
+import com.trabajofinal.dao.FactoresModeloDao;
 
 public class GestorFactoresCaracteristicas {
 	
@@ -45,16 +47,18 @@ public class GestorFactoresCaracteristicas {
 		return dao.getUltimoFactorLocalidad(localidad);
 	}
 
-	public FactoresVehiculo obtenerFactoresVehiculo(VehiculoDTO vehiculo) {
-		//retorna el factorVehiculo para un vehiculo en particular.
-		//el dto tiene marca, modelo, anio
-		return null;
+	public FactoresVehiculo obtenerFactoresVehiculo(String modelo) {
+		
+		FactoresVehiculoDao dao = new FactoresVehiculoDao();
+		return dao.getUltimoFactorVehiculo(modelo);
+		
 	}
 
-	public FactoresModelo obtenerFactoresModelo(VehiculoDTO vehiculo) {
-		//retorna el factorModelo para un modelo en particular
-		//el dto tiene modelo
-		return null;
+	public FactoresModelo obtenerFactoresModelo(String modelo) {
+		
+		FactoresModeloDao dao = new FactoresModeloDao();
+		return dao.getUltimoFactorModelo(modelo);
+	
 	}
 
 }

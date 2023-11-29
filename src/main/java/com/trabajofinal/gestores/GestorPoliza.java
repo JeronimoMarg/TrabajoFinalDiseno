@@ -11,6 +11,7 @@ import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.models.*;
 import com.trabajofinal.utils.EntityManagerUtil;
 import com.trabajofinal.dao.PolizaDao;
+import com.trabajofinal.dao.ClienteDao;
 
 public class GestorPoliza {
 	
@@ -46,11 +47,10 @@ public class GestorPoliza {
 			setearHijos(hijos, polizaNueva);
 			polizaNueva.setLocalidad(obtenerLocalidad(poliza));
 			polizaNueva.setFactor_riesgo_localidad(obtenerFactorRiesgoLocalidad(poliza));
-			
-			//hasta aca llegue
 			polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(vehiculo));
 			polizaNueva.setFactores_modelo(obtenerFactoresModelo(vehiculo));
-			polizaNueva.setVehiculo_asegurado(obtenerVehiculo(poliza, vehiculo));
+			polizaNueva.setVehiculo_asegurado(obtenerVehiculo(vehiculo));
+			
 			actualizarEstadoCliente(cliente, poliza);
 			setearCuotas(poliza, polizaNueva);
 			guardar(polizaNueva);
@@ -141,7 +141,7 @@ public class GestorPoliza {
 	private FactoresVehiculo obtenerFactoresVehiculo(VehiculoDTO vehiculo) {
 		
 		GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
-		FactoresVehiculo factoresVehiculo = gestor.obtenerFactoresVehiculo(vehiculo);
+		FactoresVehiculo factoresVehiculo = gestor.obtenerFactoresVehiculo(vehiculo.getModelo());
 		return factoresVehiculo;
 		
 	}
@@ -149,15 +149,15 @@ public class GestorPoliza {
 	private FactoresModelo obtenerFactoresModelo(VehiculoDTO vehiculo) {
 		
 		GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
-		FactoresModelo factoresModelo = gestor.obtenerFactoresModelo(vehiculo);
+		FactoresModelo factoresModelo = gestor.obtenerFactoresModelo(vehiculo.getModelo());
 		return factoresModelo;
 		
 	}
 	
-	private Vehiculo obtenerVehiculo(PolizaDTO poliza, VehiculoDTO vehiculo) {
+	private Vehiculo obtenerVehiculo(VehiculoDTO vehiculo) {
 		
 		GestorVehiculos gestor = GestorVehiculos.getInstance();
-		Vehiculo v = gestor.crearVehiculo(poliza);
+		Vehiculo v = gestor.crearVehiculo(vehiculo);
 		return v;
 		
 	}
@@ -172,12 +172,28 @@ public class GestorPoliza {
 	
 	private void actualizarEstadoCliente(ClienteDTO cliente_dto, PolizaDTO poliza) {
 		
-		Cliente cliente = obtenerCliente(cliente_dto);
-		//obtener del PolizaDAO una lista de polizas. O directamente el count;
-		int cantidadPolizasCliente = 0; 	//aca iria seteado con el count;
+		/*
+		 * Si la póliza es la primera que se le asocia al cliente, pasa a ser
+			considerado un cliente “Normal”.
+			
+			Si el cliente poseía otras pólizas asociadas pero ninguna de ellas se
+			encuentra vigente el cliente debe considerarse “Normal”.
+			
+			Si el cliente posee siniestros en el último año o posee alguna cuota
+			impaga o no ha sido un cliente “activo” ininterrumpido al menos por
+			los dos últimos años debe ser considerado un cliente “Normal”.
+			
+			Si el cliente no posee siniestros en el último año y no posee cuotas
+			impagas, como así también el mismo hace al menos 2 años que es
+			cliente “activo” ininterrumpido de la compañía, el mismo es
+			considerado un cliente “Plata”
+			
+		 */
 		
-		GestorClientes gestor = GestorClientes.getInstance();
-		gestor.actualizarEstado(cliente, cantidadPolizasCliente, cliente_dto.getCantidadSiniestros());
+		ClienteDao daocliente = new ClienteDao();
+		
+		
+		
 		
 	}
 	
