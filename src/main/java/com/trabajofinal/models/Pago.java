@@ -37,16 +37,6 @@ public class Pago {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario operador;
-    
-    @OneToOne
-    @JoinColumn(name = "id_cuota")
-    private Cuota cuota;
-    
-    @Column(name="bonificacion_adelantado")
-    private Double bonificacion_adelantado;
-    
-    @Column(name="recargo_mora")
-    private Double recargo_mora;
 
     public Usuario getOperador() {
         return operador;

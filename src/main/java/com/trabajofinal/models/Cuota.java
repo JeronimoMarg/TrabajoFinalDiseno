@@ -36,6 +36,16 @@ public class Cuota {
     @Column(name = "hasta")
     private LocalDate hasta;
 
+    @OneToOne
+    @JoinColumn(name = "id_pago")
+    private Cuota cuota;
+    
+    @Column(name="bonificacion_adelantado")
+    private Double bonificacion_adelantado;
+    
+    @Column(name="recargo_mora")
+    private Double recargo_mora;
+
     public Cuota() {
     }
 
