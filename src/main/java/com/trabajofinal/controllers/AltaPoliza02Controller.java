@@ -36,7 +36,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    private VehiculoDTO vehiculo;
    private List<HijoDTO> hijoDTO;
    private PolizaDTO poliza;
-   private String elementoSeleccionado;
+   private String elementoSeleccionado = "Ninguno";
    private Date selectedDate;
    private List<TipoCobertura> tiposCobertura;
    private GestorPoliza gestorPoliza;
@@ -68,13 +68,13 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    @Override
    public void actionPerformed(ActionEvent e) {
       if (e.getSource() == altaPoliza02.btn_alta_poliza02_continuar) {
-         if (elementoSeleccionado.equals("")) {
-             JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de cobertura.");
+         if (elementoSeleccionado.equals("Ninguno")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de cobertura.");
          } else {
-         
-         actualizarPoliza();
-         ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO,
-               poliza);
+
+            actualizarPoliza();
+            ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO,
+                  poliza);
          }
 
       } else if (e.getSource() == altaPoliza02.btn_alta_poliza02_cancelar) {
