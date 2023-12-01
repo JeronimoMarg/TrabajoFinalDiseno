@@ -5,7 +5,9 @@
 package com.trabajofinal.gui;
 
 import com.trabajofinal.controllers.DetalleCuotasController;
+import com.trabajofinal.models.Cuota;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 /**
  *
@@ -13,10 +15,9 @@ import java.awt.image.BufferedImage;
  */
 public class DetalleCuotas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DetalleCuotas
-     */
-    public DetalleCuotas() {
+     public DetalleCuotas() {}
+     
+    public DetalleCuotas(List<Cuota> cuotas) {
         // Establece un ícono transparente para evitar que se muestre el ícono de Java
         BufferedImage transparentImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         setIconImage(transparentImage);
@@ -27,7 +28,7 @@ public class DetalleCuotas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         
-        DetalleCuotasController detalleCuotasController = new DetalleCuotasController(this);
+        DetalleCuotasController detalleCuotasController = new DetalleCuotasController(this, cuotas);
     }
 
     /**
@@ -44,28 +45,28 @@ public class DetalleCuotas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btn_detalle_cuotas = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txt_det_cuota_1 = new javax.swing.JTextField();
+        txt_det_cuota_2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_det_cuota_3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_det_cuota_4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_det_cuota_5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_det_cuota_6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txt_det_cuota_ult_pago1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txt_det_cuota_ult_pago2 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        txt_det_cuota_ult_pago3 = new javax.swing.JTextField();
+        txt_det_cuota_ult_pago4 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txt_det_cuota_ult_pago5 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txt_det_cuota_ult_pago6 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,71 +95,79 @@ public class DetalleCuotas extends javax.swing.JFrame {
         btn_detalle_cuotas.setText("Continuar");
         jPanel2.add(btn_detalle_cuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 110, 30));
 
-        jTextField1.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 200, 30));
+        txt_det_cuota_1.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_1.setFocusable(false);
+        jPanel2.add(txt_det_cuota_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 200, 30));
 
-        jTextField2.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_det_cuota_2.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_2.setFocusable(false);
+        txt_det_cuota_2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_det_cuota_2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 200, 30));
+        jPanel2.add(txt_det_cuota_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Importe cuota 2");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 200, 30));
+        txt_det_cuota_3.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_3.setFocusable(false);
+        jPanel2.add(txt_det_cuota_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Importe cuota 3");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 200, 30));
+        txt_det_cuota_4.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_4.setFocusable(false);
+        jPanel2.add(txt_det_cuota_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 200, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Importe cuota 4");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, 20));
 
-        jTextField5.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 200, 30));
+        txt_det_cuota_5.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_5.setFocusable(false);
+        jPanel2.add(txt_det_cuota_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 200, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Importe cuota 5");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 200, 30));
+        txt_det_cuota_6.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_6.setFocusable(false);
+        jPanel2.add(txt_det_cuota_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Importe cuota 6");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
-        jTextField7.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 200, 30));
+        txt_det_cuota_ult_pago1.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_ult_pago1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_ult_pago1.setFocusable(false);
+        jPanel2.add(txt_det_cuota_ult_pago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 200, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Último día de pago cuota 1");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txt_det_cuota_ult_pago2.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_ult_pago2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_ult_pago2.setFocusable(false);
+        txt_det_cuota_ult_pago2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txt_det_cuota_ult_pago2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 200, 30));
+        jPanel2.add(txt_det_cuota_ult_pago2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 200, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Último día de pago cuota 2");
@@ -168,34 +177,38 @@ public class DetalleCuotas extends javax.swing.JFrame {
         jLabel10.setText("Último día de pago cuota 3");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 200, 30));
+        txt_det_cuota_ult_pago3.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_ult_pago3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_ult_pago3.setFocusable(false);
+        jPanel2.add(txt_det_cuota_ult_pago3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 200, 30));
 
-        jTextField10.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 200, 30));
+        txt_det_cuota_ult_pago4.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_ult_pago4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_ult_pago4.setFocusable(false);
+        jPanel2.add(txt_det_cuota_ult_pago4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 200, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Último día de pago cuota 4");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
 
-        jTextField11.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        txt_det_cuota_ult_pago5.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_ult_pago5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_ult_pago5.setFocusable(false);
+        txt_det_cuota_ult_pago5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                txt_det_cuota_ult_pago5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 200, 30));
+        jPanel2.add(txt_det_cuota_ult_pago5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 200, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Último día de pago cuota 5");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
 
-        jTextField12.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 200, 30));
+        txt_det_cuota_ult_pago6.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_cuota_ult_pago6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_cuota_ult_pago6.setFocusable(false);
+        jPanel2.add(txt_det_cuota_ult_pago6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 200, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Último día de pago cuota 6");
@@ -206,17 +219,17 @@ public class DetalleCuotas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txt_det_cuota_ult_pago2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_det_cuota_ult_pago2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txt_det_cuota_ult_pago2ActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void txt_det_cuota_ult_pago5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_det_cuota_ult_pago5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_txt_det_cuota_ult_pago5ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_det_cuota_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_det_cuota_2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_det_cuota_2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,17 +283,17 @@ public class DetalleCuotas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField10;
-    public javax.swing.JTextField jTextField11;
-    public javax.swing.JTextField jTextField12;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
-    public javax.swing.JTextField jTextField6;
-    public javax.swing.JTextField jTextField7;
-    public javax.swing.JTextField jTextField8;
-    public javax.swing.JTextField jTextField9;
+    public javax.swing.JTextField txt_det_cuota_1;
+    public javax.swing.JTextField txt_det_cuota_2;
+    public javax.swing.JTextField txt_det_cuota_3;
+    public javax.swing.JTextField txt_det_cuota_4;
+    public javax.swing.JTextField txt_det_cuota_5;
+    public javax.swing.JTextField txt_det_cuota_6;
+    public javax.swing.JTextField txt_det_cuota_ult_pago1;
+    public javax.swing.JTextField txt_det_cuota_ult_pago2;
+    public javax.swing.JTextField txt_det_cuota_ult_pago3;
+    public javax.swing.JTextField txt_det_cuota_ult_pago4;
+    public javax.swing.JTextField txt_det_cuota_ult_pago5;
+    public javax.swing.JTextField txt_det_cuota_ult_pago6;
     // End of variables declaration//GEN-END:variables
 }
