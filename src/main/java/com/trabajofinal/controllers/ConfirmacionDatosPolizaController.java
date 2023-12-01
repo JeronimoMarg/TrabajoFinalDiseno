@@ -12,6 +12,7 @@ import com.trabajofinal.models.TipoPago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -59,9 +60,10 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
             this.confirmacionDatosPoliza.btn_confirma_datos_pol_ver_det.setVisible(false);
             this.confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setVisible(true);
             this.confirmacionDatosPoliza.lab_confirma_pol_ult_dia_pago.setVisible(true);
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Define el formato deseado
-            String fechaFormateada = sdf.format(poliza.getCuotas().get(0).getFecha_vencimiento());
-            confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setText(fechaFormateada);
+           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+String fechaFormateada = poliza.getCuotas().get(0).getFecha_vencimiento().format(formatter);
+confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setText(fechaFormateada);
+
         }
 
         //Cargar descuentos. Lo necesitamos en la interfaz y en la ventana correspondiente
