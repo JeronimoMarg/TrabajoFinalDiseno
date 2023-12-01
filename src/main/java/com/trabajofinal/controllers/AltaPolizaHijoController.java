@@ -92,14 +92,16 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
             }
         }
     }
-    
+  
     private HijoDTO setDatosHijo() {
         HijoDTO dto = new HijoDTO();
-        
+        if (!localDate.isAfter(LocalDate.now())) {
             dto.setEstado_civil(EstadoCivil.valueOf(altaPolizaHijo.cmb_alta_pol_hijo_estado.getSelectedItem().toString()));
             dto.setSexo(altaPolizaHijo.cmb_alta_pol_hijo_sexo.getSelectedItem().equals("MASCULINO"));
             dto.setFecha_nacimiento(localDate);
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "La fecha no puede ser superior a la actual.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         return dto;
     }
 }

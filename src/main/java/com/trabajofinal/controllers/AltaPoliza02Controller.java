@@ -7,7 +7,6 @@ import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.models.TipoCobertura;
-import com.trabajofinal.models.TipoDocumento;
 import com.trabajofinal.models.TipoPago;
 
 import java.awt.event.ActionEvent;
@@ -30,14 +29,17 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
 
     private AltaPoliza02 altaPoliza02;
     DefaultListModel<String> lista = new DefaultListModel<>();
-    private int selectedAnyo;
-    private int selectedMes;
-    private int selectedDia;
+    //private int selectedAnyo;
+    //private int selectedMes;
+    //private int selectedDia;
     private ClienteDTO cliente;
     private VehiculoDTO vehiculo;
     private List<HijoDTO> hijoDTO;
     private PolizaDTO poliza;
-
+    private String elementoSeleccionado;
+    private Date selectedDate;
+    private List<TipoCobertura> tiposCobertura;
+    
     private Object[] options = {"Sí", "No"};
 
     public AltaPoliza02Controller(AltaPoliza02 altaPoliza02, ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
@@ -46,7 +48,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
         this.vehiculo = vehiculo;
         this.hijoDTO = hijoDTO;
         this.poliza = new PolizaDTO();
-        
+
         listarTipos();
         listarTiposPago();
 
@@ -56,7 +58,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
 
         //Lista en escucha
         this.altaPoliza02.list_alta_pol02.addMouseListener(this);
-        
+
         this.altaPoliza02.jdate_alta_pol02_vigencia.addPropertyChangeListener(this);
     }
 
@@ -79,26 +81,24 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
 
     public void listarTipos() {
         lista.clear();
-        
+
         TipoCoberturaDao dao = new TipoCoberturaDao();
-        List<TipoCobertura> tiposCobertura = dao.getAll();
-        
-        for(TipoCobertura t: tiposCobertura) {
-        	lista.addElement(t.getNombre());
+        tiposCobertura = dao.getAll();
+
+        for (TipoCobertura t : tiposCobertura) {
+            lista.addElement(t.getNombre());
         }
-        
+
         altaPoliza02.list_alta_pol02.setModel(lista);
     }
-    
-    public void listarTiposPago() {
-    	
-    	
-    	TipoPago[] valores = TipoPago.values();
+
+    public void listarTiposPago() {               //
+
+        TipoPago[] valores = TipoPago.values();
         for (TipoPago valor : valores) {
-        	altaPoliza02.cmb_alta_pol02_forma_pago.addItem(valor.toString());
+            altaPoliza02.cmb_alta_pol02_forma_pago.addItem(valor.toString());
         }
-    	
-    	
+
     }
 
     @Override
@@ -107,10 +107,25 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
             JList<String> lista = (JList<String>) e.getSource();
             int index = lista.locationToIndex(e.getPoint()); // Obtiene el índice del elemento seleccionado
 
-            // Si el índice es válido, lo seleccionamos en el JList
+            // Si el índice es válido, obtenemos el texto de la fila seleccionada
             if (index != -1) {
-                lista.setSelectedIndex(index);
-                JOptionPane.showMessageDialog(null, "Seleccionó el elemento en la posición: " + index);
+                elementoSeleccionado = lista.getModel().getElementAt(index);                        ////Verificar cómo se carga el combo box para la selección
+                TipoCobertura tipo = new TipoCobertura();
+                
+                for (TipoCobertura tipos: tiposCobertura) {
+                    if (tipos.getNombre().equals(elementoSeleccionado)) {
+                        tipo = tipos;
+                    }
+                }
+                
+                //Acá tenemos  problema. el premio no puedo ser int, porque es plata. Y habría que ver de implementar los métodos para los calculos corrctores de 
+                //todos los guarismos
+                
+                poliza.setPremio(100000);
+                poliza.setTipoPago(altaPoliza02.cmb_alta_pol02_forma_pago.getSelectedItem().toString().equals("MENSUAL") ? TipoPago.MENSUAL : TipoPago.SEMESTRAL);
+                poliza.setFechaInicioVigencia(selectedDate);
+                poliza.setTipoCobertura(tipo);
+                //JOptionPane.showMessageDialog(null, "Seleccionó el elemento: " + elementoSeleccionado);
             }
         }
     }
@@ -134,7 +149,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("date".equals(evt.getPropertyName())) {
-            Date selectedDate = (Date) evt.getNewValue();
+            selectedDate = (Date) evt.getNewValue();
             if (selectedDate != null) {
                 LocalDate localDate = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate currentDate = LocalDate.now();
@@ -142,7 +157,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
                 if (localDate.isBefore(currentDate) || localDate.isEqual(currentDate)) {
                     JOptionPane.showMessageDialog(null, "Seleccione una fecha futura.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                	poliza.setFechaInicioVigencia(selectedDate);
+                    poliza.setFechaInicioVigencia(selectedDate);
                 }
             }
         }
