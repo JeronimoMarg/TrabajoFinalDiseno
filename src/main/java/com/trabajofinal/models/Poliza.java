@@ -19,6 +19,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "poliza")
@@ -107,7 +108,16 @@ public class Poliza {
     private FactorRiesgoLocalidad factor_riesgo_localidad;
 
     public Poliza() {
+        this.cuotas = new ArrayList<>();
+        this.hijos = new HashSet<>();
+        this.modificaciones = new ArrayList<>();
+       
+        
+        
+        
     }
+    
+    
     
     public Cliente getCliente() {
         return cliente;
