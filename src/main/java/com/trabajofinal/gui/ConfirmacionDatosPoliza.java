@@ -60,7 +60,7 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txt_confirma_pol_modelo = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jlb_confirma_poliza = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_confirma_pol_apellido = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -140,9 +140,9 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         jLabel8.setText("Modelo");
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel6.setText("Cliente <n_cliente>");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jlb_confirma_poliza.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jlb_confirma_poliza.setText("Cliente <n_cliente>");
+        jPanel4.add(jlb_confirma_poliza, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Apellido");
@@ -376,13 +376,13 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    public javax.swing.JLabel jlb_confirma_poliza;
     public javax.swing.JLabel lab_confirma_pol_ult_dia_pago;
     public javax.swing.JLabel txt_confirma_pol_apellido;
     public javax.swing.JLabel txt_confirma_pol_chasis;
@@ -397,6 +397,6 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
     public javax.swing.JLabel txt_confirma_pol_patente;
     public javax.swing.JLabel txt_confirma_pol_premio;
     public javax.swing.JLabel txt_confirma_pol_suma_aseg;
-   public javax.swing.JLabel txt_confirma_pol_ult_dia_pago;
+    public javax.swing.JLabel txt_confirma_pol_ult_dia_pago;
     // End of variables declaration//GEN-END:variables
 }

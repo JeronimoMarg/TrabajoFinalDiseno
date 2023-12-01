@@ -6,9 +6,14 @@ import java.awt.image.BufferedImage;
 public class DetalleBonificaciones extends javax.swing.JFrame {
 
     /**
-     * Creates new form DetalleBonificaciones
+       dcto_antig = poliza.getDto_antiguedad();
+        dcto_mas_una_un = poliza.getDto_mas_un_vehiculo();
+        dcto_pago_sem = poliza.getDto_pago_semestral();eates new form DetalleBonificaciones
      */
-    public DetalleBonificaciones() {
+    
+    public DetalleBonificaciones() {}
+    
+    public DetalleBonificaciones(Double dcto_antig, Double dcto_mas_una_un, Double dcto_pago_sem) {
         // Establece un ícono transparente para evitar que se muestre el ícono de Java
         BufferedImage transparentImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         setIconImage(transparentImage);
@@ -19,7 +24,7 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         
-        DetalleBonificacionesController detalleBonificacionesController = new DetalleBonificacionesController(this);
+        DetalleBonificacionesController detalleBonificacionesController = new DetalleBonificacionesController(this, dcto_antig, dcto_mas_una_un,  dcto_pago_sem);
     }
 
     /**
@@ -37,9 +42,9 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txt_det_bon_unidad = new javax.swing.JTextField();
+        txt_det_bon_sem = new javax.swing.JTextField();
+        txt_det_bon_ant = new javax.swing.JTextField();
         btn_detalle_bonificaciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,22 +76,25 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
         jLabel4.setText("Por antigüedad:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 300, 30));
+        txt_det_bon_unidad.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_bon_unidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_bon_unidad.setFocusable(false);
+        jPanel2.add(txt_det_bon_unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 300, 30));
 
-        jTextField2.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_det_bon_sem.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_bon_sem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_bon_sem.setFocusable(false);
+        txt_det_bon_sem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_det_bon_semActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 300, 30));
+        jPanel2.add(txt_det_bon_sem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 300, 30));
 
-        jTextField3.setBackground(new java.awt.Color(220, 220, 220));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 300, 30));
+        txt_det_bon_ant.setBackground(new java.awt.Color(220, 220, 220));
+        txt_det_bon_ant.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_det_bon_ant.setFocusable(false);
+        jPanel2.add(txt_det_bon_ant, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 300, 30));
 
         btn_detalle_bonificaciones.setBackground(new java.awt.Color(52, 162, 224));
         btn_detalle_bonificaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -98,9 +106,9 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_det_bon_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_det_bon_semActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_det_bon_semActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,8 +156,8 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField txt_det_bon_ant;
+    public javax.swing.JTextField txt_det_bon_sem;
+    public javax.swing.JTextField txt_det_bon_unidad;
     // End of variables declaration//GEN-END:variables
 }

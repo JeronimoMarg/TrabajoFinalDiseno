@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import com.trabajofinal.dao.TipoCoberturaDao;
 
 import javax.swing.DefaultListModel;
@@ -31,9 +32,6 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
 
    private AltaPoliza02 altaPoliza02;
    DefaultListModel<String> lista = new DefaultListModel<>();
-   // private int selectedAnyo;
-   // private int selectedMes;
-   // private int selectedDia;
    private ClienteDTO cliente;
    private VehiculoDTO vehiculo;
    private List<HijoDTO> hijoDTO;
@@ -70,11 +68,14 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    @Override
    public void actionPerformed(ActionEvent e) {
       if (e.getSource() == altaPoliza02.btn_alta_poliza02_continuar) {
-         // Paso 1: verificar todos los datos ya cargados.
-         // Paso 2: pasamos a la siguiente ventana.
+         if (elementoSeleccionado.equals("")) {
+             JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de cobertura.");
+         } else {
+         
          actualizarPoliza();
          ConfirmacionDatosPoliza confirmacionDatosPoliza = new ConfirmacionDatosPoliza(cliente, vehiculo, hijoDTO,
                poliza);
+         }
 
       } else if (e.getSource() == altaPoliza02.btn_alta_poliza02_cancelar) {
          // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
