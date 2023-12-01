@@ -15,13 +15,8 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 
-//Tenemos que formatear fecha inicio y fecha fin DONE
-//suma asegurada y premio, con dos décimales. DONE
-//monto total a pagar, idem DONE
-//formatear a mayusculas los campos de texto DONE
 public class ConfirmacionDatosPolizaController implements ActionListener {
 
     private ConfirmacionDatosPoliza confirmacionDatosPoliza;
@@ -37,7 +32,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
     private Double dcto_antig;
 
     public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza, ClienteDTO cliente,
-            VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
+        VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
         this.confirmacionDatosPoliza = confirmacionDatosPoliza;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
@@ -46,6 +41,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
 
         inicializarDatos();
         GestorPoliza.getInstance().calcularPremioDerechosDescuentos(poliza);
+        System.out.println(this.hijoDTO.size());
 
         // Los elementos de la interfaz varían si es o no de pago único.      
         boolean pagoMensual = poliza.getTipoPago().equals(TipoPago.MENSUAL);
@@ -60,9 +56,9 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
             this.confirmacionDatosPoliza.btn_confirma_datos_pol_ver_det.setVisible(false);
             this.confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setVisible(true);
             this.confirmacionDatosPoliza.lab_confirma_pol_ult_dia_pago.setVisible(true);
-           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-String fechaFormateada = poliza.getCuotas().get(0).getFecha_vencimiento().format(formatter);
-confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setText(fechaFormateada);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String fechaFormateada = poliza.getCuotas().get(0).getFecha_vencimiento().format(formatter);
+            confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setText(fechaFormateada);
 
         }
 
@@ -81,13 +77,13 @@ confirmacionDatosPoliza.txt_confirma_pol_ult_dia_pago.setText(fechaFormateada);
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_mod) {
-            // Logica de modificacion
             this.confirmacionDatosPoliza.dispose();
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
             // Logica de finalizar
-            this.confirmacionDatosPoliza.dispose();
             GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
-            // mostrar un mensaje de exito
+            JOptionPane.showMessageDialog(null, "Poliza creada exitósamente");
+            this.confirmacionDatosPoliza.dispose();
+
 
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
