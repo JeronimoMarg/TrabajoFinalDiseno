@@ -40,7 +40,25 @@ public class FactoresModelo {
     @JoinColumn(name = "id_usuario")
     private Usuario modificador;
 
-    public int getId() {
+    public FactoresModelo() {
+    	
+    }
+    
+    
+    
+    public FactoresModelo(LocalDate fecha_inicio_vigencia, LocalDate fecha_fin_vigencia, Double probabilidad_robo,
+			Modelo modelo, Usuario modificador) {
+		super();
+		this.fecha_inicio_vigencia = fecha_inicio_vigencia;
+		this.fecha_fin_vigencia = fecha_fin_vigencia;
+		this.probabilidad_robo = probabilidad_robo;
+		this.modelo = modelo;
+		this.modificador = modificador;
+	}
+
+
+
+	public int getId() {
         return id;
     }
 

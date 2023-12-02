@@ -17,7 +17,9 @@ public class VehiculoDTO {
    private String potencia;
    private String velocidad;
    private String marca;
+   private int id_modelo;
    private String modelo;
+   private int id_tipo_vehiculo;
    private String valor_estimado;
 
     public int getId() {
@@ -146,6 +148,23 @@ public class VehiculoDTO {
 
 	public void setValor_estimado(String valor_estimado) {
 		this.valor_estimado = valor_estimado;
+	}
+	
+
+	public int getId_tipo_vehiculo() {
+		return id_tipo_vehiculo;
+	}
+
+	public void setId_tipo_vehiculo(int id_tipo_vehiculo) {
+		this.id_tipo_vehiculo = id_tipo_vehiculo;
+	}
+
+	public int getId_modelo() {
+		return id_modelo;
+	}
+
+	public void setId_modelo(int id_modelo) {
+		this.id_modelo = id_modelo;
 	}
 
 	@Override

@@ -18,10 +18,10 @@ public class GestorLocalidad {
 		return instance;
 	}
 
-	public Localidad obtenerLocalidad(String localidad) {
+	public Localidad obtenerLocalidad(int id_localidad) {
 		
 		LocalidadDao dao = new LocalidadDao();
-		return dao.getLocalidad(localidad);
+		return dao.getById(id_localidad);
 	}
 
 }

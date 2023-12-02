@@ -24,7 +24,7 @@ public class Modelo {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "factor_actual")
     private FactoresModelo factor_actual;
 

@@ -3,6 +3,7 @@ package com.trabajofinal.models;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -37,20 +38,10 @@ public class Cuota {
     private LocalDate hasta;
 
     @OneToOne
-    @JoinColumn(name = "id_pago")
-    private Cuota cuota;
-    
-    @Column(name="bonificacion_adelantado")
-    private Double bonificacion_adelantado;
-    
-    @Column(name="recargo_mora")
-    private Double recargo_mora;
+    @JoinColumn(name = "id_cuota_pago")
+    private CuotaPago cuotaPago;
 
     public Cuota() {
-    }
-
-    public Cuota(Double premio, TipoPago tipoPago) {
-
     }
 
     public int getId() {
@@ -95,7 +86,8 @@ public class Cuota {
     
     public Pago getPago() {
     	
-    	return null;
+    	return cuotaPago.getPago();
+    	
     }
 
 }

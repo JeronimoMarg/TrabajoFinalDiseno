@@ -1,5 +1,9 @@
 package com.trabajofinal.models;
 
+import java.util.HashSet;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,9 +12,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
-/*
 
 @Entity
 public class CuotaPago {
@@ -23,6 +27,10 @@ public class CuotaPago {
 	@OneToOne
 	@JoinColumn(name = "id_pago")
 	private Pago pago;
+	
+	@OneToMany
+	@JoinColumn(name = "id_cuota")
+	private List<Cuota> cuotas;
 	
     @Column(name = "recargo_mora")
     private Double recargo_mora;
@@ -61,9 +69,16 @@ public class CuotaPago {
 	public void setBonificacion_pago_adelantado(Double bonificacion_pago_adelantado) {
 		this.bonificacion_pago_adelantado = bonificacion_pago_adelantado;
 	}
-    
-    
+
+	public List<Cuota> getCuotas() {
+		return cuotas;
+	}
+
+	public void setCuotas(List<Cuota> cuotas) {
+		this.cuotas = cuotas;
+	}
+	
+	
 	
 
 }
-*/

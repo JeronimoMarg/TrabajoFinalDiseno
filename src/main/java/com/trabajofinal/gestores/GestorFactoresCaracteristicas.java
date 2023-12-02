@@ -41,23 +41,23 @@ public class GestorFactoresCaracteristicas {
 		return dao.getUltimoFactor();
 	}
 
-	public FactorRiesgoLocalidad obtenerFactoresLocalidad(String localidad) {
+	public FactorRiesgoLocalidad obtenerFactoresLocalidad(int id_localidad) {
 		
 		FactorRiesgoLocalidadDao dao = new FactorRiesgoLocalidadDao();
-		return dao.getUltimoFactorLocalidad(localidad);
+		return dao.getUltimoFactorLocalidad(id_localidad);
 	}
 
-	public FactoresVehiculo obtenerFactoresVehiculo(String modelo) {
+	public FactoresVehiculo obtenerFactoresVehiculo(int id_tipo_vehiculo) {
 		
 		FactoresVehiculoDao dao = new FactoresVehiculoDao();
-		return dao.getUltimoFactorVehiculo(modelo);
+		return dao.getUltimoFactorVehiculo(id_tipo_vehiculo);
 		
 	}
 
-	public FactoresModelo obtenerFactoresModelo(String modelo) {
+	public FactoresModelo obtenerFactoresModelo(int id_modelo) {
 		
 		FactoresModeloDao dao = new FactoresModeloDao();
-		return dao.getUltimoFactorModelo(modelo);
+		return dao.getUltimoFactorModelo(id_modelo);
 	
 	}
 

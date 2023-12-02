@@ -4,6 +4,7 @@ import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gestores.GestorClientes;
 import com.trabajofinal.gestores.GestorPoliza;
+import com.trabajofinal.gestores.GestorSistemaFinanciero;
 import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.gui.AltaPoliza02;
@@ -45,12 +46,12 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    private Object[] options = { "Sí", "No" };
 
    public AltaPoliza02Controller(AltaPoliza02 altaPoliza02, ClienteDTO cliente, VehiculoDTO vehiculo,
-         List<HijoDTO> hijoDTO) {
+         List<HijoDTO> hijoDTO, PolizaDTO poliza) {
       this.altaPoliza02 = altaPoliza02;
       this.cliente = cliente;
       this.vehiculo = vehiculo;
       this.hijoDTO = hijoDTO;
-      this.poliza = new PolizaDTO();
+      this.poliza = poliza;
 
       listarTipos();
       listarTiposPago();
@@ -167,9 +168,8 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    }
 
    private void actualizarPoliza() {
-      gestorPoliza = GestorPoliza.getInstance();
 
-      // seteamos los datos del vehiculo en particular
+	  /*
       poliza.setAnio(vehiculo.getAnio());
       poliza.setChasis(vehiculo.getChasis());
       poliza.setConAlarma(vehiculo.getCon_alarma());
@@ -180,6 +180,7 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
       poliza.setModelo(vehiculo.getModelo());
       poliza.setMotor(vehiculo.getMotor());
       poliza.setKilometros(vehiculo.getKilometros_anio());
+      */
 
       // Datos relativos a la poliza a crearse
       poliza.setTipoPago(
@@ -187,8 +188,8 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
                   : TipoPago.SEMESTRAL);
       poliza.setFechaInicioVigencia(selectedDate);
       // poliza.setTipoCobertura(); <--- Seteado en el mouse listener
-      gestorPoliza.calcularPremioDerechosDescuentos(poliza);
-      poliza.setCuotas(gestorPoliza.crearCuotas(poliza));
+      GestorSistemaFinanciero.getInstance().calcularPremioDerechosDescuentos(poliza);
+      poliza.setCuotas(GestorPoliza.getInstance().crearCuotas(poliza));
 
    }
 }

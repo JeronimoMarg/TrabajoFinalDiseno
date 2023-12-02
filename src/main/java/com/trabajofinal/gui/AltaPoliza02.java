@@ -3,6 +3,7 @@ package com.trabajofinal.gui;
 import com.trabajofinal.controllers.AltaPoliza02Controller;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.HijoDTO;
+import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -11,10 +12,11 @@ public class AltaPoliza02 extends javax.swing.JFrame {
 
     private ClienteDTO cliente;
     private VehiculoDTO vehiculo;
+    private PolizaDTO poliza;
     
     public AltaPoliza02() {}
     
-    public AltaPoliza02(ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO) {
+    public AltaPoliza02(ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
     super("Alta de Póliza");
 
     // Establece un ícono transparente para evitar que se muestre el ícono de Java
@@ -27,7 +29,7 @@ public class AltaPoliza02 extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     setVisible(true);
     
-    AltaPoliza02Controller altaPoliza02Controller = new AltaPoliza02Controller(this, cliente, vehiculo, hijoDTO);
+    AltaPoliza02Controller altaPoliza02Controller = new AltaPoliza02Controller(this, cliente, vehiculo, hijoDTO, poliza);
 }
 
 	/**

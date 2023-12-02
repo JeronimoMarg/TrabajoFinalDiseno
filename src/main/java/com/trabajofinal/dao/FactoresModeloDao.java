@@ -12,13 +12,13 @@ public class FactoresModeloDao extends AbstractDao<FactoresModelo>{
 	      setClazz(FactoresModelo.class);
 	    }
 	
-	public FactoresModelo getUltimoFactorModelo(String modelo) {
+	public FactoresModelo getUltimoFactorModelo(int id_modelo) {
 	      String qlString = "SELECT f FROM FactoresModelo f "
 	      		+ "JOIN f.modelo m "
-	      		+ "WHERE m.nombre = :modelo"
+	      		+ "WHERE m.id = :id_modelo "
 	      		+ "AND f.fecha_fin_vigencia IS NULL";
 	      TypedQuery<FactoresModelo> query = getEntityManager().createQuery(qlString, FactoresModelo.class);
-	      query.setParameter("modelo", modelo);
+	      query.setParameter("id_modelo", id_modelo);
 	      try {
 	         return query.getSingleResult();
 	      } catch (NoResultException e) {

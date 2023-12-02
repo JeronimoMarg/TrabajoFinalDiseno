@@ -27,6 +27,7 @@ public class LocalidadDao extends AbstractDao<Localidad> {
    }
    
    public Localidad getLocalidad(String localidad) {
+	   	  System.out.println(localidad);
 	      String qlString = "SELECT l FROM Localidad l WHERE l.nombre = :localidad";
 	      TypedQuery<Localidad> query = getEntityManager().createQuery(qlString, Localidad.class);
 	      query.setParameter("localidad", localidad);

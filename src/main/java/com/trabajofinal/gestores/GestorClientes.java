@@ -37,7 +37,7 @@ public class GestorClientes {
 
 		ClienteDao daocliente = new ClienteDao();
 		
-		List<Poliza> polizasAsociadas = GestorPoliza.getInstance().obtenerCantidadPolizas(cliente.getId());
+		List<Poliza> polizasAsociadas = GestorSistemaSiniestros.getInstance().obtenerCantidadPolizas(cliente.getId());
 		
 		if(polizasAsociadas.size() == 0) {
 			cliente.setCondicion(TipoCondicion.NORMAL);

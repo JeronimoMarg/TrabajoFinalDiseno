@@ -33,15 +33,15 @@ public class GestorVehiculos {
 		v.setKilometros_anio(vehiculo.getKilometros_anio());
 		v.setMotor(vehiculo.getMotor());
 		v.setPatente(vehiculo.getPatente());
-		v.setTipo_vehiculo(obtenerTipoVehiculo(vehiculo));
+		v.setTipo_vehiculo(obtenerTipoVehiculo(vehiculo.getId_tipo_vehiculo()));
 		
 		return v;
 	}
 	
-	private TipoVehiculo obtenerTipoVehiculo(VehiculoDTO vehiculo) {
+	private TipoVehiculo obtenerTipoVehiculo(int id_tipo_vehiculo) {
 		
 		TipoVehiculoDao dao = new TipoVehiculoDao();
-		return dao.getTipoVehiculoPorNombre(vehiculo.getModelo());
+		return dao.getById(id_tipo_vehiculo);
 	}
 
 }

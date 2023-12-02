@@ -18,7 +18,7 @@ public class App {
 
    public static void main(String[] args) {
 
-      // inicializarDatos();
+      inicializarDatos();
 
       BusquedaCliente busquedaCliente = new BusquedaCliente();
       busquedaCliente.setVisible(true);
@@ -119,9 +119,12 @@ public class App {
 
       Marca marca1 = new Marca("Ford");
       Marca marca2 = new Marca("Fiat");
+      
+      FactoresModelo fm1 = new FactoresModelo(LocalDate.of(2019, 12, 30), null, 0.4, null, usuario1);
+      FactoresModelo fm2 = new FactoresModelo(LocalDate.of(2023, 5, 3), null, 0.6, null, usuario1);
 
-      Modelo m1 = new Modelo("Falcon", new FactoresModelo(), marca1);
-      Modelo m2 = new Modelo("Palio", new FactoresModelo(), marca2);
+      Modelo m1 = new Modelo("Falcon", fm1, marca1);
+      Modelo m2 = new Modelo("Palio", fm2, marca2);
 
       TipoVehiculo t1 = new TipoVehiculo(10.0, 20.0, 450.0, 2001, m1, null);
       TipoVehiculo t2 = new TipoVehiculo(15.0, 20.0, 450.0, 2002, m1, null);
@@ -230,6 +233,9 @@ public class App {
          ModeloDao dao_modelo = new ModeloDao();
          TipoVehiculoDao dao_tipo = new TipoVehiculoDao();
          FactoresVehiculoDao dao_factores = new FactoresVehiculoDao();
+         FactoresModeloDao dao_factores_m = new FactoresModeloDao();
+         dao_factores_m.save(fm1);
+         dao_factores_m.save(fm2);
          dao_marca.save(marca1);
          dao_marca.save(marca2);
          dao_modelo.save(m1);
@@ -251,6 +257,10 @@ public class App {
          dao_tipo.update(t2);
          dao_tipo.update(t3);
          dao_tipo.update(t4);
+         fm1.setModelo(m1);
+         fm2.setModelo(m2);
+         dao_factores_m.update(fm1);
+         dao_factores_m.update(fm2);
 
          TipoCoberturaDao dao_cobertura = new TipoCoberturaDao();
          dao_cobertura.save(resp_civil);
@@ -284,6 +294,7 @@ public class App {
          dao_localidad.update(l2);
          dao_localidad.update(l3);
          dao_localidad.update(l4);
+         
 
       } catch (Exception e) {
          System.out.println(e.getMessage());

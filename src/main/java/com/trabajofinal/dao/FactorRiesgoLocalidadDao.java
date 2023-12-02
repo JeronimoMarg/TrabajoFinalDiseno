@@ -11,10 +11,10 @@ public class FactorRiesgoLocalidadDao extends AbstractDao<FactorRiesgoLocalidad>
 	      setClazz(FactorRiesgoLocalidad.class);
 	    }
 	
-	 public FactorRiesgoLocalidad getUltimoFactorLocalidad(String localidad) {
-	      String qlString = "SELECT l FROM FactorRiesgoLocalidad l WHERE l.localidad.nombre = :localidad AND fecha_fin_vigencia IS NULL";
+	 public FactorRiesgoLocalidad getUltimoFactorLocalidad(int id_localidad) {
+	      String qlString = "SELECT l FROM FactorRiesgoLocalidad l WHERE l.localidad.id = :id_localidad AND fecha_fin_vigencia IS NULL";
 	      TypedQuery<FactorRiesgoLocalidad> query = getEntityManager().createQuery(qlString, FactorRiesgoLocalidad.class);
-	      query.setParameter("localidad", localidad);
+	      query.setParameter("id_localidad", id_localidad);
 	      try {
 	         return query.getSingleResult();
 	      } catch (NoResultException e) {

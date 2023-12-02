@@ -8,6 +8,7 @@ import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gestores.GestorPoliza;
+import com.trabajofinal.gestores.GestorSistemaFinanciero;
 import com.trabajofinal.models.TipoPago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +41,6 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         this.poliza = poliza;
 
         inicializarDatos();
-        GestorPoliza.getInstance().calcularPremioDerechosDescuentos(poliza);
         System.out.println(this.hijoDTO.size());
 
         // Los elementos de la interfaz varían si es o no de pago único.      

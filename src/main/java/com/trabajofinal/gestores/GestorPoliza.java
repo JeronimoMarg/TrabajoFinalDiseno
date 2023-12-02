@@ -49,14 +49,14 @@ public class GestorPoliza {
          polizaNueva.setEstado(TipoEstadoPoliza.GENERADA);
          polizaNueva.setCliente(obtenerCliente(cliente));
          setearHijos(hijos, polizaNueva);
-         polizaNueva.setLocalidad(obtenerLocalidad(poliza));
-         polizaNueva.setFactor_riesgo_localidad(obtenerFactorRiesgoLocalidad(poliza));
-         polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(vehiculo));
-         polizaNueva.setFactores_modelo(obtenerFactoresModelo(vehiculo));
+         polizaNueva.setLocalidad(obtenerLocalidad(poliza.getId_localidad()));
+         polizaNueva.setFactor_riesgo_localidad(obtenerFactorRiesgoLocalidad(poliza.getId_localidad()));         
+         polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(vehiculo.getId_tipo_vehiculo()));
+         polizaNueva.setFactores_modelo(obtenerFactoresModelo(vehiculo.getId_modelo()));
          polizaNueva.setVehiculo_asegurado(obtenerVehiculo(vehiculo));
-         actualizarEstadoCliente(cliente, poliza, polizaNueva.getCliente());
-
+         actualizarEstadoCliente(poliza, polizaNueva.getCliente());
          setearCuotas(poliza, polizaNueva);
+         
          guardar(polizaNueva);
 
       }
@@ -67,25 +67,13 @@ public class GestorPoliza {
       boolean bool = true;
 
       // metodo de validarLogica para la poliza que va a ser creada
+      
+      
       return bool;
    }
 
    private Double sumarDescuentos(PolizaDTO poliza) {
       return poliza.getDto_pago_semestral() + poliza.getDto_antiguedad() + poliza.getDto_mas_un_vehiculo();
-   }
-
-   public void calcularPremioDerechosDescuentos(PolizaDTO poliza) {
-
-      poliza.setDerechos_emision(1000.0);
-      poliza.setPremio(5000.0);
-      // poliza.setDescuentos(500.0);
-      poliza.setDto_pago_semestral(100.0);
-      poliza.setDto_antiguedad(50.90);
-      poliza.setDto_mas_un_vehiculo(150.99);
-      Double monto_a_pagar = poliza.getPremio() + poliza.getDerechos_emision() - poliza.getDto_antiguedad()
-            - poliza.getDto_mas_un_vehiculo() - poliza.getDto_pago_semestral();
-      poliza.setMonto_a_pagar(monto_a_pagar);
-
    }
 
    private FactoresTipoCobertura obtenerFactoresTipoCobertura(TipoCobertura tipo) {
@@ -105,12 +93,16 @@ public class GestorPoliza {
    }
 
    private void setearHijos(List<HijoDTO> hijos, Poliza polizaNueva) {
-
-      for (int i = 0; i < hijos.size(); i++) {
-         HijoDTO actual = hijos.get(i);
-         Hijo nuevo = new Hijo(actual.getFecha_nacimiento(), actual.getSexo(), actual.getEstado_civil());
-         polizaNueva.getHijos().add(nuevo);
-      }
+	   
+	   if (hijos.size() == 0) {
+		   List<Hijo> listanula = new ArrayList<>();
+	   }else {
+		      for (int i = 0; i < hijos.size(); i++) {
+		          HijoDTO actual = hijos.get(i);
+		          Hijo nuevo = new Hijo(actual.getFecha_nacimiento(), actual.getSexo(), actual.getEstado_civil());
+		          polizaNueva.getHijos().add(nuevo);
+		       }
+	   }
 
    }
 
@@ -120,34 +112,34 @@ public class GestorPoliza {
 
    }
 
-   private Localidad obtenerLocalidad(PolizaDTO poliza) {
+   private Localidad obtenerLocalidad(int id_localidad) {
 
       GestorLocalidad gestor = GestorLocalidad.getInstance();
-      Localidad localidad = gestor.obtenerLocalidad(poliza.getLocalidad());
+      Localidad localidad = gestor.obtenerLocalidad(id_localidad);
       return localidad;
 
    }
 
-   private FactorRiesgoLocalidad obtenerFactorRiesgoLocalidad(PolizaDTO poliza) {
+   private FactorRiesgoLocalidad obtenerFactorRiesgoLocalidad(int id_localidad) {
 
       GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
-      FactorRiesgoLocalidad factoresLocalidad = gestor.obtenerFactoresLocalidad(poliza.getLocalidad());
+      FactorRiesgoLocalidad factoresLocalidad = gestor.obtenerFactoresLocalidad(id_localidad);
       return factoresLocalidad;
 
    }
 
-   private FactoresVehiculo obtenerFactoresVehiculo(VehiculoDTO vehiculo) {
+   private FactoresVehiculo obtenerFactoresVehiculo(int id_tipo_vehiculo) {
 
       GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
-      FactoresVehiculo factoresVehiculo = gestor.obtenerFactoresVehiculo(vehiculo.getModelo());
+      FactoresVehiculo factoresVehiculo = gestor.obtenerFactoresVehiculo(id_tipo_vehiculo);
       return factoresVehiculo;
 
    }
 
-   private FactoresModelo obtenerFactoresModelo(VehiculoDTO vehiculo) {
+   private FactoresModelo obtenerFactoresModelo(int id_modelo) {
 
       GestorFactoresCaracteristicas gestor = GestorFactoresCaracteristicas.getInstance();
-      FactoresModelo factoresModelo = gestor.obtenerFactoresModelo(vehiculo.getModelo());
+      FactoresModelo factoresModelo = gestor.obtenerFactoresModelo(id_modelo);
       return factoresModelo;
 
    }
@@ -168,18 +160,18 @@ public class GestorPoliza {
 
    }
 
-   private void actualizarEstadoCliente(ClienteDTO cliente_dto, PolizaDTO poliza, Cliente cliente) {
+   private void actualizarEstadoCliente(PolizaDTO poliza, Cliente cliente) {
 
       ClienteDao daocliente = new ClienteDao();
 
-      List<Poliza> polizasAsociadas = GestorPoliza.getInstance().obtenerCantidadPolizas(cliente_dto.getId());
+      List<Poliza> polizasAsociadas = GestorSistemaSiniestros.getInstance().obtenerCantidadPolizas(cliente.getId());
 
       if (polizasAsociadas.size() == 0) {
          cliente.setCondicion(TipoCondicion.NORMAL);
       } else if (polizasAsociadas.size() != 0 && sonNoVigentes(polizasAsociadas)) {
          cliente.setCondicion(TipoCondicion.NORMAL);
       } else {
-         int cantidad_siniestros = GestorClientes.getInstance().obtenerSiniestros(cliente_dto.getId());
+         int cantidad_siniestros = GestorClientes.getInstance().obtenerSiniestros(cliente.getId());
          Period period = Period.between(cliente.getFecha_activacion(), LocalDate.now());
          if (cantidad_siniestros != 0 && tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
             cliente.setCondicion(TipoCondicion.NORMAL);
@@ -187,13 +179,6 @@ public class GestorPoliza {
             cliente.setCondicion(TipoCondicion.PLATA);
          }
       }
-
-   }
-
-   public List<Poliza> obtenerCantidadPolizas(int id_cliente) {
-
-      PolizaDao dao = new PolizaDao();
-      return dao.getAsociadasCliente(id_cliente);
 
    }
 
@@ -225,14 +210,13 @@ public class GestorPoliza {
 
       PolizaDao polizaDao = new PolizaDao();
       polizaDao.save(poliza);
-      // System.out.println("Polizas: " + polizaDao.getAll());
+      System.out.println("Polizas: " + polizaDao.getAll());
 
    }
 
    public List<Cuota> crearCuotas(PolizaDTO poliza) {
       List<Cuota> cuotas = new ArrayList<Cuota>();
       Date vigencia = poliza.getFechaInicioVigencia();
-      TipoPago tipoPago;
       LocalDate fechaVencimiento;
 
       fechaVencimiento = vigencia.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().minusDays(1);

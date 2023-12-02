@@ -10,6 +10,7 @@ import com.trabajofinal.models.Cuota;
 public class PolizaDTO {
 
    private String localidad;
+   private int id_localidad;
    private String marca;
    private String modelo;
    private String anio;
@@ -208,5 +209,13 @@ public class PolizaDTO {
    public void setMonto_a_pagar(Double monto_a_pagar) {
       this.monto_a_pagar = monto_a_pagar;
    }
+
+   public int getId_localidad() {
+	return id_localidad;
+   }
+
+   public void setId_localidad(int id_localidad) {
+	this.id_localidad = id_localidad;
+	}
 
 }

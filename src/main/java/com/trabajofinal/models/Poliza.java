@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -63,13 +64,13 @@ public class Poliza {
 	@JoinColumn(name = "id_poliza_propuesta")
     private Poliza poliza_propuesta;
 	
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_vehiculo")
     private Vehiculo vehiculo_asegurado;
 		
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_poliza")
-    private HashSet<Hijo> hijos;
+    private List<Hijo> hijos;
 		
     @OneToMany
     @JoinColumn(name = "id_poliza")
@@ -83,7 +84,7 @@ public class Poliza {
     @JoinColumn(name = "id_factor")
     private FactoresCaracteristicas factores_caracteristicas;
 		
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_poliza")
     private List<Cuota> cuotas;
 		
@@ -109,7 +110,7 @@ public class Poliza {
 
     public Poliza() {
         this.cuotas = new ArrayList<>();
-        this.hijos = new HashSet<>();
+        this.hijos = new ArrayList<>();
         this.modificaciones = new ArrayList<>();
        
         
@@ -185,10 +186,10 @@ public class Poliza {
     public void setVehiculo_asegurado(Vehiculo vehiculo_asegurado) {
         this.vehiculo_asegurado = vehiculo_asegurado;
     }
-    public HashSet<Hijo> getHijos() {
+    public List<Hijo> getHijos() {
         return hijos;
     }
-    public void setHijos(HashSet<Hijo> hijos) {
+    public void setHijos(List<Hijo> hijos) {
         this.hijos = hijos;
     }
     public List<ModificacionPoliza> getModificaciones() {

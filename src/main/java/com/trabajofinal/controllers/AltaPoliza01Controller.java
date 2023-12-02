@@ -8,6 +8,7 @@ import com.trabajofinal.dao.TipoVehiculoDao;
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.dto.VehiculoDTO;
+import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.gui.AltaPoliza01;
 import com.trabajofinal.gui.AltaPoliza02;
 import com.trabajofinal.gui.AltaPolizaHijo;
@@ -165,7 +166,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
          // Paso 1: verificar todos los datos ya cargados.
          if (validar()) {
             VehiculoDTO vehiculoDTO = crearVehiculo();
-            AltaPoliza02 altaPoliza02 = new AltaPoliza02(cliente, vehiculoDTO, hijoDTO);
+            PolizaDTO polizaDTO = crearPoliza();
+            AltaPoliza02 altaPoliza02 = new AltaPoliza02(cliente, vehiculoDTO, hijoDTO, polizaDTO);
 
          } else {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
@@ -203,7 +205,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
       }
    }
 
-   @Override
+@Override
    public void keyTyped(KeyEvent e) {
       if (e.getSource() == altaPoliza01.txt_alta_pol01_chasis
             || e.getSource() == altaPoliza01.txt_alta_pol01_patente) {
@@ -289,8 +291,27 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
       vehiculo.setPeso(peso);
       vehiculo.setPotencia(potencia);
       vehiculo.setValor_estimado(altaPoliza01.txt_alta_pol01_valor.getText());
+      
+      int aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_anio.getSelectedItem()).getId();
+      vehiculo.setId_tipo_vehiculo(aux);
+      
+      aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem()).getId();
+      vehiculo.setId_modelo(aux);
 
       return vehiculo;
+   }
+   
+   private PolizaDTO crearPoliza() {
+	
+	   PolizaDTO poliza = new PolizaDTO();
+	   poliza.setLocalidad(altaPoliza01.cmb_alta_pol01_local.getSelectedItem().toString().trim());
+	   
+	   int aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_local.getSelectedItem()).getId();
+	   
+	   poliza.setId_localidad(aux);
+	   
+	   return poliza;
+	   
    }
 
    private void cargarValor(int id_tipo) {
