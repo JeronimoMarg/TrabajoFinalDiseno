@@ -200,6 +200,8 @@ public class App {
             0.4,
             usuario1,
             l4);
+      
+      LimiteDeBusqueda limiteDeBusqueda = new LimiteDeBusqueda(5);
 
       try {
 
@@ -295,6 +297,8 @@ public class App {
          dao_localidad.update(l3);
          dao_localidad.update(l4);
          
+         LimiteDao dao_LimiteDao = new LimiteDao();
+         dao_LimiteDao.save(limiteDeBusqueda);
 
       } catch (Exception e) {
          System.out.println(e.getMessage());

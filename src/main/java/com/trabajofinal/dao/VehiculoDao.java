@@ -36,7 +36,7 @@ public class VehiculoDao extends AbstractDao<Vehiculo>{
 	   public List<Poliza> getByPatente(String patente) {
 		   
 		   String qlString = "SELECT p FROM Poliza p "
-		   		+ "JOIN p.vehiculo_asegurado v"
+		   		+ "JOIN p.vehiculo_asegurado v "
 		   		+ "WHERE v.patente = :patente ";
 		      TypedQuery<Poliza> query = getEntityManager().createQuery(qlString, Poliza.class);
 		      query.setParameter("patente", patente);

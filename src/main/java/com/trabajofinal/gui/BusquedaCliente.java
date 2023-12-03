@@ -51,7 +51,6 @@ public class BusquedaCliente extends javax.swing.JFrame {
         txt_busqueda_cliente_nombre = new javax.swing.JTextField();
         txt_busqueda_cliente_nro_doc = new javax.swing.JTextField();
         txt_busqueda_cliente_nro_cte = new javax.swing.JTextField();
-        cmb_busqueda_cliente_cond = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btn_busq_cliente_buscar = new javax.swing.JButton();
         btn_busq_cliente_limpiar = new javax.swing.JButton();
@@ -62,9 +61,8 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table_busqueda_cliente = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cmb_busqueda_cliente_tipo1 = new javax.swing.JComboBox<>();
-        chk_busqueda_cliente = new javax.swing.JCheckBox();
+        btn_busq_cliente_config_limite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,46 +77,47 @@ public class BusquedaCliente extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 200, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Apellido");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 200, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tipo de documento");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 200, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 200, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Numero de documento");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 200, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 200, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Numero de cliente");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 200, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
 
         txt_busqueda_cliente_apellido.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(txt_busqueda_cliente_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 200, 30));
+        txt_busqueda_cliente_apellido.setToolTipText("Ingrese el apellido del cliente.");
+        jPanel1.add(txt_busqueda_cliente_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 200, 30));
 
         txt_busqueda_cliente_nombre.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(txt_busqueda_cliente_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
+        txt_busqueda_cliente_nombre.setToolTipText("Ingrese el nombre del cliente.");
+        jPanel1.add(txt_busqueda_cliente_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
 
         txt_busqueda_cliente_nro_doc.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_nro_doc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(txt_busqueda_cliente_nro_doc, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 200, 30));
+        txt_busqueda_cliente_nro_doc.setToolTipText("Ingrese el número de documento del cliente.");
+        jPanel1.add(txt_busqueda_cliente_nro_doc, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 200, 30));
 
         txt_busqueda_cliente_nro_cte.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_nro_cte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(txt_busqueda_cliente_nro_cte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 209, 30));
-
-        cmb_busqueda_cliente_cond.setBackground(new java.awt.Color(220, 220, 220));
-        cmb_busqueda_cliente_cond.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(cmb_busqueda_cliente_cond, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 200, 30));
+        txt_busqueda_cliente_nro_cte.setToolTipText("Ingrese el número del cliente.");
+        jPanel1.add(txt_busqueda_cliente_nro_cte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
 
         btn_busq_cliente_buscar.setBackground(new java.awt.Color(220, 220, 220));
         btn_busq_cliente_buscar.setText("Buscar");
+        btn_busq_cliente_buscar.setToolTipText("Presione para buscar.");
         btn_busq_cliente_buscar.setAlignmentX(0.5F);
         btn_busq_cliente_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +127,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
 
         btn_busq_cliente_limpiar.setBackground(new java.awt.Color(220, 220, 220));
         btn_busq_cliente_limpiar.setText("Limpiar");
+        btn_busq_cliente_limpiar.setToolTipText("Presionar para limpiar todos los parámetros de búsqueda ingresados.");
         btn_busq_cliente_limpiar.setAlignmentX(0.5F);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -151,11 +151,12 @@ public class BusquedaCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 112, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
 
         btn_busq_cliente_cancelar.setBackground(new java.awt.Color(255, 128, 146));
         btn_busq_cliente_cancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_busq_cliente_cancelar.setText("Cancelar");
+        btn_busq_cliente_cancelar.setToolTipText("Presionar para cancelar y terminar la búsqueda.");
         btn_busq_cliente_cancelar.setAlignmentX(0.5F);
         btn_busq_cliente_cancelar.setMaximumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_cancelar.setMinimumSize(new java.awt.Dimension(82, 21));
@@ -170,6 +171,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         btn_busq_cliente_select.setBackground(new java.awt.Color(52, 162, 224));
         btn_busq_cliente_select.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_busq_cliente_select.setText("Seleccionar");
+        btn_busq_cliente_select.setToolTipText("Presionar para seleccionar un cliente.");
         btn_busq_cliente_select.setAlignmentX(0.5F);
         btn_busq_cliente_select.setEnabled(false);
         btn_busq_cliente_select.setMaximumSize(new java.awt.Dimension(82, 21));
@@ -192,11 +194,11 @@ public class BusquedaCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N° Cliente", "Tipo Doc", "N° Documento", "Apellido", "Nombre", "CUIL", "Cond. IVA", "E-Mail", "Id"
+                "N° Cliente", "Tipo Doc", "N° Documento", "Apellido", "Nombre", "Id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -211,12 +213,9 @@ public class BusquedaCliente extends javax.swing.JFrame {
             table_busqueda_cliente.getColumnModel().getColumn(2).setResizable(false);
             table_busqueda_cliente.getColumnModel().getColumn(3).setResizable(false);
             table_busqueda_cliente.getColumnModel().getColumn(4).setResizable(false);
-            table_busqueda_cliente.getColumnModel().getColumn(5).setResizable(false);
-            table_busqueda_cliente.getColumnModel().getColumn(6).setResizable(false);
-            table_busqueda_cliente.getColumnModel().getColumn(7).setResizable(false);
-            table_busqueda_cliente.getColumnModel().getColumn(8).setMinWidth(0);
-            table_busqueda_cliente.getColumnModel().getColumn(8).setPreferredWidth(0);
-            table_busqueda_cliente.getColumnModel().getColumn(8).setMaxWidth(0);
+            table_busqueda_cliente.getColumnModel().getColumn(5).setMinWidth(0);
+            table_busqueda_cliente.getColumnModel().getColumn(5).setPreferredWidth(0);
+            table_busqueda_cliente.getColumnModel().getColumn(5).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -237,17 +236,20 @@ public class BusquedaCliente extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/El-asegurado.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 20, 90, 70));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Condicion IVA");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 200, -1));
-
         cmb_busqueda_cliente_tipo1.setBackground(new java.awt.Color(220, 220, 220));
         cmb_busqueda_cliente_tipo1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(cmb_busqueda_cliente_tipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+        cmb_busqueda_cliente_tipo1.setToolTipText("Seleccione el tipo de documento del cliente.");
+        jPanel1.add(cmb_busqueda_cliente_tipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 200, 30));
 
-        chk_busqueda_cliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        chk_busqueda_cliente.setText("Incluir en la búsqueda");
-        jPanel1.add(chk_busqueda_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+        btn_busq_cliente_config_limite.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        btn_busq_cliente_config_limite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/configuracion.png"))); // NOI18N
+        btn_busq_cliente_config_limite.setToolTipText("Configurar cantidad de clientes a mostrar.");
+        btn_busq_cliente_config_limite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_busq_cliente_config_limiteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_busq_cliente_config_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 240, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,6 +276,10 @@ public class BusquedaCliente extends javax.swing.JFrame {
     private void btn_busq_cliente_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busq_cliente_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_busq_cliente_buscarActionPerformed
+
+    private void btn_busq_cliente_config_limiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busq_cliente_config_limiteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_busq_cliente_config_limiteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,10 +319,9 @@ public class BusquedaCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_busq_cliente_buscar;
     public javax.swing.JButton btn_busq_cliente_cancelar;
+    public javax.swing.JButton btn_busq_cliente_config_limite;
     public javax.swing.JButton btn_busq_cliente_limpiar;
     public javax.swing.JButton btn_busq_cliente_select;
-    public javax.swing.JCheckBox chk_busqueda_cliente;
-    public javax.swing.JComboBox<String> cmb_busqueda_cliente_cond;
     public javax.swing.JComboBox<String> cmb_busqueda_cliente_tipo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -324,7 +329,6 @@ public class BusquedaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

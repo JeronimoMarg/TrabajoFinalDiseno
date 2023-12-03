@@ -3,6 +3,7 @@ package com.trabajofinal.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.trabajofinal.gestores.GestorLimiteDeBusqueda;
 import com.trabajofinal.models.Cliente;
 import com.trabajofinal.models.Poliza;
 import com.trabajofinal.models.TipoCondicionIVA;
@@ -57,18 +58,18 @@ public class ClienteDao extends AbstractDao<Cliente> {
     }
 
     public void getClientesPorNombre(String nombre) {
-        predicados.add(constructor_criterios.equal(root.get("nombre"), nombre));
+        predicados.add(constructor_criterios.like(root.get("nombre"), nombre + "%"));
     }
 
     public void getClientesPorApellido(String apellido) {
-        predicados.add(constructor_criterios.equal(root.get("apellido"), apellido));
+        predicados.add(constructor_criterios.like(root.get("apellido"), apellido + "%"));
     }
 
     public List<Cliente> ejecutarQuery() {
         List<Cliente> resultado = new ArrayList();
         if (predicados.size() > 0) {
             query.select(root).where(predicados.toArray(new Predicate[0]));
-            resultado = getEntityManager().createQuery(query).getResultList();
+            resultado = getEntityManager().createQuery(query).setMaxResults(GestorLimiteDeBusqueda.getInstance().getLimite()).getResultList();
             predicados.clear();
             query = null;
         }

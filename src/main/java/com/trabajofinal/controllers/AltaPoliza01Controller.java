@@ -54,30 +54,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
    private static List<HijoDTO> hijoDTO = new ArrayList<>();
 
    // Variables que vamos a usar ahora para probar la lógica
-   private Provincia prov1;
-   private Provincia prov2;
-   private Localidad loc1;
-   private Localidad loc2;
-   private Localidad loc3;
-   private Marca marca1;
-   private Marca marca2;
-   private Marca marca3;
-   private Modelo modelo1;
-   private Modelo modelo2;
-   private Modelo modelo3;
-   private Modelo modelo4;
-   private TipoVehiculo tipo1;
-   private TipoVehiculo tipo2;
-   private TipoVehiculo tipo3;
-   private TipoVehiculo tipo4;
-   private TipoVehiculo tipo5;
-   private TipoVehiculo tipo6;
-   private FactoresVehiculo fact1 = new FactoresVehiculo();
-   private FactoresVehiculo fact2 = new FactoresVehiculo();
-   private FactoresVehiculo fact3 = new FactoresVehiculo();
-   private FactoresVehiculo fact4 = new FactoresVehiculo();
-   private FactoresVehiculo fact5 = new FactoresVehiculo();
-   private FactoresVehiculo fact6 = new FactoresVehiculo();
+
 
    private List<Provincia> provincias = new ArrayList<>();
    private List<Localidad> localidades = new ArrayList<>();
@@ -100,7 +77,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
          @Override
          public void run() {
             // Aquí se ejecutan las operaciones de carga de datos
-            crear();
+        	cargarDatos();
             inicializarCmbProvincias();
             inicializarCmbMarcas();
             listarHijos();
@@ -416,33 +393,20 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
    public void mouseExited(MouseEvent e) {
    }
 
-   private void crear() {
-      fact1.setSuma_asegurada(2950000.0);
-      fact1.setVehiculo(tipo1);
-      fact2.setSuma_asegurada(2500000.0);
-      fact2.setVehiculo(tipo2);
-      fact3.setSuma_asegurada(2750000.0);
-      fact3.setVehiculo(tipo3);
-      fact4.setSuma_asegurada(2990000.0);
-      fact4.setVehiculo(tipo4);
-      fact5.setSuma_asegurada(2599900.0);
-      fact5.setVehiculo(tipo5);
-      fact6.setSuma_asegurada(3900000.0);
-      fact6.setVehiculo(tipo6);
-      // por que hace esto????
-
-      ProvinciaDao provincia_dao = new ProvinciaDao();
-      MarcaDao marca_dao = new MarcaDao();
-
-      provincias.addAll(provincia_dao.getAll());
-      marcas.addAll(marca_dao.getAll());
-
-   }
-
    // Este método es static porque le van a setear los datos desde el
    // AltaPolizaHijoController.
    public static void addHijoDTO(HijoDTO dto) {
       hijoDTO.add(dto);
+   }
+   
+   public void cargarDatos() {
+	   
+	      ProvinciaDao provincia_dao = new ProvinciaDao();
+	      MarcaDao marca_dao = new MarcaDao();
+
+	      provincias.addAll(provincia_dao.getAll());
+	      marcas.addAll(marca_dao.getAll());
+	   
    }
 
 }

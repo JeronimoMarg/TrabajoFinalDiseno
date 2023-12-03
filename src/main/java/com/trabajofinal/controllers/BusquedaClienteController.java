@@ -2,11 +2,13 @@ package com.trabajofinal.controllers;
 
 import com.trabajofinal.dao.ClienteDao;
 import com.trabajofinal.dto.ClienteDTO;
+import com.trabajofinal.gestores.GestorClientes;
+import com.trabajofinal.gestores.GestorLimiteDeBusqueda;
 import com.trabajofinal.gui.BusquedaCliente;
+import com.trabajofinal.gui.ConfiguracionLimiteDeBusqueda;
 import com.trabajofinal.gui.DatosCliente;
 import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.models.Cliente;
-import com.trabajofinal.models.TipoCondicionIVA;
 import com.trabajofinal.models.TipoDocumento;
 
 import java.awt.Color;
@@ -31,16 +33,17 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
     // bloque de variables que usaremos en las validaciones y mensajes de
     private String regex = "^[a-zA-Z\\u00C0-\\u017FñÑ]+(\\s[a-zA-Z\\u00C0-\\u017FñÑ]+)*$";
     private String regex1 = "\\d";
-    private boolean isValid = false;
     private Object[] options = {"Sí", "No"};
     private DefaultTableModel tabla = new DefaultTableModel();
     private ClienteDTO clienteDTO = new ClienteDTO();
     private int fila;
+    private int limite = GestorLimiteDeBusqueda.getInstance().getLimite();
 
     public BusquedaClienteController(BusquedaCliente busquedaCliente) {
         this.busquedaCliente = busquedaCliente;
 
         // Botones a la escucha
+        this.busquedaCliente.btn_busq_cliente_config_limite.addActionListener(this);
         this.busquedaCliente.btn_busq_cliente_select.addActionListener(this);
         this.busquedaCliente.btn_busq_cliente_cancelar.addActionListener(this);
         this.busquedaCliente.btn_busq_cliente_buscar.addActionListener(this);
@@ -62,22 +65,14 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         for (TipoDocumento valor : valores) {
             busquedaCliente.cmb_busqueda_cliente_tipo1.addItem(valor.toString());
         }
-
-        TipoCondicionIVA[] valores2 = TipoCondicionIVA.values();
-        for (TipoCondicionIVA valor : valores2) {
-            busquedaCliente.cmb_busqueda_cliente_cond.addItem(valor.toString());
-        }
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
-            
-        	int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 8).toString());
-            ClienteDao cliente_dao = new ClienteDao();
+        int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 5).toString());
             Cliente cliente = new Cliente();
-            cliente = cliente_dao.getById(id);
+            cliente = GestorClientes.getInstance().obtenerCliente(id);
             clienteDTO = aDTO(cliente);
         	
             this.busquedaCliente.dispose();
@@ -124,6 +119,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
             hiloProgreso.start(); 
         } else if (e.getSource() == busquedaCliente.btn_busq_cliente_limpiar) {
             cleanFields();
+        } else if (e.getSource() == busquedaCliente.btn_busq_cliente_config_limite) {
+            ConfiguracionLimiteDeBusqueda configuracionLimiteDeBusqueda = new ConfiguracionLimiteDeBusqueda();
         }
     }
 
@@ -168,8 +165,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         busquedaCliente.txt_busqueda_cliente_nombre.setText("");
         busquedaCliente.txt_busqueda_cliente_nro_cte.setText("");
         busquedaCliente.txt_busqueda_cliente_nro_doc.setText("");
-        busquedaCliente.txt_busqueda_cliente_nro_cte.setText("");
-        busquedaCliente.cmb_busqueda_cliente_cond.setSelectedIndex(0);
+        busquedaCliente.cmb_busqueda_cliente_tipo1.setSelectedIndex(0);
     }
 
     private List<Cliente> searchClient() {
@@ -193,35 +189,24 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         if (numero_cliente != null && !numero_cliente.isEmpty()) {
             cliente_dao.getClientesPorNumero(numero_cliente);
         }
-        TipoCondicionIVA iva = TipoCondicionIVA
-                .valueOf(busquedaCliente.cmb_busqueda_cliente_cond.getSelectedItem().toString());
-        if (iva != null && busquedaCliente.chk_busqueda_cliente.isSelected()) {
-            cliente_dao.getClientesPorTipoIVA(iva);
-        }
-       return cliente_dao.ejecutarQuery();
+        return cliente_dao.ejecutarQuery();
     }
 
     private void listAllClients(List<Cliente> l) {
-    	
-    	
-        List<ClienteDTO> lista = new ArrayList<>();
+    	List<ClienteDTO> lista = new ArrayList<>();
         for (Cliente c: l) {
             lista.add(aDTO(c));
         }
         
-        
         tabla = (DefaultTableModel) busquedaCliente.table_busqueda_cliente.getModel();
-        Object[] row = new Object[9];
+        Object[] row = new Object[6];
         for (int i = 0; i < lista.size(); i++) {
             row[0] = lista.get(i).getNumero_cliente();
             row[1] = lista.get(i).getTipo_documento();
             row[2] = lista.get(i).getNumero_documento();
             row[3] = lista.get(i).getApellido();
             row[4] = lista.get(i).getNombre();
-            row[5] = lista.get(i).getNumero_cuil();
-            row[6] = lista.get(i).getCondicion_iva();
-            row[7] = lista.get(i).getEmail();
-            row[8] = lista.get(i).getId();
+            row[5] = lista.get(i).getId();
             // System.out.println(lista.get(i).getId());
 
             tabla.addRow(row);
@@ -283,7 +268,6 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
             busquedaCliente.txt_busqueda_cliente_nro_doc.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 2).toString());
             busquedaCliente.txt_busqueda_cliente_apellido.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 3).toString());
             busquedaCliente.txt_busqueda_cliente_nombre.setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 4).toString());
-            busquedaCliente.cmb_busqueda_cliente_cond.setSelectedItem(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 6).toString());
             /*
             int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 8).toString());
             ClienteDao cliente_dao = new ClienteDao();
