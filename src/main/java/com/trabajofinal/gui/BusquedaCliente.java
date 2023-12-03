@@ -98,27 +98,32 @@ public class BusquedaCliente extends javax.swing.JFrame {
         txt_busqueda_cliente_apellido.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_busqueda_cliente_apellido.setToolTipText("Ingrese el apellido del cliente.");
+        txt_busqueda_cliente_apellido.setFocusTraversalPolicyProvider(true);
         jPanel1.add(txt_busqueda_cliente_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 200, 30));
 
         txt_busqueda_cliente_nombre.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_busqueda_cliente_nombre.setToolTipText("Ingrese el nombre del cliente.");
+        txt_busqueda_cliente_nombre.setFocusTraversalPolicyProvider(true);
         jPanel1.add(txt_busqueda_cliente_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
 
         txt_busqueda_cliente_nro_doc.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_nro_doc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_busqueda_cliente_nro_doc.setToolTipText("Ingrese el número de documento del cliente.");
+        txt_busqueda_cliente_nro_doc.setFocusTraversalPolicyProvider(true);
         jPanel1.add(txt_busqueda_cliente_nro_doc, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 200, 30));
 
         txt_busqueda_cliente_nro_cte.setBackground(new java.awt.Color(220, 220, 220));
         txt_busqueda_cliente_nro_cte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_busqueda_cliente_nro_cte.setToolTipText("Ingrese el número del cliente.");
+        txt_busqueda_cliente_nro_cte.setFocusTraversalPolicyProvider(true);
         jPanel1.add(txt_busqueda_cliente_nro_cte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
 
         btn_busq_cliente_buscar.setBackground(new java.awt.Color(220, 220, 220));
         btn_busq_cliente_buscar.setText("Buscar");
-        btn_busq_cliente_buscar.setToolTipText("Presione para buscar.");
+        btn_busq_cliente_buscar.setToolTipText("");
         btn_busq_cliente_buscar.setAlignmentX(0.5F);
+        btn_busq_cliente_buscar.setFocusTraversalPolicyProvider(true);
         btn_busq_cliente_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_busq_cliente_buscarActionPerformed(evt);
@@ -129,6 +134,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         btn_busq_cliente_limpiar.setText("Limpiar");
         btn_busq_cliente_limpiar.setToolTipText("Presionar para limpiar todos los parámetros de búsqueda ingresados.");
         btn_busq_cliente_limpiar.setAlignmentX(0.5F);
+        btn_busq_cliente_limpiar.setFocusTraversalPolicyProvider(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,6 +164,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         btn_busq_cliente_cancelar.setText("Cancelar");
         btn_busq_cliente_cancelar.setToolTipText("Presionar para cancelar y terminar la búsqueda.");
         btn_busq_cliente_cancelar.setAlignmentX(0.5F);
+        btn_busq_cliente_cancelar.setFocusTraversalPolicyProvider(true);
         btn_busq_cliente_cancelar.setMaximumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_cancelar.setMinimumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_cancelar.setPreferredSize(new java.awt.Dimension(82, 21));
@@ -174,6 +181,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
         btn_busq_cliente_select.setToolTipText("Presionar para seleccionar un cliente.");
         btn_busq_cliente_select.setAlignmentX(0.5F);
         btn_busq_cliente_select.setEnabled(false);
+        btn_busq_cliente_select.setFocusTraversalPolicyProvider(true);
         btn_busq_cliente_select.setMaximumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_select.setMinimumSize(new java.awt.Dimension(82, 21));
         btn_busq_cliente_select.setPreferredSize(new java.awt.Dimension(82, 21));

@@ -162,6 +162,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         txt_alta_pol01_motor.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_motor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_motor.setFocusTraversalPolicyProvider(true);
         txt_alta_pol01_motor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_alta_pol01_motorActionPerformed(evt);
@@ -171,10 +172,12 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         txt_alta_pol01_chasis.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_chasis.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_chasis.setFocusTraversalPolicyProvider(true);
         jPanel3.add(txt_alta_pol01_chasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 310, 30));
 
         txt_alta_pol01_patente.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_patente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_patente.setFocusTraversalPolicyProvider(true);
         txt_alta_pol01_patente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_alta_pol01_patenteActionPerformed(evt);
@@ -271,6 +274,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         chk_alta_pol01_alarma.setBackground(new java.awt.Color(255, 255, 255));
         chk_alta_pol01_alarma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chk_alta_pol01_alarma.setText("¿Alarma?");
+        chk_alta_pol01_alarma.setFocusTraversalPolicyProvider(true);
         chk_alta_pol01_alarma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chk_alta_pol01_alarmaActionPerformed(evt);
@@ -281,6 +285,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         chk_alta_pol01_cochera.setBackground(new java.awt.Color(255, 255, 255));
         chk_alta_pol01_cochera.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chk_alta_pol01_cochera.setText("¿Cochera?");
+        chk_alta_pol01_cochera.setFocusTraversalPolicyProvider(true);
         chk_alta_pol01_cochera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chk_alta_pol01_cocheraActionPerformed(evt);
@@ -291,6 +296,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         btn_alta_poliza_agregar_hijo.setBackground(new java.awt.Color(52, 162, 224));
         btn_alta_poliza_agregar_hijo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_alta_poliza_agregar_hijo.setText("Agregar hijos");
+        btn_alta_poliza_agregar_hijo.setFocusTraversalPolicyProvider(true);
         jPanel4.add(btn_alta_poliza_agregar_hijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 120, 30));
 
         table_alta_pol01_hijos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -322,11 +328,13 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         btn_alta_poliza01_continuar.setBackground(new java.awt.Color(52, 162, 224));
         btn_alta_poliza01_continuar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_alta_poliza01_continuar.setText("Continuar");
+        btn_alta_poliza01_continuar.setFocusTraversalPolicyProvider(true);
         jPanel4.add(btn_alta_poliza01_continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 100, 30));
 
         btn_alta_poliza01_cancelar.setBackground(new java.awt.Color(255, 128, 146));
         btn_alta_poliza01_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_alta_poliza01_cancelar.setText("Cancelar");
+        btn_alta_poliza01_cancelar.setFocusTraversalPolicyProvider(true);
         btn_alta_poliza01_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_alta_poliza01_cancelarActionPerformed(evt);
@@ -351,6 +359,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         chk_alta_pol01_rastreo.setBackground(new java.awt.Color(255, 255, 255));
         chk_alta_pol01_rastreo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chk_alta_pol01_rastreo.setText("¿Dispositivo de rastreo satelital?");
+        chk_alta_pol01_rastreo.setFocusTraversalPolicyProvider(true);
         chk_alta_pol01_rastreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chk_alta_pol01_rastreoActionPerformed(evt);
@@ -365,6 +374,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         txt_alta_pol01_km.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_km.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_km.setFocusTraversalPolicyProvider(true);
         jPanel4.add(txt_alta_pol01_km, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 310, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -383,6 +393,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         chk_alta_pol01_tuerca.setBackground(new java.awt.Color(255, 255, 255));
         chk_alta_pol01_tuerca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chk_alta_pol01_tuerca.setText("¿Tuerca antirrobo en las cuatro ruedas?");
+        chk_alta_pol01_tuerca.setFocusTraversalPolicyProvider(true);
         chk_alta_pol01_tuerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chk_alta_pol01_tuercaActionPerformed(evt);
