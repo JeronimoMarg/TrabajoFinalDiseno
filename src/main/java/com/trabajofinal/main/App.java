@@ -128,7 +128,7 @@ public class App {
 
       TipoVehiculo t1 = new TipoVehiculo(10.0, 20.0, 450.0, 2001, m1, null);
       TipoVehiculo t2 = new TipoVehiculo(15.0, 20.0, 450.0, 2002, m1, null);
-      TipoVehiculo t3 = new TipoVehiculo(15.0, 20.0, 450.0, 2003, m2, null);
+      TipoVehiculo t3 = new TipoVehiculo(15.0, 20.0, 450.0, 2015, m2, null);
       TipoVehiculo t4 = new TipoVehiculo(17.0, 20.0, 450.0, 2001, m2, null);
 
       FactoresVehiculo f1 = new FactoresVehiculo(LocalDate.of(2023, 12, 01), null, 300000.0, t1,
@@ -308,6 +308,7 @@ public class App {
       // este codigo lo que hace es verificar si hay entidades cargadas en la BD.
       // si la cuenta de entidades (de cliente por ahora) es cero, carga todos los
       // datos.
+	   
       EntityManager entityManager = EntityManagerUtil.getEntityManager();
       long entityCount = (long) entityManager.createQuery("SELECT COUNT(c) FROM Cliente c").getSingleResult();
 

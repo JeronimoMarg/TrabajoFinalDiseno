@@ -5,6 +5,7 @@ import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.gestores.GestorClientes;
 import com.trabajofinal.gestores.GestorPoliza;
 import com.trabajofinal.gestores.GestorSistemaFinanciero;
+import com.trabajofinal.gestores.GestorTipoCobertura;
 import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.gui.AltaPoliza02;
@@ -92,17 +93,24 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    public void listarTipos() {
       lista.clear();
 
-      TipoCoberturaDao dao = new TipoCoberturaDao();
-      tiposCobertura = dao.getAll();
+      tiposCobertura = GestorTipoCobertura.getInstance().getTipos();
 
-      for (TipoCobertura t : tiposCobertura) {
-         lista.addElement(t.getNombre());
+      Integer anio_vehiculo = Integer.valueOf(vehiculo.getAnio());
+      if (LocalDate.now().getYear() - anio_vehiculo > 10) {
+    	  String resp_civil = tiposCobertura.stream().filter(t -> t.getNombre().equals("Responsabilidad Civil")).map(t -> t.getNombre()).findAny().orElse(null);
+    	  lista.addElement(resp_civil);
+      }else {
+    	  for (TipoCobertura t : tiposCobertura) {
+    		  lista.addElement(t.getNombre());
+    	  }
       }
 
       altaPoliza02.list_alta_pol02.setModel(lista);
+      
+      
    }
 
-   public void listarTiposPago() { //
+   public void listarTiposPago() {
 
       TipoPago[] valores = TipoPago.values();
       for (TipoPago valor : valores) {
@@ -168,19 +176,6 @@ public class AltaPoliza02Controller implements ActionListener, MouseListener, Pr
    }
 
    private void actualizarPoliza() {
-
-	  /*
-      poliza.setAnio(vehiculo.getAnio());
-      poliza.setChasis(vehiculo.getChasis());
-      poliza.setConAlarma(vehiculo.getCon_alarma());
-      poliza.setConRastreo(vehiculo.getCon_rastreo());
-      poliza.setConTuercaAntirrobo(vehiculo.getCon_tuerca_antirrobo());
-      poliza.setConCochera(vehiculo.getEn_garage());
-      poliza.setMarca(vehiculo.getMarca());
-      poliza.setModelo(vehiculo.getModelo());
-      poliza.setMotor(vehiculo.getMotor());
-      poliza.setKilometros(vehiculo.getKilometros_anio());
-      */
 
       // Datos relativos a la poliza a crearse
       poliza.setTipoPago(

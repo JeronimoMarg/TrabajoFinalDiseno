@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import com.trabajofinal.dto.ClienteDTO;
@@ -17,6 +18,7 @@ import com.trabajofinal.models.*;
 import com.trabajofinal.utils.EntityManagerUtil;
 import com.trabajofinal.dao.PolizaDao;
 import com.trabajofinal.dao.ClienteDao;
+import com.trabajofinal.dao.VehiculoDao;
 
 public class GestorPoliza {
 
@@ -36,7 +38,7 @@ public class GestorPoliza {
 
    public void crearPoliza(PolizaDTO poliza, List<HijoDTO> hijos, ClienteDTO cliente, VehiculoDTO vehiculo) {
 
-      if (validarLogica()) {
+      if (validarLogica(vehiculo.getPatente())) {
 
          Poliza polizaNueva = new Poliza();
          polizaNueva.setFecha_inicio_vigencia(poliza.getFechaInicioVigencia());
@@ -46,6 +48,7 @@ public class GestorPoliza {
          polizaNueva.setDescuentos(sumarDescuentos(poliza));
          polizaNueva.setDerechosEmision(poliza.getDerechos_emision().doubleValue());
          polizaNueva.setPremio(poliza.getPremio().doubleValue());
+         polizaNueva.setTotal_a_pagar(poliza.getMonto_a_pagar());
          polizaNueva.setCantidad_siniestros(cliente.getCantidadSiniestros());
          polizaNueva.setEstado(TipoEstadoPoliza.GENERADA);
          polizaNueva.setCliente(obtenerCliente(cliente));
@@ -63,13 +66,11 @@ public class GestorPoliza {
       }
    }
 
-   private boolean validarLogica() {
-
-      boolean bool = true;
+   private boolean validarLogica(String patente) {
 
       //verificar que no exista una poliza vigente ya asociada a un vehiculo determinado.
-      
-      return bool;
+      return !GestorVehiculos.getInstance().existeVehiculoAsegurado(patente);
+
    }
 
    private Double sumarDescuentos(PolizaDTO poliza) {
@@ -227,23 +228,19 @@ public class GestorPoliza {
    public void generarNumeroPoliza(Poliza polizaNueva) {
 	   
 	   String numeroPoliza = getNumeroSucursal() + "-"
-			   + getNumeroAsociacion(polizaNueva.getVehiculo_asegurado().getId(), getLastId()) + "-"
+			   + getNumeroAsociacion(polizaNueva.getCliente().getId()) + "-"
 			   + getNumeroRenovacion();
 	   
 	   polizaNueva.setNumero_poliza(numeroPoliza);
 	   
    }
    
-   public String getNumeroAsociacion(int id_vehiculo, int id_poliza) {
+   public String getNumeroAsociacion(int id_cliente) {
 	   
-	   //aca generamos una secuencia de 5 numeros random
-	   Random random = new Random();
-	   int valorrandom = 10000+random.nextInt(90000);
+	   int retorno = 1000 * id_cliente + getLastIdVehiculo() + 1;
+	   String aux = String.format("%07d", retorno);
 	   
-	   //aca hacemos la asociacion entre vehiculo y poliza
-	   String retorno = String.valueOf(id_vehiculo) + String.valueOf(id_poliza) + String.valueOf(valorrandom);
-	   
-	   return retorno;
+	   return aux;
 	   
    }
    
@@ -255,11 +252,12 @@ public class GestorPoliza {
 	   return "00";
    }
 
-   public int getLastId() {
+   public int getLastIdVehiculo() {
 	   
-	   PolizaDao dao = new PolizaDao();
+	   VehiculoDao dao = new VehiculoDao();
 	   return dao.getUltimoId();
 	   
    }
+  
    
 }

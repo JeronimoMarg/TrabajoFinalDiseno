@@ -2,9 +2,15 @@ package com.trabajofinal.gestores;
 
 import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
+import com.trabajofinal.models.Poliza;
+import com.trabajofinal.models.TipoEstadoPoliza;
 import com.trabajofinal.models.TipoVehiculo;
 import com.trabajofinal.models.Vehiculo;
+
+import java.util.List;
+
 import com.trabajofinal.dao.TipoVehiculoDao;
+import com.trabajofinal.dao.VehiculoDao;
 
 public class GestorVehiculos {
 	
@@ -29,7 +35,6 @@ public class GestorVehiculos {
 		v.setCon_rastreo(vehiculo.getCon_rastreo());
 		v.setCon_tuerca_antirrobo(vehiculo.getCon_tuerca_antirrobo());
 		v.setEn_garage(vehiculo.getEn_garage());
-		v.setId(vehiculo.getId());
 		v.setKilometros_anio(vehiculo.getKilometros_anio());
 		v.setMotor(vehiculo.getMotor());
 		v.setPatente(vehiculo.getPatente());
@@ -42,6 +47,22 @@ public class GestorVehiculos {
 		
 		TipoVehiculoDao dao = new TipoVehiculoDao();
 		return dao.getById(id_tipo_vehiculo);
+	}
+	
+	public boolean existeVehiculoAsegurado(String patente) {
+		
+		boolean retorno = false;
+		
+		VehiculoDao dao = new VehiculoDao();
+		List<Poliza> polizas = dao.getByPatente(patente);
+		
+		if (polizas.stream().filter(p -> p.getEstado() == TipoEstadoPoliza.ACTIVA).findAny().orElse(null) != null) {
+			retorno = true;
+		}
+		
+		return retorno;
+		
+		
 	}
 
 }
