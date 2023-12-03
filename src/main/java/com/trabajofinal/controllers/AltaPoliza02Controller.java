@@ -23,8 +23,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
-import com.trabajofinal.dao.TipoCoberturaDao;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;

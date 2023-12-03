@@ -8,7 +8,6 @@ import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gestores.GestorPoliza;
-import com.trabajofinal.gestores.GestorSistemaFinanciero;
 import com.trabajofinal.models.TipoPago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -81,7 +80,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
             // Logica de finalizar
             GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
-            JOptionPane.showMessageDialog(null, "Poliza creada exitósamente");
+            JOptionPane.showMessageDialog(null, "Poliza creada exitósamente", "Advertencia", JOptionPane.WARNING_MESSAGE);
             this.confirmacionDatosPoliza.dispose();
 
 
