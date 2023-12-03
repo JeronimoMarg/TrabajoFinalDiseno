@@ -141,10 +141,11 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
             if (validar()) {
                 VehiculoDTO vehiculoDTO = crearVehiculo();
                 PolizaDTO polizaDTO = crearPoliza();
+                altaPoliza01.dispose();
                 AltaPoliza02 altaPoliza02 = new AltaPoliza02(cliente, vehiculoDTO, hijoDTO, polizaDTO);
 
             } else {
-                JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+                JOptionPane.showMessageDialog(null, "Todos los campos deben contener información correcta. Verifique campos vacíos y/o en rojo.");
             }
         } else if (e.getSource() == altaPoliza01.btn_alta_poliza01_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
@@ -182,32 +183,32 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == altaPoliza01.txt_alta_pol01_chasis
-                || e.getSource() == altaPoliza01.txt_alta_pol01_patente) {
+                || e.getSource() == altaPoliza01.txt_alta_pol01_patente || e.getSource() == altaPoliza01.txt_alta_pol01_motor) {
             validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
         } else if (e.getSource() == altaPoliza01.txt_alta_pol01_km) {
             validarCampoRegex(e, "^[0-9]+$");
-
-        } else if (e.getSource() == altaPoliza01.txt_alta_pol01_motor) {
-            validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
-        }
+        } 
     }
 
-    private void validarCampoAlfanumerico(JTextField textField, String regex) {
-        String input = textField.getText().trim();
-        boolean isValid = Pattern.matches(regex, input);
-        if (isValid) {
-            textField.setForeground(Color.BLACK);
-        } else {
-            textField.setForeground(Color.RED);
-        }
+    private boolean validarCampoAlfanumerico(JTextField textField, String regex) {
+    String input = textField.getText().trim();
+    boolean isValid = input.isEmpty() || Pattern.matches(regex, input);
+    if (isValid) {
+        textField.setForeground(Color.BLACK);
+    } else {
+        textField.setForeground(Color.RED);
     }
+    return isValid;
+}
 
-    private void validarCampoRegex(KeyEvent e, String regex) {
-        char c = e.getKeyChar();
-        if (!Character.toString(c).matches(regex)) {
-            e.consume();
-        }
+
+   private void validarCampoRegex(KeyEvent e, String regex) {
+    char c = e.getKeyChar();
+    if (!Character.toString(c).matches(regex)) {
+        // Aquí no haces nada si el carácter no coincide con la expresión regular
     }
+}
+
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -219,17 +220,25 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
 
     }
 
-    private boolean validar() {
-        return !(altaPoliza01.txt_alta_pol01_chasis.getText().equals("")
-                || altaPoliza01.txt_alta_pol01_km.equals("")
-                || altaPoliza01.txt_alta_pol01_motor.equals("")
-                || altaPoliza01.txt_alta_pol01_patente.equals("")
-                || altaPoliza01.cmb_alta_pol01_prov.getSelectedItem() == null
-                || altaPoliza01.cmb_alta_pol01_local.getSelectedItem() == null
-                || altaPoliza01.cmb_alta_pol01_marca.getSelectedItem() == null
-                || altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem() == null
-                || altaPoliza01.cmb_alta_pol01_anio.getSelectedItem() == null);
-    }
+    private boolean validar() {    
+    boolean camposNoNulos = !(altaPoliza01.txt_alta_pol01_chasis.getText().isEmpty()
+            || altaPoliza01.txt_alta_pol01_km.getText().isEmpty()
+            || altaPoliza01.txt_alta_pol01_motor.getText().isEmpty()
+            || altaPoliza01.txt_alta_pol01_patente.getText().isEmpty()
+            || altaPoliza01.cmb_alta_pol01_prov.getSelectedItem() == null
+            || altaPoliza01.cmb_alta_pol01_local.getSelectedItem() == null
+            || altaPoliza01.cmb_alta_pol01_marca.getSelectedItem() == null
+            || altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem() == null
+            || altaPoliza01.cmb_alta_pol01_anio.getSelectedItem() == null);
+
+    boolean camposValidos = validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_chasis, "[a-zA-Z0-9]+")
+            && validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_patente, "[a-zA-Z0-9]+")
+            && validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_motor, "[a-zA-Z0-9]+");
+
+    return camposNoNulos && camposValidos;
+}
+
+    
 
     private void inicializarCmbProvincias() {
         // Iterar sobre la lista de provincias y agregar nombres al JComboBox

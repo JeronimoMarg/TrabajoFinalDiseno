@@ -23,6 +23,7 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
 	private VehiculoDTO vehiculo;
 	private List<HijoDTO> hijoDTO;
 	private PolizaDTO poliza;
+        public boolean modificar;
 	
     public ConfirmacionDatosPoliza(ClienteDTO cliente, VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
     	super("Confirmación de póliza");

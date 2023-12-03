@@ -40,6 +40,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         this.vehiculo = vehiculo;
         this.hijoDTO = hijoDTO;
         this.poliza = poliza;
+        this.confirmacionDatosPoliza.modificar = false;
 
         inicializarDatos();
 
@@ -77,38 +78,10 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_mod) {
+            confirmacionDatosPoliza.modificar = true;
             this.confirmacionDatosPoliza.dispose();
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
-            ProgressWindow progreso = new ProgressWindow();
-            // Hilo para la carga de datos
-            Thread hiloDatos = new Thread() {
-                @Override
-                public void run() {
-                    GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
-
-                    progreso.dispose();
-                }
-            };
-            // Hilo para la barra de progreso
-            Thread hiloProgreso = new Thread() {
-                @Override
-                public void run() {
-                    int progresoActual = 1;
-                    while (true) {
-                        progreso.jpb_progress.setValue(progresoActual);
-                        progresoActual = (progresoActual % 100) + 1; // Reinicia el contador al llegar a 100
-                        try {
-                            Thread.sleep(50); // Simula un retardo de tiempo durante la actualización del progreso
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            };
-            // Iniciar ambos hilos
-            hiloProgreso.start();
-            hiloDatos.start();
-
+            GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
             JOptionPane.showMessageDialog(null, "Poliza creada exitósamente", "Advertencia", JOptionPane.WARNING_MESSAGE);
             this.confirmacionDatosPoliza.dispose();
 
