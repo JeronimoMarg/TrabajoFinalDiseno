@@ -30,5 +30,20 @@ public class PolizaDao extends AbstractDao<Poliza> {
 	         return null;
 	      }
 	   }
+
+
+   public int getUltimoId() {
+	   
+	   String qlString = "SELECT MAX (p.id) FROM Poliza p";
+	      TypedQuery<Integer> query = getEntityManager().createQuery(qlString, Integer.class);
+	      try {
+	         return query.getSingleResult();
+	      } catch (NoResultException e) {
+	         System.out.println(e.getMessage());
+	         e.printStackTrace();
+	         return -1;
+	      }
+	  
+   }
  
 }

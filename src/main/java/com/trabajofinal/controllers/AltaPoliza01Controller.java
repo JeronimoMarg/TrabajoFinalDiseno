@@ -23,6 +23,8 @@ import com.trabajofinal.models.Modelo;
 import com.trabajofinal.models.Provincia;
 import com.trabajofinal.models.TipoVehiculo;
 import com.trabajofinal.gestores.GestorClientes;
+import com.trabajofinal.gestores.GestorSistemaSiniestros;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -263,8 +265,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
          altaPoliza01.cmb_alta_pol01_prov.addItem(comboBoxItem);
       }
       //Cómo aquí ya tengo los datos del cliente, voy a traer la cantidad de sniestros del ultimo año y lo voy a setear.
-      GestorClientes gestorCliente = GestorClientes.getInstance();
-      altaPoliza01.txt_alta_pol01_nro_stros.setText(String.valueOf(gestorCliente.obtenerSiniestros(cliente.getId())));
+      altaPoliza01.txt_alta_pol01_nro_stros.setText(String.valueOf(GestorSistemaSiniestros.getInstance().obtenerSiniestros(cliente.getId())));
    }
 
    private void inicializarCmbMarcas() {

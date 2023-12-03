@@ -1,5 +1,8 @@
 package com.trabajofinal.models;
 
+
+/*
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -29,7 +32,7 @@ public class CuotaPago {
 	private Pago pago;
 	
 	@OneToMany
-	@JoinColumn(name = "id_cuota")
+	@JoinColumn(name="id_cuota")
 	private List<Cuota> cuotas;
 	
     @Column(name = "recargo_mora")
@@ -69,16 +72,10 @@ public class CuotaPago {
 	public void setBonificacion_pago_adelantado(Double bonificacion_pago_adelantado) {
 		this.bonificacion_pago_adelantado = bonificacion_pago_adelantado;
 	}
-
-	public List<Cuota> getCuotas() {
-		return cuotas;
-	}
-
-	public void setCuotas(List<Cuota> cuotas) {
-		this.cuotas = cuotas;
-	}
 	
 	
 	
 
 }
+
+*/

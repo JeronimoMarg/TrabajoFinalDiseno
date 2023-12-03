@@ -36,10 +36,10 @@ public class Cuota {
 
     @Column(name = "hasta")
     private LocalDate hasta;
-
+    
     @OneToOne
-    @JoinColumn(name = "id_cuota_pago")
-    private CuotaPago cuotaPago;
+    @JoinColumn(name = "id_pago")
+    private Pago pago;
 
     public Cuota() {
     }
@@ -86,8 +86,8 @@ public class Cuota {
     
     public Pago getPago() {
     	
-    	return cuotaPago.getPago();
-    	
+    	//return cuotaPago.getPago();
+    	return null;
     }
 
 }

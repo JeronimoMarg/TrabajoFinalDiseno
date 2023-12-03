@@ -3,6 +3,7 @@ package com.trabajofinal.gestores;
 import java.util.List;
 
 import com.trabajofinal.dao.PolizaDao;
+import com.trabajofinal.dao.SiniestrosConductorDao;
 import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.models.Poliza;
 
@@ -20,12 +21,11 @@ public class GestorSistemaSiniestros {
 		}
 		return instance;
 	}
-	
-	   public List<Poliza> obtenerCantidadPolizas(int id_cliente) {
-
-		      PolizaDao dao = new PolizaDao();
-		      return dao.getAsociadasCliente(id_cliente);
-
-		   }
+	   
+		public int obtenerSiniestros(int id_cliente) {
+			
+			SiniestrosConductorDao dao = new SiniestrosConductorDao();
+			return dao.getCantidadSiniestros(id_cliente);
+		}
 
 }

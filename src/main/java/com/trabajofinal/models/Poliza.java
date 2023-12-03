@@ -261,4 +261,21 @@ public class Poliza {
 		}
 		return retorno;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Poliza [id=" + id + ", numero_poliza=" + numero_poliza + ", premio=" + premio
+				+ ", fecha_inicio_vigencia=" + fecha_inicio_vigencia + ", forma_pago=" + forma_pago + ", descuentos="
+				+ descuentos + ", total_a_pagar=" + total_a_pagar + ", derechos_emision=" + derechos_emision
+				+ ", cantidad_siniestros=" + cantidad_siniestros + ", estado=" + estado + ", poliza_propuesta="
+				+ poliza_propuesta + ", vehiculo_asegurado=" + vehiculo_asegurado + ", hijos=" + hijos
+				+ ", modificaciones=" + modificaciones + ", factores_cobertura_poliza=" + factores_cobertura_poliza
+				+ ", factores_caracteristicas=" + factores_caracteristicas + ", cuotas=" + cuotas
+				+ ", factores_vehiculo=" + factores_vehiculo + ", factores_modelo=" + factores_modelo + ", cliente="
+				+ cliente + ", localidad=" + localidad + ", factor_riesgo_localidad=" + factor_riesgo_localidad + "]";
+	}
+	
+	
 }

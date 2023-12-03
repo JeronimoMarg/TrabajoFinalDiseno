@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 import com.trabajofinal.dto.ClienteDTO;
 import com.trabajofinal.dto.HijoDTO;
@@ -54,10 +55,10 @@ public class GestorPoliza {
          polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(vehiculo.getId_tipo_vehiculo()));
          polizaNueva.setFactores_modelo(obtenerFactoresModelo(vehiculo.getId_modelo()));
          polizaNueva.setVehiculo_asegurado(obtenerVehiculo(vehiculo));
-         actualizarEstadoCliente(poliza, polizaNueva.getCliente());
          setearCuotas(poliza, polizaNueva);
-         
+         generarNumeroPoliza(polizaNueva);
          guardar(polizaNueva);
+         GestorClientes.getInstance().actualizarEstadoCliente(poliza, polizaNueva.getCliente());
 
       }
    }
@@ -66,8 +67,7 @@ public class GestorPoliza {
 
       boolean bool = true;
 
-      // metodo de validarLogica para la poliza que va a ser creada
-      
+      //verificar que no exista una poliza vigente ya asociada a un vehiculo determinado.
       
       return bool;
    }
@@ -160,28 +160,6 @@ public class GestorPoliza {
 
    }
 
-   private void actualizarEstadoCliente(PolizaDTO poliza, Cliente cliente) {
-
-      ClienteDao daocliente = new ClienteDao();
-
-      List<Poliza> polizasAsociadas = GestorSistemaSiniestros.getInstance().obtenerCantidadPolizas(cliente.getId());
-
-      if (polizasAsociadas.size() == 0) {
-         cliente.setCondicion(TipoCondicion.NORMAL);
-      } else if (polizasAsociadas.size() != 0 && sonNoVigentes(polizasAsociadas)) {
-         cliente.setCondicion(TipoCondicion.NORMAL);
-      } else {
-         int cantidad_siniestros = GestorClientes.getInstance().obtenerSiniestros(cliente.getId());
-         Period period = Period.between(cliente.getFecha_activacion(), LocalDate.now());
-         if (cantidad_siniestros != 0 && tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
-            cliente.setCondicion(TipoCondicion.NORMAL);
-         } else if (cantidad_siniestros != 0 && !tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
-            cliente.setCondicion(TipoCondicion.PLATA);
-         }
-      }
-
-   }
-
    public boolean sonNoVigentes(List<Poliza> polizas) {
 
       boolean retorno = true;
@@ -238,5 +216,50 @@ public class GestorPoliza {
 
       return cuotas;
    }
+   
+   public List<Poliza> obtenerCantidadPolizas(int id_cliente) {
 
+	      PolizaDao dao = new PolizaDao();
+	      return dao.getAsociadasCliente(id_cliente);
+
+   }
+   
+   public void generarNumeroPoliza(Poliza polizaNueva) {
+	   
+	   String numeroPoliza = getNumeroSucursal() + "-"
+			   + getNumeroAsociacion(polizaNueva.getVehiculo_asegurado().getId(), getLastId()) + "-"
+			   + getNumeroRenovacion();
+	   
+	   polizaNueva.setNumero_poliza(numeroPoliza);
+	   
+   }
+   
+   public String getNumeroAsociacion(int id_vehiculo, int id_poliza) {
+	   
+	   //aca generamos una secuencia de 5 numeros random
+	   Random random = new Random();
+	   int valorrandom = 10000+random.nextInt(90000);
+	   
+	   //aca hacemos la asociacion entre vehiculo y poliza
+	   String retorno = String.valueOf(id_vehiculo) + String.valueOf(id_poliza) + String.valueOf(valorrandom);
+	   
+	   return retorno;
+	   
+   }
+   
+   public String getNumeroSucursal() {
+	   return "0000";
+   }
+   
+   public String getNumeroRenovacion() {
+	   return "00";
+   }
+
+   public int getLastId() {
+	   
+	   PolizaDao dao = new PolizaDao();
+	   return dao.getUltimoId();
+	   
+   }
+   
 }

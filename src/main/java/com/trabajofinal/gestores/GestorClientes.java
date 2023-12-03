@@ -32,34 +32,29 @@ public class GestorClientes {
 		return dao.getById(id);
 	}
 
-	public void actualizarEstado(PolizaDTO poliza, Cliente cliente) {
-		
+	
+	public void actualizarEstadoCliente(PolizaDTO poliza, Cliente cliente) {
 
-		ClienteDao daocliente = new ClienteDao();
-		
-		List<Poliza> polizasAsociadas = GestorSistemaSiniestros.getInstance().obtenerCantidadPolizas(cliente.getId());
-		
-		if(polizasAsociadas.size() == 0) {
-			cliente.setCondicion(TipoCondicion.NORMAL);
-		}else if(polizasAsociadas.size()!=0 && GestorPoliza.getInstance().sonNoVigentes(polizasAsociadas)) {
-			cliente.setCondicion(TipoCondicion.NORMAL);
-		}else {
-			int cantidad_siniestros = obtenerSiniestros(cliente.getId());
-			Period period = Period.between(cliente.getFecha_activacion(), LocalDate.now());
-			if(cantidad_siniestros != 0 && GestorPoliza.getInstance().tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
-				cliente.setCondicion(TipoCondicion.NORMAL);
-			}else if(cantidad_siniestros != 0 && !GestorPoliza.getInstance().tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
-				cliente.setCondicion(TipoCondicion.PLATA);
-			}
-		}
-		
-		
-	}
+		      ClienteDao daocliente = new ClienteDao();
+		      GestorPoliza gestorP = GestorPoliza.getInstance();
+		      List<Poliza> polizasAsociadas = gestorP.obtenerCantidadPolizas(cliente.getId());
 
-	public int obtenerSiniestros(int id_cliente) {
-		
-		SiniestrosConductorDao dao = new SiniestrosConductorDao();
-		return dao.getCantidadSiniestros(id_cliente);
+		      if (polizasAsociadas.size() == 0) {
+		         cliente.setCondicion(TipoCondicion.NORMAL);
+		      } else if (polizasAsociadas.size() != 0 && gestorP.sonNoVigentes(polizasAsociadas)) {
+		         cliente.setCondicion(TipoCondicion.NORMAL);
+		      } else {
+		         int cantidad_siniestros = GestorSistemaSiniestros.getInstance().obtenerSiniestros(cliente.getId());
+		         Period period = Period.between(cliente.getFecha_activacion(), LocalDate.now());
+		         if (cantidad_siniestros != 0 && gestorP.tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
+		            cliente.setCondicion(TipoCondicion.NORMAL);
+		         } else if (cantidad_siniestros != 0 && !gestorP.tieneCuotasImpagas(polizasAsociadas) && period.getYears() >= 2) {
+		            cliente.setCondicion(TipoCondicion.PLATA);
+		         }
+		      }
+		      
+		      daocliente.update(cliente);		//lo guarda en la base de datos.
+
 	}
 
 }
