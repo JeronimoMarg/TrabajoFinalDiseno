@@ -8,7 +8,6 @@ import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gestores.GestorPoliza;
-import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.models.TipoPago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

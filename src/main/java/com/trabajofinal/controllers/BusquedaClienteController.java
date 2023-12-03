@@ -104,11 +104,10 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
                int progresoActual = 1;
                while (true) {
                   progreso.jpb_progress.setValue(progresoActual);
-                  progresoActual = (progresoActual % 100) + 1; // Reinicia el contador al llegar a 100
+                  progresoActual = (progresoActual + 1) % 100; // Reinicia el contador al llegar a 100
                   try {
                      Thread.sleep(50); // Simula un retardo de tiempo durante la actualización del progreso
                   } catch (InterruptedException e) {
-                     e.printStackTrace();
                   }
                }
             }

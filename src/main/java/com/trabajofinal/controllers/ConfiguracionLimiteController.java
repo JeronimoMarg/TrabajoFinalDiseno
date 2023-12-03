@@ -29,6 +29,8 @@ public class ConfiguracionLimiteController implements ActionListener, KeyListene
         this.configuracionLimiteDeBusqueda.btn_config_limite_cancelar.addActionListener(this);
         this.configuracionLimiteDeBusqueda.chk_config_limite_habilitar_cambio.addItemListener(this);
         this.configuracionLimiteDeBusqueda.txt_config_limite_valor_nuevo.addKeyListener(this);
+
+        this.configuracionLimiteDeBusqueda.setDefaultCloseOperation(ConfiguracionLimiteDeBusqueda.DISPOSE_ON_CLOSE);
     }
 
     private void cargarLimite(){

@@ -21,6 +21,8 @@ public class DetalleCuotasController implements ActionListener {
         
         //Pongo a la escucha el botón
         this.detalleCuotas.btn_detalle_cuotas.addActionListener(this);
+
+        this.detalleCuotas.setDefaultCloseOperation(DetalleCuotas.DISPOSE_ON_CLOSE);
     }
     
     @Override

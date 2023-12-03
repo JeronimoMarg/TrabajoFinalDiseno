@@ -37,6 +37,8 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
         this.altaPolizaHijo.cmb_alta_pol_hijo_sexo.addActionListener(this);
         this.altaPolizaHijo.jdate_alta_hijo.addPropertyChangeListener(this);
 
+        this.altaPolizaHijo.setDefaultCloseOperation(AltaPolizaHijo.DISPOSE_ON_CLOSE);
+
     }
 
     @Override

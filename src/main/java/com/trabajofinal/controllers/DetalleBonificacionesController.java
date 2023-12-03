@@ -22,6 +22,8 @@ public class DetalleBonificacionesController implements ActionListener {
         
         //Botón en escucha
         this.detalleBonificaciones.btn_detalle_bonificaciones.addActionListener(this);
+
+        this.detalleBonificaciones.setDefaultCloseOperation(DetalleBonificaciones.DISPOSE_ON_CLOSE);
     }
     
     @Override
