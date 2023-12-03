@@ -8,6 +8,7 @@ import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gestores.GestorPoliza;
+import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.models.TipoPago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.JOptionPane;
 
 public class ConfirmacionDatosPolizaController implements ActionListener {
@@ -32,7 +34,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
     private Double dcto_antig;
 
     public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza, ClienteDTO cliente,
-        VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
+            VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
         this.confirmacionDatosPoliza = confirmacionDatosPoliza;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
@@ -40,7 +42,6 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         this.poliza = poliza;
 
         inicializarDatos();
-        System.out.println(this.hijoDTO.size());
 
         // Los elementos de la interfaz varían si es o no de pago único.      
         boolean pagoMensual = poliza.getTipoPago().equals(TipoPago.MENSUAL);
@@ -78,11 +79,38 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
         if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_mod) {
             this.confirmacionDatosPoliza.dispose();
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
-            // Logica de finalizar
-            GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
+            ProgressWindow progreso = new ProgressWindow();
+            // Hilo para la carga de datos
+            Thread hiloDatos = new Thread() {
+                @Override
+                public void run() {
+                    GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
+
+                    progreso.dispose();
+                }
+            };
+            // Hilo para la barra de progreso
+            Thread hiloProgreso = new Thread() {
+                @Override
+                public void run() {
+                    int progresoActual = 1;
+                    while (true) {
+                        progreso.jpb_progress.setValue(progresoActual);
+                        progresoActual = (progresoActual % 100) + 1; // Reinicia el contador al llegar a 100
+                        try {
+                            Thread.sleep(50); // Simula un retardo de tiempo durante la actualización del progreso
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+            // Iniciar ambos hilos
+            hiloProgreso.start();
+            hiloDatos.start();
+
             JOptionPane.showMessageDialog(null, "Poliza creada exitósamente", "Advertencia", JOptionPane.WARNING_MESSAGE);
             this.confirmacionDatosPoliza.dispose();
-
 
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.

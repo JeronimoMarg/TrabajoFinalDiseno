@@ -185,7 +185,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
                 || e.getSource() == altaPoliza01.txt_alta_pol01_patente) {
             validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
         } else if (e.getSource() == altaPoliza01.txt_alta_pol01_km) {
-            validarCampoRegex(e, "^[0-9]*\\.?[0-9]*$");
+            validarCampoRegex(e, "^[0-9]+$");
+
         } else if (e.getSource() == altaPoliza01.txt_alta_pol01_motor) {
             validarCampoAlfanumerico((JTextField) e.getSource(), "[a-zA-Z0-9]+");
         }
