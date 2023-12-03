@@ -18,7 +18,7 @@ public class App {
 
    public static void main(String[] args) {
 
-      inicializarDatos();
+      // inicializarDatos();
 
       BusquedaCliente busquedaCliente = new BusquedaCliente();
       busquedaCliente.setVisible(true);
@@ -119,7 +119,7 @@ public class App {
 
       Marca marca1 = new Marca("Ford");
       Marca marca2 = new Marca("Fiat");
-      
+
       FactoresModelo fm1 = new FactoresModelo(LocalDate.of(2019, 12, 30), null, 0.4, null, usuario1);
       FactoresModelo fm2 = new FactoresModelo(LocalDate.of(2023, 5, 3), null, 0.6, null, usuario1);
 
@@ -200,7 +200,7 @@ public class App {
             0.4,
             usuario1,
             l4);
-      
+
       LimiteDeBusqueda limiteDeBusqueda = new LimiteDeBusqueda(5);
 
       try {
@@ -296,7 +296,7 @@ public class App {
          dao_localidad.update(l2);
          dao_localidad.update(l3);
          dao_localidad.update(l4);
-         
+
          LimiteDao dao_LimiteDao = new LimiteDao();
          dao_LimiteDao.save(limiteDeBusqueda);
 
@@ -312,7 +312,7 @@ public class App {
       // este codigo lo que hace es verificar si hay entidades cargadas en la BD.
       // si la cuenta de entidades (de cliente por ahora) es cero, carga todos los
       // datos.
-	   
+
       EntityManager entityManager = EntityManagerUtil.getEntityManager();
       long entityCount = (long) entityManager.createQuery("SELECT COUNT(c) FROM Cliente c").getSingleResult();
 
