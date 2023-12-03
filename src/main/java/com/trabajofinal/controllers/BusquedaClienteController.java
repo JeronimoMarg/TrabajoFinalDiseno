@@ -260,15 +260,6 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
                .setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 3).toString());
          busquedaCliente.txt_busqueda_cliente_nombre
                .setText(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 4).toString());
-         /*
-          * int id =
-          * Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila,
-          * 8).toString());
-          * ClienteDao cliente_dao = new ClienteDao();
-          * Cliente cliente = new Cliente();
-          * cliente = cliente_dao.getById(id);
-          * clienteDTO = aDTO(cliente);
-          */
          busquedaCliente.btn_busq_cliente_select.setEnabled(true);
       }
    }
