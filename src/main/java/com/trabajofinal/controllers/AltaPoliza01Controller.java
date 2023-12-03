@@ -23,7 +23,9 @@ import com.trabajofinal.models.Modelo;
 import com.trabajofinal.models.Provincia;
 import com.trabajofinal.models.TipoVehiculo;
 import com.trabajofinal.gestores.GestorClientes;
+import com.trabajofinal.gestores.GestorLocalidad;
 import com.trabajofinal.gestores.GestorSistemaSiniestros;
+import com.trabajofinal.gestores.GestorVehiculos;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -55,7 +57,6 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
 
    // Variables que vamos a usar ahora para probar la lógica
 
-
    private List<Provincia> provincias = new ArrayList<>();
    private List<Localidad> localidades = new ArrayList<>();
    private List<Marca> marcas = new ArrayList<>();
@@ -77,7 +78,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
          @Override
          public void run() {
             // Aquí se ejecutan las operaciones de carga de datos
-        	cargarDatos();
+            cargarDatos();
             inicializarCmbProvincias();
             inicializarCmbMarcas();
             listarHijos();
@@ -184,7 +185,7 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
       }
    }
 
-@Override
+   @Override
    public void keyTyped(KeyEvent e) {
       if (e.getSource() == altaPoliza01.txt_alta_pol01_chasis
             || e.getSource() == altaPoliza01.txt_alta_pol01_patente) {
@@ -241,8 +242,10 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
          DynamicCombobox comboBoxItem = new DynamicCombobox(provincia.getId(), provincia.getNombre());
          altaPoliza01.cmb_alta_pol01_prov.addItem(comboBoxItem);
       }
-      //Cómo aquí ya tengo los datos del cliente, voy a traer la cantidad de sniestros del ultimo año y lo voy a setear.
-      altaPoliza01.txt_alta_pol01_nro_stros.setText(String.valueOf(GestorSistemaSiniestros.getInstance().obtenerSiniestros(cliente.getId())));
+      // Cómo aquí ya tengo los datos del cliente, voy a traer la cantidad de
+      // sniestros del ultimo año y lo voy a setear.
+      altaPoliza01.txt_alta_pol01_nro_stros
+            .setText(String.valueOf(GestorSistemaSiniestros.getInstance().obtenerSiniestros(cliente.getId())));
    }
 
    private void inicializarCmbMarcas() {
@@ -269,57 +272,56 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
       vehiculo.setPeso(peso);
       vehiculo.setPotencia(potencia);
       vehiculo.setValor_estimado(altaPoliza01.txt_alta_pol01_valor.getText());
-      
+
       int aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_anio.getSelectedItem()).getId();
       vehiculo.setId_tipo_vehiculo(aux);
-      
+
       aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem()).getId();
       vehiculo.setId_modelo(aux);
 
       return vehiculo;
    }
-   
+
    private PolizaDTO crearPoliza() {
-	
-	   PolizaDTO poliza = new PolizaDTO();
-	   poliza.setLocalidad(altaPoliza01.cmb_alta_pol01_local.getSelectedItem().toString().trim());
-	   
-	   int aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_local.getSelectedItem()).getId();
-	   
-	   poliza.setId_localidad(aux);
-	   
-	   return poliza;
-	   
+
+      PolizaDTO poliza = new PolizaDTO();
+      poliza.setLocalidad(altaPoliza01.cmb_alta_pol01_local.getSelectedItem().toString().trim());
+
+      int aux = ((DynamicCombobox) altaPoliza01.cmb_alta_pol01_local.getSelectedItem()).getId();
+
+      poliza.setId_localidad(aux);
+
+      return poliza;
+
    }
 
    private void cargarValor(int id_tipo) {
       altaPoliza01.txt_alta_pol01_valor.setText("");
-      TipoVehiculoDao tipo_dao = new TipoVehiculoDao();
-      TipoVehiculo tipo = tipo_dao.getById(id_tipo);
-      altaPoliza01.txt_alta_pol01_valor.setText(tipo.getFactores_actuales().getSuma_asegurada().toString());
-
+      GestorVehiculos gestorVehiculos = GestorVehiculos.getInstance();
+      TipoVehiculo tipo = gestorVehiculos.obtenerTipoVehiculoPorId(id_tipo);
+      if (tipo != null) {
+         altaPoliza01.txt_alta_pol01_valor.setText(tipo.getFactores_actuales().getSuma_asegurada().toString());
+      }
    }
 
    private void cargarAnyoVehiculos(int id_modelo) {
       altaPoliza01.cmb_alta_pol01_anio.removeAllItems();
-      TipoVehiculoDao tipo_dao = new TipoVehiculoDao();
-      tipoVehiculos = tipo_dao.getTipoVehiculoModelo(id_modelo);
+      GestorVehiculos gestorVehiculos = GestorVehiculos.getInstance();
+      List<TipoVehiculo> tipoVehiculos = gestorVehiculos.obtenerTiposVehiculoPorModelo(id_modelo);
 
       for (TipoVehiculo tipoV : tipoVehiculos) {
          DynamicCombobox comboBoxItem = new DynamicCombobox(tipoV.getId(), tipoV.getAnio().toString());
          altaPoliza01.cmb_alta_pol01_anio.addItem(comboBoxItem);
-         // Acá asigno los valores de peso y potencia, en base a los valores que
-         // correspondan al modelo.
+         // Asignación de valores de peso y potencia basados en el modelo.
          peso = tipoV.getPeso().toString();
          potencia = tipoV.getPotencia().toString();
-
       }
    }
 
    private void cargarLocalidades(int id_prov) {
       altaPoliza01.cmb_alta_pol01_local.removeAllItems();
-      LocalidadDao localidad_dao = new LocalidadDao();
-      localidades = localidad_dao.getLocalidadesProvincia(id_prov);
+      GestorLocalidad gestorLocalidad = GestorLocalidad.getInstance();
+      List<Localidad> localidades = gestorLocalidad.obtenerLocalidadesPorProvincia(id_prov);
       for (Localidad loc : localidades) {
          DynamicCombobox comboBoxItem = new DynamicCombobox(loc.getId(), loc.getNombre());
          altaPoliza01.cmb_alta_pol01_local.addItem(comboBoxItem);
@@ -398,15 +400,15 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
    public static void addHijoDTO(HijoDTO dto) {
       hijoDTO.add(dto);
    }
-   
-   public void cargarDatos() {
-	   
-	      ProvinciaDao provincia_dao = new ProvinciaDao();
-	      MarcaDao marca_dao = new MarcaDao();
 
-	      provincias.addAll(provincia_dao.getAll());
-	      marcas.addAll(marca_dao.getAll());
-	   
+   public void cargarDatos() {
+
+      ProvinciaDao provincia_dao = new ProvinciaDao();
+      MarcaDao marca_dao = new MarcaDao();
+
+      provincias.addAll(provincia_dao.getAll());
+      marcas.addAll(marca_dao.getAll());
+
    }
 
 }
