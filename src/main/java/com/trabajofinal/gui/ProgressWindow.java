@@ -38,9 +38,8 @@ public class ProgressWindow extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(242, 242, 242));
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("Cargando información. Aguarde...");
+        jTextField1.setText("Trabajando. Aguarde, por favor...");
         jTextField1.setBorder(null);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +49,7 @@ public class ProgressWindow extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 220, 30));
 
         jpb_progress.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpb_progress.setForeground(new java.awt.Color(52, 162, 224));
+        jpb_progress.setForeground(new java.awt.Color(51, 255, 51));
         jpb_progress.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jpb_progress.setStringPainted(true);
         jPanel1.add(jpb_progress, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 270, 40));

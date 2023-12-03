@@ -8,7 +8,7 @@ import com.trabajofinal.gui.ConfirmacionDatosPoliza;
 import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gestores.GestorPoliza;
-import com.trabajofinal.gestores.GestorSistemaFinanciero;
+import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.models.TipoPago;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.JOptionPane;
 
 public class ConfirmacionDatosPolizaController implements ActionListener {
@@ -33,15 +34,15 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
     private Double dcto_antig;
 
     public ConfirmacionDatosPolizaController(ConfirmacionDatosPoliza confirmacionDatosPoliza, ClienteDTO cliente,
-        VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
+            VehiculoDTO vehiculo, List<HijoDTO> hijoDTO, PolizaDTO poliza) {
         this.confirmacionDatosPoliza = confirmacionDatosPoliza;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
         this.hijoDTO = hijoDTO;
         this.poliza = poliza;
+        this.confirmacionDatosPoliza.modificar = false;
 
         inicializarDatos();
-        System.out.println(this.hijoDTO.size());
 
         // Los elementos de la interfaz varían si es o no de pago único.      
         boolean pagoMensual = poliza.getTipoPago().equals(TipoPago.MENSUAL);
@@ -77,13 +78,12 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_mod) {
+            confirmacionDatosPoliza.modificar = true;
             this.confirmacionDatosPoliza.dispose();
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_fin) {
-            // Logica de finalizar
             GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
-            JOptionPane.showMessageDialog(null, "Poliza creada exitósamente");
+            JOptionPane.showMessageDialog(null, "Poliza creada exitósamente", "Advertencia", JOptionPane.WARNING_MESSAGE);
             this.confirmacionDatosPoliza.dispose();
-
 
         } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_cancelar) {
             // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
