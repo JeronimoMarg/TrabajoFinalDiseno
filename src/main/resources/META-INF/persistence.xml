@@ -8,10 +8,10 @@
     
     <properties>
       <!-- Propiedades actualizadas -->
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpdiseno"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:8800/tpdiseno"/>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>
-      <property name="jakarta.persistence.jdbc.password" value="franco"/>
+      <property name="jakarta.persistence.jdbc.password" value="root"/>
       
       <!-- Propiedad para actualizar el esquema de la base de datos -->
       <property name="jakarta.persistence.schema-generation.database.action" value="update"/>

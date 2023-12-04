@@ -18,7 +18,7 @@ public class App {
 
    public static void main(String[] args) {
 
-      inicializarDatos();
+      // inicializarDatos();
 
       BusquedaCliente busquedaCliente = new BusquedaCliente();
       busquedaCliente.setVisible(true);

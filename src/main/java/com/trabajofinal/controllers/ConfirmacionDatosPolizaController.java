@@ -138,6 +138,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
       confirmacionDatosPoliza.txt_confirma_pol_apellido.setText(cliente.getApellido().trim().toUpperCase());
       confirmacionDatosPoliza.txt_confirma_pol_nombre.setText(cliente.getNombre().trim().toUpperCase());
       double valor = poliza.getDto_antiguedad() + poliza.getDto_mas_un_vehiculo() + poliza.getDto_pago_semestral();
+      double descto = valor; // lo guardó, así ya tengo los datos para
       String montoFormateado = String.format("%.2f", valor);
       confirmacionDatosPoliza.txt_confirma_pol_dscto.setText(montoFormateado);
       // Formatear la fecha para presentarla en pantalla
@@ -158,7 +159,7 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
       montoFormateado = String.format("%.2f", valor);
       confirmacionDatosPoliza.txt_confirma_pol_premio.setText(montoFormateado);
       confirmacionDatosPoliza.txt_confirma_pol_suma_aseg.setText(vehiculo.getValor_estimado());
-      montoFormateado = String.format("%.2f", valor);
+      montoFormateado = String.format("%.2f", valor - descto);
       confirmacionDatosPoliza.txt_confirma_pol_monto.setText(montoFormateado);
    }
 
