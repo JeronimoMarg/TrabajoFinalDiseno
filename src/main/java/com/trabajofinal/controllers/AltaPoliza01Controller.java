@@ -57,6 +57,9 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
     private List<Modelo> modelos = new ArrayList<>();
     private List<TipoVehiculo> tipoVehiculos = new ArrayList<>();
     private List<FactoresVehiculo> factoresVehiculos = new ArrayList<>();
+    private String formato_patente = "^([a-zA-Z]{3}[0-9]{3}|[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[0-9]{3}[a-zA-Z]{3}|[a-zA-Z][0-9]{3}[a-zA-Z]{2})$";
+    private String formato_chasis = "[a-zA-Z0-9]{17}";
+    private String formato_motor = "[a-zA-Z0-9]{10}";
 
     public AltaPoliza01Controller() {
 
@@ -230,9 +233,9 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
             || altaPoliza01.cmb_alta_pol01_modelo.getSelectedItem() == null
             || altaPoliza01.cmb_alta_pol01_anio.getSelectedItem() == null);
 
-    boolean camposValidos = validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_chasis, "[a-zA-Z0-9]+")
-            && validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_patente, "[a-zA-Z0-9]+")
-            && validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_motor, "[a-zA-Z0-9]+");
+    boolean camposValidos = validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_chasis, formato_chasis)
+            && validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_patente, formato_patente)
+            && validarCampoAlfanumerico(altaPoliza01.txt_alta_pol01_motor, formato_motor);
 
     return camposNoNulos && camposValidos;
 }
