@@ -28,6 +28,7 @@ public class DatosCliente extends javax.swing.JFrame {
 
       this.cliente = cliente;
       DatosClienteController datosClienteController = new DatosClienteController(this, cliente);
+      
    }
 
    /**

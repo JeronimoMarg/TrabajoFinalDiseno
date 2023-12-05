@@ -37,6 +37,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
    private ClienteDTO clienteDTO = new ClienteDTO();
    private int fila;
    private int limite = GestorLimiteDeBusqueda.getInstance().getLimite();
+   
+   List<ClienteDTO> lista = new ArrayList<>();
 
    public BusquedaClienteController(BusquedaCliente busquedaCliente) {
       this.busquedaCliente = busquedaCliente;
@@ -69,13 +71,16 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
    @Override
    public void actionPerformed(ActionEvent e) {
       if (e.getSource() == busquedaCliente.btn_busq_cliente_select) {
-         int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 5).toString());
-         Cliente cliente = new Cliente();
-         cliente = GestorClientes.getInstance().obtenerCliente(id);
-         clienteDTO = aDTO(cliente);
+    	 
+         //int id = Integer.parseInt(busquedaCliente.table_busqueda_cliente.getValueAt(fila, 5).toString());
+         //Cliente cliente = new Cliente();
+         //cliente = GestorClientes.getInstance().obtenerCliente(id);
+         //clienteDTO = aDTO(cliente);
+         
+         ClienteDTO cliente_seleccionado = lista.get(fila);
 
          this.busquedaCliente.dispose();
-         DatosCliente datosCliente = new DatosCliente(clienteDTO);
+         DatosCliente datosCliente = new DatosCliente(cliente_seleccionado);
 
       } else if (e.getSource() == busquedaCliente.btn_busq_cliente_cancelar) {
          // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
@@ -117,6 +122,8 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
          hiloProgreso.start();
       } else if (e.getSource() == busquedaCliente.btn_busq_cliente_limpiar) {
          cleanFields();
+         lista.clear();
+         busquedaCliente.btn_busq_cliente_select.setEnabled(false);
       } else if (e.getSource() == busquedaCliente.btn_busq_cliente_config_limite) {
          ConfiguracionLimiteDeBusqueda configuracionLimiteDeBusqueda = new ConfiguracionLimiteDeBusqueda();
       }
@@ -180,7 +187,6 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
    }
 
    private void listAllClients(List<Cliente> l) {
-      List<ClienteDTO> lista = new ArrayList<>();
       for (Cliente c : l) {
          lista.add(aDTO(c));
       }
@@ -194,7 +200,6 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
          row[3] = lista.get(i).getApellido();
          row[4] = lista.get(i).getNombre();
          row[5] = lista.get(i).getId();
-         // System.out.println(lista.get(i).getId());
 
          tabla.addRow(row);
       }

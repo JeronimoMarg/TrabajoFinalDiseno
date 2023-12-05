@@ -11,17 +11,6 @@ public class PolizaDTO {
 
    private String localidad;
    private int id_localidad;
-   private String marca;
-   private String modelo;
-   private String anio;
-   private String motor;
-   private String chasis;
-   private String patente;
-   private int kilometros;
-   private boolean conAlarma;
-   private boolean conRastreo;
-   private boolean conTuercaAntirrobo;
-   private boolean conCochera;
    private Date fechaInicioVigencia;
    private TipoPago tipoPago;
    private TipoCobertura tipoCobertura;
@@ -42,100 +31,12 @@ public class PolizaDTO {
       this.cuotas = cuotas;
    }
 
-   public boolean isConCochera() {
-      return conCochera;
-   }
-
-   public void setConCochera(boolean conCochera) {
-      this.conCochera = conCochera;
-   }
-
    public String getLocalidad() {
       return localidad;
    }
 
    public void setLocalidad(String localidad) {
       this.localidad = localidad;
-   }
-
-   public String getMarca() {
-      return marca;
-   }
-
-   public void setMarca(String marca) {
-      this.marca = marca;
-   }
-
-   public String getModelo() {
-      return modelo;
-   }
-
-   public void setModelo(String modelo) {
-      this.modelo = modelo;
-   }
-
-   public String getAnio() {
-      return anio;
-   }
-
-   public void setAnio(String anio) {
-      this.anio = anio;
-   }
-
-   public String getMotor() {
-      return motor;
-   }
-
-   public void setMotor(String motor) {
-      this.motor = motor;
-   }
-
-   public String getChasis() {
-      return chasis;
-   }
-
-   public void setChasis(String chasis) {
-      this.chasis = chasis;
-   }
-
-   public String getPatente() {
-      return patente;
-   }
-
-   public void setPatente(String patente) {
-      this.patente = patente;
-   }
-
-   public int getKilometros() {
-      return kilometros;
-   }
-
-   public void setKilometros(int kilometros) {
-      this.kilometros = kilometros;
-   }
-
-   public boolean isConAlarma() {
-      return conAlarma;
-   }
-
-   public void setConAlarma(boolean conAlarma) {
-      this.conAlarma = conAlarma;
-   }
-
-   public boolean isConRastreo() {
-      return conRastreo;
-   }
-
-   public void setConRastreo(boolean conRastreo) {
-      this.conRastreo = conRastreo;
-   }
-
-   public boolean isConTuercaAntirrobo() {
-      return conTuercaAntirrobo;
-   }
-
-   public void setConTuercaAntirrobo(boolean conTuercaAntirrobo) {
-      this.conTuercaAntirrobo = conTuercaAntirrobo;
    }
 
    public Date getFechaInicioVigencia() {

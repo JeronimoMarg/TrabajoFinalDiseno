@@ -36,7 +36,7 @@ public class GestorPoliza {
       return instance;
    }
 
-   public void crearPoliza(PolizaDTO poliza, List<HijoDTO> hijos, ClienteDTO cliente, VehiculoDTO vehiculo) {
+   public void crearPoliza(PolizaDTO poliza, List<HijoDTO> hijos, ClienteDTO cliente, VehiculoDTO vehiculo) throws Exception{
 
       if (validarLogica(vehiculo.getPatente())) {
 
@@ -54,10 +54,11 @@ public class GestorPoliza {
          polizaNueva.setCliente(obtenerCliente(cliente));
          setearHijos(hijos, polizaNueva);
          polizaNueva.setLocalidad(obtenerLocalidad(poliza.getId_localidad()));
-         polizaNueva.setFactor_riesgo_localidad(obtenerFactorRiesgoLocalidad(poliza.getId_localidad()));         
+         polizaNueva.setFactor_riesgo_localidad(polizaNueva.getLocalidad().getRiesgo_localidad());  
+         //polizaNueva.setFactor_riesgo_localidad(obtenerFactorRiesgoLocalidad(poliza.getId_localidad()));         
          polizaNueva.setFactores_vehiculo(obtenerFactoresVehiculo(vehiculo.getId_tipo_vehiculo()));
          polizaNueva.setFactores_modelo(obtenerFactoresModelo(vehiculo.getId_modelo()));
-         polizaNueva.setVehiculo_asegurado(obtenerVehiculo(vehiculo));
+         polizaNueva.setVehiculo_asegurado(crearVehiculo(vehiculo));
          setearCuotas(poliza, polizaNueva);
          generarNumeroPoliza(polizaNueva);
          guardar(polizaNueva);
@@ -145,7 +146,7 @@ public class GestorPoliza {
 
    }
 
-   private Vehiculo obtenerVehiculo(VehiculoDTO vehiculo) {
+   private Vehiculo crearVehiculo(VehiculoDTO vehiculo) {
 
       GestorVehiculos gestor = GestorVehiculos.getInstance();
       Vehiculo v = gestor.crearVehiculo(vehiculo);
@@ -205,6 +206,7 @@ public class GestorPoliza {
             Cuota cuota = new Cuota();
             cuota.setMonto(poliza.getMonto_a_pagar() / 6.0);
             cuota.setFecha_vencimiento(fechaVencimiento);
+            cuota.setCuota_pago(new CuotaPago());
             cuotas.add(cuota);
             fechaVencimiento = fechaVencimiento.plusMonths(1); // Siguiente mes para siguientes cuotas
          }
@@ -212,6 +214,7 @@ public class GestorPoliza {
          Cuota cuota = new Cuota();
          cuota.setMonto(poliza.getMonto_a_pagar());
          cuota.setFecha_vencimiento(fechaVencimiento);
+         cuota.setCuota_pago(new CuotaPago());
          cuotas.add(cuota);
       }
 

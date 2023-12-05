@@ -78,7 +78,8 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
             cargarDatos();
             inicializarCmbProvincias();
             inicializarCmbMarcas();
-            listarHijos();
+            inicializarNroSiniestros();
+            //listarHijos();
             progreso.dispose();
          }
       };
@@ -247,10 +248,16 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
          DynamicCombobox comboBoxItem = new DynamicCombobox(provincia.getId(), provincia.getNombre());
          altaPoliza01.cmb_alta_pol01_prov.addItem(comboBoxItem);
       }
-      // Cómo aquí ya tengo los datos del cliente, voy a traer la cantidad de
-      // sniestros del ultimo año y lo voy a setear.
-      altaPoliza01.txt_alta_pol01_nro_stros
-            .setText(String.valueOf(GestorSistemaSiniestros.getInstance().obtenerSiniestros(cliente.getId())));
+
+   }
+   
+   private void inicializarNroSiniestros() {
+	   
+	     // Cómo aquí ya tengo los datos del cliente, voy a traer la cantidad de
+	     // sniestros del ultimo año y lo voy a setear.
+	     altaPoliza01.txt_alta_pol01_nro_stros
+	            .setText(String.valueOf(GestorSistemaSiniestros.getInstance().obtenerSiniestros(cliente.getId())));
+	   
    }
 
    private void inicializarCmbMarcas() {

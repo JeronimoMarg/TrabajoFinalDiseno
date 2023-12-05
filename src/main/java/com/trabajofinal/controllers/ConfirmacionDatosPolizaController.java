@@ -87,11 +87,17 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
          Thread hiloDatos = new Thread() {
             @Override
             public void run() {
-               GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
-               progreso.dispose();
-               JOptionPane.showMessageDialog(null, "Poliza creada exitosamente", "Advertencia",
-                     JOptionPane.WARNING_MESSAGE);
-               confirmacionDatosPoliza.dispose();
+            	try {
+            		GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
+                    progreso.dispose();
+                    JOptionPane.showMessageDialog(null, "Poliza creada exitosamente", "Advertencia",
+                          JOptionPane.WARNING_MESSAGE);
+                    confirmacionDatosPoliza.dispose();
+            	}catch(Exception e) {
+            		JOptionPane.showMessageDialog(null, "Fallo la creacion de poliza", "Error",
+                            JOptionPane.ERROR);
+                      confirmacionDatosPoliza.dispose();
+            	}
             }
          };
          // Hilo para la barra de progreso

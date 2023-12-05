@@ -24,13 +24,15 @@ public class CuotaPago {
 	@Column(name = "id_cuota_pago")
 	private int id;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_pago")
 	private Pago pago;
 	
+	/*
 	@OneToMany
-	@JoinColumn(name = "id_cuota")
+	@JoinColumn(name = "id_cuota_pago")
 	private List<Cuota> cuotas;
+	*/
 	
     @Column(name = "recargo_mora")
     private Double recargo_mora;
@@ -38,6 +40,10 @@ public class CuotaPago {
     @Column(name = "bonificacion_pago_adelantado")
     private Double bonificacion_pago_adelantado;
 
+    public CuotaPago() {
+    	
+    }
+    
 	public int getId() {
 		return id;
 	}
