@@ -33,12 +33,6 @@ public class Pago {
 
     @Column(name = "fecha_pago")
     private LocalDate fecha_pago;
-    
-    @Column(name = "recargo_mora")
-    private Double recargo_mora;
-
-    @Column(name = "bonificacion_pago_adelantado")
-    private Double bonificacion_pago_adelantado;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")

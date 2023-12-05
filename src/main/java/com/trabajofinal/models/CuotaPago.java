@@ -1,8 +1,5 @@
 package com.trabajofinal.models;
 
-
-/*
-
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,17 +19,17 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class CuotaPago {
 	
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @Column(name = "id_cuota_pago")
-	 private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cuota_pago")
+	private int id;
 	
 	@OneToOne
 	@JoinColumn(name = "id_pago")
 	private Pago pago;
 	
 	@OneToMany
-	@JoinColumn(name="id_cuota")
+	@JoinColumn(name = "id_cuota")
 	private List<Cuota> cuotas;
 	
     @Column(name = "recargo_mora")
@@ -73,9 +70,5 @@ public class CuotaPago {
 		this.bonificacion_pago_adelantado = bonificacion_pago_adelantado;
 	}
 	
-	
-	
 
 }
-
-*/

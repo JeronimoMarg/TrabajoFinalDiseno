@@ -17,7 +17,7 @@ public class ModificacionHijo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_modificacion_hijo") // es necesario??
+    @Column(name = "id_modificacion_hijo")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
