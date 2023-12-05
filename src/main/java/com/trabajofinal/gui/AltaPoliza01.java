@@ -162,6 +162,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         txt_alta_pol01_motor.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_motor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_motor.setToolTipText("Introduzca los 10 caracteres alfanuméricos");
         txt_alta_pol01_motor.setFocusTraversalPolicyProvider(true);
         txt_alta_pol01_motor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,11 +173,13 @@ public class AltaPoliza01 extends javax.swing.JFrame {
 
         txt_alta_pol01_chasis.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_chasis.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_chasis.setToolTipText("Introduzca los 17 caracteres alfanuméricos");
         txt_alta_pol01_chasis.setFocusTraversalPolicyProvider(true);
         jPanel3.add(txt_alta_pol01_chasis, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 310, 30));
 
         txt_alta_pol01_patente.setBackground(new java.awt.Color(220, 220, 220));
         txt_alta_pol01_patente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_alta_pol01_patente.setToolTipText("Ingrese un formato de patente válido para la República Argentina");
         txt_alta_pol01_patente.setFocusTraversalPolicyProvider(true);
         txt_alta_pol01_patente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
