@@ -209,7 +209,7 @@ public class ConfirmacionDatosPoliza extends javax.swing.JFrame {
         jPanel4.add(txt_confirma_pol_fecha_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 140, 30));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setText("Fecha de fin");
+        jLabel23.setText("Fecha de finalización");
         jPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
