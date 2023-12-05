@@ -121,7 +121,7 @@ public class BusquedaCliente extends javax.swing.JFrame {
 
         btn_busq_cliente_buscar.setBackground(new java.awt.Color(220, 220, 220));
         btn_busq_cliente_buscar.setText("Buscar");
-        btn_busq_cliente_buscar.setToolTipText("");
+        btn_busq_cliente_buscar.setToolTipText("Presionar para buscar un cliente. ");
         btn_busq_cliente_buscar.setAlignmentX(0.5F);
         btn_busq_cliente_buscar.setFocusTraversalPolicyProvider(true);
         btn_busq_cliente_buscar.addActionListener(new java.awt.event.ActionListener() {
