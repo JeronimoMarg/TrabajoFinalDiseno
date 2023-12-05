@@ -47,11 +47,11 @@ public class AltaPolizaHijoController implements ActionListener, PropertyChangeL
             //Paso 1: chequear que los datos esten correctos con un Metodo
             //Paso 2: cerrar la ventana.
             //Cargar los datos de hijos para agregarlos al cliente!!!
-            if (localDate != null) {
+            if (localDate != null && !localDate.isAfter(LocalDate.now())) {
                 AltaPoliza01Controller.addHijoDTO(setDatosHijo());
                 this.altaPolizaHijo.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha.");
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.");
             }
 
         } else if (e.getSource() == altaPolizaHijo.btn_alta_poliza_hijo_cancelar) {

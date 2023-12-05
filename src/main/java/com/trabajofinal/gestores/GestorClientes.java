@@ -12,6 +12,7 @@ import com.trabajofinal.models.Poliza;
 import com.trabajofinal.models.TipoCondicion;
 import com.trabajofinal.models.TipoDocumento;
 import com.trabajofinal.dao.SiniestrosConductorDao;
+import java.util.ArrayList;
 
 public class GestorClientes {
 
@@ -58,8 +59,8 @@ public class GestorClientes {
 
    }
 
-   public List<Cliente> buscarClientes(String nombre, String apellido, String numeroDoc, TipoDocumento tipoDoc,
-         String numeroCliente) {
+   public List<ClienteDTO> buscarClientesDTO(String nombre, String apellido, String numeroDoc, TipoDocumento tipoDoc,
+      String numeroCliente) {
       ClienteDao clienteDao = new ClienteDao();
 
       if (nombre != null && !nombre.isEmpty()) {
@@ -76,8 +77,49 @@ public class GestorClientes {
 
       if (numeroCliente != null && !numeroCliente.isEmpty()) {
          clienteDao.getClientesPorNumero(numeroCliente);
+      }    
+      List<Cliente> clientes = new ArrayList<>();
+      clientes = clienteDao.ejecutarQuery();
+      List<ClienteDTO> clientesDTO = new ArrayList<>();
+      for (Cliente c: clientes) {
+          clientesDTO.add(aDTO(c));
       }
-
-      return clienteDao.ejecutarQuery();
+      return  clientesDTO;
    }
+   
+    private ClienteDTO aDTO(Cliente cliente) {
+
+        ClienteDTO dto = new ClienteDTO();
+
+        dto.setId(cliente.getId());
+        dto.setNumero_cliente(cliente.getNumero_cliente());
+        dto.setNumero_documento(cliente.getNumero_documento());
+        dto.setTipo_documento(cliente.getTipo_documento());
+        dto.setNombre(cliente.getNombre());
+        dto.setApellido(cliente.getApellido());
+        dto.setCondicion(cliente.getCondicion());
+        dto.setActivo(cliente.getActivo());
+        dto.setAnio_registro(cliente.getAnio_registro());
+        dto.setProfesion(cliente.getProfesion());
+        dto.setNumero_cuil(cliente.getNumero_cuil());
+        dto.setEmail(cliente.getEmail());
+        dto.setCondicion_iva(cliente.getCondicion_iva());
+        dto.setFecha_nacimiento(cliente.getFecha_nacimiento());
+        dto.setEstado_civil(cliente.getEstado_civil());
+        dto.setSexo(cliente.getSexo());
+        dto.setCalle(cliente.getDomicilio().getNombre_calle());
+        dto.setCod_postal(cliente.getDomicilio().getCodigo_postal());
+        dto.setNro(cliente.getDomicilio().getNumero_calle());
+        dto.setPiso(cliente.getDomicilio().getPiso());
+        dto.setDepartamento(cliente.getDomicilio().getDepartamento());
+        dto.setLocalidad(cliente.getDomicilio().getLocalidad().getNombre());
+
+        String prov = cliente.getDomicilio().getLocalidad().getProvincia().getNombre();
+        String pais = cliente.getDomicilio().getLocalidad().getProvincia().getPais().getNombre();
+        dto.setProvincia(prov);
+        dto.setPais(pais);
+
+        return dto;
+
+    }
 }
