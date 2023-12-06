@@ -16,6 +16,7 @@ import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
 import com.trabajofinal.models.*;
 import com.trabajofinal.utils.EntityManagerUtil;
+import com.trabajofinal.utils.ExcepcionVehiculoAsegurado;
 import com.trabajofinal.dao.PolizaDao;
 import com.trabajofinal.dao.ClienteDao;
 import com.trabajofinal.dao.VehiculoDao;
@@ -36,7 +37,7 @@ public class GestorPoliza {
       return instance;
    }
 
-   public void crearPoliza(PolizaDTO poliza, List<HijoDTO> hijos, ClienteDTO cliente, VehiculoDTO vehiculo) throws Exception{
+   public void crearPoliza(PolizaDTO poliza, List<HijoDTO> hijos, ClienteDTO cliente, VehiculoDTO vehiculo) throws ExcepcionVehiculoAsegurado, Exception{
 
       if (validarLogica(vehiculo.getPatente())) {
 
@@ -64,6 +65,8 @@ public class GestorPoliza {
          guardar(polizaNueva);
          GestorClientes.getInstance().actualizarEstadoCliente(poliza, polizaNueva.getCliente());
 
+      }else {
+    	  throw new ExcepcionVehiculoAsegurado("Este vehiculo ya esta asegurado");
       }
    }
 
@@ -97,7 +100,7 @@ public class GestorPoliza {
    private void setearHijos(List<HijoDTO> hijos, Poliza polizaNueva) {
 	   
 	   if (hijos.size() == 0) {
-		   List<Hijo> listanula = new ArrayList<>();
+		   polizaNueva.getHijos().clear();
 	   }else {
 		      for (int i = 0; i < hijos.size(); i++) {
 		          HijoDTO actual = hijos.get(i);

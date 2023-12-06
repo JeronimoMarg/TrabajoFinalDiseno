@@ -10,6 +10,8 @@ import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.gestores.GestorPoliza;
 import com.trabajofinal.models.TipoPago;
+import com.trabajofinal.utils.ExcepcionVehiculoAsegurado;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -93,7 +95,12 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Poliza creada exitosamente", "Advertencia",
                           JOptionPane.WARNING_MESSAGE);
                     confirmacionDatosPoliza.dispose();
-            	}catch(Exception e) {
+            	}catch (ExcepcionVehiculoAsegurado ev) {
+            		JOptionPane.showMessageDialog(null, ev.getMessage(), "Advertencia",
+                            JOptionPane.WARNING_MESSAGE);
+                      confirmacionDatosPoliza.dispose();
+            	}
+            	catch(Exception e) {
             		JOptionPane.showMessageDialog(null, "Fallo la creacion de poliza", "Error",
                             JOptionPane.ERROR);
                       confirmacionDatosPoliza.dispose();
