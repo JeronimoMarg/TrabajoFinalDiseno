@@ -149,7 +149,10 @@ public class AltaPoliza01Controller implements ActionListener, KeyListener, Mous
 
          } else {
             JOptionPane.showMessageDialog(null,
-                  "Todos los campos deben contener información correcta. Verifique campos vacíos y/o en rojo.");
+                  "Todos los campos deben contener información correcta. Verifique campos vacíos y/o en rojo. "
+                  + "\n Numero de motor: 10 caracteres alfanumericos "
+                  + "\n Numero de chasis: 17 caracteres alfanumericos "
+                  + "\n Patente: formato abc123 o ab123cd");
          }
       } else if (e.getSource() == altaPoliza01.btn_alta_poliza01_cancelar) {
          // Paso 1: preguntar si confirma. Si lo hace, entonces cerramos.
