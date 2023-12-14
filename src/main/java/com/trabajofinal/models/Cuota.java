@@ -37,8 +37,7 @@ public class Cuota {
     @Column(name = "hasta")
     private LocalDate hasta;
     
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cuota_pago")
+    @OneToOne(mappedBy = "cuota")
     private CuotaPago cuota_pago;
 
     public Cuota() {

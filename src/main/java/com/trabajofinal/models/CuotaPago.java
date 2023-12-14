@@ -28,11 +28,9 @@ public class CuotaPago {
 	@JoinColumn(name = "id_pago")
 	private Pago pago;
 	
-	/*
-	@OneToMany
-	@JoinColumn(name = "id_cuota_pago")
-	private List<Cuota> cuotas;
-	*/
+	@ManyToOne
+    @JoinColumn(name = "cuota_id")
+    private Cuota cuota;
 	
     @Column(name = "recargo_mora")
     private Double recargo_mora;
