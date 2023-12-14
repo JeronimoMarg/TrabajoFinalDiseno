@@ -104,7 +104,8 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
                   confirmacionDatosPoliza.dispose();
                } catch (Exception e) {
                   JOptionPane.showMessageDialog(null, "Fallo la creacion de poliza", "Error",
-                        JOptionPane.ERROR);
+                        JOptionPane.ERROR_MESSAGE);
+                  e.printStackTrace();
                   confirmacionDatosPoliza.dispose();
                }
             }
