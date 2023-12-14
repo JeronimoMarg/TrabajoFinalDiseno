@@ -1,6 +1,7 @@
 package com.trabajofinal.controllers;
 
 import com.trabajofinal.dto.ClienteDTO;
+import com.trabajofinal.dto.CuotaDTO;
 import com.trabajofinal.dto.HijoDTO;
 import com.trabajofinal.dto.PolizaDTO;
 import com.trabajofinal.dto.VehiculoDTO;
@@ -9,6 +10,7 @@ import com.trabajofinal.gui.DetalleBonificaciones;
 import com.trabajofinal.gui.DetalleCuotas;
 import com.trabajofinal.gui.ProgressWindow;
 import com.trabajofinal.gestores.GestorPoliza;
+import com.trabajofinal.models.Cuota;
 import com.trabajofinal.models.TipoPago;
 import com.trabajofinal.utils.ExcepcionVehiculoAsegurado;
 
@@ -16,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -89,22 +92,21 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
          Thread hiloDatos = new Thread() {
             @Override
             public void run() {
-            	try {
-            		GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
-                    progreso.dispose();
-                    JOptionPane.showMessageDialog(null, "Poliza creada exitosamente", "Advertencia",
-                          JOptionPane.WARNING_MESSAGE);
-                    confirmacionDatosPoliza.dispose();
-            	}catch (ExcepcionVehiculoAsegurado ev) {
-            		JOptionPane.showMessageDialog(null, ev.getMessage(), "Advertencia",
-                            JOptionPane.WARNING_MESSAGE);
-                      confirmacionDatosPoliza.dispose();
-            	}
-            	catch(Exception e) {
-            		JOptionPane.showMessageDialog(null, "Fallo la creacion de poliza", "Error",
-                            JOptionPane.ERROR);
-                      confirmacionDatosPoliza.dispose();
-            	}
+               try {
+                  GestorPoliza.getInstance().crearPoliza(poliza, hijoDTO, cliente, vehiculo);
+                  progreso.dispose();
+                  JOptionPane.showMessageDialog(null, "Poliza creada exitosamente", "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+                  confirmacionDatosPoliza.dispose();
+               } catch (ExcepcionVehiculoAsegurado ev) {
+                  JOptionPane.showMessageDialog(null, ev.getMessage(), "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+                  confirmacionDatosPoliza.dispose();
+               } catch (Exception e) {
+                  JOptionPane.showMessageDialog(null, "Fallo la creacion de poliza", "Error",
+                        JOptionPane.ERROR);
+                  confirmacionDatosPoliza.dispose();
+               }
             }
          };
          // Hilo para la barra de progreso
@@ -140,9 +142,22 @@ public class ConfirmacionDatosPolizaController implements ActionListener {
                dcto_pago_sem);
       } else if (e.getSource() == confirmacionDatosPoliza.btn_confirma_datos_pol_ver_det) {
          // Verificar consistencia de los datos primero.
+         List<CuotaDTO> lista_cuotas_dto = new ArrayList<>();
+         for (Cuota cuota : poliza.getCuotas()) {
+            lista_cuotas_dto.add(aDTO(cuota));
 
-         DetalleCuotas detalleCuotas = new DetalleCuotas(poliza.getCuotas());
+         }
+
+         DetalleCuotas detalleCuotas = new DetalleCuotas(lista_cuotas_dto);
       }
+   }
+
+   private CuotaDTO aDTO(Cuota cuota) {
+      CuotaDTO dto = new CuotaDTO();
+      dto.setMonto(cuota.getMonto());
+      dto.setFecha_vencimiento(cuota.getFecha_vencimiento());
+
+      return dto;
    }
 
    public void inicializarDatos() {
