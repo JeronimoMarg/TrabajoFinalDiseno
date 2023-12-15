@@ -244,7 +244,7 @@ public class AltaPoliza01 extends javax.swing.JFrame {
         jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel20.setText("Valor estimado");
+        jLabel20.setText("Valor estimado (expresado en pesos):");
         jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N

@@ -46,6 +46,9 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
         txt_det_bon_sem = new javax.swing.JTextField();
         txt_det_bon_ant = new javax.swing.JTextField();
         btn_detalle_bonificaciones = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,14 +75,14 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
         jLabel3.setText("Por pago semestral:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Por antigüedad:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("$");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
         txt_det_bon_unidad.setBackground(new java.awt.Color(220, 220, 220));
         txt_det_bon_unidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_det_bon_unidad.setFocusable(false);
-        jPanel2.add(txt_det_bon_unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 300, 30));
+        jPanel2.add(txt_det_bon_unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 290, 30));
 
         txt_det_bon_sem.setBackground(new java.awt.Color(220, 220, 220));
         txt_det_bon_sem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -89,17 +92,29 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
                 txt_det_bon_semActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_det_bon_sem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 300, 30));
+        jPanel2.add(txt_det_bon_sem, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 290, 30));
 
         txt_det_bon_ant.setBackground(new java.awt.Color(220, 220, 220));
         txt_det_bon_ant.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_det_bon_ant.setFocusable(false);
-        jPanel2.add(txt_det_bon_ant, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 300, 30));
+        jPanel2.add(txt_det_bon_ant, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 290, 30));
 
         btn_detalle_bonificaciones.setBackground(new java.awt.Color(52, 162, 224));
         btn_detalle_bonificaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_detalle_bonificaciones.setText("Continuar");
         jPanel2.add(btn_detalle_bonificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 140, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Por antigüedad:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("$");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("$");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 550, 280));
 
@@ -154,6 +169,9 @@ public class DetalleBonificaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JTextField txt_det_bon_ant;
