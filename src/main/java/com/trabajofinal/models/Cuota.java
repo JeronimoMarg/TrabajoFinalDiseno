@@ -36,9 +36,8 @@ public class Cuota {
 
     @Column(name = "hasta")
     private LocalDate hasta;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cuota_pago")
+
+    @OneToOne(mappedBy = "cuota", cascade = CascadeType.ALL)
     private CuotaPago cuota_pago;
 
     public Cuota() {
@@ -83,21 +82,14 @@ public class Cuota {
     public void setHasta(LocalDate hasta) {
         this.hasta = hasta;
     }
-    
-    public Pago getPago() {
-    	
-    	return cuota_pago.getPago();
-    	
+
+    public CuotaPago getCuota_pago() {
+        return cuota_pago;
     }
 
-	public CuotaPago getCuota_pago() {
-		return cuota_pago;
-	}
+    public void setCuota_pago(CuotaPago cuota_pago) {
+        this.cuota_pago = cuota_pago;
+    }
 
-	public void setCuota_pago(CuotaPago cuota_pago) {
-		this.cuota_pago = cuota_pago;
-	}
-    
-    
 
 }
