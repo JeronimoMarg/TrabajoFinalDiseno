@@ -209,7 +209,7 @@ public class GestorPoliza {
             Cuota cuota = new Cuota();
             cuota.setMonto(poliza.getMonto_a_pagar() / 6.0);
             cuota.setFecha_vencimiento(fechaVencimiento);
-            cuota.setCuota_pago(new CuotaPago());
+            //cuota.setCuota_pago(new CuotaPago());
             cuotas.add(cuota);
             fechaVencimiento = fechaVencimiento.plusMonths(1); // Siguiente mes para siguientes cuotas
          }
@@ -217,7 +217,7 @@ public class GestorPoliza {
          Cuota cuota = new Cuota();
          cuota.setMonto(poliza.getMonto_a_pagar());
          cuota.setFecha_vencimiento(fechaVencimiento);
-         cuota.setCuota_pago(new CuotaPago());
+         //cuota.setCuota_pago(new CuotaPago());
          cuotas.add(cuota);
       }
 
