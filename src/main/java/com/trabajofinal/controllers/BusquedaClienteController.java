@@ -178,7 +178,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         busquedaCliente.cmb_busqueda_cliente_tipo1.setSelectedIndex(0);
     }
 
-    private List<ClienteDTO> searchClient() {
+    private List<Cliente> searchClient() {
         GestorClientes gestorClientes = GestorClientes.getInstance();
 
         String nombre = busquedaCliente.txt_busqueda_cliente_nombre.getText().toString().trim();
@@ -188,12 +188,12 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
                 .valueOf(busquedaCliente.cmb_busqueda_cliente_tipo1.getSelectedItem().toString());
         String numeroCliente = busquedaCliente.txt_busqueda_cliente_nro_cte.getText().toString().trim();
 
-        return gestorClientes.buscarClientesDTO(nombre, apellido, numeroDoc, tipoDoc, numeroCliente);
+        return gestorClientes.buscarClientes(nombre, apellido, numeroDoc, tipoDoc, numeroCliente);
     }
 
-    private void listAllClients(List<ClienteDTO> l) {
-        for (ClienteDTO c : l) {
-            lista.add(c);
+    private void listAllClients(List<Cliente> l) {
+        for (Cliente c : l) {
+            lista.add(aDTO(c));
         }
 
         tabla = (DefaultTableModel) busquedaCliente.table_busqueda_cliente.getModel();
@@ -210,7 +210,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
         }
     }
 
-/*    private ClienteDTO aDTO(Cliente cliente) {
+    private ClienteDTO aDTO(Cliente cliente) {
 
         ClienteDTO dto = new ClienteDTO();
 
@@ -244,7 +244,7 @@ public class BusquedaClienteController implements ActionListener, KeyListener, M
 
         return dto;
 
-    } */
+    }
 
     // Método para limpiar la tabla
     public void cleanTable() {
